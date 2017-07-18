@@ -90,7 +90,15 @@ class MyCuteHeart {
         createGraphicalObject()
     }
 
-    companion object {
-        private val TAG = "My CUSTOM VIEW"
+    fun isIn(xOf: Int, yOf: Int): Boolean {
+        if (xOf < x[6] && xOf > x[3] && yOf < y[6] && yOf > y[2])
+            return true
+        else
+            return false
     }
+
+    companion object {
+        private val TAG = "My CUTE HEART"
+    }
+
 }
