@@ -4,27 +4,38 @@ import android.content.Context
 import android.graphics.Canvas
 import android.media.MediaPlayer
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 import com.chillcoding.mycuteheart.R
+import android.app.Activity
+import android.os.Vibrator
+
 
 /**
  * Created by macha on 17/07/2017.
  */
-class MyGameView : View {
+class MyGameView : View, View.OnTouchListener {
 
     lateinit var mHeart: MyCuteHeart
     var isPlaying = false
-    var mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
+    private var mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
+    private var mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
+    private lateinit var mVibrator: Vibrator
 
     constructor(context: Context?) : super(context) {
         init()
     }
 
-    private fun init() {
-        mSoundPlayer.isLooping = true
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+
+    private fun init() {
+        super.setOnTouchListener(this)
+        mSoundPlayer.isLooping = true
+        mSoundPlayer.setVolume(0.3F, 0.3F)
+        mVibrator = context.getSystemService(Activity.VIBRATOR_SERVICE) as Vibrator
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -70,4 +81,25 @@ class MyGameView : View {
         // stop the animation
         isPlaying = false
     }
+
+
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        if (event != null) {
+            if (mHeart.isIn(event.x.toInt(), event.y.toInt())) {
+                mVibrator.vibrate(50)
+                if (mSoundHeartPlayer.isPlaying) {
+                    mSoundHeartPlayer.stop()
+                    mSoundHeartPlayer.reset()
+                    mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
+                }
+                mSoundHeartPlayer.start()
+            }
+        }
+        return true
+    }
+
+    companion object {
+        private val TAG = "My GAME VIEW"
+    }
+
 }
