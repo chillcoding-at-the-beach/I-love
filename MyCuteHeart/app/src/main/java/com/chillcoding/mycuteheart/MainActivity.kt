@@ -8,17 +8,29 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.chillcoding.mycuteheart.view.MyGameView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    lateinit var mGameView: MyGameView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        mGameView = findViewById(R.id.gameView) as MyGameView
+
         fab.setOnClickListener {
+            if (!mGameView.isPlaying) {
+                mGameView.onPlay()
+                fab.setImageResource(R.drawable.ic_dialog_pause)
+            } else {
+                mGameView.onPause()
+                fab.setImageResource(R.drawable.ic_dialog_play)
+            }
         }
 
         val toggle = ActionBarDrawerToggle(

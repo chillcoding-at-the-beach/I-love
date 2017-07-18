@@ -1,50 +1,41 @@
 package com.chillcoding.mycuteheart.view
 
-import android.content.Context
-import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
-import android.util.AttributeSet
-import android.view.View
 
 /**
  * Created by macha on 17/07/2017.
  */
-class MyHeartView : View {
-    private var mPaint = Paint()
-    private val mHeartPath = Path()
-    private var mSize = 0
-    var x: FloatArray = floatArrayOf(75f, 60f, 40f, 5f, 40f, 110f, 145f, 110f, 90f)
-    var y: FloatArray = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 145f)
+class MyCuteHeart {
+
+    var mSize = 0
+    var mColor = Color.RED
+    var mPaint = Paint()
+    val mHeartPath = Path()
+    var mXZone = 0
+    var mYZone = 0
 
 
-    constructor(context: Context) : super(context) {
+    private var x: FloatArray = floatArrayOf(75f, 60f, 40f, 5f, 40f, 110f, 145f, 110f, 90f)
+    private var y: FloatArray = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 145f)
+
+
+    constructor(size: Int) {
+        mSize = size
         init()
     }
 
     private fun init() {
         mPaint = Paint()
         mPaint.style = Paint.Style.FILL
-        mPaint.color = Color.RED
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
-    }
-
-    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        super.onLayout(changed, left, top, right, bottom)
-        if (width < height)
-            mSize = width
-        else
-            mSize = height
+        mPaint.color = mColor
 
         calculateHeartCoordinates()
         createGraphicalObject()
     }
 
-    fun calculateHeartCoordinates() {
+    private fun calculateHeartCoordinates() {
         for (i in x.indices) {
             x[i] = (mSize * x[i]) / 150
         }
@@ -68,9 +59,35 @@ class MyHeartView : View {
         return path
     }
 
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        canvas.drawPath(mHeartPath, mPaint)
+    private var mDirectionToRight = true
+
+    private var mDirectionToDown = true
+
+    fun onUpdate() {
+        if (x[6] > mXZone)
+            mDirectionToRight = false
+        if (y[6] > mYZone)
+            mDirectionToDown = false
+        if (x[3] < 0)
+            mDirectionToRight = true
+        if (y[2] < 0)
+            mDirectionToDown = true
+
+        if (mDirectionToRight)
+            for (i in x.indices)
+                x[i]++
+        else
+            for (i in x.indices)
+                x[i]--
+
+        if (mDirectionToDown)
+            for (i in y.indices)
+                y[i]++
+        else
+            for (i in y.indices)
+                y[i]--
+
+        createGraphicalObject()
     }
 
     companion object {
