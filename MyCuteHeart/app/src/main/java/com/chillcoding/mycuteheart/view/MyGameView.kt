@@ -50,12 +50,10 @@ class MyGameView : View, View.OnTouchListener {
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
-        var size = 0
         if (height < width)
-            size = height / 7
+            mHeart = MyCuteHeart(height / 7)
         else
-            size = width / 7
-        mHeart = MyCuteHeart(size)
+            mHeart = MyCuteHeart(width / 7)
         mHeart.mXZone = width
         mHeart.mYZone = height
     }
@@ -115,7 +113,7 @@ class MyGameView : View, View.OnTouchListener {
                 if (mIsPlaying) {
                     mScore += M_POINTS
                     mHeart.moveRandomly()
-                    
+
                     if (mScore == tapsForNextLevel() * M_POINTS)
                         levelUp()
                 }
