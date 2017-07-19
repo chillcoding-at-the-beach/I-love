@@ -11,7 +11,6 @@ import android.app.Activity
 import android.graphics.Paint
 import android.os.Vibrator
 import android.widget.Toast
-import java.util.*
 
 
 /**
@@ -20,17 +19,18 @@ import java.util.*
 class MyGameView : View, View.OnTouchListener {
 
     lateinit var mHeart: MyCuteHeart
-    var isPlaying = false
+    var mIsPlaying = false
 
     private var mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
     private var mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
-    private lateinit var mVibrator: Vibrator
+    private var mVibrator = context.getSystemService(Activity.VIBRATOR_SERVICE) as Vibrator
 
-    private val mPoint = 3
+    private val M_POINTS = 3
+    private val M_TAPS_PER_LEVEL = 25
     private var mScore = 0
     private var mLevel = 0
 
-    private var mStatePaint = Paint()
+    private var mTextPaint = Paint()
 
     constructor(context: Context?) : super(context) {
         init()
@@ -45,8 +45,7 @@ class MyGameView : View, View.OnTouchListener {
         super.setOnTouchListener(this)
         mSoundPlayer.isLooping = true
         mSoundPlayer.setVolume(0.3F, 0.3F)
-        mVibrator = context.getSystemService(Activity.VIBRATOR_SERVICE) as Vibrator
-        mStatePaint.textSize = 50F
+        mTextPaint.textSize = 50F
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -68,12 +67,12 @@ class MyGameView : View, View.OnTouchListener {
         canvas?.drawPath(mHeart.mHeartPath, mHeart.mPaint)
         //draw the score
         canvas?.drawText(" ${context.getString(R.string.score)} $mScore",
-                (8 * width / 10).toFloat(), 50f, mStatePaint)
+                (8 * width / 10).toFloat(), 50f, mTextPaint)
         //draw the level
         canvas?.drawText(" ${context.getString(R.string.level)} $mLevel",
-                (8 * width / 10).toFloat(), 100f, mStatePaint)
+                (8 * width / 10).toFloat(), 100f, mTextPaint)
 
-        if (isPlaying) {
+        if (mIsPlaying) {
             invalidate()
             mHeart.onUpdate()
             if (!mSoundPlayer.isPlaying)
@@ -81,25 +80,25 @@ class MyGameView : View, View.OnTouchListener {
         }
     }
 
-    fun onPlay() {
+    fun play() {
         mSoundPlayer.start()
-        isPlaying = true
+        mIsPlaying = true
         invalidate()
     }
 
-    fun onPause() {
+    fun pause() {
         mSoundPlayer.pause()
-        isPlaying = false
+        mIsPlaying = false
     }
 
-    fun onStop() {
+    fun stop() {
         // stop the sound and prepare for future
         mSoundPlayer.stop()
         mSoundPlayer.reset()
         mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
         mSoundPlayer.isLooping = true
         // stop the animation
-        isPlaying = false
+        mIsPlaying = false
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
@@ -113,24 +112,24 @@ class MyGameView : View, View.OnTouchListener {
                 }
                 mSoundHeartPlayer.start()
 
-                if (isPlaying) {
-                    mScore += mPoint
-                    mHeart.onReplace()
+                if (mIsPlaying) {
+                    mScore += M_POINTS
+                    mHeart.moveRandomly()
 
-                    when (mScore) {
-                        33 * mPoint -> onLevelUp()
-                        66 * mPoint -> onLevelUp()
-                        100 * mPoint -> onLevelUp()
-                        133 * mPoint -> onLevelUp()
-                        166 * mPoint -> onLevelUp()
-                    }
+
+                    if (mScore == tapsForNextLevel() * M_POINTS)
+                        levelUp()
                 }
             }
         }
         return false
     }
 
-    private fun onLevelUp() {
+    private fun tapsForNextLevel(): Int {
+        return (mLevel + 1) * M_TAPS_PER_LEVEL
+    }
+
+    private fun levelUp() {
         mLevel += 1
         mHeart.onSpeedUp()
         Toast.makeText(context, "+ 1 ${context.getString(R.string.levelup)}", Toast.LENGTH_SHORT).show()
