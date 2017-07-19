@@ -1,7 +1,6 @@
 package com.chillcoding.mycuteheart
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -28,11 +27,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mGameView = findViewById(R.id.gameView) as MyGameView
 
         fab.setOnClickListener {
-            if (!mGameView.isPlaying) {
-                mGameView.onPlay()
+            if (!mGameView.mIsPlaying) {
+                mGameView.play()
                 fab.setImageResource(R.drawable.ic_dialog_pause)
             } else {
-                mGameView.onPause()
+                mGameView.pause()
                 fab.setImageResource(R.drawable.ic_dialog_play)
             }
         }

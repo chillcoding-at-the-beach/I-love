@@ -7,4 +7,7 @@
     <string name="chillcoding">ChillCoding</string>
     <string name="chillcoding_contact">macha@chillcoding.com</string>
     <string name="action_love">Love</string>
+    <string name="score">Score:</string>
+    <string name="level">Level:</string>
+    <string name="levelup">level!</string>
 </resources>
