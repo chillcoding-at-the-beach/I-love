@@ -115,8 +115,7 @@ class MyGameView : View, View.OnTouchListener {
                 if (mIsPlaying) {
                     mScore += M_POINTS
                     mHeart.moveRandomly()
-
-
+                    
                     if (mScore == tapsForNextLevel() * M_POINTS)
                         levelUp()
                 }
