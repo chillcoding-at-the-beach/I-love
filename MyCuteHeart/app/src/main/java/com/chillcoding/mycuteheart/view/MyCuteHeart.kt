@@ -3,6 +3,7 @@ package com.chillcoding.mycuteheart.view
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import java.util.*
 
 /**
  * Created by macha on 17/07/2017.
@@ -15,11 +16,10 @@ class MyCuteHeart {
     val mHeartPath = Path()
     var mXZone = 0
     var mYZone = 0
-
+    private var mSpeed = 1
 
     private var x: FloatArray = floatArrayOf(75f, 60f, 40f, 5f, 40f, 110f, 145f, 110f, 90f)
     private var y: FloatArray = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 145f)
-
 
     constructor(size: Int) {
         mSize = size
@@ -75,19 +75,47 @@ class MyCuteHeart {
 
         if (mDirectionToRight)
             for (i in x.indices)
-                x[i]++
+                x[i] = x[i] + mSpeed
         else
             for (i in x.indices)
-                x[i]--
+                x[i] = x[i] - mSpeed
 
         if (mDirectionToDown)
             for (i in y.indices)
-                y[i]++
+                y[i] = y[i] + mSpeed
         else
             for (i in y.indices)
-                y[i]--
+                y[i] = y[i] - mSpeed
 
         createGraphicalObject()
+    }
+
+    fun onReplace() {
+        var random = Random()
+        var wakaX = random.nextInt(mXZone)
+        var wakaY = random.nextInt(mYZone)
+
+        if (wakaX > (mXZone - x[6])) {
+            wakaX = wakaX - x[6].toInt()
+            mDirectionToRight = false
+        }
+
+        if (wakaY > (mYZone - y[6])) {
+            wakaY = wakaY - y[6].toInt()
+            mDirectionToDown = false
+        }
+
+        for (i in x.indices)
+            x[i] = x[i] + wakaX
+        for (i in y.indices)
+            y[i] = y[i] + wakaY
+
+        createGraphicalObject()
+    }
+
+    fun onChangeDirection() {
+        mDirectionToDown = !mDirectionToDown
+        mDirectionToRight = !mDirectionToRight
     }
 
     fun isIn(xOf: Int, yOf: Int): Boolean {
@@ -95,6 +123,10 @@ class MyCuteHeart {
             return true
         else
             return false
+    }
+
+    fun onSpeedUp() {
+        mSpeed = 2 * mSpeed
     }
 
     companion object {
