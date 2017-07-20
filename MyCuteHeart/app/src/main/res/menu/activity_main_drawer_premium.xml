@@ -5,13 +5,9 @@
 
     <group>
         <item
-            android:id="@+id/nav_premium"
-            android:icon="@drawable/ic_menu_purchase_up"
-            android:title="@string/menu_premium" />
-        <item
-            android:id="@+id/nav_remove_ads"
-            android:icon="@drawable/ic_menu_purchase"
-            android:title="@string/menu_remove_ads" />
+            android:id="@+id/nav_awards"
+            android:icon="@drawable/ic_menu_awards"
+            android:title="@string/menu_awards" />
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_menu_share"
@@ -24,6 +20,10 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_settings"
             android:title="@string/menu_settings" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_beach_access"
+            android:title="@string/menu_about" />
     </group>
 
 </menu>
