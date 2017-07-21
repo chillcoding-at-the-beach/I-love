@@ -3,24 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group>
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_premium"
+            android:icon="@drawable/ic_menu_purchase_up"
+            android:title="@string/menu_premium" />
+        <item
+            android:id="@+id/nav_more_features"
+            android:icon="@drawable/ic_menu_purchase"
+            android:title="@string/menu_more_features"
+            android:visible="false" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <group android:id="@+id/menu_cool">
+        <item
+            android:id="@+id/nav_awards"
+            android:icon="@drawable/ic_menu_awards"
+            android:title="@string/menu_awards"
+            android:visible="false" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/menu_settings"
+            android:visible="false" />
+    </group>
+    <group android:id="@+id/menu_communicate">
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Share" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Send" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_beach_access"
+            android:title="@string/menu_about" />
+    </group>
 
 </menu>
