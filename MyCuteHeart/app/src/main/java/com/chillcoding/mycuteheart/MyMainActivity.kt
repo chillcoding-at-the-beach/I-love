@@ -9,7 +9,6 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -28,11 +27,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var mAdView: AdView
 
     internal var mIsPremium = false
-    var mIsRemoveAds = false
+    var mIsFeature = false
 
     // SKUs for our products: the premium upgrade and the remove ads
     internal val SKU_PREMIUM = "premium"
-    internal val SKU_REMOVE_ADS = "remove_ads"
 
     // (arbitrary) request code for the purchase flow
     internal val RC_REQUEST = 10001
@@ -124,7 +122,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         // Is it a failure?
         if (result.isFailure) {
-            dismissWaitScreen()
             complain("Failed to query inventory: " + result)
             return@QueryInventoryFinishedListener
         }
@@ -137,7 +134,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         FirebaseCrash.log("User is " + if (mIsPremium) "PREMIUM" else "NOT PREMIUM")
 
         updateUi()
-        dismissWaitScreen()
         FirebaseCrash.log("Initial inventory query finished; enabling main UI.")
     }
 
@@ -149,12 +145,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         if (result.isFailure) {
             complain("Error purchasing: " + result)
-            dismissWaitScreen()
             return@OnIabPurchaseFinishedListener
         }
         if (!verifyDeveloperPayload(purchase)) {
             complain("Error purchasing. Authenticity verification failed.")
-            dismissWaitScreen()
             return@OnIabPurchaseFinishedListener
         }
 
@@ -166,15 +160,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             alert("${getString(R.string.thank_you_premium)}")
             mIsPremium = true
             updateUi()
-            dismissWaitScreen()
-
-        } else if (purchase.sku == SKU_REMOVE_ADS) {
-
         }
     }
 
     override fun receivedBroadcast() {
-        dismissWaitScreen()
         // Received a broadcast notification that the inventory of items has changed
         FirebaseCrash.log("Received broadcast notification. Querying inventory.")
         try {
@@ -185,13 +174,13 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun updateUi() {
-        if (mIsPremium || mIsRemoveAds) {
+        if (mIsPremium) {
             mAdView.visibility = View.GONE
             mAdView.destroy()
-        }
-        if (mIsPremium) {
-            nav_view.removeAllViews()
-            nav_view.inflateMenu(R.menu.activity_main_drawer_premium)
+            nav_view.menu.findItem(R.id.nav_premium).isVisible = false
+            nav_view.menu.findItem(R.id.nav_more_features).isVisible = false
+            nav_view.menu.findItem(R.id.nav_awards).isVisible = true
+            nav_view.menu.findItem(R.id.nav_settings).isVisible = true
         }
     }
 
@@ -225,7 +214,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
             R.id.nav_premium -> {
                 FirebaseCrash.log("Upgrade button clicked; launching purchase flow for upgrade.")
-                putWaitScreen()
+                mGameView.pause()
                 //TODO: unique payload per user
                 val payload = getString(R.string.payload)
                 try {
@@ -233,10 +222,9 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                             mPurchaseFinishedListener, payload)
                 } catch (e: IabHelper.IabAsyncInProgressException) {
                     complain("Error launching purchase flow. Another async operation in progress.")
-                    dismissWaitScreen()
                 }
             }
-            R.id.nav_remove_ads -> {
+            R.id.nav_more_features -> {
 
             }
             R.id.nav_share -> {
@@ -251,22 +239,11 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         return true
     }
 
-    private fun putWaitScreen() {
-        mWaitScreen = ProgressDialog.show(this@MyMainActivity, getString(R.string.wait), getString(R.string.launch_in_app), true)
-    }
-
-    private fun dismissWaitScreen() {
-        mWaitScreen?.dismiss()
-    }
-
     private fun complain(msg: String) {
         FirebaseCrash.log("Cute Heart Rate Error : $msg")
-        dismissWaitScreen()
-        alert("${getString(R.string.error)}: +$msg")
     }
 
     private fun alert(s: String) {
-        dismissWaitScreen()
         val bld = AlertDialog.Builder(this)
         bld.setMessage(s)
         bld.setNeutralButton("OK", null)
@@ -280,7 +257,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         // Pass on the activity result to the helper for handling
         if (!mHelper!!.handleActivityResult(requestCode, resultCode, data)) {
-            dismissWaitScreen()
             super.onActivityResult(requestCode, resultCode, data)
         } else {
             FirebaseCrash.log("onActivityResult handled by IABUtil.")

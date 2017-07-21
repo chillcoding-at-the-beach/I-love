@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">Cute Heart</string>
+    <string name="app_name">WaKa Ta</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="chillcoding">ChillCoding</string>
-    <string name="chillcoding_contact">macha@chillcoding.com</string>
+    <string name="chillcoding">by ChillCoding</string>
+    <string name="chillcoding_contact">www.chillcoding.com</string>
     <string name="action_love">Love</string>
     <string name="score">Score:</string>
     <string name="level">Level:</string>
     <string name="levelup">level!</string>
-    <string name="menu_remove_ads">Remove Ads</string>
+    <string name="menu_more_features">More features</string>
     <string name="menu_awards">Awards</string>
     <string name="menu_premium">Premium</string>
     <string name="error">Error:</string>

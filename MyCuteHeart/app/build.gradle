@@ -10,8 +10,8 @@ android {
     defaultConfig {
         applicationId "com.chillcoding.mycuteheart"
         minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 5
+        targetSdkVersion 25
+        versionCode 6
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -23,15 +23,17 @@ android {
     }
 }
 
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation "com.android.support:appcompat-v7:$support_version"
     testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:design:25.4.0'
+    implementation "com.android.support:design:$support_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.google.firebase:firebase-ads:11.0.2'
     implementation 'com.google.firebase:firebase-crash:11.0.2'
