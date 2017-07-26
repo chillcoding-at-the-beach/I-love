@@ -1,6 +1,5 @@
 package com.chillcoding.mycuteheart.view
 
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import java.util.*
@@ -11,27 +10,33 @@ import java.util.*
 class MyCuteHeart {
 
     var mSize = 0
-    var mColor = Color.RED
     var mPaint = Paint()
-    val mHeartPath = Path()
+    var mHeartPath = Path()
     var mXZone = 0
     var mYZone = 0
-    private var mSpeed = 1
 
     private var mX: FloatArray = floatArrayOf(75f, 60f, 40f, 5f, 40f, 110f, 145f, 110f, 90f)
-    private var mY: FloatArray = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 145f)
+    private var mY: FloatArray = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 130f)
 
-    constructor(size: Int) {
-        mSize = size
+    private var mDirectionToRight = true
+    private var mDirectionToDown = true
+
+    constructor(width: Int, height: Int) {
+        mXZone = width
+        mYZone = height
+        if (height < width)
+            mSize = height / 7
+        else
+            mSize = width / 7
         init()
     }
 
     private fun init() {
         mPaint = Paint()
         mPaint.style = Paint.Style.FILL
-        mPaint.color = mColor
 
         calculateHeartCoordinates()
+        moveRandomly()
         createGraphicalObject()
     }
 
@@ -59,11 +64,7 @@ class MyCuteHeart {
         return path
     }
 
-    private var mDirectionToRight = true
-
-    private var mDirectionToDown = true
-
-    fun onUpdate() {
+    fun updateCoordinates(speed: Int) {
         if (mX[6] > mXZone)
             mDirectionToRight = false
         if (mY[6] > mYZone)
@@ -75,17 +76,17 @@ class MyCuteHeart {
 
         if (mDirectionToRight)
             for (i in mX.indices)
-                mX[i] = mX[i] + mSpeed
+                mX[i] = mX[i] + speed
         else
             for (i in mX.indices)
-                mX[i] = mX[i] - mSpeed
+                mX[i] = mX[i] - speed
 
         if (mDirectionToDown)
             for (i in mY.indices)
-                mY[i] = mY[i] + mSpeed
+                mY[i] = mY[i] + speed
         else
             for (i in mY.indices)
-                mY[i] = mY[i] - mSpeed
+                mY[i] = mY[i] - speed
 
         createGraphicalObject()
     }
@@ -95,13 +96,15 @@ class MyCuteHeart {
         var wakaX = random.nextInt(mXZone)
         var wakaY = random.nextInt(mYZone)
 
+        if (random.nextBoolean())
+            changeDirection()
+
         if (wakaX > (mXZone - mX[6])) {
-            wakaX = wakaX - mX[6].toInt()
+            wakaX -= mX[6].toInt()
             mDirectionToRight = false
         }
-
         if (wakaY > (mYZone - mY[6])) {
-            wakaY = wakaY - mY[6].toInt()
+            wakaY -= mY[6].toInt()
             mDirectionToDown = false
         }
 
@@ -119,18 +122,7 @@ class MyCuteHeart {
     }
 
     fun isIn(xOf: Int, yOf: Int): Boolean {
-        if (xOf < mX[6] && xOf > mX[3] && yOf < mY[6] && yOf > mY[2])
-            return true
-        else
-            return false
-    }
-
-    fun onSpeedUp() {
-        mSpeed = 2 * mSpeed
-    }
-
-    companion object {
-        private val TAG = "My CUTE HEART"
+        return (xOf < mX[6] && xOf > mX[3] && yOf < mY[6] && yOf > mY[2])
     }
 
 }

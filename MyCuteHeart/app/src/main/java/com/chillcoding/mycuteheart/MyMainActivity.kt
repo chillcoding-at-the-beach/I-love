@@ -1,7 +1,6 @@
 package com.chillcoding.mycuteheart
 
 import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
@@ -13,42 +12,36 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.chillcoding.mycuteheart.util.*
-import com.chillcoding.mycuteheart.view.MyGameView
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
 
-    lateinit var mGameView: MyGameView
-
-    private lateinit var mAdView: AdView
-
-    internal var mIsPremium = false
-    var mIsFeature = false
-
-    // SKUs for our products: the premium upgrade and the remove ads
-    internal val SKU_PREMIUM = "premium"
-
-    // (arbitrary) request code for the purchase flow
-    internal val RC_REQUEST = 10001
+    var mIsPremium = false
 
     // The helper object
-    internal var mHelper: IabHelper? = null
+    var mHelper: IabHelper? = null
 
     // Provides purchase notification while this app is running
-    internal var mBroadcastReceiver: IabBroadcastReceiver? = null
+    lateinit var mBroadcastReceiver: IabBroadcastReceiver
 
-    var mWaitScreen: ProgressDialog? = null
+    lateinit var mToggle: ActionBarDrawerToggle
+
+    companion object {
+        val base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0DFHzBK+vaUC8mUBMF7+1AF4KdugEYo5g8dI3pf146Pz5C7Nc6OLnBqcIBLUcJUSRjgR68IXHWopEboR2+xzBxUbaE/2Mg0s1IRiw2xyFNqorU2YfEM8tUsOGKtFTs3D9QxebVMVpi5Uc0Q1n3rtYa4Tirvusynej6GGp0jQTG+cPvj8JLGhADRtQfx7NsGbSgJQd3eDrS/TKOQ1nevZKDTe/czej9jgM+YRQlN7RQIOVznE+UHqQZdno3POJ5PFdQKVlkbbsxPsFJ+yqKMoAMrevVELJ07fVVBy6iSKurWUcJ+XGoz+zktMKt6zhW+kv7Sasi6iiGu37RsEPcKRJQIDAQAB"
+        val SKU_PREMIUM = "premium"
+        // (arbitrary) request code for the purchase flow
+        val RC_REQUEST = 10001
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_main)
         setSupportActionBar(toolbar)
 
-        val base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0DFHzBK+vaUC8mUBMF7+1AF4KdugEYo5g8dI3pf146Pz5C7Nc6OLnBqcIBLUcJUSRjgR68IXHWopEboR2+xzBxUbaE/2Mg0s1IRiw2xyFNqorU2YfEM8tUsOGKtFTs3D9QxebVMVpi5Uc0Q1n3rtYa4Tirvusynej6GGp0jQTG+cPvj8JLGhADRtQfx7NsGbSgJQd3eDrS/TKOQ1nevZKDTe/czej9jgM+YRQlN7RQIOVznE+UHqQZdno3POJ5PFdQKVlkbbsxPsFJ+yqKMoAMrevVELJ07fVVBy6iSKurWUcJ+XGoz+zktMKt6zhW+kv7Sasi6iiGu37RsEPcKRJQIDAQAB"
 
         // Create the helper, passing it our context and the public key to verify signatures with
         FirebaseCrash.log("Creating IAB helper.")
@@ -89,29 +82,27 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         })
 
-        //usual stuff about view
-        mGameView = findViewById(R.id.gameView) as MyGameView
-
         fab.setOnClickListener {
-            if (!mGameView.mIsPlaying) {
-                mGameView.play()
+            if (!gameView.mIsPlaying) {
+                gameView.play()
                 fab.setImageResource(R.drawable.ic_dialog_pause)
             } else {
-                mGameView.pause()
-                fab.setImageResource(R.drawable.ic_dialog_play)
+                pauseGame()
             }
         }
 
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
+        mToggle = object : ActionBarDrawerToggle(
+                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            override fun onDrawerClosed(view: View?) {}
+            override fun onDrawerOpened(drawerView: View?) {
+                pauseGame()
+            }
+        }
 
-        nav_view.setNavigationItemSelectedListener(this)
+        navView.setNavigationItemSelectedListener(this)
 
-        mAdView = findViewById(R.id.adView) as AdView
         val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        adView.loadAd(adRequest)
     }
 
     internal var mGotInventoryListener: IabHelper.QueryInventoryFinishedListener = IabHelper.QueryInventoryFinishedListener { result, inventory ->
@@ -173,17 +164,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
     }
 
-    private fun updateUi() {
-        if (mIsPremium) {
-            mAdView.visibility = View.GONE
-            mAdView.destroy()
-            nav_view.menu.findItem(R.id.nav_premium).isVisible = false
-            nav_view.menu.findItem(R.id.nav_more_features).isVisible = false
-            nav_view.menu.findItem(R.id.nav_awards).isVisible = true
-            nav_view.menu.findItem(R.id.nav_settings).isVisible = true
-        }
-    }
-
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -193,15 +173,11 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_love -> return true
             else -> return super.onOptionsItemSelected(item)
@@ -209,12 +185,11 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         when (item.itemId) {
 
             R.id.nav_premium -> {
                 FirebaseCrash.log("Upgrade button clicked; launching purchase flow for upgrade.")
-                mGameView.pause()
+                pauseGame()
                 //TODO: unique payload per user
                 val payload = getString(R.string.payload)
                 try {
@@ -224,19 +199,55 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     complain("Error launching purchase flow. Another async operation in progress.")
                 }
             }
-            R.id.nav_more_features -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
-            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        FirebaseCrash.log("onActivityResult($requestCode,$resultCode,$data")
+        if (mHelper == null) return
+        // Pass on the activity result to the helper for handling
+        if (!mHelper!!.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data)
+        } else {
+            FirebaseCrash.log("onActivityResult handled by IABUtil.")
+        }
+    }
+
+    public override fun onDestroy() {
+        super.onDestroy()
+        if (mBroadcastReceiver != null) {
+            unregisterReceiver(mBroadcastReceiver)
+        }
+        FirebaseCrash.log("Destroying helper.")
+        if (mHelper != null) {
+            mHelper!!.disposeWhenFinished()
+            mHelper = null
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(MyApp.M_GAME_DATA, gameView.mData)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        gameView.mData = savedInstanceState.getParcelable(MyApp.M_GAME_DATA)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        drawer_layout.addDrawerListener(mToggle)
+        mToggle.syncState()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        drawer_layout.removeDrawerListener(mToggle)
+        pauseGame()
     }
 
     private fun complain(msg: String) {
@@ -251,41 +262,24 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         bld.create().show()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        FirebaseCrash.log("onActivityResult($requestCode,$resultCode,$data")
-        if (mHelper == null) return
-
-        // Pass on the activity result to the helper for handling
-        if (!mHelper!!.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data)
-        } else {
-            FirebaseCrash.log("onActivityResult handled by IABUtil.")
-        }
-    }
-
-    public override fun onDestroy() {
-        super.onDestroy()
-
-        if (mBroadcastReceiver != null) {
-            unregisterReceiver(mBroadcastReceiver)
-        }
-
-        FirebaseCrash.log("Destroying helper.")
-        if (mHelper != null) {
-            mHelper!!.disposeWhenFinished()
-            mHelper = null
-        }
-    }
-
-    /** Verifies the developer payload of a purchase.  */
     internal fun verifyDeveloperPayload(p: Purchase): Boolean {
         val payload = p.developerPayload
-
-        //TODO: generate id for each user, place it in the end of payload string
-        if (payload == getString(R.string.payload))
-            return true
-        else
-            return false
+        return payload == getString(R.string.payload)
     }
 
+    private fun updateUi() {
+        if (mIsPremium) {
+            adView.visibility = View.GONE
+            adView.destroy()
+            navView.menu.findItem(R.id.nav_premium).isVisible = false
+            navView.menu.findItem(R.id.nav_more_features).isVisible = false
+            navView.menu.findItem(R.id.nav_awards).isVisible = true
+            navView.menu.findItem(R.id.nav_settings).isVisible = true
+        }
+    }
+
+    private fun pauseGame() {
+        gameView.pause()
+        fab.setImageResource(R.drawable.ic_dialog_play)
+    }
 }

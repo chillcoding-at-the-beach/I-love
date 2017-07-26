@@ -10,7 +10,9 @@ import com.chillcoding.mycuteheart.R
 import android.app.Activity
 import android.graphics.Paint
 import android.os.Vibrator
+import android.support.v4.content.res.ResourcesCompat
 import android.widget.Toast
+import com.chillcoding.mycuteheart.model.MyGameData
 
 
 /**
@@ -19,84 +21,59 @@ import android.widget.Toast
 class MyGameView : View, View.OnTouchListener {
 
     lateinit var mHeart: MyCuteHeart
-    var mIsPlaying = false
 
     private var mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
     private var mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
     private var mVibrator = context.getSystemService(Activity.VIBRATOR_SERVICE) as Vibrator
 
-    private val M_POINTS = 3
-    private val M_TAPS_PER_LEVEL = 25
-    private var mScore = 0
-    private var mLevel = 0
+    var mIsPlaying = false
 
     private var mTextPaint = Paint()
 
-    constructor(context: Context?) : super(context) {
-        init()
+    var mData = MyGameData()
+
+    companion object {
+        private val M_POINTS = 3
+        private val M_TAPS_PER_LEVEL = 25
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context) : this(context, null)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init()
     }
-
 
     private fun init() {
         super.setOnTouchListener(this)
         mSoundPlayer.isLooping = true
-        mSoundPlayer.setVolume(0.3F, 0.3F)
         mTextPaint.textSize = 50F
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
-        if (height < width)
-            mHeart = MyCuteHeart(height / 7)
-        else
-            mHeart = MyCuteHeart(width / 7)
-        mHeart.mXZone = width
-        mHeart.mYZone = height
+        mHeart = MyCuteHeart(width, height)
+        mHeart.mPaint.color = ResourcesCompat.getColor(resources, R.color.colorRed, null);
     }
-
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         //draw the main heart
         canvas?.drawPath(mHeart.mHeartPath, mHeart.mPaint)
-        //draw the score
-        canvas?.drawText(" ${context.getString(R.string.score)} $mScore",
-                (8 * width / 10).toFloat(), 50f, mTextPaint)
-        //draw the level
-        canvas?.drawText(" ${context.getString(R.string.level)} $mLevel",
-                (8 * width / 10).toFloat(), 100f, mTextPaint)
+        //draw the score and level
+        with(mData) {
+            canvas?.drawText(" ${context.getString(R.string.score)} ${mScore}",
+                    (8 * width / 10).toFloat(), 50f, mTextPaint)
+            canvas?.drawText(" ${context.getString(R.string.level)} ${mLevel}",
+                    (8 * width / 10).toFloat(), 100f, mTextPaint)
+        }
 
         if (mIsPlaying) {
             invalidate()
-            mHeart.onUpdate()
+            mHeart.updateCoordinates(mData.mSpeed)
             if (!mSoundPlayer.isPlaying)
                 mSoundPlayer.start()
         }
-    }
-
-    fun play() {
-        mSoundPlayer.start()
-        mIsPlaying = true
-        invalidate()
-    }
-
-    fun pause() {
-        mSoundPlayer.pause()
-        mIsPlaying = false
-    }
-
-    fun stop() {
-        // stop the sound and prepare for future
-        mSoundPlayer.stop()
-        mSoundPlayer.reset()
-        mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
-        mSoundPlayer.isLooping = true
-        // stop the animation
-        mIsPlaying = false
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
@@ -111,10 +88,10 @@ class MyGameView : View, View.OnTouchListener {
                 mSoundHeartPlayer.start()
 
                 if (mIsPlaying) {
-                    mScore += M_POINTS
+                    mData.mScore += M_POINTS
                     mHeart.moveRandomly()
 
-                    if (mScore == tapsForNextLevel() * M_POINTS)
+                    if (mData.mScore == tapsForNextLevel() * M_POINTS)
                         levelUp()
                 }
             }
@@ -122,18 +99,44 @@ class MyGameView : View, View.OnTouchListener {
         return false
     }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        stop()
+        prepare()
+    }
+
     private fun tapsForNextLevel(): Int {
-        return (mLevel + 1) * M_TAPS_PER_LEVEL
+        return (mData.mLevel + 1) * M_TAPS_PER_LEVEL
     }
 
     private fun levelUp() {
-        mLevel += 1
-        mHeart.onSpeedUp()
+        mData.mLevel += 1
+        if (mData.mLevel < 5)
+            mData.mSpeed = 2 * mData.mSpeed
         Toast.makeText(context, "+ 1 ${context.getString(R.string.levelup)}", Toast.LENGTH_SHORT).show()
     }
 
-    companion object {
-        private val TAG = "My GAME VIEW"
+    fun play() {
+        mSoundPlayer.start()
+        mIsPlaying = true
+        invalidate()
     }
 
+    fun pause() {
+        mSoundPlayer.pause()
+        mIsPlaying = false
+    }
+
+    fun stop() {
+        // stop the sound
+        mSoundPlayer.stop()
+        mSoundPlayer.reset()
+        // stop the animation
+        mIsPlaying = false
+    }
+
+    fun prepare() {
+        mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
+        mSoundPlayer.isLooping = true
+    }
 }

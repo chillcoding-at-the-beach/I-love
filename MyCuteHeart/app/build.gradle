@@ -34,6 +34,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_version"
     testImplementation 'junit:junit:4.12'
     implementation "com.android.support:design:$support_version"
+    implementation "org.jetbrains.anko:anko-common:$anko_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.google.firebase:firebase-ads:11.0.2'
     implementation 'com.google.firebase:firebase-crash:11.0.2'
