@@ -1,9 +1,9 @@
 # my-cute-heart
 An Android Kotlin App.
 
-## Class Diagramm
-![Android classdiagramm][]
+## Class Diagram
+![Android classdiagram][]
 
 
-[Android classdiagramm]:
+[Android classdiagram]:
 https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/assets/myCuteHeartClassDiagram.png
