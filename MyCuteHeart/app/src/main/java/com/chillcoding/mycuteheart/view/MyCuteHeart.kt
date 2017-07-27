@@ -9,11 +9,14 @@ import java.util.*
  */
 class MyCuteHeart {
 
-    var mSize = 0
+    var mSize = 300
+    var mSpeed = 1
     var mPaint = Paint()
     var mHeartPath = Path()
-    var mXZone = 0
-    var mYZone = 0
+
+    var mWakaX = 0f
+    var mWakaY = 0f
+
 
     private var mX: FloatArray = floatArrayOf(75f, 60f, 40f, 5f, 40f, 110f, 145f, 110f, 90f)
     private var mY: FloatArray = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 130f)
@@ -21,108 +24,91 @@ class MyCuteHeart {
     private var mDirectionToRight = true
     private var mDirectionToDown = true
 
-    constructor(width: Int, height: Int) {
-        mXZone = width
-        mYZone = height
-        if (height < width)
-            mSize = height / 7
+    private var mXZone = 0
+    private var mYZone = intArrayOf(0, 0)
+
+    constructor(width: Int, height: Int, marginTop: Int, size: Int = 3) {
+        if (height > width)
+            mSize = (height * size) / 1000
         else
-            mSize = width / 7
+            mSize = (width * size) / 1000
+        initializeHeartCoordinates()
+        mXZone = width - mX[6].toInt()
+        mYZone = intArrayOf(height - marginTop - mY[6].toInt(), marginTop)
         init()
     }
 
     private fun init() {
         mPaint = Paint()
         mPaint.style = Paint.Style.FILL
-
-        calculateHeartCoordinates()
-        moveRandomly()
-        createGraphicalObject()
+        updatePositionRandomly()
+        createHeart()
     }
 
-    private fun calculateHeartCoordinates() {
-        for (i in mX.indices) {
-            mX[i] = (mSize * mX[i]) / 150
-        }
-        for (i in mY.indices)
-            mY[i] = (mY[i] * mSize) / 150
-    }
-
-    private fun createGraphicalObject() {
-        mHeartPath.set(createHeart())
-    }
-
-    private fun createHeart(): Path? {
-        val path = Path()
-        path.moveTo(mX[0], mY[0])
-        path.cubicTo(mX[0], mY[1], mX[1], mY[2], mX[2], mY[2])
-        path.cubicTo(mX[3], mY[2], mX[3], mY[3], mX[3], mY[3])
-        path.cubicTo(mX[3], mY[4], mX[4], mY[5], mX[0], mY[6]);
-        path.cubicTo(mX[5], mY[5], mX[6], mY[4], mX[6], mY[3])
-        path.cubicTo(mX[6], mY[3], mX[6], mY[2], mX[7], mY[2])
-        path.cubicTo(mX[8], mY[2], mX[0], mY[1], mX[0], mY[0])
-        return path
-    }
-
-    fun updateCoordinates(speed: Int) {
-        if (mX[6] > mXZone)
-            mDirectionToRight = false
-        if (mY[6] > mYZone)
-            mDirectionToDown = false
-        if (mX[3] < 0)
-            mDirectionToRight = true
-        if (mY[2] < 0)
-            mDirectionToDown = true
-
-        if (mDirectionToRight)
-            for (i in mX.indices)
-                mX[i] = mX[i] + speed
-        else
-            for (i in mX.indices)
-                mX[i] = mX[i] - speed
-
-        if (mDirectionToDown)
-            for (i in mY.indices)
-                mY[i] = mY[i] + speed
-        else
-            for (i in mY.indices)
-                mY[i] = mY[i] - speed
-
-        createGraphicalObject()
-    }
-
-    fun moveRandomly() {
-        var random = Random()
-        var wakaX = random.nextInt(mXZone)
-        var wakaY = random.nextInt(mYZone)
-
-        if (random.nextBoolean())
-            changeDirection()
-
-        if (wakaX > (mXZone - mX[6])) {
-            wakaX -= mX[6].toInt()
-            mDirectionToRight = false
-        }
-        if (wakaY > (mYZone - mY[6])) {
-            wakaY -= mY[6].toInt()
-            mDirectionToDown = false
-        }
-
+    private fun initializeHeartCoordinates() {
         for (i in mX.indices)
-            mX[i] = mX[i] + wakaX
+            mX[i] = mX[i] * mSize
         for (i in mY.indices)
-            mY[i] = mY[i] + wakaY
-
-        createGraphicalObject()
+            mY[i] = mY[i] * mSize
     }
 
-    fun changeDirection() {
+    private fun createHeart() {
+        mHeartPath = Path()
+        mHeartPath.moveTo(mX[0], mY[0])
+        mHeartPath.cubicTo(mX[0], mY[1], mX[1], mY[2], mX[2], mY[2])
+        mHeartPath.cubicTo(mX[3], mY[2], mX[3], mY[3], mX[3], mY[3])
+        mHeartPath.cubicTo(mX[3], mY[4], mX[4], mY[5], mX[0], mY[6])
+        mHeartPath.cubicTo(mX[5], mY[5], mX[6], mY[4], mX[6], mY[3])
+        mHeartPath.cubicTo(mX[6], mY[3], mX[6], mY[2], mX[7], mY[2])
+        mHeartPath.cubicTo(mX[8], mY[2], mX[0], mY[1], mX[0], mY[0])
+
+    }
+
+    private fun updatePosition() {
+        if (mDirectionToRight)
+            mWakaX += mSpeed
+        else
+            mWakaX -= mSpeed
+        if (mDirectionToDown)
+            mWakaY += mSpeed
+        else
+            mWakaY -= mSpeed
+    }
+
+   private fun updatePositionRandomly() {
+        val random = Random()
+        mWakaX = random.nextInt(mXZone).toFloat()
+        mWakaY = (random.nextInt(mYZone.first()) + mYZone[1]).toFloat()
+    }
+
+    private fun updateDirection() {
+        if (mWakaX > mXZone)
+            mDirectionToRight = false
+        if (mWakaY > mYZone.first())
+            mDirectionToDown = false
+        if (mWakaX < 0)
+            mDirectionToRight = true
+        if (mWakaY < mYZone[1])
+            mDirectionToDown = true
+    }
+
+    private fun changeDirection() {
         mDirectionToDown = !mDirectionToDown
         mDirectionToRight = !mDirectionToRight
     }
 
+    fun update() {
+        updatePosition()
+        updateDirection()
+    }
+
+    fun updateRandomly() {
+        updatePositionRandomly()
+        changeDirection()
+    }
+
     fun isIn(xOf: Int, yOf: Int): Boolean {
-        return (xOf < mX[6] && xOf > mX[3] && yOf < mY[6] && yOf > mY[2])
+        return (xOf in mWakaX..mWakaX + mX[6] && yOf in mWakaY..mWakaY + mY[6])
     }
 
 }

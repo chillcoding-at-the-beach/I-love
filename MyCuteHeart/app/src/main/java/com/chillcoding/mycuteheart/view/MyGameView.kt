@@ -13,6 +13,7 @@ import android.os.Vibrator
 import android.support.v4.content.res.ResourcesCompat
 import android.widget.Toast
 import com.chillcoding.mycuteheart.model.MyGameData
+import java.util.*
 
 
 /**
@@ -26,11 +27,21 @@ class MyGameView : View, View.OnTouchListener {
     private var mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
     private var mVibrator = context.getSystemService(Activity.VIBRATOR_SERVICE) as Vibrator
 
+    val mColors = listOf(
+            ResourcesCompat.getColor(resources, R.color.colorPrimaryLight, null),
+            ResourcesCompat.getColor(resources, R.color.colorAccentLight, null),
+            ResourcesCompat.getColor(resources, R.color.colorAccent, null),
+            ResourcesCompat.getColor(resources, R.color.colorPrimary, null),
+            ResourcesCompat.getColor(resources, R.color.colorPrimaryDark, null),
+            ResourcesCompat.getColor(resources, R.color.colorAccentDark, null))
+
     var mIsPlaying = false
 
     private var mTextPaint = Paint()
 
     var mData = MyGameData()
+
+    private val mTopMargin = 100f
 
     companion object {
         private val M_POINTS = 3
@@ -47,33 +58,36 @@ class MyGameView : View, View.OnTouchListener {
     private fun init() {
         super.setOnTouchListener(this)
         mSoundPlayer.isLooping = true
-        mTextPaint.textSize = 50F
+        mTextPaint.textSize = 70F
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
-        mHeart = MyCuteHeart(width, height)
-        mHeart.mPaint.color = ResourcesCompat.getColor(resources, R.color.colorRed, null);
+        createMyCuteHeart()
+        mHeart.mPaint.color = mColors.last();
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        //draw the main heart
-        canvas?.drawPath(mHeart.mHeartPath, mHeart.mPaint)
         //draw the score and level
         with(mData) {
-            canvas?.drawText(" ${context.getString(R.string.score)} ${mScore}",
-                    (8 * width / 10).toFloat(), 50f, mTextPaint)
-            canvas?.drawText(" ${context.getString(R.string.level)} ${mLevel}",
-                    (8 * width / 10).toFloat(), 100f, mTextPaint)
+            canvas?.drawText(" ${context.getString(R.string.score)} $mScore",
+                    (1 * width / 10).toFloat(), mTopMargin, mTextPaint)
+            canvas?.drawText(" ${context.getString(R.string.level)} $mLevel",
+                    (7 * width / 10).toFloat(), mTopMargin, mTextPaint)
         }
 
         if (mIsPlaying) {
             invalidate()
-            mHeart.updateCoordinates(mData.mSpeed)
+            mHeart.update()
             if (!mSoundPlayer.isPlaying)
                 mSoundPlayer.start()
         }
+        //draw the main heart
+        canvas?.save()
+        canvas?.translate(mHeart.mWakaX, mHeart.mWakaY)
+        canvas?.drawPath(mHeart.mHeartPath, mHeart.mPaint)
+        canvas?.restore()
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
@@ -89,10 +103,11 @@ class MyGameView : View, View.OnTouchListener {
 
                 if (mIsPlaying) {
                     mData.mScore += M_POINTS
-                    mHeart.moveRandomly()
-
                     if (mData.mScore == tapsForNextLevel() * M_POINTS)
                         levelUp()
+
+                    mHeart.updateRandomly()
+                    changeHeartColorRandomly()
                 }
             }
         }
@@ -111,8 +126,8 @@ class MyGameView : View, View.OnTouchListener {
 
     private fun levelUp() {
         mData.mLevel += 1
-        if (mData.mLevel < 5)
-            mData.mSpeed = 2 * mData.mSpeed
+        createMyCuteHeart()
+        updateSpeed()
         Toast.makeText(context, "+ 1 ${context.getString(R.string.levelup)}", Toast.LENGTH_SHORT).show()
     }
 
@@ -138,5 +153,30 @@ class MyGameView : View, View.OnTouchListener {
     fun prepare() {
         mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
         mSoundPlayer.isLooping = true
+    }
+
+    private fun changeHeartColorRandomly() {
+        val random = Random()
+        when (mData.mLevel) {
+            0 -> mHeart.mPaint.color = mColors[random.nextInt(mColors.size)]
+            1 -> mHeart.mPaint.color = mColors[random.nextInt(mColors.size - 2)]
+            in 5..10 -> mHeart.mPaint.color = mColors.first()
+            else -> mHeart.mPaint.color = mColors[random.nextInt(mColors.size - 4)]
+        }
+    }
+
+    fun updateSpeed() {
+        if (mData.mLevel < 5)
+            mHeart.mSpeed = Math.pow(2.0, (mData.mLevel - 1).toDouble()).toInt()
+        else
+            mHeart.mSpeed = 8
+    }
+
+    fun createMyCuteHeart() {
+        when (mData.mLevel) {
+            0 -> mHeart = MyCuteHeart(width, height, mTopMargin.toInt(), 3)
+            1 -> mHeart = MyCuteHeart(width, height, mTopMargin.toInt(), 2)
+            else -> mHeart = MyCuteHeart(width, height, mTopMargin.toInt(), 1)
+        }
     }
 }
