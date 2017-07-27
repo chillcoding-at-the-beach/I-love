@@ -10,17 +10,12 @@ class MyGameData : Parcelable {
 
     var mScore = 0
     var mLevel = 0
-    var mSpeed = 1
 
     constructor()
 
     constructor(parcel: Parcel) {
         mScore = parcel.readInt()
         mLevel = parcel.readInt()
-        if (mLevel < 5)
-            mSpeed = Math.pow(2.0, (mLevel - 1).toDouble()).toInt()
-        else
-            mSpeed = 8
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
