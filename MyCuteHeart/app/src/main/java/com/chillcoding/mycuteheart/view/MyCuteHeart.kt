@@ -36,12 +36,19 @@ class MyCuteHeart {
         mXZone = width - mX[6].toInt()
         mYZone = intArrayOf(height - marginTop - mY[6].toInt(), marginTop)
         init()
+        updatePositionRandomly()
+    }
+
+    constructor() {
+        mSize = 1
+        initializeHeartCoordinates()
+        init()
     }
 
     private fun init() {
         mPaint = Paint()
         mPaint.style = Paint.Style.FILL
-        updatePositionRandomly()
+        mPaint.isAntiAlias = true
         createHeart()
     }
 
@@ -75,7 +82,7 @@ class MyCuteHeart {
             mWakaY -= mSpeed
     }
 
-   private fun updatePositionRandomly() {
+    private fun updatePositionRandomly() {
         val random = Random()
         mWakaX = random.nextInt(mXZone).toFloat()
         mWakaY = (random.nextInt(mYZone.first()) + mYZone[1]).toFloat()
