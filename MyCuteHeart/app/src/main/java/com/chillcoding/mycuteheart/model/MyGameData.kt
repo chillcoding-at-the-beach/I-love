@@ -9,18 +9,23 @@ import android.os.Parcelable
 class MyGameData : Parcelable {
 
     var mScore = 0
-    var mLevel = 0
+    var mLevel = 1
+    var mNbLife = 3
 
     constructor()
 
     constructor(parcel: Parcel) {
         mScore = parcel.readInt()
         mLevel = parcel.readInt()
+        mNbLife = parcel.readInt()
+
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeInt(mScore)
         dest?.writeInt(mLevel)
+        dest?.writeInt(mNbLife)
+
     }
 
     override fun describeContents(): Int {

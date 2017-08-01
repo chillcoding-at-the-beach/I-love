@@ -11,9 +11,10 @@ android {
         applicationId "com.chillcoding.mycuteheart"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 6
+        versionCode 7
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
