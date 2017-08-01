@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.chillcoding.mycuteheart.util.*
+import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
 import com.google.android.gms.ads.AdRequest
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
@@ -218,9 +219,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     public override fun onDestroy() {
         super.onDestroy()
-        if (mBroadcastReceiver != null) {
-            unregisterReceiver(mBroadcastReceiver)
-        }
+        unregisterReceiver(mBroadcastReceiver)
         FirebaseCrash.log("Destroying helper.")
         if (mHelper != null) {
             mHelper!!.disposeWhenFinished()
@@ -281,5 +280,15 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private fun pauseGame() {
         gameView.pause()
         fab.setImageResource(R.drawable.ic_dialog_play)
+    }
+
+    fun endGame() {
+        pauseGame()
+        var bundle = Bundle()
+        bundle.putParcelable(MyApp.M_GAME_DATA, gameView.mData)
+        var popup = MyEndGameDialog()
+        popup.arguments = bundle
+        popup.show(fragmentManager, MyMainActivity::class.java.simpleName)
+
     }
 }
