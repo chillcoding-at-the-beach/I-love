@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
+import com.chillcoding.mycuteheart.view.dialog.MyLikeDialogFragment
 import com.google.android.gms.ads.AdRequest
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
@@ -180,7 +181,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_love -> return true
+            R.id.action_love -> {
+                if (mIsPremium) MyLikeDialogFragment().show(fragmentManager, MyMainActivity::class.java.simpleName)
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
