@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
 import com.chillcoding.mycuteheart.view.dialog.MyLikeDialogFragment
@@ -19,6 +20,7 @@ import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.jetbrains.anko.startActivity
 
 class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
 
@@ -203,6 +205,9 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 } catch (e: IabHelper.IabAsyncInProgressException) {
                     complain("Error launching purchase flow. Another async operation in progress.")
                 }
+            }
+            R.id.nav_about -> {
+                startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
             }
         }
 

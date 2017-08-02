@@ -24,6 +24,7 @@
     <string name="points">points</string>
     <string name="share">Share</string>
     <string name="like">Like</string>
+    <string name="text_about">This game application is made by ChillCoding. It\'s a company based in French Riviera specialised in web and mobile development.\n This awesome application is natively coded in kotlin by Macha da Costa. \n At the beginning, the aim was to draw a beautiful heart by optimizing existing algorithm. It was for Bachamada, an application about heart rate. Then, the idea to create a simple game with little hearts comes. Finaly, it\'s continue by playing with heart.</string>
     <string-array name="sucess_game">
         <item>Genius</item>
         <item>Brilliant</item>
