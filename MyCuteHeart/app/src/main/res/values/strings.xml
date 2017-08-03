@@ -25,11 +25,11 @@
     <string name="share">Share</string>
     <string name="like">Like</string>
     <string name="text_about">This game application is made by ChillCoding.
-        It\'s a company based in French Riviera specialised in web and mobile development.\n
-        This awesome application is natively coded in kotlin by Macha da Costa.\n
-        At the beginning, the aim was to draw a beautiful heart by optimizing existing algorithm.
-        It was for Bachamada, an application about heart rate. Then, the idea to create a simple game with little hearts comes.
-        Finally, it\'s continue by playing with heart.</string>
+        It\'s a company based in the French Riviera specialised in web and mobile development.\n
+        This awesome application is natively coded in Kotlin by Macha da Costa.\n
+        At the beginning, the goal was to draw a beautiful heart by optimizing existing algorithm.
+        It was for Bachamada, an application about heart rate. Then, the idea to create a simple game with little hearts came.
+        In brief, it\'s all about hearts.</string>
     <string-array name="sucess_game">
         <item>Genius</item>
         <item>Brilliant</item>
