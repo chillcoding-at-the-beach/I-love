@@ -2,6 +2,7 @@ package com.chillcoding.mycuteheart.view
 
 import android.graphics.Paint
 import android.graphics.Path
+import android.util.Log
 import com.chillcoding.mycuteheart.MyApp
 import java.util.*
 
@@ -10,15 +11,15 @@ import java.util.*
  */
 class MyCuteHeart {
 
-    var mSize = 0.5f
-    var mSpeed = 1
-    var mPaint = Paint()
-    var mHeartPath = Path()
+    var size = 0.5f
+    var speed = 1
+    var paint = Paint()
+    var path = Path()
 
-    var mWakaX = 0f
-    var mWakaY = 0f
+    var wakaX = 0f
+    var wakaY = 0f
 
-    var mContrast = 0
+    var contrast = 0
 
     private var mX: FloatArray = floatArrayOf(75f, 60f, 40f, 5f, 40f, 110f, 145f, 110f, 90f)
     private var mY: FloatArray = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 130f)
@@ -35,9 +36,9 @@ class MyCuteHeart {
 
     constructor(width: Int, height: Int, marginTop: Int) {
         if (height > width)
-            mSize = ((height * 3) / 1000).toFloat()
+            size = ((height * 3) / 1000).toFloat()
         else
-            mSize = ((width * 3) / 1000).toFloat()
+            size = ((width * 3) / 1000).toFloat()
 
         init()
         mXZone = intArrayOf(width - mX[6].toInt(), width)
@@ -46,10 +47,10 @@ class MyCuteHeart {
     }
 
     private fun init() {
-        mPaint = Paint()
-        mPaint.style = Paint.Style.FILL
-        mPaint.isAntiAlias = true
-        mPaint.color = MyApp.mColors.last()
+        paint = Paint()
+        paint.style = Paint.Style.FILL
+        paint.isAntiAlias = true
+        paint.color = MyApp.sColors.last()
         initializeHeartCoordinates()
         createHeart()
     }
@@ -59,56 +60,52 @@ class MyCuteHeart {
         mY = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 130f)
 
         for (i in mX.indices)
-            mX[i] = mX[i] * mSize
+            mX[i] = mX[i] * size
         for (i in mY.indices)
-            mY[i] = mY[i] * mSize
+            mY[i] = mY[i] * size
     }
 
     private fun createHeart() {
-        mHeartPath = Path()
-        mHeartPath.moveTo(mX[0], mY[0])
-        mHeartPath.cubicTo(mX[0], mY[1], mX[1], mY[2], mX[2], mY[2])
-        mHeartPath.cubicTo(mX[3], mY[2], mX[3], mY[3], mX[3], mY[3])
-        mHeartPath.cubicTo(mX[3], mY[4], mX[4], mY[5], mX[0], mY[6])
-        mHeartPath.cubicTo(mX[5], mY[5], mX[6], mY[4], mX[6], mY[3])
-        mHeartPath.cubicTo(mX[6], mY[3], mX[6], mY[2], mX[7], mY[2])
-        mHeartPath.cubicTo(mX[8], mY[2], mX[0], mY[1], mX[0], mY[0])
+        path = Path()
+        path.moveTo(mX[0], mY[0])
+        path.cubicTo(mX[0], mY[1], mX[1], mY[2], mX[2], mY[2])
+        path.cubicTo(mX[3], mY[2], mX[3], mY[3], mX[3], mY[3])
+        path.cubicTo(mX[3], mY[4], mX[4], mY[5], mX[0], mY[6])
+        path.cubicTo(mX[5], mY[5], mX[6], mY[4], mX[6], mY[3])
+        path.cubicTo(mX[6], mY[3], mX[6], mY[2], mX[7], mY[2])
+        path.cubicTo(mX[8], mY[2], mX[0], mY[1], mX[0], mY[0])
     }
 
     private fun updatePosition() {
         if (mDirectionToRight)
-            mWakaX += mSpeed
+            wakaX += speed
         else
-            mWakaX -= mSpeed
+            wakaX -= speed
         if (mDirectionToDown)
-            mWakaY += mSpeed
+            wakaY += speed
         else
-            mWakaY -= mSpeed
+            wakaY -= speed
     }
 
     private fun updateDirection() {
-        if (mWakaX > mXZone.first())
-            mDirectionToRight = false
-        if (mWakaX < 0)
-            mDirectionToRight = true
-        if (mWakaY < mYZone.last())
-            mDirectionToDown = true
-        if (mWakaY > mYZone.first())
-            mDirectionToDown = false
+        if (wakaX !in 0..mXZone.first())
+            mDirectionToRight = !mDirectionToRight
+        if (wakaY !in mYZone.last()..mYZone.first())
+            mDirectionToDown = !mDirectionToDown
     }
 
     private fun updatePositionRandomly() {
         val random = Random()
-        mWakaX = random.nextInt(mXZone.first()).toFloat()
-        mWakaY = (random.nextInt(mYZone.first()) + mYZone.last()).toFloat()
+        wakaX = random.nextInt(mXZone.first()).toFloat()
+        wakaY = (random.nextInt(mYZone.first()) + mYZone.last()).toFloat()
     }
 
     private fun changeHeartColorRandomly() {
-        if (mContrast < MyApp.mColors.size) {
+        if (contrast < MyApp.sColors.size) {
             val random = Random()
-            mPaint.color = MyApp.mColors[random.nextInt(MyApp.mColors.size - mContrast)]
+            paint.color = MyApp.sColors[random.nextInt(MyApp.sColors.size - contrast)]
         } else
-            mPaint.color = MyApp.mColors.first()
+            paint.color = MyApp.sColors.first()
     }
 
     private fun changeDirection() {
@@ -132,20 +129,20 @@ class MyCuteHeart {
     }
 
     fun update(level: Int) {
-        mContrast = level - 1
+        contrast = level - 1
         if (level < 5)
-            mSpeed = Math.pow(2.0, (level - 1).toDouble()).toInt()
+            speed = Math.pow(2.0, (level - 1).toDouble()).toInt()
         else
-            mSpeed = 8
+            speed = 8
         if (level == 1) {
             if (mXZone[1] > mYZone[1])
-                mSize = ((mXZone.last() * 3) / 1000).toFloat()
+                size = ((mXZone.last() * 3) / 1000).toFloat()
             else
-                mSize = ((mYZone[1] * 3) / 1000).toFloat()
+                size = ((mYZone[1] * 3) / 1000).toFloat()
             updateSize()
             updateZone()
         } else if (level in 2..4) {
-            mSize = mSize * 2 / 3
+            size = size * 2 / 3
             updateSize()
             updateZone()
         }
@@ -159,6 +156,6 @@ class MyCuteHeart {
     }
 
     fun isIn(xOf: Int, yOf: Int): Boolean {
-        return (xOf in mWakaX..mWakaX + mX[6] && yOf in mWakaY..mWakaY + mY[6])
+        return (xOf in wakaX..wakaX + mX[6] && yOf in wakaY..wakaY + mY[6])
     }
 }
