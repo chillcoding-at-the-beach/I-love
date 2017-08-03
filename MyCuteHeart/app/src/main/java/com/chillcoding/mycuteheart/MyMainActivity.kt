@@ -174,7 +174,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
+        if (isPremium)
+            menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
