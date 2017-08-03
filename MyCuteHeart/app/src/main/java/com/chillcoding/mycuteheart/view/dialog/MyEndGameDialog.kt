@@ -11,24 +11,19 @@ import com.chillcoding.mycuteheart.model.MyGameData
 import kotlinx.android.synthetic.main.dialog_my_end_game.view.*
 import java.util.*
 
-
 /**
  * Created by macha on 01/08/2017.
  */
 class MyEndGameDialog : DialogFragment() {
-
-    companion object {
-        val SCORE = "MyEndGameDialog:score"
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the Builder class for convenient dialog construction
         val builder = AlertDialog.Builder(activity)
         val successString = resources.getStringArray(R.array.sucess_game)
         var endGameView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_my_end_game, null)
-        var data = arguments.getParcelable<MyGameData>(MyApp.M_GAME_DATA)
-        endGameView.dialogScoreTextView.text = "${data.mScore}"
-        endGameView.dialogLevelTextView.text = "${resources.getString(R.string.level)} ${data.mLevel}"
+        var data = arguments.getParcelable<MyGameData>(MyApp.GAME_DATA)
+        endGameView.dialogScoreTextView.text = "${data.score}"
+        endGameView.dialogLevelTextView.text = "${resources.getString(R.string.level)} ${data.level}"
         endGameView.dialogTitleTextView.text = "${successString[Random().nextInt(successString.size)].toUpperCase()}!"
         builder.setView(endGameView)
                 .setPositiveButton(R.string.play, null)

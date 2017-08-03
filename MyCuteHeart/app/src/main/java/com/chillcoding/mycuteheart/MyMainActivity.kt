@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
 import com.chillcoding.mycuteheart.view.dialog.MyLikeDialogFragment
@@ -19,21 +20,21 @@ import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.jetbrains.anko.startActivity
 
 class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
 
-    var mIsPremium = false
+    var isPremium = false
 
     // The helper object
-    var mHelper: IabHelper? = null
+    private var mHelper: IabHelper? = null
 
     // Provides purchase notification while this app is running
-    lateinit var mBroadcastReceiver: IabBroadcastReceiver
+    private lateinit var mBroadcastReceiver: IabBroadcastReceiver
 
-    lateinit var mToggle: ActionBarDrawerToggle
+    private lateinit var mToggle: ActionBarDrawerToggle
 
     companion object {
-        val base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0DFHzBK+vaUC8mUBMF7+1AF4KdugEYo5g8dI3pf146Pz5C7Nc6OLnBqcIBLUcJUSRjgR68IXHWopEboR2+xzBxUbaE/2Mg0s1IRiw2xyFNqorU2YfEM8tUsOGKtFTs3D9QxebVMVpi5Uc0Q1n3rtYa4Tirvusynej6GGp0jQTG+cPvj8JLGhADRtQfx7NsGbSgJQd3eDrS/TKOQ1nevZKDTe/czej9jgM+YRQlN7RQIOVznE+UHqQZdno3POJ5PFdQKVlkbbsxPsFJ+yqKMoAMrevVELJ07fVVBy6iSKurWUcJ+XGoz+zktMKt6zhW+kv7Sasi6iiGu37RsEPcKRJQIDAQAB"
         val SKU_PREMIUM = "premium"
         // (arbitrary) request code for the purchase flow
         val RC_REQUEST = 10001
@@ -47,7 +48,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         // Create the helper, passing it our context and the public key to verify signatures with
         FirebaseCrash.log("Creating IAB helper.")
-        mHelper = IabHelper(this, base64EncodedPublicKey)
+        mHelper = IabHelper(this, getString(R.string.base64_encoded_public_key))
 
         // enable debug logging (for a production application, you should set this to false).
         mHelper!!.enableDebugLogging(true)
@@ -85,7 +86,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         })
 
         fab.setOnClickListener {
-            if (!gameView.mIsPlaying) {
+            if (!gameView.isPlaying) {
                 gameView.play()
                 fab.setImageResource(R.drawable.ic_dialog_pause)
             } else {
@@ -123,8 +124,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         // Do we have the premium upgrade?
         val premiumPurchase = inventory.getPurchase(SKU_PREMIUM)
-        mIsPremium = premiumPurchase != null && verifyDeveloperPayload(premiumPurchase)
-        FirebaseCrash.log("User is " + if (mIsPremium) "PREMIUM" else "NOT PREMIUM")
+        isPremium = premiumPurchase != null && verifyDeveloperPayload(premiumPurchase)
+        FirebaseCrash.log("User is " + if (isPremium) "PREMIUM" else "NOT PREMIUM")
 
         updateUi()
         FirebaseCrash.log("Initial inventory query finished; enabling main UI.")
@@ -151,7 +152,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             // bought the premium upgrade!
             FirebaseCrash.log("Purchase is premium upgrade. Congratulating user.")
             alert("${getString(R.string.thank_you_premium)}")
-            mIsPremium = true
+            isPremium = true
             updateUi()
         }
     }
@@ -182,7 +183,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_love -> {
-                if (mIsPremium) MyLikeDialogFragment().show(fragmentManager, MyMainActivity::class.java.simpleName)
+                if (isPremium) MyLikeDialogFragment().show(fragmentManager, MyMainActivity::class.java.simpleName)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -203,6 +204,9 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 } catch (e: IabHelper.IabAsyncInProgressException) {
                     complain("Error launching purchase flow. Another async operation in progress.")
                 }
+            }
+            R.id.nav_about -> {
+                startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
             }
         }
 
@@ -233,12 +237,12 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(MyApp.M_GAME_DATA, gameView.mData)
+        outState.putParcelable(MyApp.GAME_DATA, gameView.myGameData)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        gameView.mData = savedInstanceState.getParcelable(MyApp.M_GAME_DATA)
+        gameView.myGameData = savedInstanceState.getParcelable(MyApp.GAME_DATA)
     }
 
     override fun onStart() {
@@ -271,7 +275,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun updateUi() {
-        if (mIsPremium) {
+        if (isPremium) {
             adView.visibility = View.GONE
             adView.destroy()
             navView.menu.findItem(R.id.nav_premium).isVisible = false
@@ -289,10 +293,9 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     fun endGame() {
         pauseGame()
         var bundle = Bundle()
-        bundle.putParcelable(MyApp.M_GAME_DATA, gameView.mData)
+        bundle.putParcelable(MyApp.GAME_DATA, gameView.myGameData)
         var popup = MyEndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MyMainActivity::class.java.simpleName)
-
     }
 }

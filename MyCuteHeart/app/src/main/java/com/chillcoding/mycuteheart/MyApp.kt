@@ -11,8 +11,8 @@ class MyApp : Application() {
     companion object {
         lateinit var instance: MyApp
             private set
-        val M_GAME_DATA = "game"
-        val mColors: List<Int> by lazy {
+        val GAME_DATA = "game"
+        val sColors: List<Int> by lazy {
             listOf(
                     ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorPrimary, null),
