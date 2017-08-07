@@ -28,7 +28,7 @@ class MyEndGameDialog : DialogFragment() {
         endGameView.dialogLevelTextView.text = "${resources.getString(R.string.level)} ${data.level}"
         endGameView.dialogTitleTextView.text = "${successString[Random().nextInt(successString.size)].toUpperCase()}!"
         builder.setView(endGameView)
-                .setPositiveButton(R.string.play, { dialogInterface: DialogInterface, i: Int -> (activity as MyMainActivity).playGame() })
+                .setPositiveButton(R.string.play, { _, _ -> (activity as MyMainActivity).playGame() })
                 .setNeutralButton(R.string.share, null)
                 .setNegativeButton(android.R.string.cancel, null)
         return builder.create()
