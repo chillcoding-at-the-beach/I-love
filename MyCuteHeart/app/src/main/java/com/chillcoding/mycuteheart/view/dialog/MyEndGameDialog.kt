@@ -3,9 +3,11 @@ package com.chillcoding.mycuteheart.view.dialog
 import android.app.AlertDialog
 import android.app.Dialog
 import android.app.DialogFragment
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.chillcoding.mycuteheart.MyApp
+import com.chillcoding.mycuteheart.MyMainActivity
 import com.chillcoding.mycuteheart.R
 import com.chillcoding.mycuteheart.model.MyGameData
 import kotlinx.android.synthetic.main.dialog_my_end_game.view.*
@@ -26,7 +28,7 @@ class MyEndGameDialog : DialogFragment() {
         endGameView.dialogLevelTextView.text = "${resources.getString(R.string.level)} ${data.level}"
         endGameView.dialogTitleTextView.text = "${successString[Random().nextInt(successString.size)].toUpperCase()}!"
         builder.setView(endGameView)
-                .setPositiveButton(R.string.play, null)
+                .setPositiveButton(R.string.play, { dialogInterface: DialogInterface, i: Int -> (activity as MyMainActivity).playGame() })
                 .setNeutralButton(R.string.share, null)
                 .setNegativeButton(android.R.string.cancel, null)
         return builder.create()

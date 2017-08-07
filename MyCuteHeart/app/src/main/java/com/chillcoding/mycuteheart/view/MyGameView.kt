@@ -34,6 +34,8 @@ class MyGameView : View, View.OnTouchListener {
     private var mTopMargin = floatArrayOf(100f, 10f)
     private var mRighMargin = floatArrayOf(0.06f, 0.4f, 0.10f, 0.8f)
 
+    private var mActivity: MyMainActivity = context as MyMainActivity
+
     companion object {
         private val POINTS = 3
         private val TAPS_PER_LEVEL = 20
@@ -115,7 +117,7 @@ class MyGameView : View, View.OnTouchListener {
                     if (myGameData.score == tapsForNextLevel() * POINTS)
                         levelUp()
                 } else
-                    playHeartSound()
+                    mActivity.playGame()
             } else {
                 if (isPlaying)
                     lost()
@@ -180,8 +182,7 @@ class MyGameView : View, View.OnTouchListener {
     }
 
     private fun end() {
-        var act: MyMainActivity = context as MyMainActivity
-        act.endGame()
+        mActivity.endGame()
         myGameData = MyGameData()
         mHeart.update(1)
         invalidate()

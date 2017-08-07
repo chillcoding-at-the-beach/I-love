@@ -86,12 +86,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         })
 
         fab.setOnClickListener {
-            if (!gameView.isPlaying) {
-                gameView.play()
-                fab.setImageResource(R.drawable.ic_dialog_pause)
-            } else {
+            if (!gameView.isPlaying)
+                playGame()
+            else
                 pauseGame()
-            }
         }
 
         mToggle = object : ActionBarDrawerToggle(
@@ -288,6 +286,11 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private fun pauseGame() {
         gameView.pause()
         fab.setImageResource(R.drawable.ic_dialog_play)
+    }
+
+    fun playGame() {
+        gameView.play()
+        fab.setImageResource(R.drawable.ic_dialog_pause)
     }
 
     fun endGame() {
