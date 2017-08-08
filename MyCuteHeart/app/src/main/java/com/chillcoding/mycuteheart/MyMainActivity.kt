@@ -14,13 +14,13 @@ import android.view.View
 import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
-import com.chillcoding.mycuteheart.view.dialog.MyLikeDialogFragment
 import com.google.android.gms.ads.AdRequest
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.*
+import java.util.*
 
 class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
 
@@ -33,6 +33,9 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var mBroadcastReceiver: IabBroadcastReceiver
 
     private lateinit var mToggle: ActionBarDrawerToggle
+    private val mArrayLoveQuote:Array<String> by lazy { resources.getStringArray(R.array.love_quote) }
+    private val mRandom = Random()
+
 
     companion object {
         val SKU_PREMIUM = "premium"
@@ -174,15 +177,14 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        if (isPremium)
-            menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_love -> {
-                if (isPremium) MyLikeDialogFragment().show(fragmentManager, MyMainActivity::class.java.simpleName)
+                showAlertOnLove()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -282,6 +284,13 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             navView.menu.findItem(R.id.nav_awards).isVisible = true
             navView.menu.findItem(R.id.nav_settings).isVisible = true
         }
+    }
+
+    private fun showAlertOnLove() {
+        alert(mArrayLoveQuote[mRandom.nextInt(mArrayLoveQuote.size)]) {
+            positiveButton ("${getString(R.string.like)}") { showAlertOnLove() }
+            noButton { }
+        }.show()
     }
 
     private fun pauseGame() {
