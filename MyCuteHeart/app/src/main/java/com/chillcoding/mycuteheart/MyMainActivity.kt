@@ -286,12 +286,12 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     private fun pauseGame() {
         gameView.pause()
-        fab.setImageResource(R.drawable.ic_dialog_play)
+        fab.setImageResource(R.mipmap.ic_dialog_play)
     }
 
     fun playGame() {
         gameView.play()
-        fab.setImageResource(R.drawable.ic_dialog_pause)
+        fab.setImageResource(R.mipmap.ic_dialog_pause)
     }
 
     fun endGame() {
