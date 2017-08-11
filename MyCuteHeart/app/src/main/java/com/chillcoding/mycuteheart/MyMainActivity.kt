@@ -238,12 +238,12 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(MyApp.GAME_DATA, gameView.myGameData)
+        outState.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        gameView.myGameData = savedInstanceState.getParcelable(MyApp.GAME_DATA)
+        gameView.myGameData = savedInstanceState.getParcelable(MyApp.BUNDLE_GAME_DATA)
     }
 
     override fun onStart() {
@@ -306,7 +306,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     fun endGame() {
         pauseGame()
         var bundle = Bundle()
-        bundle.putParcelable(MyApp.GAME_DATA, gameView.myGameData)
+        bundle.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
         var popup = MyEndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MyMainActivity::class.java.simpleName)

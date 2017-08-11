@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WaKa Heart</string>
+    <string name="app_name">I LOVE</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -30,6 +30,7 @@
         At the beginning, the goal was to draw a beautiful heart by optimizing existing algorithm.
         It was for Bachamada, an application about heart rate. Then, the idea to create a simple game with little hearts came.
         In brief, it\'s all about hearts.</string>
+    <string name="text_best_score">You\'ve bested yourself!</string>
     <string-array name="sucess_game">
         <item>Genius</item>
         <item>Brilliant</item>
