@@ -14,13 +14,13 @@ import android.view.View
 import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
-import com.chillcoding.mycuteheart.view.dialog.MyLikeDialogFragment
 import com.google.android.gms.ads.AdRequest
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.*
+import java.util.*
 
 class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
 
@@ -33,6 +33,9 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var mBroadcastReceiver: IabBroadcastReceiver
 
     private lateinit var mToggle: ActionBarDrawerToggle
+    private val mArrayLoveQuote: Array<String> by lazy { resources.getStringArray(R.array.love_quote) }
+    private val mRandom = Random()
+
 
     companion object {
         val SKU_PREMIUM = "premium"
@@ -149,7 +152,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         if (purchase.sku == SKU_PREMIUM) {
             // bought the premium upgrade!
             FirebaseCrash.log("Purchase is premium upgrade. Congratulating user.")
-            alert("${getString(R.string.thank_you_premium)}")
+            alert(getString(R.string.thank_you_premium))
             isPremium = true
             updateUi()
         }
@@ -181,7 +184,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_love -> {
-                if (isPremium) MyLikeDialogFragment().show(fragmentManager, MyMainActivity::class.java.simpleName)
+                showAlertOnLove()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -235,12 +238,12 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(MyApp.GAME_DATA, gameView.myGameData)
+        outState.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        gameView.myGameData = savedInstanceState.getParcelable(MyApp.GAME_DATA)
+        gameView.myGameData = savedInstanceState.getParcelable(MyApp.BUNDLE_GAME_DATA)
     }
 
     override fun onStart() {
@@ -283,20 +286,27 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
     }
 
+    private fun showAlertOnLove() {
+        alert(mArrayLoveQuote[mRandom.nextInt(mArrayLoveQuote.size)]) {
+            positiveButton(getString(R.string.like)) { showAlertOnLove() }
+            noButton { }
+        }.show()
+    }
+
     private fun pauseGame() {
         gameView.pause()
-        fab.setImageResource(R.drawable.ic_dialog_play)
+        fab.setImageResource(R.mipmap.ic_dialog_play)
     }
 
     fun playGame() {
         gameView.play()
-        fab.setImageResource(R.drawable.ic_dialog_pause)
+        fab.setImageResource(R.mipmap.ic_dialog_pause)
     }
 
     fun endGame() {
         pauseGame()
         var bundle = Bundle()
-        bundle.putParcelable(MyApp.GAME_DATA, gameView.myGameData)
+        bundle.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
         var popup = MyEndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MyMainActivity::class.java.simpleName)

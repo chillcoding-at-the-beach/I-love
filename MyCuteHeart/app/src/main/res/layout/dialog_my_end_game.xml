@@ -1,80 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/dialogTitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="GENIUS!"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/title_size" />
-
-        <View
-            android:id="@+id/lineTopView"
+            style="@style/MyText.Title"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/dialogTitleTextView"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:background="@android:color/black" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="GENIUS!" />
 
         <ImageView
             android:id="@+id/starImageView"
+            android:layout_width="@dimen/little_size"
+            android:layout_height="@dimen/little_size"
+            app:layout_constraintEnd_toStartOf="@id/middleStarImageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialogTitleTextView"
+            app:srcCompat="@drawable/ic_star" />
+
+        <ImageView
+            android:id="@+id/middleStarImageView"
             android:layout_width="@dimen/middle_size"
             android:layout_height="@dimen/middle_size"
-            android:layout_below="@id/lineTopView"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintEnd_toStartOf="@id/endStarImageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/starImageView"
+            app:layout_constraintTop_toBottomOf="@id/dialogTitleTextView"
             app:srcCompat="@drawable/ic_star" />
 
         <ImageView
+            android:id="@+id/endStarImageView"
             android:layout_width="@dimen/little_size"
             android:layout_height="@dimen/little_size"
-            android:layout_below="@id/lineTopView"
-            android:layout_toLeftOf="@id/starImageView"
-            app:srcCompat="@drawable/ic_star" />
-
-        <ImageView
-            android:layout_width="@dimen/little_size"
-            android:layout_height="@dimen/little_size"
-            android:layout_below="@id/lineTopView"
-            android:layout_toRightOf="@id/starImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/middleStarImageView"
+            app:layout_constraintTop_toBottomOf="@id/dialogTitleTextView"
             app:srcCompat="@drawable/ic_star" />
 
         <TextView
             android:id="@+id/dialogScoreTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/starImageView"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/middle_size"
+            android:textSize="@dimen/main_number_size"
+            app:layout_constraintTop_toBottomOf="@+id/middleStarImageView"
             tools:text="500" />
 
         <View
             android:id="@+id/lineBottomView"
             android:layout_width="@dimen/big_size"
             android:layout_height="1dp"
-            android:layout_below="@id/dialogScoreTextView"
-            android:layout_centerHorizontal="true"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialogScoreTextView" />
 
         <TextView
             android:id="@+id/dialogLevelTextView"
+            style="My"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/lineBottomView"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:textSize="@dimen/little_size"
+            app:layout_constraintTop_toBottomOf="@+id/lineBottomView"
             tools:text="Level 2" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/dialogBestTextView"
+            style="@style/MyText.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/text_best_score"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/dialogLevelTextView" />
+
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>

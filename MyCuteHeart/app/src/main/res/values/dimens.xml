@@ -8,5 +8,8 @@
     <dimen name="middle_size">100dp</dimen>
     <dimen name="little_size">50dp</dimen>
     <dimen name="big_size">200dp</dimen>
-    <dimen name="title_size">30dp</dimen>
+    <dimen name="title_size">34sp</dimen>
+    <dimen name="main_number_size">50sp</dimen>
+    <dimen name="number_size">30sp</dimen>
+    <dimen name="subtitle_size">24sp</dimen>
 </resources>
