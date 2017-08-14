@@ -33,7 +33,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var mBroadcastReceiver: IabBroadcastReceiver
 
     private lateinit var mToggle: ActionBarDrawerToggle
-    private val mArrayLoveQuote:Array<String> by lazy { resources.getStringArray(R.array.love_quote) }
+    private val mArrayLoveQuote: Array<String> by lazy { resources.getStringArray(R.array.love_quote) }
     private val mRandom = Random()
 
 
@@ -288,7 +288,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     private fun showAlertOnLove() {
         alert(mArrayLoveQuote[mRandom.nextInt(mArrayLoveQuote.size)]) {
-            positiveButton ("${getString(R.string.like)}") { showAlertOnLove() }
+            positiveButton(getString(R.string.like)) { showAlertOnLove() }
             noButton { }
         }.show()
     }
