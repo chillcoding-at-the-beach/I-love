@@ -152,7 +152,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         if (purchase.sku == SKU_PREMIUM) {
             // bought the premium upgrade!
             FirebaseCrash.log("Purchase is premium upgrade. Congratulating user.")
-            alert("${getString(R.string.thank_you_premium)}")
+            alert(getString(R.string.thank_you_premium))
             isPremium = true
             updateUi()
         }
