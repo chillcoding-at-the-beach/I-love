@@ -212,6 +212,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.nav_about -> {
                 startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
             }
+            R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.feedback_subject), getString(R.string.feedback_body))
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
