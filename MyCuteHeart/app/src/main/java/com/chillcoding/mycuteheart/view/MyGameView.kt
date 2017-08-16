@@ -118,7 +118,6 @@ class MyGameView : View, View.OnTouchListener {
                         levelUp()
                 } else
                     mActivity.playGame(true)
-
             } else {
                 if (isPlaying)
                     lost()

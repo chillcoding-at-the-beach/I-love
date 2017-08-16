@@ -37,11 +37,7 @@ class MyEndGameDialog : DialogFragment() {
         }
         var activity = (activity as MyMainActivity)
         builder.setView(endGameView)
-                .setPositiveButton(R.string.play, { _, _ ->
-                    run {
-                        activity.playGame(true)
-                    }
-                })
+                .setPositiveButton(R.string.play, { _, _ -> activity.playGame(true) })
                 .setNeutralButton(R.string.share, null)
                 .setNegativeButton(android.R.string.cancel, null)
         return builder.create()
