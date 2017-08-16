@@ -116,8 +116,9 @@ class MyGameView : View, View.OnTouchListener {
                     win()
                     if (myGameData.score == tapsForNextLevel() * POINTS)
                         levelUp()
-                } else
-                    mActivity.playGame()
+                } else {
+                    mActivity.playGame(true)
+                }
             } else {
                 if (isPlaying)
                     lost()

@@ -6,11 +6,13 @@ import android.app.DialogFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import be.rijckaert.tim.animatedvector.FloatingMusicActionButton
 import com.chillcoding.mycuteheart.MyApp
 import com.chillcoding.mycuteheart.MyMainActivity
 import com.chillcoding.mycuteheart.R
 import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.MyGameData
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.dialog_my_end_game.view.*
 import java.util.*
 
@@ -33,8 +35,9 @@ class MyEndGameDialog : DialogFragment() {
             bestScore = data.score
             endGameView.dialogBestTextView.visibility = View.VISIBLE
         }
+        var activity = (activity as MyMainActivity)
         builder.setView(endGameView)
-                .setPositiveButton(R.string.play, { _, _ -> (activity as MyMainActivity).playGame() })
+                .setPositiveButton(R.string.play, { _, _ -> activity.playGame(true) })
                 .setNeutralButton(R.string.share, null)
                 .setNegativeButton(android.R.string.cancel, null)
         return builder.create()
