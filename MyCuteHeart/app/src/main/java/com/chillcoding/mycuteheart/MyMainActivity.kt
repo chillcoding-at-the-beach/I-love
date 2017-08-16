@@ -300,20 +300,19 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         gameView.pause()
     }
 
-    fun playGame(isExt: Boolean = false) {
-        if (isExt)
+    fun playGame(animateFab: Boolean = false) {
+        if (animateFab)
             fab.playAnimation()
         gameView.play()
     }
 
     fun endGame() {
-        fab.changeMode(FloatingMusicActionButton.Mode.STOP_TO_PLAY)
         gameView.stop()
+        fab.playAnimation()
         var bundle = Bundle()
         bundle.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
         var popup = MyEndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MyMainActivity::class.java.simpleName)
-
     }
 }

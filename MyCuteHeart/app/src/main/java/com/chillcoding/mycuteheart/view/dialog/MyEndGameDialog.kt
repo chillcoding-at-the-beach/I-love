@@ -40,11 +40,10 @@ class MyEndGameDialog : DialogFragment() {
                 .setPositiveButton(R.string.play, { _, _ ->
                     run {
                         activity.playGame(true)
-                        activity.fab.changeMode(FloatingMusicActionButton.Mode.PAUSE_TO_PLAY)
-                        activity.fab.playAnimation()
-                    }})
-                .setNeutralButton(R.string.share, { _,_ -> activity.fab.changeMode(FloatingMusicActionButton.Mode.PLAY_TO_PAUSE)})
-                .setNegativeButton(android.R.string.cancel,{ _,_ -> activity.fab.changeMode(FloatingMusicActionButton.Mode.PLAY_TO_PAUSE)})
+                    }
+                })
+                .setNeutralButton(R.string.share, null)
+                .setNegativeButton(android.R.string.cancel, null)
         return builder.create()
     }
 }
