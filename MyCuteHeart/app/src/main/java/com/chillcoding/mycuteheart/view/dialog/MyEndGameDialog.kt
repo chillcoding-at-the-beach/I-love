@@ -14,6 +14,7 @@ import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.MyGameData
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.dialog_my_end_game.view.*
+import org.jetbrains.anko.share
 import java.util.*
 
 /**
@@ -38,7 +39,7 @@ class MyEndGameDialog : DialogFragment() {
         var activity = (activity as MyMainActivity)
         builder.setView(endGameView)
                 .setPositiveButton(R.string.play, { _, _ -> activity.playGame(true) })
-                .setNeutralButton(R.string.share, null)
+                .setNeutralButton(R.string.share, { _, _ -> share("I Love", "My Score is ${data.score}!")})
                 .setNegativeButton(android.R.string.cancel, null)
         return builder.create()
     }
