@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import be.rijckaert.tim.animatedvector.FloatingMusicActionButton
 import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
@@ -88,12 +89,14 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         })
 
-        fab.setOnClickListener {
-            if (!gameView.isPlaying)
-                playGame()
-            else
-                pauseGame()
-        }
+        fab.setOnMusicFabClickListener(object : FloatingMusicActionButton.OnMusicFabClickListener {
+            override fun onClick(view: View) {
+                if (!gameView.isPlaying)
+                    playGame()
+                else
+                    pauseGame()
+            }
+        })
 
         mToggle = object : ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -295,20 +298,22 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     private fun pauseGame() {
         gameView.pause()
-        fab.setImageResource(R.mipmap.ic_dialog_play)
     }
 
-    fun playGame() {
+    fun playGame(isExt: Boolean = false) {
+        if (isExt)
+            fab.playAnimation()
         gameView.play()
-        fab.setImageResource(R.mipmap.ic_dialog_pause)
     }
 
     fun endGame() {
-        pauseGame()
+        fab.changeMode(FloatingMusicActionButton.Mode.STOP_TO_PLAY)
+        gameView.stop()
         var bundle = Bundle()
         bundle.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
         var popup = MyEndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MyMainActivity::class.java.simpleName)
+
     }
 }
