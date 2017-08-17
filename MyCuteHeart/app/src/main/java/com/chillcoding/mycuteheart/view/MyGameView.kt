@@ -75,7 +75,7 @@ class MyGameView : View, View.OnTouchListener {
         super.onDraw(canvas)
         //draw the score and level
         with(myGameData) {
-            canvas?.drawText(" ${context.getString(R.string.score)} $score",
+            canvas?.drawText(" ${context.getString(R.string.word_score)} $score",
                     mRighMargin[0], mTopMargin.last(), mTextPaint)
             canvas?.save()
             mLife.paint.style = Paint.Style.FILL
@@ -92,7 +92,7 @@ class MyGameView : View, View.OnTouchListener {
                 canvas?.drawPath(mLife.path, mLife.paint)
             }
             canvas?.restore()
-            canvas?.drawText("$level ${context.getString(R.string.level)} ",
+            canvas?.drawText("$level ${context.getString(R.string.word_level)} ",
                     mRighMargin.last(), mTopMargin.last(), mTextPaint)
         }
 
@@ -157,7 +157,7 @@ class MyGameView : View, View.OnTouchListener {
 
     private fun levelUp() {
         myGameData.level += 1
-        Toast.makeText(context, "+ 1 ${context.getString(R.string.level)}!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "+ 1 ${context.getString(R.string.word_level)}!", Toast.LENGTH_SHORT).show()
         mHeart.update(myGameData.level)
     }
 
