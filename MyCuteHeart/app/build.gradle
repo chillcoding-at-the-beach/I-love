@@ -35,7 +35,6 @@ dependencies {
     compile "com.android.support:design:$support_version"
     compile "org.jetbrains.anko:anko-common:$anko_version"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.firebase:firebase-ads:11.0.2'
     compile 'com.google.firebase:firebase-crash:11.0.2'
     compile 'com.github.timrijckaert:FloatingMusicActionButton:v2.0.4'
 }

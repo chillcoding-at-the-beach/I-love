@@ -15,7 +15,6 @@ import be.rijckaert.tim.animatedvector.FloatingMusicActionButton
 import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
-import com.google.android.gms.ads.AdRequest
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -107,9 +106,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
 
         navView.setNavigationItemSelectedListener(this)
-
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
     }
 
     internal var mGotInventoryListener: IabHelper.QueryInventoryFinishedListener = IabHelper.QueryInventoryFinishedListener { result, inventory ->
@@ -281,8 +277,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     private fun updateUi() {
         if (isPremium) {
-            adView.visibility = View.GONE
-            adView.destroy()
             navView.menu.findItem(R.id.nav_premium).isVisible = false
             navView.menu.findItem(R.id.nav_more_features).isVisible = false
             navView.menu.findItem(R.id.nav_awards).isVisible = true
