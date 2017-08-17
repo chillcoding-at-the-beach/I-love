@@ -33,7 +33,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var mBroadcastReceiver: IabBroadcastReceiver
 
     private lateinit var mToggle: ActionBarDrawerToggle
-    private val mArrayLoveQuote: Array<String> by lazy { resources.getStringArray(R.array.love_quote) }
+    private val mArrayLoveQuote: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
     private val mRandom = Random()
 
 
@@ -151,7 +151,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         if (purchase.sku == SKU_PREMIUM) {
             // bought the premium upgrade!
             FirebaseCrash.log("Purchase is premium upgrade. Congratulating user.")
-            alert(getString(R.string.thank_you_premium))
+            alert(getString(R.string.text_thank_you_premium))
             isPremium = true
             updateUi()
         }
@@ -208,8 +208,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.nav_about -> {
                 startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
             }
-            R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.feedback_subject), "")
-            R.id.nav_share -> share(getString(R.string.share_app_text),getString(R.string.app_name))
+            R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
+            R.id.nav_share -> share(getString(R.string.text_share_app),getString(R.string.app_name))
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
