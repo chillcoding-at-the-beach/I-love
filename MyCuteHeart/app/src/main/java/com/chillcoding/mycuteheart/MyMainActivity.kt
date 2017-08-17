@@ -209,6 +209,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
             }
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.feedback_subject), "")
+            R.id.nav_share -> share(getString(R.string.share_app_text),getString(R.string.app_name))
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)

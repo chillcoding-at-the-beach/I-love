@@ -32,6 +32,7 @@
         In brief, it\'s all about hearts.</string>
     <string name="text_best_score">You\'ve bested yourself!</string>
     <string name="feedback_subject">Feedback on I Love App.</string>
+    <string name="share_app_text">Check this app: https://play.google.com/store/apps/details?id=com.chillcoding.mycuteheart</string>
     <string-array name="sucess_game">
         <item>Genius</item>
         <item>Brilliant</item>
