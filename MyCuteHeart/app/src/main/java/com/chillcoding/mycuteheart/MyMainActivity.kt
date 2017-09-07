@@ -287,7 +287,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     private fun showAlertOnLove() {
         alert(mArrayLoveQuote[mRandom.nextInt(mArrayLoveQuote.size)]) {
-            positiveButton(getString(R.string.like)) { showAlertOnLove() }
+            positiveButton(getString(R.string.action_like)) { showAlertOnLove() }
             noButton { }
         }.show()
     }
