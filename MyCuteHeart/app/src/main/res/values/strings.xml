@@ -30,6 +30,7 @@
     <string name="text_best_score">You\'ve bested yourself!</string>
     <string name="subject_feedback">Feedback on the I Love app.</string>
     <string name="text_share_app">Check the I Love app: https://play.google.com/store/apps/details?id=com.chillcoding.mycuteheart</string>
+    <string name="title_chillcoding">By ChillCoding</string>
     <string-array name="word_sucess">
         <item>Genius</item>
         <item>Brilliant</item>
