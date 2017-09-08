@@ -48,6 +48,4 @@ class Preference<T>(private val context: Context, private val name: String,
             else -> throw IllegalArgumentException("This type can't be saved into Preferences")
         }.apply()
     }
-
-
 }
