@@ -11,13 +11,14 @@ object DelegatesExt {
                        default: T) = Preference(context, name, default)
 }
 
-class Preference<T>(val context: Context, val name: String, val default: T) {
+class Preference<T>(private val context: Context, private val name: String,
+                    private val default: T) {
 
-    val prefs: SharedPreferences by lazy { context.getSharedPreferences("default", Context.MODE_PRIVATE) }
-
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
-        return findPreference(name, default)
+    private val prefs: SharedPreferences by lazy {
+        context.getSharedPreferences("default", Context.MODE_PRIVATE)
     }
+
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T = findPreference(name, default)
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
         putPreference(name, value)
@@ -33,7 +34,6 @@ class Preference<T>(val context: Context, val name: String, val default: T) {
             is Float -> getFloat(name, default)
             else -> throw IllegalArgumentException("This type can be saved into Preferences")
         }
-
         res as T
     }
 
@@ -48,4 +48,6 @@ class Preference<T>(val context: Context, val name: String, val default: T) {
             else -> throw IllegalArgumentException("This type can't be saved into Preferences")
         }.apply()
     }
+
+
 }
