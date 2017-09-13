@@ -25,7 +25,6 @@ class MyGameView : View, View.OnTouchListener {
     private lateinit var mHeart: MyCuteHeart
     private lateinit var mLife: MyCuteHeart
 
-    private var mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
     private var mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
     private var mVibrator = context.getSystemService(Activity.VIBRATOR_SERVICE) as Vibrator
 
@@ -49,7 +48,6 @@ class MyGameView : View, View.OnTouchListener {
 
     private fun init() {
         super.setOnTouchListener(this)
-        mSoundPlayer.isLooping = true
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -99,8 +97,6 @@ class MyGameView : View, View.OnTouchListener {
         if (isPlaying) {
             invalidate()
             mHeart.update()
-            if (!mSoundPlayer.isPlaying)
-                mSoundPlayer.start()
         }
         //draw the main heart
         canvas?.save()
@@ -162,22 +158,15 @@ class MyGameView : View, View.OnTouchListener {
     }
 
     fun play() {
-        mSoundPlayer.start()
         isPlaying = true
         invalidate()
     }
 
     fun pause() {
-        mSoundPlayer.pause()
         isPlaying = false
     }
 
     fun stop() {
-        // stop and prepare the sound
-        mSoundPlayer.stop()
-        mSoundPlayer.reset()
-        mSoundPlayer = MediaPlayer.create(context, R.raw.latina)
-        mSoundPlayer.isLooping = true
         // stop the animation
         isPlaying = false
     }

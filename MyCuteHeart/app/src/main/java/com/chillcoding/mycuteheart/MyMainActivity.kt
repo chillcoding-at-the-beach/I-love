@@ -3,6 +3,7 @@ package com.chillcoding.mycuteheart
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -12,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import be.rijckaert.tim.animatedvector.FloatingMusicActionButton
+import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
@@ -36,6 +38,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private val mArrayLoveQuote: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
     private val mRandom = Random()
 
+    val isSound: Boolean by DelegatesExt.preference(this, "PREF_SOUND", true)
+    private lateinit var mSoundPlayer: MediaPlayer
 
     companion object {
         val SKU_PREMIUM = "premium"
@@ -48,6 +52,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         setContentView(R.layout.activity_my_main)
         setSupportActionBar(toolbar)
 
+        mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
+        mSoundPlayer.isLooping = true
 
         // Create the helper, passing it our context and the public key to verify signatures with
         FirebaseCrash.log("Creating IAB helper.")
@@ -209,6 +215,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
             }
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
+            R.id.nav_settings -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.SETTINGS.ordinal)
             R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
         }
 
@@ -294,15 +301,19 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     private fun pauseGame() {
         gameView.pause()
+        mSoundPlayer.pause()
     }
 
     fun playGame(animateFab: Boolean = false) {
         if (animateFab)
             fab.playAnimation()
+        if (isSound)
+            mSoundPlayer.start()
         gameView.play()
     }
 
     fun endGame() {
+        resetSound()
         gameView.stop()
         fab.playAnimation()
         var bundle = Bundle()
@@ -310,5 +321,11 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         var popup = MyEndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MyMainActivity::class.java.simpleName)
+    }
+
+    private fun resetSound() {
+        mSoundPlayer.reset()
+        mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
+        mSoundPlayer.isLooping = true
     }
 }
