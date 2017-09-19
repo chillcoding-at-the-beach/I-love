@@ -23,7 +23,6 @@ class MyGameView : View, View.OnTouchListener {
     var myGameData = MyGameData()
 
     private lateinit var mHeart: MyCuteHeart
-    private lateinit var mLife: MyCuteHeart
 
     private var mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
     private var mVibrator = context.getSystemService(Activity.VIBRATOR_SERVICE) as Vibrator
@@ -31,7 +30,6 @@ class MyGameView : View, View.OnTouchListener {
     private var mTextPaint = Paint()
 
     private var mTopMargin = floatArrayOf(100f, 10f)
-    private var mRighMargin = floatArrayOf(0.06f, 0.4f, 0.10f, 0.8f)
 
     private var mActivity: MyMainActivity = context as MyMainActivity
 
@@ -58,45 +56,18 @@ class MyGameView : View, View.OnTouchListener {
                 coef = height
             else
                 coef = width
-            mLife = MyCuteHeart()
             mHeart = MyCuteHeart(width, height, mTopMargin.last().toInt())
             mTextPaint.textSize = (coef / 20).toFloat()
-            mLife.paint.strokeWidth = (coef / 150).toFloat()
             mTopMargin[0] = (coef / 70).toFloat()
             mTopMargin[1] = (coef / 17).toFloat()
-            for (i in mRighMargin.indices)
-                mRighMargin[i] = coef * mRighMargin[i]
         }
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        //draw the score and level
-        with(myGameData) {
-            canvas?.drawText(" ${context.getString(R.string.word_score)} $score",
-                    mRighMargin[0], mTopMargin.last(), mTextPaint)
-            canvas?.save()
-            mLife.paint.style = Paint.Style.FILL
-            if (nbLife < 1) {
-                mLife.paint.style = Paint.Style.STROKE
-                end()
-            }
-            canvas?.translate(mRighMargin[1], mTopMargin.first())
-            canvas?.drawPath(mLife.path, mLife.paint)
-            for (i in 2..3) {
-                if (nbLife < i)
-                    mLife.paint.style = Paint.Style.STROKE
-                canvas?.translate(mRighMargin[2], 0f)
-                canvas?.drawPath(mLife.path, mLife.paint)
-            }
-            canvas?.restore()
-            canvas?.drawText("$level ${context.getString(R.string.word_level)} ",
-                    mRighMargin.last(), mTopMargin.last(), mTextPaint)
-        }
-
         if (isPlaying) {
             invalidate()
-            mHeart.update()
+            mHeart.updateTrajectory()
         }
         //draw the main heart
         canvas?.save()
@@ -135,11 +106,13 @@ class MyGameView : View, View.OnTouchListener {
     private fun win() {
         myGameData.score += POINTS
         mHeart.updateRandomly()
+        mActivity.updateScore()
     }
 
     private fun lost() {
         mVibrator.vibrate(100)
         myGameData.nbLife--
+        mActivity.updateNbLife()
     }
 
     override fun onDetachedFromWindow() {
@@ -154,7 +127,8 @@ class MyGameView : View, View.OnTouchListener {
     private fun levelUp() {
         myGameData.level += 1
         Toast.makeText(context, "+ 1 ${context.getString(R.string.word_level)}!", Toast.LENGTH_SHORT).show()
-        mHeart.update(myGameData.level)
+        mHeart.updateLevel(myGameData.level)
+        mActivity.updateLevel()
     }
 
     fun play() {
@@ -171,10 +145,11 @@ class MyGameView : View, View.OnTouchListener {
         isPlaying = false
     }
 
-    private fun end() {
-        mActivity.endGame()
+    fun setUpNewGame() {
+        stop()
         myGameData = MyGameData()
-        mHeart.update(1)
+        mHeart.updateLevel(1)
         invalidate()
+        mActivity.updateGameInfo()
     }
 }

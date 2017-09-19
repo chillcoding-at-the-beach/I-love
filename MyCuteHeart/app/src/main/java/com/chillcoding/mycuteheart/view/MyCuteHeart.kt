@@ -21,8 +21,8 @@ class MyCuteHeart {
 
     var contrast = 0
 
-    private var mX: FloatArray = floatArrayOf(75f, 60f, 40f, 5f, 40f, 110f, 145f, 110f, 90f)
-    private var mY: FloatArray = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 130f)
+    private lateinit  var mX: FloatArray
+    private lateinit var mY: FloatArray
 
     private var mDirectionToRight = true
     private var mDirectionToDown = true
@@ -57,7 +57,7 @@ class MyCuteHeart {
 
     private fun initializeHeartCoordinates() {
         mX = floatArrayOf(75f, 60f, 40f, 5f, 40f, 110f, 145f, 110f, 90f)
-        mY = floatArrayOf(30f, 25f, 5f, 40f, 80f, 102f, 130f)
+        mY = floatArrayOf(22f, 20f, 5f, 40f, 80f, 102f, 135f)
 
         for (i in mX.indices)
             mX[i] = mX[i] * size
@@ -123,12 +123,12 @@ class MyCuteHeart {
         mYZone[0] = mYZone[1] - mYZone.last() - mY[6].toInt()
     }
 
-    fun update() {
+    fun updateTrajectory() {
         updatePosition()
         updateDirection()
     }
 
-    fun update(level: Int) {
+    fun updateLevel(level: Int) {
         contrast = level - 1
         if (level < 5)
             speed = Math.pow(2.0, (level - 1).toDouble()).toInt()
