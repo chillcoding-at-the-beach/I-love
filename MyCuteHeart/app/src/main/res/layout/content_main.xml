@@ -1,17 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.chillcoding.mycuteheart.MyMainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <TextView
+        android:id="@+id/mainScore"
+        style="@style/MyText.SubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:text="@string/word_score"
+        app:layout_constraintEnd_toStartOf="@+id/mainFirstLife"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@id/mainFirstLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_life_shadow"
+        app:layout_constraintEnd_toStartOf="@+id/mainSecondLife"
+        app:layout_constraintStart_toEndOf="@id/mainScore"
+        app:srcCompat="@drawable/ic_life" />
+
+    <ImageView
+        android:id="@id/mainSecondLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_life_shadow"
+        app:layout_constraintEnd_toStartOf="@+id/mainThirdLife"
+        app:layout_constraintStart_toEndOf="@id/mainFirstLife"
+        app:srcCompat="@drawable/ic_life" />
+
+    <ImageView
+        android:id="@id/mainThirdLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_life_shadow"
+        app:layout_constraintEnd_toStartOf="@+id/mainLevel"
+        app:layout_constraintStart_toEndOf="@id/mainSecondLife"
+        app:srcCompat="@drawable/ic_life" />
+
+    <TextView
+        android:id="@+id/mainLevel"
+        style="@style/MyText.SubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:text="@string/word_level"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/mainThirdLife" />
+
     <com.chillcoding.mycuteheart.view.MyGameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/game_margin"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

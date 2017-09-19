@@ -55,6 +55,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
         mSoundPlayer.isLooping = true
 
+        setUpGameInfo()
+
         // Create the helper, passing it our context and the public key to verify signatures with
         FirebaseCrash.log("Creating IAB helper.")
         mHelper = IabHelper(this, getString(R.string.base64_encoded_public_key))
@@ -252,6 +254,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         gameView.myGameData = savedInstanceState.getParcelable(MyApp.BUNDLE_GAME_DATA)
+        updateGameInfo()
     }
 
     override fun onStart() {
@@ -314,13 +317,52 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     fun endGame() {
         resetSound()
-        gameView.stop()
         fab.playAnimation()
         var bundle = Bundle()
         bundle.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
+        gameView.setUpNewGame()
         var popup = MyEndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MyMainActivity::class.java.simpleName)
+    }
+
+    private fun setUpGameInfo() {
+        updateScore()
+        updateLevel()
+    }
+
+    fun updateScore() {
+        when (gameView.myGameData.score) {
+            in 0..10 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.myGameData.score}"
+            in 11..100 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.myGameData.score}"
+            else -> mainScore.text = "${getString(R.string.word_score)}: ${gameView.myGameData.score}"
+        }
+    }
+
+    fun updateLevel() {
+        mainLevel.text = "${getString(R.string.word_level)}: ${gameView.myGameData.level}"
+    }
+
+    fun updateNbLife() {
+        when (gameView.myGameData.nbLife) {
+            0 -> {
+                mainFirstLife.setImageResource(R.drawable.ic_life_lost)
+                endGame()
+            }
+            1 -> mainSecondLife.setImageResource(R.drawable.ic_life_lost)
+            2 -> mainThirdLife.setImageResource(R.drawable.ic_life_lost)
+            3 -> {
+                mainFirstLife.setImageResource(R.drawable.ic_life)
+                mainSecondLife.setImageResource(R.drawable.ic_life)
+                mainThirdLife.setImageResource(R.drawable.ic_life)
+            }
+        }
+    }
+
+    fun updateGameInfo() {
+        updateScore()
+        updateNbLife()
+        updateLevel()
     }
 
     private fun resetSound() {

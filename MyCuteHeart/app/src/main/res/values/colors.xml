@@ -14,4 +14,5 @@
     <color name="colorBlue">#2979ff</color>
     <color name="colorPurple">#aa00ff</color>
     <color name="colorPink">#e91e63</color>
+    <color name="colorShadow">#E0E0E0</color>
 </resources>
