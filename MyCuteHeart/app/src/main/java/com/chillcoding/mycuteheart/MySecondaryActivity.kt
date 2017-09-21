@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.view.fragment.MyAboutFragment
+import com.chillcoding.mycuteheart.view.fragment.MyAwardsFragment
 import com.chillcoding.mycuteheart.view.fragment.MySettingsFragment
 import kotlinx.android.synthetic.main.app_bar_second.*
 
@@ -28,9 +29,16 @@ class MySecondaryActivity : AppCompatActivity() {
         when (intent.getIntExtra(FRAGMENT_ID, 0)) {
             MyFragmentId.ABOUT.ordinal -> {
                 setFragment(MyAboutFragment())
-                supportActionBar!!.title = getString(R.string.title_about)
+                supportActionBar!!.title = getString(R.string.menu_about)
             }
-            MyFragmentId.SETTINGS.ordinal -> setFragment(MySettingsFragment())
+            MyFragmentId.SETTINGS.ordinal -> {
+                setFragment(MySettingsFragment())
+                supportActionBar!!.title = getString(R.string.menu_settings)
+            }
+            MyFragmentId.AWARDS.ordinal -> {
+                setFragment(MyAwardsFragment())
+                supportActionBar!!.title = getString(R.string.menu_awards)
+            }
             else -> setFragment(MyAboutFragment())
         }
     }
