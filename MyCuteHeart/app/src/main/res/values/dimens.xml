@@ -4,13 +4,21 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
     <dimen name="middle_size">100dp</dimen>
     <dimen name="little_size">50dp</dimen>
     <dimen name="big_size">200dp</dimen>
     <dimen name="title_size">34sp</dimen>
+    <dimen name="subtitle_size">24sp</dimen>
+    <dimen name="body_size">14sp</dimen>
     <dimen name="main_number_size">50sp</dimen>
     <dimen name="number_size">30sp</dimen>
-    <dimen name="subtitle_size">24sp</dimen>
     <dimen name="game_margin">25dp</dimen>
+    <dimen name="normal_middle_width">150dp</dimen>
+    <dimen name="general_corner_radius">2dp</dimen>
+    <dimen name="cards_margin">8dp</dimen>
+    <dimen name="cards_inter_margin">12dp</dimen>
+    <dimen name="cards_middle_margin">16dp</dimen>
+    <dimen name="cards_big_margin">24dp</dimen>
 </resources>
+
+

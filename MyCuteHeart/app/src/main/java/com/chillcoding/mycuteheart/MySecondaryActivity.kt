@@ -26,7 +26,10 @@ class MySecondaryActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         when (intent.getIntExtra(FRAGMENT_ID, 0)) {
-            MyFragmentId.ABOUT.ordinal -> setFragment(MyAboutFragment())
+            MyFragmentId.ABOUT.ordinal -> {
+                setFragment(MyAboutFragment())
+                supportActionBar!!.title = getString(R.string.title_about)
+            }
             MyFragmentId.SETTINGS.ordinal -> setFragment(MySettingsFragment())
             else -> setFragment(MyAboutFragment())
         }

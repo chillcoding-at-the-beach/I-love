@@ -1,8 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/aboutTextView"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:drawableTop="@drawable/chillcoding"
-    android:layout_margin="@dimen/activity_vertical_margin"
-    android:text="@string/text_about" />
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/cards_margin">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="5"
+        android:useDefaultMargins="true">
+
+        <android.support.v7.widget.CardView
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="0"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/cards_margin">
+
+                <ImageView
+                    android:id="@+id/aboutChillcodingImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:src="@drawable/chillcoding_header"
+                    app:layout_constraintDimensionRatio="16:8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/aboutChillcodingTitle"
+                    style="@style/MyCardText.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/cards_middle_margin"
+                    android:text="@string/about_app"
+                    app:layout_constraintTop_toBottomOf="@id/aboutChillcodingImg" />
+
+                <TextView
+                    android:id="@+id/aboutChillcodingSubtitle"
+                    style="@style/MyCardText.Subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/cards_middle_margin"
+                    android:text="@string/slogan_chillcoding"
+                    app:layout_constraintTop_toBottomOf="@id/aboutChillcodingTitle" />
+
+                <View
+                    android:id="@+id/aboutChillCodingLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="@dimen/cards_margin"
+                    android:layout_marginTop="@dimen/cards_middle_margin"
+                    android:background="@color/colorShadow"
+                    app:layout_constraintTop_toBottomOf="@id/aboutChillcodingSubtitle" />
+
+                <ImageView
+                    android:id="@+id/aboutChillcodingIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/cards_middle_margin"
+                    android:layout_marginTop="@dimen/cards_middle_margin"
+                    android:tint="@color/colorPrimaryDark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/aboutChillCodingLine"
+                    app:srcCompat="@drawable/ic_menu_love" />
+
+                <ImageView
+                    android:id="@+id/aboutChillcodingBeachIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/cards_middle_margin"
+                    android:tint="@color/colorPrimaryDark"
+                    app:layout_constraintLeft_toRightOf="@id/aboutChillcodingIcon"
+                    app:layout_constraintTop_toTopOf="@id/aboutChillcodingIcon"
+                    app:srcCompat="@drawable/ic_beach_access" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/cards_middle_margin"
+                    android:tint="@color/colorPrimaryDark"
+                    app:layout_constraintLeft_toRightOf="@id/aboutChillcodingBeachIcon"
+                    app:layout_constraintTop_toTopOf="@id/aboutChillcodingIcon"
+                    app:srcCompat="@drawable/ic_like" />
+
+                <Button
+                    android:id="@+id/aboutChillcodingButton"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cards_margin"
+                    android:text="@string/action_more"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/aboutChillCodingLine" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="1"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <LinearLayout
+                style="@style/MyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/gitlab" />
+
+                <TextView
+                    style="@style/MyCardText.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_gitlab" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="2"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <LinearLayout
+                style="@style/MyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/kotlin" />
+
+                <TextView
+                    style="@style/MyCardText.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_kotlin" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_column="1"
+            android:layout_gravity="fill"
+            android:layout_row="1"
+            android:layout_rowSpan="2"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/cards_big_margin"
+                android:layout_marginTop="@dimen/cards_margin"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/aboutAndroidImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/android" />
+
+                <TextView
+                    style="@style/MyCardText.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_android" />
+
+                <TextView
+                    style="@style/MyCardText.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/text_about" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="3"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <LinearLayout
+                style="@style/MyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/material_design" />
+
+                <TextView
+                    style="@style/MyCardText.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_material_design" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_column="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="3"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <LinearLayout
+                style="@style/MyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/android_studio" />
+
+                <TextView
+                    style="@style/MyCardText.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_android_studio" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </GridLayout>
+</ScrollView>
