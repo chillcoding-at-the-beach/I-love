@@ -88,7 +88,7 @@ public class IabHelper {
     // Are subscriptions supported?
     boolean mSubscriptionsSupported = false;
 
-    // Is subscription update supported?
+    // Is subscription updateLevel supported?
     boolean mSubscriptionUpdateSupported = false;
 
     // Is an asynchronous operation in progress?
@@ -251,7 +251,7 @@ public class IabHelper {
                     }
 
                     // Check for v5 subscriptions support. This is needed for
-                    // getBuyIntentToReplaceSku which allows for subscription update
+                    // getBuyIntentToReplaceSku which allows for subscription updateLevel
                     response = mService.isBillingSupported(5, packageName, ITEM_TYPE_SUBS);
                     if (response == BILLING_RESPONSE_RESULT_OK) {
                         logDebug("Subscription re-signup AVAILABLE.");
