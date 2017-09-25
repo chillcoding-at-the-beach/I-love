@@ -11,7 +11,9 @@ import android.app.Activity
 import android.graphics.Paint
 import android.os.Vibrator
 import android.widget.Toast
+import com.chillcoding.mycuteheart.MyApp
 import com.chillcoding.mycuteheart.MyMainActivity
+import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.MyGameData
 
 /**
@@ -32,10 +34,12 @@ class MyGameView : View, View.OnTouchListener {
     private var mTopMargin = floatArrayOf(100f, 10f)
 
     private var mActivity: MyMainActivity = context as MyMainActivity
+    var awardLevel: Int by DelegatesExt.preference(context, MyApp.PREF_AWARD_LEVEL, 1)
+
 
     companion object {
-        private val POINTS = 3
-        private val TAPS_PER_LEVEL = 20
+        private val POINTS = 1
+        private val TAPS_PER_LEVEL = 10
     }
 
     constructor(context: Context) : this(context, null)
@@ -46,6 +50,7 @@ class MyGameView : View, View.OnTouchListener {
 
     private fun init() {
         super.setOnTouchListener(this)
+        myGameData.awardLevel = awardLevel
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -81,7 +86,7 @@ class MyGameView : View, View.OnTouchListener {
             if (mHeart.isIn(event.x.toInt(), event.y.toInt())) {
                 if (isPlaying) {
                     win()
-                    if (myGameData.score == tapsForNextLevel() * POINTS)
+                    if (myGameData.score > scoreForNextLevel())
                         levelUp()
                 } else {
                     mActivity.playGame(true)
@@ -104,7 +109,7 @@ class MyGameView : View, View.OnTouchListener {
     }
 
     private fun win() {
-        myGameData.score += POINTS
+        myGameData.score += POINTS * myGameData.level * myGameData.awardLevel
         mHeart.updateRandomly()
         mActivity.updateScore()
     }
@@ -120,8 +125,11 @@ class MyGameView : View, View.OnTouchListener {
         stop()
     }
 
-    private fun tapsForNextLevel(): Int {
-        return (myGameData.level) * TAPS_PER_LEVEL
+    private fun scoreForNextLevel(): Int {
+        var score = 0
+        for (k in 1..myGameData.level)
+            score += TAPS_PER_LEVEL * k * k
+        return score
     }
 
     private fun levelUp() {
@@ -150,6 +158,6 @@ class MyGameView : View, View.OnTouchListener {
         myGameData = MyGameData()
         mHeart.updateLevel(1)
         invalidate()
-        mActivity.updateGameInfo()
+        myGameData.awardLevel = awardLevel
     }
 }

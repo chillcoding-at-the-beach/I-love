@@ -319,7 +319,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         fab.playAnimation()
         var bundle = Bundle()
         bundle.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
-        gameView.setUpNewGame()
         var popup = MyEndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MyMainActivity::class.java.simpleName)
@@ -369,4 +368,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
         mSoundPlayer.isLooping = true
     }
+
+    fun setUpNewGame() {
+        gameView.setUpNewGame()
+        updateGameInfo()
+    }
+
 }
