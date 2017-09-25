@@ -13,6 +13,8 @@ class MyApp : Application() {
             private set
         val BUNDLE_GAME_DATA = "BUNDLE_GAME_DATE"
         val PREF_BEST_SCORE = "PREF_BEST_SCORE"
+        val PREF_AWARD_LEVEL = "PREF_AWARD_LEVEL"
+        val SCORE_PER_AWARD = 300
         val sColors: List<Int> by lazy {
             listOf(
                     ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null),

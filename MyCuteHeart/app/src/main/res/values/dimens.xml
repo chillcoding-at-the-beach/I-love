@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
-    <dimen name="middle_size">100dp</dimen>
+    <dimen name="middle_size">120dp</dimen>
     <dimen name="little_size">50dp</dimen>
     <dimen name="big_size">200dp</dimen>
     <dimen name="title_size">34sp</dimen>
@@ -19,6 +19,8 @@
     <dimen name="cards_inter_margin">12dp</dimen>
     <dimen name="cards_middle_margin">16dp</dimen>
     <dimen name="cards_big_margin">24dp</dimen>
+    <dimen name="cards_sub_margin">4dp</dimen>
+    <dimen name="cards_special_margin">136dp</dimen>
 </resources>
 
 

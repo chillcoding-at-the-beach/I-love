@@ -213,9 +213,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     complain("Error launching purchase flow. Another async operation in progress.")
                 }
             }
-            R.id.nav_about -> {
-                startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
-            }
+            R.id.nav_about -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
+            R.id.nav_awards -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.AWARDS.ordinal)
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
             R.id.nav_settings -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.SETTINGS.ordinal)
             R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
@@ -320,7 +319,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         fab.playAnimation()
         var bundle = Bundle()
         bundle.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
-        gameView.setUpNewGame()
         var popup = MyEndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MyMainActivity::class.java.simpleName)
@@ -333,8 +331,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     fun updateScore() {
         when (gameView.myGameData.score) {
-            in 0..10 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.myGameData.score}"
-            in 11..100 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.myGameData.score}"
+            in 0..9 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.myGameData.score}"
+            in 10..99 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.myGameData.score}"
             else -> mainScore.text = "${getString(R.string.word_score)}: ${gameView.myGameData.score}"
         }
     }
@@ -370,4 +368,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
         mSoundPlayer.isLooping = true
     }
+
+    fun setUpNewGame() {
+        gameView.setUpNewGame()
+        updateGameInfo()
+    }
+
 }
