@@ -331,8 +331,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     fun updateScore() {
         when (gameView.myGameData.score) {
-            in 0..10 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.myGameData.score}"
-            in 11..100 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.myGameData.score}"
+            in 0..9 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.myGameData.score}"
+            in 10..99 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.myGameData.score}"
             else -> mainScore.text = "${getString(R.string.word_score)}: ${gameView.myGameData.score}"
         }
     }
