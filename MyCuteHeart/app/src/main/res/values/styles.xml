@@ -13,6 +13,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.MainAnim">
+        <item name="android:windowAnimationStyle">@style/MyAnimation.Activity</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -60,4 +64,10 @@
         <item name="android:layout_marginRight">@dimen/cards_margin</item>
         <item name="android:layout_marginBottom">@dimen/cards_big_margin</item>
     </style>
+
+    <style name="MyAnimation.Activity" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_right_out</item>
+    </style>
+
 </resources>
