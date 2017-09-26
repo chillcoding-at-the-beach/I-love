@@ -49,6 +49,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         setContentView(R.layout.activity_my_main)
         setSupportActionBar(toolbar)
 
@@ -199,8 +200,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        drawer_layout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
-
             R.id.nav_premium -> {
                 FirebaseCrash.log("Upgrade button clicked; launching purchase flow for upgrade.")
                 pauseGame()
@@ -219,8 +220,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.nav_settings -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.SETTINGS.ordinal)
             R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
         }
-
-        drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
@@ -374,4 +373,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         updateGameInfo()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
+    }
 }

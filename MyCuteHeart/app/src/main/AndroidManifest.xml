@@ -14,17 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MyMainActivity"
-            android:theme="@style/AppTheme.MainAnim">
+        <activity android:name=".MyMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MySecondaryActivity"
-            android:theme="@style/AppTheme.SecondAnim"/>
+        <activity android:name=".MySecondaryActivity" />
     </application>
 
 </manifest>

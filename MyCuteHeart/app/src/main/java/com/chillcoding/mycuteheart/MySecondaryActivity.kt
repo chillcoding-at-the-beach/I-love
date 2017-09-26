@@ -20,6 +20,7 @@ class MySecondaryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out)
         setContentView(R.layout.app_bar_second)
         setSupportActionBar(secondToolbar)
 
