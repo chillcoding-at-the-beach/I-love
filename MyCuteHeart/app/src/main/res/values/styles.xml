@@ -30,7 +30,8 @@
     </style>
 
     <style name="MyText.SubTitle">
-        <item name="android:textSize">@dimen/subtitle_size</item>
+        <item name="android:textSize">@dimen/sub_subtitle_size</item>
+        <item name="android:textColor">#87000000</item>
     </style>
 
     <style name="MyCardText">

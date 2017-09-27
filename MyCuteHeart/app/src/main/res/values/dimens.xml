@@ -9,6 +9,7 @@
     <dimen name="big_size">200dp</dimen>
     <dimen name="title_size">34sp</dimen>
     <dimen name="subtitle_size">24sp</dimen>
+    <dimen name="sub_subtitle_size">16sp</dimen>
     <dimen name="body_size">14sp</dimen>
     <dimen name="main_number_size">50sp</dimen>
     <dimen name="number_size">30sp</dimen>
