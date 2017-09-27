@@ -23,6 +23,12 @@ class MyAboutFragment : Fragment() {
 
     private var i: Int = 0
 
+    private var like: Boolean = true
+
+    private var beach: Boolean = true
+
+    private var star: Boolean = true
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         aboutChillcodingButton.setOnClickListener { browse("https://www.chillcoding.com/") }
         aboutAndroidImg.setOnClickListener {
@@ -40,6 +46,34 @@ class MyAboutFragment : Fragment() {
                 2 -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design_blue)
                 1 -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design_red)
                 else -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design)
+            }
+        }
+        with(aboutChillcodingIcon) {
+            setOnClickListener {
+                if (like)
+                    setImageResource(R.drawable.ic_menu_love)
+                else
+                    setImageResource(R.drawable.ic_love_border)
+                like = !like
+            }
+            with(aboutChillcodingBeachIcon) {
+                setOnClickListener {
+                    if (beach)
+                        setImageResource(R.drawable.ic_sun)
+                    else
+                        setImageResource(R.drawable.ic_beach_access)
+                    beach = !beach
+                }
+                with(aboutChillcodingStarIcon) {
+                    setOnClickListener {
+                        if (star)
+                            setImageResource(R.drawable.ic_star)
+                        else
+                            setImageResource(R.drawable.ic_star_border)
+                        star = !star
+
+                    }
+                }
             }
         }
     }
