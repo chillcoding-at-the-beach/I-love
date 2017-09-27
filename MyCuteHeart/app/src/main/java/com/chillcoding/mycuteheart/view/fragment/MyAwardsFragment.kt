@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.chillcoding.mycuteheart.MyApp
 import com.chillcoding.mycuteheart.R
-import com.chillcoding.mycuteheart.adapter.MyAwardListAdapter
+import com.chillcoding.mycuteheart.view.adapter.MyAwardListAdapter
 import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.MyAward
 import kotlinx.android.synthetic.main.fragment_my_awards.*
