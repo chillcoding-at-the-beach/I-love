@@ -21,7 +21,7 @@ class MyCuteHeart {
 
     var contrast = 0
 
-    private lateinit  var mX: FloatArray
+    private lateinit var mX: FloatArray
     private lateinit var mY: FloatArray
 
     private var mDirectionToRight = true
@@ -32,18 +32,15 @@ class MyCuteHeart {
 
     constructor() {
         init()
+        updateToLevel(1)
     }
 
-    constructor(width: Int, height: Int, marginTop: Int) {
-        if (height > width)
-            size = ((height * 3) / 1000).toFloat()
-        else
-            size = ((width * 3) / 1000).toFloat()
-
-        init()
-        mXZone = intArrayOf(width - mX[6].toInt(), width)
-        mYZone = intArrayOf(height - marginTop - mY[6].toInt(), height, marginTop)
+    constructor(width: Int, height: Int, marginTop: Int, level: Int) {
+        mXZone = intArrayOf(0, width)
+        mYZone = intArrayOf(0, height, marginTop)
+        updateToLevel(level)
         updatePositionRandomly()
+        init()
     }
 
     private fun init() {
@@ -51,8 +48,6 @@ class MyCuteHeart {
         paint.style = Paint.Style.FILL
         paint.isAntiAlias = true
         paint.color = MyApp.sColors.last()
-        initializeHeartCoordinates()
-        createHeart()
     }
 
     private fun initializeHeartCoordinates() {
@@ -128,25 +123,32 @@ class MyCuteHeart {
         updateDirection()
     }
 
-    fun updateLevel(level: Int) {
+    fun updateToLevel(level: Int) {
         contrast = level - 1
+        updateSpeedToLevel(level)
+        updateSizeToLevel(level)
+        updateRandomly()
+    }
+
+    private fun updateSizeToLevel(level: Int) {
+        var ref: Float
+        if (mXZone[1] > mYZone[1])
+            ref = ((mXZone[1] * 3) / 1000).toFloat()
+        else
+            ref = ((mYZone[1] * 3) / 1000).toFloat()
+        if (level < 3)
+            size = ref / level
+        else
+            size = ref / 3
+        updateSize()
+        updateZone()
+    }
+
+    private fun updateSpeedToLevel(level: Int) {
         if (level < 5)
             speed = Math.pow(2.0, (level - 1).toDouble()).toInt()
         else
             speed = 8
-        if (level == 1) {
-            if (mXZone[1] > mYZone[1])
-                size = ((mXZone.last() * 3) / 1000).toFloat()
-            else
-                size = ((mYZone[1] * 3) / 1000).toFloat()
-            updateSize()
-            updateZone()
-        } else if (level in 2..4) {
-            size = size * 2 / 3
-            updateSize()
-            updateZone()
-        }
-        updateRandomly()
     }
 
     fun updateRandomly() {

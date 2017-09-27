@@ -61,7 +61,7 @@ class MyGameView : View, View.OnTouchListener {
                 coef = height
             else
                 coef = width
-            mHeart = MyCuteHeart(width, height, mTopMargin.last().toInt())
+            mHeart = MyCuteHeart(width, height, mTopMargin.last().toInt(), myGameData.level)
             mTextPaint.textSize = (coef / 20).toFloat()
             mTopMargin[0] = (coef / 70).toFloat()
             mTopMargin[1] = (coef / 17).toFloat()
@@ -135,7 +135,7 @@ class MyGameView : View, View.OnTouchListener {
     private fun levelUp() {
         myGameData.level += 1
         Toast.makeText(context, "+ 1 ${context.getString(R.string.word_level)}!", Toast.LENGTH_SHORT).show()
-        mHeart.updateLevel(myGameData.level)
+        mHeart.updateToLevel(myGameData.level)
         mActivity.updateLevel()
     }
 
@@ -156,7 +156,7 @@ class MyGameView : View, View.OnTouchListener {
     fun setUpNewGame() {
         stop()
         myGameData = MyGameData()
-        mHeart.updateLevel(1)
+        mHeart.updateToLevel(1)
         invalidate()
         myGameData.awardLevel = awardLevel
     }

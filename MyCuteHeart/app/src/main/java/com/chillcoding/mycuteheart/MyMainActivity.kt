@@ -346,7 +346,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 mainFirstLife.setImageResource(R.drawable.ic_life_lost)
                 endGame()
             }
-            1 -> mainSecondLife.setImageResource(R.drawable.ic_life_lost)
+            1 -> {
+                mainSecondLife.setImageResource(R.drawable.ic_life_lost)
+                mainThirdLife.setImageResource(R.drawable.ic_life_lost)
+            }
             2 -> mainThirdLife.setImageResource(R.drawable.ic_life_lost)
             3 -> {
                 mainFirstLife.setImageResource(R.drawable.ic_life)
@@ -356,7 +359,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
     }
 
-    fun updateGameInfo() {
+    private fun updateGameInfo() {
         updateScore()
         updateNbLife()
         updateLevel()
