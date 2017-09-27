@@ -11,7 +11,6 @@
     <string name="menu_awards">Awards</string>
     <string name="menu_premium">Premium</string>
     <string name="error">Error:</string>
-    <string name="text_thank_you_remove_ads">Thank you for removing ads!</string>
     <string name="text_thank_you_premium">Thank you for upgrading to premium!</string>
     <string name="text_wait">Please wait</string>
     <string name="text_launch_in_app">Launching In app</string>
@@ -40,6 +39,10 @@
     <string name="word_mode">Mode</string>
     <string name="word_best_score">Best Score</string>
     <string name="text_record_breaker">Record Breaker</string>
+    <string name="menu_send">Send Feedback</string>
+    <string name="menu_share">Share I Love</string>
+    <string name="text_share_score">I caught</string>
+    <string name="word_with">with</string>
     <string-array name="word_sucess">
         <item>Genius</item>
         <item>Brilliant</item>
