@@ -49,7 +49,7 @@ class MyEndGameDialog : DialogFragment() {
         activity.setUpNewGame()
         builder.setView(endGameView)
                 .setPositiveButton(R.string.action_play, { _, _ -> activity.playGame(true) })
-                .setNeutralButton(R.string.action_share, { _, _ -> share("My Score is ${data.score}!", "I Love") })
+                .setNeutralButton(R.string.action_share, { _, _ -> share("${getString(R.string.text_share_score)} ${data.score} <3 ${getString(R.string.word_with)} ${getString(R.string.app_name)}!", "I Love") })
                 .setNegativeButton(android.R.string.cancel, null)
         return builder.create()
     }
