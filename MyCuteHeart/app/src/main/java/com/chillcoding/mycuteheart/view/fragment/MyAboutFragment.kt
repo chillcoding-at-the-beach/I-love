@@ -21,6 +21,8 @@ class MyAboutFragment : Fragment() {
 
     private var nb: Int = 8
 
+    private var i: Int = 0
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         aboutChillcodingButton.setOnClickListener { browse("https://www.chillcoding.com/") }
         aboutAndroidImg.setOnClickListener {
@@ -32,7 +34,14 @@ class MyAboutFragment : Fragment() {
                     nb--
                 }
             }
-
+        }
+        aboutMaterialDesignImg.setOnClickListener {
+            when (i++ % 3) {
+                2 -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design_blue)
+                1 -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design_red)
+                else -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design)
+            }
         }
     }
 }
+

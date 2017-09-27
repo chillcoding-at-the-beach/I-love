@@ -208,10 +208,11 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/aboutMaterialDesignImg"
                     android:layout_width="@dimen/middle_size"
                     android:layout_height="@dimen/middle_size"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/material_design" />
+                    android:src="@drawable/ic_material_design" />
 
                 <TextView
                     style="@style/MyCardText.Title"
