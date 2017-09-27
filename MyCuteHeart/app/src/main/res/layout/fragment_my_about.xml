@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="2"
-        android:rowCount="5"
+        android:rowCount="4"
         android:useDefaultMargins="true">
 
         <android.support.v7.widget.CardView
@@ -26,7 +26,7 @@
 
                 <ImageView
                     android:id="@+id/aboutChillcodingImg"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:src="@drawable/chillcoding_header"
                     app:layout_constraintDimensionRatio="16:8"
@@ -36,16 +36,17 @@
                 <TextView
                     android:id="@+id/aboutChillcodingTitle"
                     style="@style/MyCardText.Title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/cards_middle_margin"
+                    android:paddingRight="@dimen/cards_middle_margin"
                     android:text="@string/about_app"
                     app:layout_constraintTop_toBottomOf="@id/aboutChillcodingImg" />
 
                 <TextView
                     android:id="@+id/aboutChillcodingSubtitle"
                     style="@style/MyCardText.Subtitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/cards_middle_margin"
                     android:text="@string/slogan_chillcoding"
@@ -105,7 +106,6 @@
 
         </android.support.v7.widget.CardView>
 
-
         <android.support.v7.widget.CardView
             android:layout_column="0"
             android:layout_gravity="fill_horizontal"
@@ -119,14 +119,14 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/gitlab" />
 
                 <TextView
                     style="@style/MyCardText.Title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_gitlab" />
             </LinearLayout>
@@ -145,14 +145,14 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/kotlin" />
 
                 <TextView
                     style="@style/MyCardText.Title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_kotlin" />
             </LinearLayout>
@@ -174,14 +174,15 @@
 
                 <ImageView
                     android:id="@+id/aboutAndroidImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/android" />
 
                 <TextView
+                    android:id="@+id/aboutAndroidTitle"
                     style="@style/MyCardText.Title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_android" />
 
@@ -207,14 +208,14 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/material_design" />
 
                 <TextView
                     style="@style/MyCardText.Title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_material_design" />
             </LinearLayout>
@@ -233,14 +234,14 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/android_studio" />
 
                 <TextView
                     style="@style/MyCardText.Title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/middle_size"
                     android:layout_height="wrap_content"
                     android:text="@string/title_android_studio" />
             </LinearLayout>

@@ -34,8 +34,8 @@
     </style>
 
     <style name="MyCardText">
-        <item name="android:layout_marginLeft">@dimen/cards_middle_margin</item>
-        <item name="android:layout_marginRight">@dimen/cards_middle_margin</item>
+        <item name="android:paddingLeft">@dimen/cards_middle_margin</item>
+        <item name="android:paddingRight">@dimen/cards_middle_margin</item>
     </style>
 
     <style name="MyCardText.Title">

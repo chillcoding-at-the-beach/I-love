@@ -31,9 +31,4 @@ class MySettingsFragment : Fragment() {
         var isSound: Boolean by DelegatesExt.preference(activity, "PREF_SOUND", true)
         isSound = settingsSoundSwitch.isChecked
     }
-
-    override fun onDetach() {
-        super.onDetach()
-
-    }
 }
