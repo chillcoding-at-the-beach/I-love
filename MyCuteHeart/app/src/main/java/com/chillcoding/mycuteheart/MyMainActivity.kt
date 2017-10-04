@@ -268,7 +268,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun complain(msg: String) {
-        FirebaseCrash.log("Cute Heart Rate Error : $msg")
+        FirebaseCrash.log("${getString(R.string.app_name)} Error : $msg")
     }
 
     private fun alert(s: String) {
