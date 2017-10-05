@@ -6,6 +6,7 @@ buildscript {
     ext.anko_version = '0.10.0'
     ext.gradle_version = '3.0.0-alpha9'
     ext.gradle_version_stable = '2.3.3'
+    ext.services_version = '11.0.2'
 
     repositories {
         google()
