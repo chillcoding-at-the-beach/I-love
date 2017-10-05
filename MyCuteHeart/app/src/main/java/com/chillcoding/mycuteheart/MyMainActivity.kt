@@ -42,7 +42,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private val mArrayLoveQuote: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
     private val mRandom = Random()
 
-    val isSound: Boolean by DelegatesExt.preference(this, "PREF_SOUND", true)
+    val isSound: Boolean by DelegatesExt.preference(this, MyApp.PREF_SOUND, true)
     var mPayload: String  by DelegatesExt.preference(this, MyApp.PREF_PAYLOAD, "first")
     private lateinit var mSoundPlayer: MediaPlayer
 
