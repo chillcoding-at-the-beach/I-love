@@ -17,6 +17,10 @@ import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
+import com.google.android.gms.auth.GoogleAuthUtil
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.plus.Plus
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -24,7 +28,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.*
 import java.util.*
 
-class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
+class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener, GoogleApiClient.OnConnectionFailedListener {
 
     var isPremium = false
 
@@ -38,7 +42,8 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private val mArrayLoveQuote: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
     private val mRandom = Random()
 
-    val isSound: Boolean by DelegatesExt.preference(this, "PREF_SOUND", true)
+    val isSound: Boolean by DelegatesExt.preference(this, MyApp.PREF_SOUND, true)
+    var mPayload: String  by DelegatesExt.preference(this, MyApp.PREF_PAYLOAD, "first")
     private lateinit var mSoundPlayer: MediaPlayer
 
     companion object {
@@ -176,6 +181,22 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
     }
 
+    override fun onConnectionFailed(p0: ConnectionResult) {
+        complain("GA not connected")
+    }
+
+    private fun getPayload(): String {
+        if (mPayload == "first") {
+            val mGoogleApiClient = GoogleApiClient.Builder(this)
+                    .enableAutoManage(this, this)
+                    .build()
+            var accountName = Plus.AccountApi.getAccountName(mGoogleApiClient)
+            val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
+            mPayload = "${getString(R.string.payload)}_$accountID"
+        }
+        return mPayload
+    }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -204,12 +225,11 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         when (item.itemId) {
             R.id.nav_premium -> {
                 FirebaseCrash.log("Upgrade button clicked; launching purchase flow for upgrade.")
-                pauseGame()
-                //TODO: unique payload per user
-                val payload = getString(R.string.payload)
+
+                mPayload = getPayload()
                 try {
                     mHelper!!.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST,
-                            mPurchaseFinishedListener, payload)
+                            mPurchaseFinishedListener, mPayload)
                 } catch (e: IabHelper.IabAsyncInProgressException) {
                     complain("Error launching purchase flow. Another async operation in progress.")
                 }
@@ -268,7 +288,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun complain(msg: String) {
-        FirebaseCrash.log("Cute Heart Rate Error : $msg")
+        FirebaseCrash.log("${getString(R.string.app_name)} Error : $msg")
     }
 
     private fun alert(s: String) {
@@ -281,7 +301,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     internal fun verifyDeveloperPayload(p: Purchase): Boolean {
         val payload = p.developerPayload
-        return payload == getString(R.string.payload)
+        return payload == getPayload()
     }
 
     private fun updateUi() {
