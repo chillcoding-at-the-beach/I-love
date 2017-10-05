@@ -186,12 +186,15 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun getPayload(): String {
-        val mGoogleApiClient = GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .build()
-        var accountName = Plus.AccountApi.getAccountName(mGoogleApiClient)
-        val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
-        return "${getString(R.string.payload)}_$accountID"
+        if (mPayload == "first") {
+            val mGoogleApiClient = GoogleApiClient.Builder(this)
+                    .enableAutoManage(this, this)
+                    .build()
+            var accountName = Plus.AccountApi.getAccountName(mGoogleApiClient)
+            val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
+            mPayload = "${getString(R.string.payload)}_$accountID"
+        }
+        return mPayload
     }
 
     override fun onBackPressed() {
@@ -298,9 +301,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     internal fun verifyDeveloperPayload(p: Purchase): Boolean {
         val payload = p.developerPayload
-        if (mPayload == "first") // if user change his device
-            mPayload = getPayload()
-        return payload == mPayload
+        return payload == getPayload()
     }
 
     private fun updateUi() {
