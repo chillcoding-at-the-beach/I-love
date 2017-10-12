@@ -18,9 +18,6 @@ import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
 import com.google.android.gms.auth.GoogleAuthUtil
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.plus.Plus
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -28,7 +25,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.*
 import java.util.*
 
-class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener, GoogleApiClient.OnConnectionFailedListener {
+class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
 
     var isPremium = false
 
@@ -187,14 +184,23 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     private fun getPayload(): String {
         if (mPayload == "first") {
-            val mGoogleApiClient = GoogleApiClient.Builder(this)
-                    .enableAutoManage(this, this)
-                    .build()
-            var accountName = Plus.AccountApi.getAccountName(mGoogleApiClient)
+            val accountName = getAccountName()
             val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
             mPayload = "${getString(R.string.payload)}_$accountID"
         }
         return mPayload
+    }
+
+    private fun getAccountName(): String {
+        var accountName = "user"
+        val manager = getSystemService(ACCOUNT_SERVICE) as AccountManager
+        val list = manager.accounts
+        for (account in list) {
+            if (account.type.equals("com.google", true)) {
+                accountName = account.name
+            }
+        }
+        return accountName
     }
 
     override fun onBackPressed() {
