@@ -1,11 +1,15 @@
 package com.chillcoding.mycuteheart
 
+import android.accounts.AccountManager
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -18,9 +22,6 @@ import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
 import com.google.android.gms.auth.GoogleAuthUtil
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.plus.Plus
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -28,7 +29,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.*
 import java.util.*
 
-class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener, GoogleApiClient.OnConnectionFailedListener {
+class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
 
     var isPremium = false
 
@@ -181,20 +182,62 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
     }
 
-    override fun onConnectionFailed(p0: ConnectionResult) {
-        complain("GA not connected")
+    private fun requestAccountPermission() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.GET_ACCOUNTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.GET_ACCOUNTS)) {
+                alert(R.string.text_permissions_explanation) {
+                    yesButton { requestAccountPermission() }
+                }
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        Array<String>(1) { android.Manifest.permission.GET_ACCOUNTS },
+                        MyApp.MY_PERMISSIONS_REQUEST_GET_ACCOUNTS);
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            MyApp.MY_PERMISSIONS_REQUEST_GET_ACCOUNTS -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    launchPurchase()
+            }
+        }
+    }
+
+    private fun launchPurchase() {
+        mPayload = getPayload()
+        try {
+            mHelper!!.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST,
+                    mPurchaseFinishedListener, mPayload)
+        } catch (e: IabHelper.IabAsyncInProgressException) {
+            complain("Error launching purchase flow. Another async operation in progress.")
+        }
     }
 
     private fun getPayload(): String {
         if (mPayload == "first") {
-            val mGoogleApiClient = GoogleApiClient.Builder(this)
-                    .enableAutoManage(this, this)
-                    .build()
-            var accountName = Plus.AccountApi.getAccountName(mGoogleApiClient)
+            val accountName = getAccountName()
             val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
             mPayload = "${getString(R.string.payload)}_$accountID"
         }
         return mPayload
+    }
+
+    private fun getAccountName(): String {
+        var accountName = "user"
+        val manager = getSystemService(ACCOUNT_SERVICE) as AccountManager
+        val list = manager.accounts
+        for (account in list) {
+            if (account.type.equals("com.google", true)) {
+                accountName = account.name
+            }
+        }
+        return accountName
     }
 
     override fun onBackPressed() {
@@ -225,14 +268,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         when (item.itemId) {
             R.id.nav_premium -> {
                 FirebaseCrash.log("Upgrade button clicked; launching purchase flow for upgrade.")
-
-                mPayload = getPayload()
-                try {
-                    mHelper!!.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST,
-                            mPurchaseFinishedListener, mPayload)
-                } catch (e: IabHelper.IabAsyncInProgressException) {
-                    complain("Error launching purchase flow. Another async operation in progress.")
-                }
+                requestAccountPermission()
             }
             R.id.nav_about -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
             R.id.nav_awards -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.AWARDS.ordinal)

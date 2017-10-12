@@ -11,6 +11,7 @@ class MyApp : Application() {
     companion object {
         lateinit var instance: MyApp
             private set
+        val MY_PERMISSIONS_REQUEST_GET_ACCOUNTS: Int = 13
         val BUNDLE_GAME_DATA = "BUNDLE_GAME_DATE"
         val PREF_BEST_SCORE = "PREF_BEST_SCORE"
         val PREF_AWARD_LEVEL = "PREF_AWARD_LEVEL"

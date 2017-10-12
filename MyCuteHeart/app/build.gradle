@@ -38,7 +38,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.firebase:firebase-crash:11.0.2'
     compile 'com.github.timrijckaert:FloatingMusicActionButton:v2.0.4'
-    compile "com.google.android.gms:play-services-plus:$services_version"
     compile "com.google.android.gms:play-services-auth:$services_version"
 }
 
