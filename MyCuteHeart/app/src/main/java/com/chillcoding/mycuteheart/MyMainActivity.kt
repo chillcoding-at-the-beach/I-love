@@ -222,8 +222,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private fun getPayload(): String {
         if (mPayload == "first") {
             val accountName = getAccountName()
-            val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
-            mPayload = "${getString(R.string.payload)}_$accountID"
+            doAsync {
+                val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
+                mPayload = "${getString(R.string.payload)}_$accountID"
+            }
         }
         return mPayload
     }
