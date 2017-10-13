@@ -44,6 +44,7 @@
     <string name="text_share_score">I caught</string>
     <string name="word_with">with</string>
     <string name="text_permissions_explanation">The Application need permissions to remember you on other devices.</string>
+    <string name="text_waiting_explanation">Waiting for connection...</string>
     <string-array name="word_sucess">
         <item>Genius</item>
         <item>Brilliant</item>
