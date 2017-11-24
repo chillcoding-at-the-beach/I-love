@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import com.chillcoding.mycuteheart.R
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 /**
@@ -15,9 +17,15 @@ import org.jetbrains.anko.info
  */
 class TopScoresFragment : Fragment(), AnkoLogger {
 
+    private val url = "http://192.168.0.11:8990/"
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_top_scores, container, false)
         info("IN TOP SCORE FRAGMENT!")
+        val retrofit = Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build()
         return view!!
     }
 }
