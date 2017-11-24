@@ -286,6 +286,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
             R.id.nav_settings -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.SETTINGS.ordinal)
             R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
+            R.id.nav_top -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.TOP.ordinal)
         }
         return true
     }
