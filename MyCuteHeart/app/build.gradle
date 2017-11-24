@@ -39,6 +39,8 @@ dependencies {
     compile 'com.google.firebase:firebase-crash:11.0.2'
     compile 'com.github.timrijckaert:FloatingMusicActionButton:v2.0.4'
     compile "com.google.android.gms:play-services-auth:$services_version"
+    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+    compile "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 }
 
 
