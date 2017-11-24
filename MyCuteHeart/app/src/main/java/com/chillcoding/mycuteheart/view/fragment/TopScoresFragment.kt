@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chillcoding.mycuteheart.R
+import com.chillcoding.mycuteheart.network.GameService
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import retrofit2.Retrofit
@@ -26,6 +27,9 @@ class TopScoresFragment : Fragment(), AnkoLogger {
                 .baseUrl(url)
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
+
+        val service = retrofit.create(GameService::class.java)
+
         return view!!
     }
 }
