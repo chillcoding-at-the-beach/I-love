@@ -30,6 +30,8 @@ class TopScoresFragment : Fragment(), AnkoLogger {
 
         val service = retrofit.create(GameService::class.java)
 
+        val scoreRequest = service.listScores()
+
         return view!!
     }
 }
