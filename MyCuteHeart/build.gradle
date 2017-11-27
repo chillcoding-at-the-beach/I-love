@@ -8,6 +8,7 @@ buildscript {
     ext.gradle_version_stable = '2.3.3'
     ext.services_version = '11.0.2'
     ext.retrofit_version = '2.3.0'
+    ext.okhttp_version = '3.9.1'
 
     repositories {
         google()
