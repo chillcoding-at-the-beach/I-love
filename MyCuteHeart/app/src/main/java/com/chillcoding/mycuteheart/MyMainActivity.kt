@@ -44,8 +44,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private val mRandom = Random()
 
     val isSound: Boolean by DelegatesExt.preference(this, MyApp.PREF_SOUND, true)
-    var mPayload: String  by DelegatesExt.preference(this, MyApp.PREF_PAYLOAD, "first")
+    var mPayload: String  by DelegatesExt.preference(this, MyApp.PREF_PAYLOAD, "nada")
     private lateinit var mSoundPlayer: MediaPlayer
+
+    val myProgress by lazy { indeterminateProgressDialog(R.string.text_waiting_explanation) }
 
     companion object {
         val SKU_PREMIUM = "premium"
@@ -185,17 +187,16 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private fun requestAccountPermission() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.GET_ACCOUNTS)
                 != PackageManager.PERMISSION_GRANTED) {
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.GET_ACCOUNTS)) {
-                alert(R.string.text_permissions_explanation) {
-                    yesButton { requestAccountPermission() }
+
+            alert(R.string.text_permissions_explanation) {
+                yesButton {
+                    ActivityCompat.requestPermissions(this@MyMainActivity,
+                            Array<String>(1) { android.Manifest.permission.GET_ACCOUNTS },
+                            MyApp.MY_PERMISSIONS_REQUEST_GET_ACCOUNTS);
                 }
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        Array<String>(1) { android.Manifest.permission.GET_ACCOUNTS },
-                        MyApp.MY_PERMISSIONS_REQUEST_GET_ACCOUNTS);
-            }
+                noButton { }
+            }.show()
+
         }
     }
 
@@ -204,13 +205,12 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         when (requestCode) {
             MyApp.MY_PERMISSIONS_REQUEST_GET_ACCOUNTS -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    launchPurchase()
+                    mPayload = getPayload()
             }
         }
     }
 
     private fun launchPurchase() {
-        mPayload = getPayload()
         try {
             mHelper!!.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST,
                     mPurchaseFinishedListener, mPayload)
@@ -222,12 +222,19 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private fun getPayload(): String {
         if (mPayload == "first") {
             val accountName = getAccountName()
+            myProgress.show()
             doAsync {
                 val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
                 mPayload = "${getString(R.string.payload)}_$accountID"
+                activityUiThread { myCallBack() }
             }
         }
         return mPayload
+    }
+
+    private fun myCallBack() {
+        myProgress.dismiss()
+        launchPurchase()
     }
 
     private fun getAccountName(): String {
@@ -237,6 +244,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         for (account in list) {
             if (account.type.equals("com.google", true)) {
                 accountName = account.name
+                return accountName
             }
         }
         return accountName
@@ -270,6 +278,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         when (item.itemId) {
             R.id.nav_premium -> {
                 FirebaseCrash.log("Upgrade button clicked; launching purchase flow for upgrade.")
+                mPayload = "first"
                 requestAccountPermission()
             }
             R.id.nav_about -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
@@ -277,6 +286,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
             R.id.nav_settings -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.SETTINGS.ordinal)
             R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
+            R.id.nav_top -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.TOP.ordinal)
         }
         return true
     }

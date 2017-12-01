@@ -7,6 +7,7 @@ import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.view.fragment.MyAboutFragment
 import com.chillcoding.mycuteheart.view.fragment.MyAwardsFragment
 import com.chillcoding.mycuteheart.view.fragment.MySettingsFragment
+import com.chillcoding.mycuteheart.view.fragment.TopScoresFragment
 import kotlinx.android.synthetic.main.app_bar_second.*
 
 /**
@@ -39,6 +40,10 @@ class MySecondaryActivity : AppCompatActivity() {
             MyFragmentId.AWARDS.ordinal -> {
                 setFragment(MyAwardsFragment())
                 supportActionBar!!.title = getString(R.string.menu_awards)
+            }
+            MyFragmentId.TOP.ordinal -> {
+                setFragment(TopScoresFragment())
+                supportActionBar!!.title = getString(R.string.menu_top)
             }
             else -> setFragment(MyAboutFragment())
         }
