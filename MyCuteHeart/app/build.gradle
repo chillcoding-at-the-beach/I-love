@@ -42,6 +42,7 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
     compile "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     compile "com.squareup.okhttp3:okhttp:$okhttp_version"
+    compile "org.jetbrains.anko:anko-sqlite:$anko_version"
 }
 
 
