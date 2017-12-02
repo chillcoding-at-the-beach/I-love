@@ -64,10 +64,16 @@ class TopScoresFragment : Fragment(), AnkoLogger {
                     error("KO")
                 }
             })
-        } else
+        } else {
             alert(R.string.text_no_internet_in_top_scores) {
                 yesButton { }
             }.show()
+            doAsync {
+                val allScore = scoreDb.requestScores()
+                info("WE HAVE local score" + allScore.toString())
+            }
+        }
+
         return view!!
     }
 }
