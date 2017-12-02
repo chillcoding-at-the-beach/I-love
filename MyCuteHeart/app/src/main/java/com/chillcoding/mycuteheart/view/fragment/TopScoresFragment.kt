@@ -9,16 +9,14 @@ import android.view.ViewGroup
 import com.chillcoding.mycuteheart.R
 import com.chillcoding.mycuteheart.model.Score
 import com.chillcoding.mycuteheart.network.GameService
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import android.net.ConnectivityManager
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.yesButton
+import com.chillcoding.mycuteheart.db.ScoreDb
+import org.jetbrains.anko.*
 
 
 /**
@@ -27,6 +25,8 @@ import org.jetbrains.anko.yesButton
 class TopScoresFragment : Fragment(), AnkoLogger {
 
     private val url = "http://192.168.0.11:8990/"
+
+    val scoreDb = ScoreDb()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_top_scores, container, false)
@@ -54,6 +54,9 @@ class TopScoresFragment : Fragment(), AnkoLogger {
                         info("HERE is ALL SCORE FROM LOCAL SERVER:")
                         for (s in allScore)
                             info(" one score : ${s.pseudo} : ${s.score} ")
+                        doAsync {
+                            scoreDb.saveScores(allScore)
+                        }
                     }
                 }
 
