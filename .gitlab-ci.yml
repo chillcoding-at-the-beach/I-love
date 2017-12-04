@@ -13,7 +13,7 @@ before_script:
   - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
   - unzip android-sdk.zip -d android-sdk-linux
   - android-sdk-linux/tools/bin/sdkmanager --list
-  - android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS}" "extras;android;m2repository" "extras;google;google_play_services" "extras;google;m2repository"
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS}" "extras;android;m2repository" "extras;google;google_play_services" "extras;google;m2repository"
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
   - chmod +x ./MyCuteHeart/gradlew
