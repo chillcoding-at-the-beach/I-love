@@ -8,12 +8,21 @@ variables:
 before_script:
   - apt-get --quiet update --yes
   - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
-  # - wget --quiet --output-document=android-sdk.tgz https://dl.google.com/android/android-sdk_r${ANDROID_SDK_TOOLS}-linux.tgz
-  # - tar --extract --gzip --file=android-sdk.tgz
+
+  # Install Android command line tools and sdkmanager
   - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
-  - unzip android-sdk.zip -d android-sdk-linux
-  - android-sdk-linux/tools/bin/sdkmanager --list
-  - echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS}" "extras;android;m2repository" "extras;google;google_play_services" "extras;google;m2repository"
+  - unzip -q android-sdk.zip -d android-sdk-linux
+
+  # Install licenses generated on local development machine
+  - mkdir android-sdk-linux/licenses
+  - printf $ANDROID_SDK_LICENSE > android-sdk-linux/licenses/android-sdk-license
+  - printf $ANDROID_SDK_PREVIEW_LICENSE > android-sdk-linux/licenses/android-sdk-preview-license
+
+  # Install Android/Google packages
+  # - android-sdk-linux/tools/bin/sdkmanager --list
+  - android-sdk-linux/tools/bin/sdkmanager --update > update.log
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS}" "extras;android;m2repository" "extras;google;google_play_services" "extras;google;m2repository" > installPlatform.log
+
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
   - chmod +x ./MyCuteHeart/gradlew
