@@ -14,14 +14,16 @@ before_script:
   - unzip -q android-sdk.zip -d android-sdk-linux
 
   # Install licenses generated on local development machine
-  - mkdir android-sdk-linux/licenses
-  - printf $ANDROID_SDK_LICENSE > android-sdk-linux/licenses/android-sdk-license
-  - printf $ANDROID_SDK_PREVIEW_LICENSE > android-sdk-linux/licenses/android-sdk-preview-license
+  - mkdir ./android-sdk-linux/licenses
+  - mkdir ./log
+  - printf $ANDROID_SDK_LICENSE > ./android-sdk-linux/licenses/android-sdk-license
+  - printf $ANDROID_SDK_PREVIEW_LICENSE > ./android-sdk-linux/licenses/android-sdk-preview-license
+  - printf $GOOGLE_SERVICES_JSON > ./MyCuteHeart/app/google-services.json
 
   # Install Android/Google packages
   # - android-sdk-linux/tools/bin/sdkmanager --list
-  - android-sdk-linux/tools/bin/sdkmanager --update > update.log
-  - echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS}" "extras;android;m2repository" "extras;google;google_play_services" "extras;google;m2repository" > installPlatform.log
+  - ./android-sdk-linux/tools/bin/sdkmanager --update > ./log/update.log
+  - echo y | ./android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS}" "extras;android;m2repository" "extras;google;google_play_services" "extras;google;m2repository" > ./log/installPlatform.log
 
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
