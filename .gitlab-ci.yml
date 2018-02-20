@@ -19,6 +19,7 @@ before_script:
   - printf $ANDROID_SDK_LICENSE > ./android-sdk-linux/licenses/android-sdk-license
   - printf $ANDROID_SDK_PREVIEW_LICENSE > ./android-sdk-linux/licenses/android-sdk-preview-license
   - echo $GOOGLE_SERVICES_JSON > ./MyCuteHeart/app/google-services.json
+  - echo $KEYS_XML > ./MyCuteHeart/app/src/main/res/values/keys.xml
 
   # Install Android/Google packages
   # - android-sdk-linux/tools/bin/sdkmanager --list
