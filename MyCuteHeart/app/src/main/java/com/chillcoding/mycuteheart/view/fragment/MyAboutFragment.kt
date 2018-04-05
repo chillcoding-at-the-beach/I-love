@@ -43,8 +43,9 @@ class MyAboutFragment : Fragment() {
         }
         aboutMaterialDesignImg.setOnClickListener {
             when (i++ % 3) {
-                2 -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design_blue)
-                1 -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design_red)
+                3 -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design_red)
+                2 -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design_yellow)
+                1 -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design_blue)
                 else -> aboutMaterialDesignImg.setImageResource(R.drawable.ic_material_design)
             }
         }

@@ -1,11 +1,15 @@
 package com.chillcoding.mycuteheart
 
+import android.accounts.AccountManager
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -17,6 +21,7 @@ import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.MyFragmentId
 import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
+import com.google.android.gms.auth.GoogleAuthUtil
 import com.google.firebase.crash.FirebaseCrash
 import kotlinx.android.synthetic.main.activity_my_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -38,8 +43,11 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private val mArrayLoveQuote: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
     private val mRandom = Random()
 
-    val isSound: Boolean by DelegatesExt.preference(this, "PREF_SOUND", true)
+    val isSound: Boolean by DelegatesExt.preference(this, MyApp.PREF_SOUND, true)
+    var mPayload: String  by DelegatesExt.preference(this, MyApp.PREF_PAYLOAD, "nada")
     private lateinit var mSoundPlayer: MediaPlayer
+
+    val myProgress by lazy { indeterminateProgressDialog(R.string.text_waiting_explanation) }
 
     companion object {
         val SKU_PREMIUM = "premium"
@@ -176,6 +184,72 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
     }
 
+    private fun requestAccountPermission() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.GET_ACCOUNTS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            alert(R.string.text_permissions_explanation) {
+                yesButton {
+                    ActivityCompat.requestPermissions(this@MyMainActivity,
+                            Array<String>(1) { android.Manifest.permission.GET_ACCOUNTS },
+                            MyApp.MY_PERMISSIONS_REQUEST_GET_ACCOUNTS);
+                }
+                noButton { }
+            }.show()
+
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            MyApp.MY_PERMISSIONS_REQUEST_GET_ACCOUNTS -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    mPayload = getPayload()
+            }
+        }
+    }
+
+    private fun launchPurchase() {
+        try {
+            mHelper!!.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST,
+                    mPurchaseFinishedListener, mPayload)
+        } catch (e: IabHelper.IabAsyncInProgressException) {
+            complain("Error launching purchase flow. Another async operation in progress.")
+        }
+    }
+
+    private fun getPayload(): String {
+        if (mPayload == "first") {
+            val accountName = getAccountName()
+            myProgress.show()
+            doAsync {
+                val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
+                mPayload = "${getString(R.string.payload)}_$accountID"
+                activityUiThread { myCallBack() }
+            }
+        }
+        return mPayload
+    }
+
+    private fun myCallBack() {
+        myProgress.dismiss()
+        launchPurchase()
+    }
+
+    private fun getAccountName(): String {
+        var accountName = "user"
+        val manager = getSystemService(ACCOUNT_SERVICE) as AccountManager
+        val list = manager.accounts
+        for (account in list) {
+            if (account.type.equals("com.google", true)) {
+                accountName = account.name
+                return accountName
+            }
+        }
+        return accountName
+    }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -204,21 +278,15 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         when (item.itemId) {
             R.id.nav_premium -> {
                 FirebaseCrash.log("Upgrade button clicked; launching purchase flow for upgrade.")
-                pauseGame()
-                //TODO: unique payload per user
-                val payload = getString(R.string.payload)
-                try {
-                    mHelper!!.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST,
-                            mPurchaseFinishedListener, payload)
-                } catch (e: IabHelper.IabAsyncInProgressException) {
-                    complain("Error launching purchase flow. Another async operation in progress.")
-                }
+                mPayload = "first"
+                requestAccountPermission()
             }
             R.id.nav_about -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
             R.id.nav_awards -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.AWARDS.ordinal)
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
             R.id.nav_settings -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.SETTINGS.ordinal)
             R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
+            R.id.nav_top -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.TOP.ordinal)
         }
         return true
     }
@@ -268,7 +336,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun complain(msg: String) {
-        FirebaseCrash.log("Cute Heart Rate Error : $msg")
+        FirebaseCrash.log("${getString(R.string.app_name)} Error : $msg")
     }
 
     private fun alert(s: String) {
@@ -281,7 +349,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     internal fun verifyDeveloperPayload(p: Purchase): Boolean {
         val payload = p.developerPayload
-        return payload == getString(R.string.payload)
+        return payload == getPayload()
     }
 
     private fun updateUi() {

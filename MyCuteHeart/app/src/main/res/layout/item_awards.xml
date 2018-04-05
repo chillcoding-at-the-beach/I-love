@@ -102,15 +102,17 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/cards_middle_margin">
 
-        <View
+        <ImageView
             android:id="@+id/awardEmptyImg"
             android:layout_width="@dimen/middle_size"
             android:layout_height="@dimen/middle_size"
             android:layout_marginBottom="@dimen/cards_middle_margin"
             android:layout_marginRight="@dimen/cards_middle_margin"
             android:background="@color/colorShadow"
+            android:tint="@color/colorShadow"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_goneMarginRight="@dimen/cards_middle_margin" />
+            app:layout_goneMarginRight="@dimen/cards_middle_margin"
+            app:srcCompat="@drawable/ic_menu_awards" />
 
         <View
             android:id="@+id/awardEmptyName"
