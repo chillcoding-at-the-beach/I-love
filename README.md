@@ -1,10 +1,17 @@
-# my-cute-heart
-An Android Kotlin App.
+# I Love
+_I Love_ is an Android Kotlin app.
 
 ## Installation
-Not possible because of private keys...
 
-## Demo : I Love in Beta
+You need following files:
+ * `google-services.json`
+ * `keys.xml`
+
+In 2 steps:
+1. Put `google-services.json` in `app/` directory.
+2. Add `keys.xml` in `values/`
+
+## Demo: _I Love_ in Beta
 [Be part of the adventure](https://www.chillcoding.com/app/ilove/)
 
 ## Social Network
