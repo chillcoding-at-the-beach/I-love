@@ -19,12 +19,12 @@
             android:id="@+id/nav_awards"
             android:icon="@drawable/ic_menu_awards"
             android:title="@string/menu_awards"
-            android:visible="false" />
+            android:visible="true" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_settings"
             android:title="@string/menu_settings"
-            android:visible="false" />
+            android:visible="true" />
         <item
             android:id="@+id/nav_top"
             android:icon="@drawable/ic_star"

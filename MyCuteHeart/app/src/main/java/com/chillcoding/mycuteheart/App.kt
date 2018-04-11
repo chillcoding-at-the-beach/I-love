@@ -6,12 +6,12 @@ import android.support.v4.content.res.ResourcesCompat
 /**
  * Created by macha on 21/07/2017.
  */
-class MyApp : Application() {
+class App : Application() {
 
     companion object {
-        lateinit var instance: MyApp
+        lateinit var instance: App
             private set
-        val MY_PERMISSIONS_REQUEST_GET_ACCOUNTS: Int = 13
+        val PERMISSIONS_REQUEST_GET_ACCOUNTS: Int = 13
         val BUNDLE_GAME_DATA = "BUNDLE_GAME_DATE"
         val PREF_BEST_SCORE = "PREF_BEST_SCORE"
         val PREF_AWARD_LEVEL = "PREF_AWARD_LEVEL"

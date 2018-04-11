@@ -13,7 +13,7 @@ import org.jetbrains.anko.toast
 /**
  * Created by macha on 02/08/2017.
  */
-class MyAboutFragment : Fragment() {
+class AboutFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_my_about, container, false)
         return view!!

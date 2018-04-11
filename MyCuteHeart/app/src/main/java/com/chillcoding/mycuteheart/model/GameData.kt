@@ -6,7 +6,7 @@ import android.os.Parcelable
 /**
  * Created by macha on 21/07/2017.
  */
-class MyGameData : Parcelable {
+class GameData : Parcelable {
 
     var score = 0
     var level = 1
@@ -31,13 +31,13 @@ class MyGameData : Parcelable {
         return 0
     }
 
-    val CREATOR: Parcelable.Creator<MyGameData> = object : Parcelable.Creator<MyGameData> {
-        override fun createFromParcel(`in`: Parcel): MyGameData {
-            return MyGameData(`in`)
+    val CREATOR: Parcelable.Creator<GameData> = object : Parcelable.Creator<GameData> {
+        override fun createFromParcel(`in`: Parcel): GameData {
+            return GameData(`in`)
         }
 
-        override fun newArray(size: Int): Array<MyGameData?> {
-            return arrayOfNulls<MyGameData>(size)
+        override fun newArray(size: Int): Array<GameData?> {
+            return arrayOfNulls<GameData>(size)
         }
     }
 

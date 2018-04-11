@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_my_settings.*
 /**
  * Created by macha on 07/09/2017.
  */
-class MySettingsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
     var isSound: Boolean by DelegatesExt.preference(this as Fragment, "PREF_SOUND", true)
 

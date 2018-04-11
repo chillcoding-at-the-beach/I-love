@@ -11,20 +11,20 @@ import android.app.Activity
 import android.graphics.Paint
 import android.os.Vibrator
 import android.widget.Toast
-import com.chillcoding.mycuteheart.MyApp
-import com.chillcoding.mycuteheart.MyMainActivity
+import com.chillcoding.mycuteheart.App
+import com.chillcoding.mycuteheart.MainActivity
 import com.chillcoding.mycuteheart.extension.DelegatesExt
-import com.chillcoding.mycuteheart.model.MyGameData
+import com.chillcoding.mycuteheart.model.GameData
 
 /**
  * Created by macha on 17/07/2017.
  */
-class MyGameView : View, View.OnTouchListener {
+class GameView : View, View.OnTouchListener {
 
     var isPlaying = false
-    var myGameData = MyGameData()
+    var myGameData = GameData()
 
-    private lateinit var mHeart: MyCuteHeart
+    private lateinit var mHeart: CuteHeart
 
     private var mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
     private var mVibrator = context.getSystemService(Activity.VIBRATOR_SERVICE) as Vibrator
@@ -33,8 +33,8 @@ class MyGameView : View, View.OnTouchListener {
 
     private var mTopMargin = floatArrayOf(100f, 10f)
 
-    private var mActivity: MyMainActivity = context as MyMainActivity
-    var awardLevel: Int by DelegatesExt.preference(context, MyApp.PREF_AWARD_LEVEL, 1)
+    private var mActivity: MainActivity = context as MainActivity
+    var awardLevel: Int by DelegatesExt.preference(context, App.PREF_AWARD_LEVEL, 1)
 
 
     companion object {
@@ -61,7 +61,7 @@ class MyGameView : View, View.OnTouchListener {
                 coef = height
             else
                 coef = width
-            mHeart = MyCuteHeart(width, height, mTopMargin.last().toInt(), myGameData.level)
+            mHeart = CuteHeart(width, height, mTopMargin.last().toInt(), myGameData.level)
             mTextPaint.textSize = (coef / 20).toFloat()
             mTopMargin[0] = (coef / 70).toFloat()
             mTopMargin[1] = (coef / 17).toFloat()
@@ -155,7 +155,7 @@ class MyGameView : View, View.OnTouchListener {
 
     fun setUpNewGame() {
         stop()
-        myGameData = MyGameData()
+        myGameData = GameData()
         mHeart.updateToLevel(1)
         invalidate()
         myGameData.awardLevel = awardLevel
