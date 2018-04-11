@@ -17,6 +17,7 @@ class App : Application() {
         val PREF_AWARD_LEVEL = "PREF_AWARD_LEVEL"
         val PREF_PAYLOAD = "PREF_PAYLOAD"
         val PREF_SOUND = "PREF_SOUND"
+        val PREF_PREMIUM = "PREF_PREMIUM"
         val SCORE_PER_AWARD = 300
         val sColors: List<Int> by lazy {
             listOf(

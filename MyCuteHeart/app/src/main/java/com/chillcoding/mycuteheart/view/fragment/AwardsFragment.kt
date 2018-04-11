@@ -11,15 +11,17 @@ import com.chillcoding.mycuteheart.R
 import com.chillcoding.mycuteheart.view.adapter.AwardListAdapter
 import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.Award
-import kotlinx.android.synthetic.main.fragment_my_awards.*
+import kotlinx.android.synthetic.main.fragment_awards.*
 
 /**
  * Created by macha on 21/09/2017.
  */
 class AwardsFragment : Fragment() {
 
+    var isPremium: Boolean by DelegatesExt.preference(this, App.PREF_PREMIUM, false)
+
     companion object {
-        val awardListSize = 7
+        val awardListSize = 8
     }
 
     private var items = Array<Award>(awardListSize, { Award() })
@@ -29,10 +31,18 @@ class AwardsFragment : Fragment() {
         val bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
         val awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 1)
 
-        for (k in 0..(awardLevel - 2)) {
-            items[k] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[k], k * App.SCORE_PER_AWARD, k + 1)
+        if (isPremium) {
+            for (k in 0..(awardLevel - 2)) {
+                items[k] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[k], (k + 1) * App.SCORE_PER_AWARD, k + 1)
+            }
+            items[awardLevel - 1] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[awardLevel - 1], bestScore, awardLevel)
+        } else {
+            if (awardLevel > 3)
+                items[0] = Award(R.drawable.ic_menu_awards, resources.getString(R.string.get_premium_text) , bestScore, 2)
+            else
+                items[0] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[awardLevel - 1] , bestScore, awardLevel)
         }
-        items[awardLevel - 1] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[awardLevel - 1], bestScore, awardLevel)
+
         return view!!
     }
 

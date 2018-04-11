@@ -47,6 +47,7 @@
     <string name="text_waiting_explanation">Waiting for connection...</string>
     <string name="menu_top">Top Scores</string>
     <string name="text_no_internet_in_top_scores">Cannot update top scores because of internet connection.</string>
+    <string name="get_premium_text">Get Premium</string>
     <string-array name="word_sucess">
         <item>Genius</item>
         <item>Brilliant</item>
@@ -69,5 +70,9 @@
         <item>Normal</item>
         <item>Multi</item>
         <item>Color</item>
+        <item>Bonzai</item>
+        <item>Whang</item>
+        <item>Loxodromic</item>
+        <item>Verisimilitude</item>
     </string-array>
 </resources>

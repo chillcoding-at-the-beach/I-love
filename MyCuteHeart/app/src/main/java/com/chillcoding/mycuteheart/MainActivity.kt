@@ -31,7 +31,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
 
-    var isPremium = false
+    var isPremium: Boolean by DelegatesExt.preference(this, App.PREF_PREMIUM, false)
 
     // The helper object
     private var mHelper: IabHelper? = null
