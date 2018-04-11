@@ -23,7 +23,7 @@ import com.chillcoding.mycuteheart.util.*
 import com.chillcoding.mycuteheart.view.dialog.EndGameDialog
 import com.google.android.gms.auth.GoogleAuthUtil
 import com.google.firebase.crash.FirebaseCrash
-import kotlinx.android.synthetic.main.activity_my_main.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.*
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        setContentView(R.layout.activity_my_main)
+        setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
         setUpGame()

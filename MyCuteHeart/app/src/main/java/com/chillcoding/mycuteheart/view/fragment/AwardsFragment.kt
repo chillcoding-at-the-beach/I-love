@@ -25,7 +25,7 @@ class AwardsFragment : Fragment() {
     private var items = Array<Award>(awardListSize, { Award() })
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        var view = inflater?.inflate(R.layout.fragment_my_awards, container, false)
+        var view = inflater?.inflate(R.layout.fragment_awards, container, false)
         val bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
         val awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 1)
 

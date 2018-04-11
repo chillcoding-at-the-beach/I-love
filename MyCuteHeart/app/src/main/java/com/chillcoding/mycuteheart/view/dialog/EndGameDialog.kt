@@ -11,7 +11,7 @@ import com.chillcoding.mycuteheart.MainActivity
 import com.chillcoding.mycuteheart.R
 import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.GameData
-import kotlinx.android.synthetic.main.dialog_my_end_game.view.*
+import kotlinx.android.synthetic.main.dialog_end_game.view.*
 import org.jetbrains.anko.share
 import java.util.*
 
@@ -28,7 +28,7 @@ class EndGameDialog : DialogFragment() {
 
         val builder = AlertDialog.Builder(activity)
         val successString = resources.getStringArray(R.array.word_sucess)
-        var endGameView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_my_end_game, null)
+        var endGameView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_end_game, null)
         var data = arguments.getParcelable<GameData>(App.BUNDLE_GAME_DATA)
         endGameView.dialogTitleTextView.text = "${successString[Random().nextInt(successString.size)].toUpperCase()}!"
         endGameView.dialogScoreTextView.text = "${data.score}"
