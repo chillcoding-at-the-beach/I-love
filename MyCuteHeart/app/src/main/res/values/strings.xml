@@ -24,7 +24,7 @@
         I Love is an awesome application natively coded in Kotlin. At the beginning, the goal was to draw a beautiful heart.\nThen, the idea to create a simple game with little hearts came.</string>
     <string name="text_best_score">You\'ve bested yourself!</string>
     <string name="subject_feedback">Feedback on the I Love app.</string>
-    <string name="text_share_app">Check the I Love app: https://play.google.com/store/apps/details?id=com.chillcoding.mycuteheart</string>
+    <string name="text_share_app">Be part of the adventure with I Love app in Beta: https://www.chillcoding.com/app/ilove/</string>
     <string name="title_chillcoding">By ChillCoding</string>
     <string name="PREF_SOUND">PREF_SOUND</string>
     <string name="title_pref_sound">Play Music</string>
