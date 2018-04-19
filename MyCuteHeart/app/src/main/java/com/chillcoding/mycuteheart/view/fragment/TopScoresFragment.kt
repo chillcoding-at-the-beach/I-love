@@ -54,7 +54,8 @@ class TopScoresFragment : Fragment(), AnkoLogger {
                 }
 
                 override fun onFailure(call: Call<List<Score>>, t: Throwable) {
-                    longToast(R.string.server_error_text)
+                    if (activity != null)
+                        longToast(R.string.server_error_text)
                 }
             })
         } else
