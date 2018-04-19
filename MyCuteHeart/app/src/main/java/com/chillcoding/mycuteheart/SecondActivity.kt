@@ -3,20 +3,20 @@ package com.chillcoding.mycuteheart
 import android.app.Fragment
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.chillcoding.mycuteheart.model.MyFragmentId
-import com.chillcoding.mycuteheart.view.fragment.MyAboutFragment
-import com.chillcoding.mycuteheart.view.fragment.MyAwardsFragment
-import com.chillcoding.mycuteheart.view.fragment.MySettingsFragment
+import com.chillcoding.mycuteheart.model.FragmentId
+import com.chillcoding.mycuteheart.view.fragment.AboutFragment
+import com.chillcoding.mycuteheart.view.fragment.AwardsFragment
+import com.chillcoding.mycuteheart.view.fragment.SettingsFragment
 import com.chillcoding.mycuteheart.view.fragment.TopScoresFragment
 import kotlinx.android.synthetic.main.app_bar_second.*
 
 /**
  * Created by macha on 02/08/2017.
  */
-class MySecondaryActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivity() {
 
     companion object {
-        val FRAGMENT_ID = "MySecondaryActivity:fragmentId"
+        val FRAGMENT_ID = "SecondActivity:fragmentId"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,23 +29,23 @@ class MySecondaryActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         when (intent.getIntExtra(FRAGMENT_ID, 0)) {
-            MyFragmentId.ABOUT.ordinal -> {
-                setFragment(MyAboutFragment())
+            FragmentId.ABOUT.ordinal -> {
+                setFragment(AboutFragment())
                 supportActionBar!!.title = getString(R.string.menu_about)
             }
-            MyFragmentId.SETTINGS.ordinal -> {
-                setFragment(MySettingsFragment())
+            FragmentId.SETTINGS.ordinal -> {
+                setFragment(SettingsFragment())
                 supportActionBar!!.title = getString(R.string.menu_settings)
             }
-            MyFragmentId.AWARDS.ordinal -> {
-                setFragment(MyAwardsFragment())
+            FragmentId.AWARDS.ordinal -> {
+                setFragment(AwardsFragment())
                 supportActionBar!!.title = getString(R.string.menu_awards)
             }
-            MyFragmentId.TOP.ordinal -> {
+            FragmentId.TOP.ordinal -> {
                 setFragment(TopScoresFragment())
                 supportActionBar!!.title = getString(R.string.menu_top)
             }
-            else -> setFragment(MyAboutFragment())
+            else -> setFragment(AboutFragment())
         }
     }
 

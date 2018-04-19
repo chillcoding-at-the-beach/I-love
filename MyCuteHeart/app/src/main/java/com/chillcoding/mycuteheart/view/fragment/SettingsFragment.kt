@@ -5,19 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chillcoding.mycuteheart.App
 import com.chillcoding.mycuteheart.R
 import com.chillcoding.mycuteheart.extension.DelegatesExt
-import kotlinx.android.synthetic.main.fragment_my_settings.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 /**
  * Created by macha on 07/09/2017.
  */
-class MySettingsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
-    var isSound: Boolean by DelegatesExt.preference(this as Fragment, "PREF_SOUND", true)
+    var isSound: Boolean by DelegatesExt.preference(this as Fragment, App.PREF_SOUND, true)
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        var view = inflater?.inflate(R.layout.fragment_my_settings, container, false)
+        var view = inflater?.inflate(R.layout.fragment_settings, container, false)
         return view!!
     }
 

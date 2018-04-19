@@ -2,14 +2,13 @@ package com.chillcoding.mycuteheart.view
 
 import android.graphics.Paint
 import android.graphics.Path
-import android.util.Log
-import com.chillcoding.mycuteheart.MyApp
+import com.chillcoding.mycuteheart.App
 import java.util.*
 
 /**
  * Created by macha on 17/07/2017.
  */
-class MyCuteHeart {
+class CuteHeart {
 
     var size = 0.5f
     var speed = 1
@@ -47,7 +46,7 @@ class MyCuteHeart {
         paint = Paint()
         paint.style = Paint.Style.FILL
         paint.isAntiAlias = true
-        paint.color = MyApp.sColors.last()
+        paint.color = App.sColors.last()
     }
 
     private fun initializeHeartCoordinates() {
@@ -96,11 +95,11 @@ class MyCuteHeart {
     }
 
     private fun changeHeartColorRandomly() {
-        if (contrast < MyApp.sColors.size) {
+        if (contrast < App.sColors.size) {
             val random = Random()
-            paint.color = MyApp.sColors[random.nextInt(MyApp.sColors.size - contrast)]
+            paint.color = App.sColors[random.nextInt(App.sColors.size - contrast)]
         } else
-            paint.color = MyApp.sColors.first()
+            paint.color = App.sColors.first()
     }
 
     private fun changeDirection() {

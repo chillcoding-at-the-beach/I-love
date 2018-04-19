@@ -18,20 +18,21 @@ import android.view.MenuItem
 import android.view.View
 import be.rijckaert.tim.animatedvector.FloatingMusicActionButton
 import com.chillcoding.mycuteheart.extension.DelegatesExt
-import com.chillcoding.mycuteheart.model.MyFragmentId
-import com.chillcoding.mycuteheart.util.*
-import com.chillcoding.mycuteheart.view.dialog.MyEndGameDialog
+import com.chillcoding.mycuteheart.model.FragmentId
+import com.chillcoding.mycuteheart.util.IabBroadcastReceiver
+import com.chillcoding.mycuteheart.util.IabHelper
+import com.chillcoding.mycuteheart.util.Purchase
+import com.chillcoding.mycuteheart.view.dialog.EndGameDialog
 import com.google.android.gms.auth.GoogleAuthUtil
-import com.google.firebase.crash.FirebaseCrash
-import kotlinx.android.synthetic.main.activity_my_main.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.*
 import java.util.*
 
-class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener, AnkoLogger {
 
-    var isPremium = false
+    var isPremium: Boolean by DelegatesExt.preference(this, App.PREF_PREMIUM, false)
 
     // The helper object
     private var mHelper: IabHelper? = null
@@ -40,14 +41,14 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var mBroadcastReceiver: IabBroadcastReceiver
 
     private lateinit var mToggle: ActionBarDrawerToggle
-    private val mArrayLoveQuote: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
+    private val mLoveQuoteArray: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
     private val mRandom = Random()
 
-    val isSound: Boolean by DelegatesExt.preference(this, MyApp.PREF_SOUND, true)
-    var mPayload: String  by DelegatesExt.preference(this, MyApp.PREF_PAYLOAD, "nada")
+    val isSound: Boolean by DelegatesExt.preference(this, App.PREF_SOUND, true)
+    var userPayload: String  by DelegatesExt.preference(this, App.PREF_PAYLOAD, "newinstall")
     private lateinit var mSoundPlayer: MediaPlayer
 
-    val myProgress by lazy { indeterminateProgressDialog(R.string.text_waiting_explanation) }
+    val progressDialog by lazy { indeterminateProgressDialog(R.string.text_waiting_explanation) }
 
     companion object {
         val SKU_PREMIUM = "premium"
@@ -58,27 +59,40 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        setContentView(R.layout.activity_my_main)
+        setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
-        mSoundPlayer.isLooping = true
+        setUpGame()
 
-        setUpGameInfo()
+        setUpInAppPurchase()
 
-        // Create the helper, passing it our context and the public key to verify signatures with
-        FirebaseCrash.log("Creating IAB helper.")
+        setUpMenus()
+    }
+
+    private fun setUpGame() {
+        setUpSound()
+        updateScore()
+        updateLevel()
+    }
+
+    private fun setUpMenus() {
+        setUpFab()
+        setUpNavigationDrawer()
+    }
+
+    private fun setUpInAppPurchase() {
+        requestAccountPermission()
+        info("Creating IAB helper.")
         mHelper = IabHelper(this, getString(R.string.base64_encoded_public_key))
 
-        // enable debug logging (for a production application, you should set this to false).
+        // /!\ for a production application, you should set this to false).
         mHelper!!.enableDebugLogging(true)
 
         mHelper!!.startSetup(IabHelper.OnIabSetupFinishedListener { result ->
-            FirebaseCrash.log("Setup finished.")
+            info("Setup finished.")
 
             if (!result.isSuccess) {
-                // Oh noes, there was a problem.
-                complain("Problem setting up in-app billing: " + result)
+                complain("Problem setting up in-app billing: $result")
                 return@OnIabSetupFinishedListener
             }
 
@@ -92,12 +106,12 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             // Note: registering this listener in an Activity is a bad idea, but is done here
             // because this is a SAMPLE. Regardless, the receiver must be registered after
             // IabHelper is setup, but before first call to getPurchases().
-            mBroadcastReceiver = IabBroadcastReceiver(this@MyMainActivity)
+            mBroadcastReceiver = IabBroadcastReceiver(this@MainActivity)
             val broadcastFilter = IntentFilter(IabBroadcastReceiver.ACTION)
             registerReceiver(mBroadcastReceiver, broadcastFilter)
 
             // IAB is fully set up. Now, let's get an inventory of stuff we own.
-            FirebaseCrash.log("Setup successful. Querying inventory.")
+            info("Setup successful. Querying inventory.")
             try {
                 mHelper!!.queryInventoryAsync(mGotInventoryListener)
             } catch (e: IabHelper.IabAsyncInProgressException) {
@@ -105,28 +119,10 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         })
 
-        fab.setOnMusicFabClickListener(object : FloatingMusicActionButton.OnMusicFabClickListener {
-            override fun onClick(view: View) {
-                if (!gameView.isPlaying)
-                    playGame()
-                else
-                    pauseGame()
-            }
-        })
-
-        mToggle = object : ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-            override fun onDrawerClosed(view: View?) {}
-            override fun onDrawerOpened(drawerView: View?) {
-                pauseGame()
-            }
-        }
-
-        navView.setNavigationItemSelectedListener(this)
     }
 
     internal var mGotInventoryListener: IabHelper.QueryInventoryFinishedListener = IabHelper.QueryInventoryFinishedListener { result, inventory ->
-        FirebaseCrash.log("Query inventory finished.")
+        info("Query inventory finished.")
 
         // Have we been disposed of in the meantime? If so, quit.
         if (mHelper == null) return@QueryInventoryFinishedListener
@@ -137,19 +133,17 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             return@QueryInventoryFinishedListener
         }
 
-        FirebaseCrash.log("Query inventory was successful.")
+        info("Query inventory was successful.")
 
         // Do we have the premium upgrade?
         val premiumPurchase = inventory.getPurchase(SKU_PREMIUM)
         isPremium = premiumPurchase != null && verifyDeveloperPayload(premiumPurchase)
-        FirebaseCrash.log("User is " + if (isPremium) "PREMIUM" else "NOT PREMIUM")
-
         updateUi()
-        FirebaseCrash.log("Initial inventory query finished; enabling main UI.")
+        info("Initial inventory query finished; enabling main UI. PREMIUM : $isPremium")
     }
 
     internal var mPurchaseFinishedListener: IabHelper.OnIabPurchaseFinishedListener = IabHelper.OnIabPurchaseFinishedListener { result, purchase ->
-        FirebaseCrash.log("Purchase finished: $result, purchase: $purchase")
+        info("Purchase finished: $result, purchase: $purchase")
 
         // if we were disposed of in the meantime, quit.
         if (mHelper == null) return@OnIabPurchaseFinishedListener
@@ -163,11 +157,11 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             return@OnIabPurchaseFinishedListener
         }
 
-        FirebaseCrash.log("Purchase successful.")
+        info("Purchase successful.")
 
         if (purchase.sku == SKU_PREMIUM) {
             // bought the premium upgrade!
-            FirebaseCrash.log("Purchase is premium upgrade. Congratulating user.")
+            info("Purchase is premium upgrade. Congratulating user.")
             alert(getString(R.string.text_thank_you_premium))
             isPremium = true
             updateUi()
@@ -176,7 +170,7 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     override fun receivedBroadcast() {
         // Received a broadcast notification that the inventory of items has changed
-        FirebaseCrash.log("Received broadcast notification. Querying inventory.")
+        info("Received broadcast notification. Querying inventory.")
         try {
             mHelper!!.queryInventoryAsync(mGotInventoryListener)
         } catch (e: IabHelper.IabAsyncInProgressException) {
@@ -185,27 +179,27 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun requestAccountPermission() {
+        //In aim of getting userPayload we ask for permissions
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.GET_ACCOUNTS)
                 != PackageManager.PERMISSION_GRANTED) {
 
             alert(R.string.text_permissions_explanation) {
                 yesButton {
-                    ActivityCompat.requestPermissions(this@MyMainActivity,
+                    ActivityCompat.requestPermissions(this@MainActivity,
                             Array<String>(1) { android.Manifest.permission.GET_ACCOUNTS },
-                            MyApp.MY_PERMISSIONS_REQUEST_GET_ACCOUNTS);
+                            App.PERMISSIONS_REQUEST_GET_ACCOUNTS);
                 }
                 noButton { }
             }.show()
-
         }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
-            MyApp.MY_PERMISSIONS_REQUEST_GET_ACCOUNTS -> {
+            App.PERMISSIONS_REQUEST_GET_ACCOUNTS -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    mPayload = getPayload()
+                    getPayload()
             }
         }
     }
@@ -213,28 +207,27 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private fun launchPurchase() {
         try {
             mHelper!!.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST,
-                    mPurchaseFinishedListener, mPayload)
+                    mPurchaseFinishedListener, userPayload)
         } catch (e: IabHelper.IabAsyncInProgressException) {
             complain("Error launching purchase flow. Another async operation in progress.")
         }
     }
 
     private fun getPayload(): String {
-        if (mPayload == "first") {
+        if (userPayload == "newinstall") {
             val accountName = getAccountName()
-            myProgress.show()
+            progressDialog.show()
             doAsync {
                 val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
-                mPayload = "${getString(R.string.payload)}_$accountID"
-                activityUiThread { myCallBack() }
+                userPayload = "${getString(R.string.payload)}_$accountID"
+                uiThread { myCallBack() }
             }
         }
-        return mPayload
+        return userPayload
     }
 
     private fun myCallBack() {
-        myProgress.dismiss()
-        launchPurchase()
+        progressDialog.dismiss()
     }
 
     private fun getAccountName(): String {
@@ -248,6 +241,29 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
         return accountName
+    }
+
+    private fun setUpNavigationDrawer() {
+        mToggle = object : ActionBarDrawerToggle(
+                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            override fun onDrawerClosed(view: View?) {}
+            override fun onDrawerOpened(drawerView: View?) {
+                pauseGame(true)
+            }
+        }
+
+        navView.setNavigationItemSelectedListener(this)
+    }
+
+    private fun setUpFab() {
+        fab.setOnMusicFabClickListener(object : FloatingMusicActionButton.OnMusicFabClickListener {
+            override fun onClick(view: View) {
+                if (!gameView.isPlaying)
+                    playGame()
+                else
+                    pauseGame()
+            }
+        })
     }
 
     override fun onBackPressed() {
@@ -276,36 +292,32 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawer_layout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
-            R.id.nav_premium -> {
-                FirebaseCrash.log("Upgrade button clicked; launching purchase flow for upgrade.")
-                mPayload = "first"
-                requestAccountPermission()
-            }
-            R.id.nav_about -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.ABOUT.ordinal)
-            R.id.nav_awards -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.AWARDS.ordinal)
+            R.id.nav_premium -> launchPurchase()
+            R.id.nav_about -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.ABOUT.ordinal)
+            R.id.nav_awards -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal)
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
-            R.id.nav_settings -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.SETTINGS.ordinal)
+            R.id.nav_settings -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.SETTINGS.ordinal)
             R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
-            R.id.nav_top -> startActivity<MySecondaryActivity>(MySecondaryActivity.FRAGMENT_ID to MyFragmentId.TOP.ordinal)
+            R.id.nav_top -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal)
         }
         return true
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        FirebaseCrash.log("onActivityResult($requestCode,$resultCode,$data")
+        info("onActivityResult($requestCode,$resultCode,$data")
         if (mHelper == null) return
         // Pass on the activity result to the helper for handling
         if (!mHelper!!.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data)
         } else {
-            FirebaseCrash.log("onActivityResult handled by IABUtil.")
+            info("onActivityResult handled by IABUtil.")
         }
     }
 
     public override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(mBroadcastReceiver)
-        FirebaseCrash.log("Destroying helper.")
+        info("Destroying helper.")
         if (mHelper != null) {
             mHelper!!.disposeWhenFinished()
             mHelper = null
@@ -314,12 +326,12 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
+        outState.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        gameView.myGameData = savedInstanceState.getParcelable(MyApp.BUNDLE_GAME_DATA)
+        gameView.gameData = savedInstanceState.getParcelable(App.BUNDLE_GAME_DATA)
         updateGameInfo()
     }
 
@@ -336,39 +348,39 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun complain(msg: String) {
-        FirebaseCrash.log("${getString(R.string.app_name)} Error : $msg")
+        error("${getString(R.string.app_name)} Error : $msg")
     }
 
     private fun alert(s: String) {
         val bld = AlertDialog.Builder(this)
         bld.setMessage(s)
         bld.setNeutralButton("OK", null)
-        FirebaseCrash.log("Showing alert dialog: " + s)
+        error("Showing alert dialog: " + s)
         bld.create().show()
     }
 
     internal fun verifyDeveloperPayload(p: Purchase): Boolean {
         val payload = p.developerPayload
-        return payload == getPayload()
+        return payload == userPayload
     }
 
     private fun updateUi() {
         if (isPremium) {
             navView.menu.findItem(R.id.nav_premium).isVisible = false
             navView.menu.findItem(R.id.nav_more_features).isVisible = false
-            navView.menu.findItem(R.id.nav_awards).isVisible = true
-            navView.menu.findItem(R.id.nav_settings).isVisible = true
         }
     }
 
     private fun showAlertOnLove() {
-        alert(mArrayLoveQuote[mRandom.nextInt(mArrayLoveQuote.size)]) {
+        alert(mLoveQuoteArray[mRandom.nextInt(mLoveQuoteArray.size)]) {
             positiveButton(getString(R.string.action_like)) { showAlertOnLove() }
             noButton { }
         }.show()
     }
 
-    private fun pauseGame() {
+    private fun pauseGame(animateFab: Boolean = false) {
+        if (animateFab)
+            fab.playAnimation()
         gameView.pause()
         mSoundPlayer.pause()
     }
@@ -385,31 +397,31 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         resetSound()
         fab.playAnimation()
         var bundle = Bundle()
-        bundle.putParcelable(MyApp.BUNDLE_GAME_DATA, gameView.myGameData)
-        var popup = MyEndGameDialog()
+        bundle.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
+        var popup = EndGameDialog()
         popup.arguments = bundle
-        popup.show(fragmentManager, MyMainActivity::class.java.simpleName)
+        popup.show(fragmentManager, MainActivity::class.java.simpleName)
     }
 
-    private fun setUpGameInfo() {
-        updateScore()
-        updateLevel()
+    private fun setUpSound() {
+        mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
+        mSoundPlayer.isLooping = true
     }
 
     fun updateScore() {
-        when (gameView.myGameData.score) {
-            in 0..9 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.myGameData.score}"
-            in 10..99 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.myGameData.score}"
-            else -> mainScore.text = "${getString(R.string.word_score)}: ${gameView.myGameData.score}"
+        when (gameView.gameData.score) {
+            in 0..9 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.gameData.score}"
+            in 10..99 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.gameData.score}"
+            else -> mainScore.text = "${getString(R.string.word_score)}: ${gameView.gameData.score}"
         }
     }
 
     fun updateLevel() {
-        mainLevel.text = "${getString(R.string.word_level)}: ${gameView.myGameData.level}"
+        mainLevel.text = "${getString(R.string.word_level)}: ${gameView.gameData.level}"
     }
 
     fun updateNbLife() {
-        when (gameView.myGameData.nbLife) {
+        when (gameView.gameData.nbLife) {
             0 -> {
                 mainFirstLife.setImageResource(R.drawable.ic_life_lost)
                 endGame()
@@ -447,5 +459,6 @@ class MyMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onRestart() {
         super.onRestart()
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
+        fab.changeMode(FloatingMusicActionButton.Mode.PLAY_TO_PAUSE)
     }
 }
