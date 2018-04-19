@@ -50,7 +50,6 @@ class GameView : View, View.OnTouchListener {
 
     private fun init() {
         super.setOnTouchListener(this)
-        myGameData.awardLevel = awardLevel
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -109,7 +108,7 @@ class GameView : View, View.OnTouchListener {
     }
 
     private fun win() {
-        myGameData.score += POINTS * myGameData.level * myGameData.awardLevel
+        myGameData.score += POINTS * myGameData.level * awardLevel
         mHeart.updateRandomly()
         mActivity.updateScore()
     }
@@ -158,6 +157,5 @@ class GameView : View, View.OnTouchListener {
         myGameData = GameData()
         mHeart.updateToLevel(1)
         invalidate()
-        myGameData.awardLevel = awardLevel
     }
 }

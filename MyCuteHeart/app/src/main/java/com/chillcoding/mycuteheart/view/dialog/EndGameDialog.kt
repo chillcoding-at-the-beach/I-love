@@ -24,6 +24,7 @@ class EndGameDialog : DialogFragment() {
         // Use the Builder class for convenient dialog construction
         var bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
         var awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 1)
+        var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
 
 
         val builder = AlertDialog.Builder(activity)
@@ -36,7 +37,8 @@ class EndGameDialog : DialogFragment() {
 
         when {
             data.score > awardLevel * App.SCORE_PER_AWARD -> {
-                awardLevel = awardLevel + 1
+                if (isPremium)
+                    awardLevel = (data.score / App.SCORE_PER_AWARD) + 1
                 endGameView.dialogAwardTextView.visibility = View.VISIBLE
                 bestScore = data.score
             }

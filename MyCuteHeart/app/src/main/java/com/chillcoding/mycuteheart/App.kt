@@ -11,14 +11,14 @@ class App : Application() {
     companion object {
         lateinit var instance: App
             private set
-        val PERMISSIONS_REQUEST_GET_ACCOUNTS: Int = 13
-        val BUNDLE_GAME_DATA = "BUNDLE_GAME_DATE"
-        val PREF_BEST_SCORE = "PREF_BEST_SCORE"
-        val PREF_AWARD_LEVEL = "PREF_AWARD_LEVEL"
-        val PREF_PAYLOAD = "PREF_PAYLOAD"
-        val PREF_SOUND = "PREF_SOUND"
-        val PREF_PREMIUM = "PREF_PREMIUM"
-        val SCORE_PER_AWARD = 300
+        const val PERMISSIONS_REQUEST_GET_ACCOUNTS: Int = 13
+        const val BUNDLE_GAME_DATA = "BUNDLE_GAME_DATE"
+        const val PREF_BEST_SCORE = "PREF_BEST_SCORE"
+        const val PREF_AWARD_LEVEL = "PREF_AWARD_LEVEL"
+        const val PREF_PAYLOAD = "PREF_PAYLOAD"
+        const val PREF_SOUND = "PREF_SOUND"
+        const val PREF_PREMIUM = "PREF_PREMIUM"
+        const val SCORE_PER_AWARD = 300
         val sColors: List<Int> by lazy {
             listOf(
                     ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null),

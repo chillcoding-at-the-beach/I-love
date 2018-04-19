@@ -19,7 +19,9 @@ import android.view.View
 import be.rijckaert.tim.animatedvector.FloatingMusicActionButton
 import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.FragmentId
-import com.chillcoding.mycuteheart.util.*
+import com.chillcoding.mycuteheart.util.IabBroadcastReceiver
+import com.chillcoding.mycuteheart.util.IabHelper
+import com.chillcoding.mycuteheart.util.Purchase
 import com.chillcoding.mycuteheart.view.dialog.EndGameDialog
 import com.google.android.gms.auth.GoogleAuthUtil
 import kotlinx.android.synthetic.main.activity_main.*
@@ -43,7 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val mRandom = Random()
 
     val isSound: Boolean by DelegatesExt.preference(this, App.PREF_SOUND, true)
-    var userPayload: String  by DelegatesExt.preference(this, App.PREF_PAYLOAD, "nada")
+    var userPayload: String  by DelegatesExt.preference(this, App.PREF_PAYLOAD, "newinstall")
     private lateinit var mSoundPlayer: MediaPlayer
 
     val progressDialog by lazy { indeterminateProgressDialog(R.string.text_waiting_explanation) }
@@ -79,6 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setUpInAppPurchase() {
+        requestAccountPermission()
         info("Creating IAB helper.")
         mHelper = IabHelper(this, getString(R.string.base64_encoded_public_key))
 
@@ -176,6 +179,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun requestAccountPermission() {
+        //In aim of getting userPayload we ask for permissions
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.GET_ACCOUNTS)
                 != PackageManager.PERMISSION_GRANTED) {
 
@@ -187,8 +191,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 noButton { }
             }.show()
-        } else {
-            launchPurchase()
         }
     }
 
@@ -197,7 +199,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (requestCode) {
             App.PERMISSIONS_REQUEST_GET_ACCOUNTS -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    userPayload = getPayload()
+                    getPayload()
             }
         }
     }
@@ -212,7 +214,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun getPayload(): String {
-        if (userPayload == "nada") {
+        if (userPayload == "newinstall") {
             val accountName = getAccountName()
             progressDialog.show()
             doAsync {
@@ -226,7 +228,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun myCallBack() {
         progressDialog.dismiss()
-        launchPurchase()
     }
 
     private fun getAccountName(): String {
@@ -291,10 +292,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawer_layout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
-            R.id.nav_premium -> {
-                userPayload = "nada"
-                requestAccountPermission()
-            }
+            R.id.nav_premium -> launchPurchase()
             R.id.nav_about -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.ABOUT.ordinal)
             R.id.nav_awards -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal)
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
@@ -462,5 +460,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onRestart() {
         super.onRestart()
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
+        fab.changeMode(FloatingMusicActionButton.Mode.PLAY_TO_PAUSE)
     }
 }

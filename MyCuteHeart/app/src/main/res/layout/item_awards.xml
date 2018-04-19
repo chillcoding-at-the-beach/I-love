@@ -50,7 +50,7 @@
             android:layout_height="0.5dp"
             android:layout_marginLeft="@dimen/cards_special_margin"
             android:layout_marginTop="@dimen/cards_big_margin"
-            android:background="@color/colorShadow"
+            android:background="@color/colorPrimaryLight"
             app:layout_constraintLeft_toRightOf="@id/awardImg"
             app:layout_constraintTop_toBottomOf="@id/awardInfo" />
 
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cards_middle_margin"
-            android:tint="@color/colorShadow"
+            android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/awardLine"
             app:srcCompat="@drawable/ic_love_side" />
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/cards_middle_margin"
-            android:tint="@color/colorShadow"
+            android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardIcon"
             app:layout_constraintTop_toTopOf="@id/awardIcon"
             app:srcCompat="@drawable/ic_love_down" />
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/cards_middle_margin"
-            android:tint="@color/colorShadow"
+            android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardDownIcon"
             app:layout_constraintTop_toTopOf="@id/awardIcon"
             app:srcCompat="@drawable/ic_menu_love" />
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/cards_middle_margin"
             android:layout_marginTop="@dimen/cards_margin"
-            android:tint="@color/colorShadow"
+            android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardLoveIcon"
             app:layout_constraintTop_toBottomOf="@id/awardLine"
             app:srcCompat="@drawable/ic_play" />
@@ -108,8 +108,8 @@
             android:layout_height="@dimen/middle_size"
             android:layout_marginBottom="@dimen/cards_middle_margin"
             android:layout_marginRight="@dimen/cards_middle_margin"
-            android:background="@color/colorShadow"
-            android:tint="@color/colorShadow"
+            android:background="@color/colorPrimaryLight"
+            android:tint="@color/colorPrimaryLight"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_goneMarginRight="@dimen/cards_middle_margin"
             app:srcCompat="@drawable/ic_menu_awards" />
@@ -120,7 +120,7 @@
             android:layout_height="26dp"
             android:layout_marginLeft="@dimen/cards_special_margin"
             android:layout_marginTop="@dimen/cards_margin"
-            android:background="@color/colorShadow"
+            android:background="@color/colorPrimaryLight"
             app:layout_constraintLeft_toRightOf="@id/awardEmptyImg"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -130,7 +130,7 @@
             android:layout_height="15dp"
             android:layout_marginLeft="@dimen/cards_special_margin"
             android:layout_marginTop="@dimen/cards_inter_margin"
-            android:background="@color/colorShadow"
+            android:background="@color/colorPrimaryLight"
             app:layout_constraintLeft_toRightOf="@id/awardEmptyImg"
             app:layout_constraintTop_toBottomOf="@id/awardEmptyName" />
 
@@ -140,7 +140,7 @@
             android:layout_height="0.5dp"
             android:layout_marginLeft="@dimen/cards_special_margin"
             android:layout_marginTop="@dimen/cards_big_margin"
-            android:background="@color/colorShadow"
+            android:background="@color/colorPrimaryLight"
             app:layout_constraintLeft_toRightOf="@id/awardEmptyImg"
             app:layout_constraintTop_toBottomOf="@id/awardEmptyInfo" />
 
@@ -149,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cards_middle_margin"
-            android:tint="@color/colorShadow"
+            android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/awardEmptyLine"
             app:srcCompat="@drawable/ic_love_side" />
@@ -159,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/cards_middle_margin"
-            android:tint="@color/colorShadow"
+            android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardEmptyIcon"
             app:layout_constraintTop_toTopOf="@id/awardEmptyIcon"
             app:srcCompat="@drawable/ic_love_down" />
@@ -169,7 +169,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/cards_middle_margin"
-            android:tint="@color/colorShadow"
+            android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardEmptyDownIcon"
             app:layout_constraintTop_toTopOf="@id/awardEmptyIcon"
             app:srcCompat="@drawable/ic_menu_love" />
@@ -179,7 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/cards_middle_margin"
             android:layout_marginTop="@dimen/cards_margin"
-            android:tint="@color/colorShadow"
+            android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardEmptyNormalIcon"
             app:layout_constraintTop_toBottomOf="@id/awardEmptyLine"
             app:srcCompat="@drawable/ic_play" />
