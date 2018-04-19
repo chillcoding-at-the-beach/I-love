@@ -326,12 +326,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(App.BUNDLE_GAME_DATA, gameView.myGameData)
+        outState.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        gameView.myGameData = savedInstanceState.getParcelable(App.BUNDLE_GAME_DATA)
+        gameView.gameData = savedInstanceState.getParcelable(App.BUNDLE_GAME_DATA)
         updateGameInfo()
     }
 
@@ -397,7 +397,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         resetSound()
         fab.playAnimation()
         var bundle = Bundle()
-        bundle.putParcelable(App.BUNDLE_GAME_DATA, gameView.myGameData)
+        bundle.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
         var popup = EndGameDialog()
         popup.arguments = bundle
         popup.show(fragmentManager, MainActivity::class.java.simpleName)
@@ -409,19 +409,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun updateScore() {
-        when (gameView.myGameData.score) {
-            in 0..9 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.myGameData.score}"
-            in 10..99 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.myGameData.score}"
-            else -> mainScore.text = "${getString(R.string.word_score)}: ${gameView.myGameData.score}"
+        when (gameView.gameData.score) {
+            in 0..9 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.gameData.score}"
+            in 10..99 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.gameData.score}"
+            else -> mainScore.text = "${getString(R.string.word_score)}: ${gameView.gameData.score}"
         }
     }
 
     fun updateLevel() {
-        mainLevel.text = "${getString(R.string.word_level)}: ${gameView.myGameData.level}"
+        mainLevel.text = "${getString(R.string.word_level)}: ${gameView.gameData.level}"
     }
 
     fun updateNbLife() {
-        when (gameView.myGameData.nbLife) {
+        when (gameView.gameData.nbLife) {
             0 -> {
                 mainFirstLife.setImageResource(R.drawable.ic_life_lost)
                 endGame()
@@ -429,7 +429,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             1 -> {
                 mainSecondLife.setImageResource(R.drawable.ic_life_lost)
                 mainThirdLife.setImageResource(R.drawable.ic_life_lost)
-
             }
             2 -> mainThirdLife.setImageResource(R.drawable.ic_life_lost)
             3 -> {

@@ -22,7 +22,7 @@ import com.chillcoding.mycuteheart.model.GameData
 class GameView : View, View.OnTouchListener {
 
     var isPlaying = false
-    var myGameData = GameData()
+    var gameData = GameData()
 
     private lateinit var mHeart: CuteHeart
 
@@ -60,7 +60,7 @@ class GameView : View, View.OnTouchListener {
                 coef = height
             else
                 coef = width
-            mHeart = CuteHeart(width, height, mTopMargin.last().toInt(), myGameData.level)
+            mHeart = CuteHeart(width, height, mTopMargin.last().toInt(), gameData.level)
             mTextPaint.textSize = (coef / 20).toFloat()
             mTopMargin[0] = (coef / 70).toFloat()
             mTopMargin[1] = (coef / 17).toFloat()
@@ -85,7 +85,7 @@ class GameView : View, View.OnTouchListener {
             if (mHeart.isIn(event.x.toInt(), event.y.toInt())) {
                 if (isPlaying) {
                     win()
-                    if (myGameData.score > scoreForNextLevel())
+                    if (gameData.score > scoreForNextLevel())
                         levelUp()
                 } else {
                     mActivity.playGame(true)
@@ -108,14 +108,14 @@ class GameView : View, View.OnTouchListener {
     }
 
     private fun win() {
-        myGameData.score += POINTS * myGameData.level * awardLevel
+        gameData.score += POINTS * gameData.level * awardLevel
         mHeart.updateRandomly()
         mActivity.updateScore()
     }
 
     private fun lost() {
         mVibrator.vibrate(100)
-        myGameData.nbLife--
+        gameData.nbLife--
         mActivity.updateNbLife()
     }
 
@@ -126,15 +126,15 @@ class GameView : View, View.OnTouchListener {
 
     private fun scoreForNextLevel(): Int {
         var score = 0
-        for (k in 1..myGameData.level)
+        for (k in 1..gameData.level)
             score += TAPS_PER_LEVEL * k * k
         return score
     }
 
     private fun levelUp() {
-        myGameData.level += 1
+        gameData.level += 1
         Toast.makeText(context, "+ 1 ${context.getString(R.string.word_level)}!", Toast.LENGTH_SHORT).show()
-        mHeart.updateToLevel(myGameData.level)
+        mHeart.updateToLevel(gameData.level)
         mActivity.updateLevel()
     }
 
@@ -154,7 +154,7 @@ class GameView : View, View.OnTouchListener {
 
     fun setUpNewGame() {
         stop()
-        myGameData = GameData()
+        gameData = GameData()
         mHeart.updateToLevel(1)
         invalidate()
     }

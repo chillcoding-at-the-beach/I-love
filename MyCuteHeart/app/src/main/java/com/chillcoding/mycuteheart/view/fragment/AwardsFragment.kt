@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.chillcoding.mycuteheart.App
 import com.chillcoding.mycuteheart.R
-import com.chillcoding.mycuteheart.view.adapter.AwardListAdapter
 import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.Award
+import com.chillcoding.mycuteheart.view.adapter.AwardListAdapter
 import kotlinx.android.synthetic.main.fragment_awards.*
 
 /**
@@ -37,10 +37,7 @@ class AwardsFragment : Fragment() {
             }
             items[awardLevel - 1] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[awardLevel - 1], bestScore, awardLevel)
         } else {
-            if (awardLevel > 3)
-                items[0] = Award(R.drawable.ic_menu_awards, resources.getString(R.string.get_premium_text) , bestScore, 2)
-            else
-                items[0] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[awardLevel - 1] , bestScore, awardLevel)
+            items[0] = Award(R.drawable.ic_menu_awards, resources.getString(R.string.get_premium_text), bestScore, 2)
         }
 
         return view!!
