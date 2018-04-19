@@ -65,7 +65,7 @@
         <View
             android:id="@+id/lineBottomView"
             android:layout_width="@dimen/big_size"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/line_height"
             android:background="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
