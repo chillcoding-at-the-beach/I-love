@@ -1,8 +1,6 @@
 package com.chillcoding.mycuteheart.view.adapter
 
-import android.support.annotation.LayoutRes
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chillcoding.mycuteheart.App
@@ -27,8 +25,8 @@ class AwardListAdapter(val items: Array<Award>) : RecyclerView.Adapter<AwardList
     override fun getItemCount(): Int = items.size
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindMyAwards(myAwards: Award) {
-            with(myAwards) {
+        fun bindMyAwards(award: Award) {
+            with(award) {
                 if (mode > 0) {
                     itemView.awardEmpty.visibility = View.INVISIBLE
                     itemView.award.visibility = View.VISIBLE
