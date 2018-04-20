@@ -15,8 +15,6 @@ import java.util.*
  */
 class ScoreListAdapter(val items: List<Score>) : RecyclerView.Adapter<ScoreListAdapter.ViewHolder>() {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(parent.inflate(R.layout.item_score))
     }
@@ -28,13 +26,13 @@ class ScoreListAdapter(val items: List<Score>) : RecyclerView.Adapter<ScoreListA
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val random= Random()
+        val random = Random()
         fun bindScore(score: Score) {
             with(itemView) {
                 scoreUserImg.setColorFilter(App.sColors[random.nextInt(App.sColors.size)])
                 scoreRanking.text = getRanking(adapterPosition)
                 scorePoint.text = score.point.toString()
-                scorePseudo.text = score.pseudo
+                scorePseudo.text = score.user.username
             }
         }
 
@@ -43,7 +41,7 @@ class ScoreListAdapter(val items: List<Score>) : RecyclerView.Adapter<ScoreListA
                 0 -> return "1st"
                 1 -> return "2nd"
                 2 -> return "3rd"
-                else -> return "${rank+1}th"
+                else -> return "${rank + 1}th"
             }
         }
     }

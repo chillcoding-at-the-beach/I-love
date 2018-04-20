@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.chillcoding.mycuteheart.R
 import com.chillcoding.mycuteheart.extension.hasConnectivity
 import com.chillcoding.mycuteheart.model.Score
+import com.chillcoding.mycuteheart.model.User
 import com.chillcoding.mycuteheart.network.GameService
 import com.chillcoding.mycuteheart.view.adapter.ScoreListAdapter
 import kotlinx.android.synthetic.main.fragment_top_scores.*
@@ -25,9 +26,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  */
 class TopScoresFragment : Fragment(), AnkoLogger {
 
-    private val url = "http://192.168.0.11:8990/"
+    private val url = "https://i-love-api.herokuapp.com/api/scores"
 
-    var allTopScores = listOf<Score>(Score("Marina", 51032), Score("Macha", 4973), Score("Jean-Michel", 3542), Score("Carole", 3333), Score("Zozo", 2203), Score("Lola", 2199), Score("Léo", 999), Score("Matéo", 998), Score("Léa", 997), Score("Joe", 995))
+    var allTopScores = listOf<Score>(Score(User("Marina"), 51032), Score(User("Macha"), 4973), Score(User("Jean-Michel"), 3542), Score(User("Carole"), 3333), Score(User("Zozo"), 2203), Score(User("Lola"), 2199), Score(User("Léo"), 999), Score(User("Matéo"), 998), Score(User("Léa"), 997), Score(User("Joe"), 995))
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_top_scores, container, false)
@@ -47,9 +48,9 @@ class TopScoresFragment : Fragment(), AnkoLogger {
                 override fun onResponse(call: Call<List<Score>>, response: Response<List<Score>>) {
                     allTopScores = response.body()!!
                     if (allTopScores != null) {
-                        info("HERE is ALL SCORE FROM LOCAL SERVER:")
+                        info("HERE is ALL SCORE FROM I LOVE SERVER :)")
                         for (s in allTopScores)
-                            info(" one point : ${s.pseudo} : ${s.point} ")
+                            info(" one score : ${s.user.username} : ${s.point} ")
                     }
                 }
 
