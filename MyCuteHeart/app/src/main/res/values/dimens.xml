@@ -22,6 +22,8 @@
     <dimen name="cards_big_margin">24dp</dimen>
     <dimen name="cards_sub_margin">4dp</dimen>
     <dimen name="cards_special_margin">136dp</dimen>
+    <dimen name="line_height">1dp</dimen>
+    <dimen name="title_width">80dp</dimen>
 </resources>
 
 

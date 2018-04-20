@@ -1,12 +1,11 @@
 package com.chillcoding.mycuteheart.view.adapter
 
-import android.support.annotation.LayoutRes
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chillcoding.mycuteheart.App
 import com.chillcoding.mycuteheart.R
+import com.chillcoding.mycuteheart.extension.inflate
 import com.chillcoding.mycuteheart.model.Award
 import kotlinx.android.synthetic.main.item_awards.view.*
 
@@ -25,14 +24,9 @@ class AwardListAdapter(val items: Array<Award>) : RecyclerView.Adapter<AwardList
 
     override fun getItemCount(): Int = items.size
 
-
-    fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
-        return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
-    }
-
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindMyAwards(myAwards: Award) {
-            with(myAwards) {
+        fun bindMyAwards(award: Award) {
+            with(award) {
                 if (mode > 0) {
                     itemView.awardEmpty.visibility = View.INVISIBLE
                     itemView.award.visibility = View.VISIBLE
