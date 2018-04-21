@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mHelper = IabHelper(this, getString(R.string.base64_encoded_public_key))
 
         // /!\ for a production application, you should set this to false).
-        mHelper!!.enableDebugLogging(true)
+        mHelper!!.enableDebugLogging(false)
 
         mHelper!!.startSetup(IabHelper.OnIabSetupFinishedListener { result ->
             info("Setup finished.")
