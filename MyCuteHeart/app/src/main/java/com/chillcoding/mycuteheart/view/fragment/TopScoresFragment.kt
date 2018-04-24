@@ -26,7 +26,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  */
 class TopScoresFragment : Fragment(), AnkoLogger {
 
-    private val url = "https://i-love-api.herokuapp.com/api/scores"
+    private val url = "https://i-love-api.herokuapp.com/api/"
 
     var allTopScores = listOf<Score>(Score(User("Marina"), 51032), Score(User("Macha"), 4973), Score(User("Jean-Michel"), 3542), Score(User("Carole"), 3333), Score(User("Zozo"), 2203), Score(User("Lola"), 2199), Score(User("Léo"), 999), Score(User("Matéo"), 998), Score(User("Léa"), 997), Score(User("Joe"), 995))
 
@@ -46,12 +46,8 @@ class TopScoresFragment : Fragment(), AnkoLogger {
 
             scoreRequest.enqueue(object : Callback<List<Score>> {
                 override fun onResponse(call: Call<List<Score>>, response: Response<List<Score>>) {
-                    allTopScores = response.body()!!
-                    if (allTopScores != null) {
-                        info("HERE is ALL SCORE FROM I LOVE SERVER :)")
-                        for (s in allTopScores)
-                            info(" one score : ${s.user.username} : ${s.point} ")
-                    }
+                    if (response.body() != null)
+                        allTopScores = response.body()!!
                 }
 
                 override fun onFailure(call: Call<List<Score>>, t: Throwable) {
