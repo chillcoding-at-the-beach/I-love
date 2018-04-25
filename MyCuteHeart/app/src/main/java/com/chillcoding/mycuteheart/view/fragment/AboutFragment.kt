@@ -29,6 +29,8 @@ class AboutFragment : Fragment() {
 
     private var star: Boolean = true
 
+    private var thumbUp: Boolean = true
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         aboutChillcodingButton.setOnClickListener { browse("https://www.chillcoding.com/") }
         aboutAndroidImg.setOnClickListener {
@@ -57,26 +59,36 @@ class AboutFragment : Fragment() {
                     setImageResource(R.drawable.ic_love_border)
                 like = !like
             }
-            with(aboutChillcodingBeachIcon) {
-                setOnClickListener {
-                    if (beach)
-                        setImageResource(R.drawable.ic_sun)
-                    else
-                        setImageResource(R.drawable.ic_beach_access)
-                    beach = !beach
-                }
-                with(aboutChillcodingStarIcon) {
-                    setOnClickListener {
-                        if (star)
-                            setImageResource(R.drawable.ic_star)
-                        else
-                            setImageResource(R.drawable.ic_star_border)
-                        star = !star
-
-                    }
-                }
+        }
+        with(aboutChillcodingBeachIcon) {
+            setOnClickListener {
+                if (beach)
+                    setImageResource(R.drawable.ic_sun)
+                else
+                    setImageResource(R.drawable.ic_beach_access)
+                beach = !beach
             }
         }
+        with(aboutChillcodingStarIcon) {
+            setOnClickListener {
+                if (star)
+                    setImageResource(R.drawable.ic_star)
+                else
+                    setImageResource(R.drawable.ic_star_border)
+                star = !star
+
+            }
+        }
+        with(facebookLikeIcon) {
+            setOnClickListener {
+                if (thumbUp)
+                    setImageResource(R.drawable.ic_thumb_down)
+                else
+                    setImageResource(R.drawable.ic_thumb_up)
+                thumbUp = !thumbUp
+            }
+        }
+        facebookButton.setOnClickListener { browse("https://www.facebook.com/Jaime.EuAmo/") }
     }
 }
 
