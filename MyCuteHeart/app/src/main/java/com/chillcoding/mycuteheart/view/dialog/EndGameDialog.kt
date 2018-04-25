@@ -46,6 +46,11 @@ class EndGameDialog : DialogFragment() {
                 bestScore = data.score
                 endGameView.dialogBestTextView.visibility = View.VISIBLE
             }
+            data.score < 10 -> {
+                endGameView.dialogTitleTextView.text = getString(R.string.failure).toUpperCase()
+                endGameView.dialogLevelTextView.text = getString(R.string.you_can_better_text)
+            }
+
         }
         var activity = (activity as MainActivity)
         activity.setUpNewGame()
