@@ -13,6 +13,7 @@ class CuteHeart {
     var size = 0.5f
     var speed = 1
     var paint = Paint()
+    var paintShadow = Paint()
     var path = Path()
 
     var wakaX = 0f
@@ -29,6 +30,8 @@ class CuteHeart {
     private var mXZone = intArrayOf(0, 0)
     private var mYZone = intArrayOf(0, 0, 0)
 
+    var level = 1
+
     constructor() {
         init()
         updateToLevel(1)
@@ -43,10 +46,12 @@ class CuteHeart {
     }
 
     private fun init() {
-        paint = Paint()
         paint.style = Paint.Style.FILL
         paint.isAntiAlias = true
         paint.color = App.sColors.last()
+
+        paintShadow.style = Paint.Style.FILL_AND_STROKE
+        paintShadow.color = App.shadowColor
     }
 
     private fun initializeHeartCoordinates() {
@@ -120,9 +125,12 @@ class CuteHeart {
     fun updateTrajectory() {
         updatePosition()
         updateDirection()
+        if (isMagic)
+            updateSizeToMagic()
     }
 
     fun updateToLevel(level: Int) {
+        this.level = level
         contrast = level - 1
         updateSpeedToLevel(level)
         updateSizeToLevel(level)
@@ -143,6 +151,15 @@ class CuteHeart {
         updateZone()
     }
 
+    private fun updateSizeToMagic() {
+        size /= 1.2F
+        updateSize()
+        if (size < 0.1) {
+            isMagic = false
+            updateRandomly()
+        }
+    }
+
     private fun updateSpeedToLevel(level: Int) {
         if (level < 5)
             speed = Math.pow(2.0, (level - 1).toDouble()).toInt()
@@ -151,6 +168,7 @@ class CuteHeart {
     }
 
     fun updateRandomly() {
+        updateSizeToLevel(level)
         updatePositionRandomly()
         changeDirection()
         changeHeartColorRandomly()
@@ -158,5 +176,11 @@ class CuteHeart {
 
     fun isIn(xOf: Int, yOf: Int): Boolean {
         return (xOf in wakaX..wakaX + mX[6] && yOf in wakaY..wakaY + mY[6])
+    }
+
+    private var isMagic: Boolean = false
+
+    fun doMagic() {
+        isMagic = true
     }
 }

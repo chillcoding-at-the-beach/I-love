@@ -1,18 +1,19 @@
 package com.chillcoding.mycuteheart.view
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Paint
 import android.media.MediaPlayer
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.chillcoding.mycuteheart.R
-import android.app.Activity
-import android.graphics.Paint
-import android.os.Vibrator
 import android.widget.Toast
 import com.chillcoding.mycuteheart.App
 import com.chillcoding.mycuteheart.MainActivity
+import com.chillcoding.mycuteheart.R
 import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.GameData
 
@@ -35,7 +36,6 @@ class GameView : View, View.OnTouchListener {
 
     private var mActivity: MainActivity = context as MainActivity
     var awardLevel: Int by DelegatesExt.preference(context, App.PREF_AWARD_LEVEL, 1)
-
 
     companion object {
         private val POINTS = 1
@@ -67,6 +67,8 @@ class GameView : View, View.OnTouchListener {
         }
     }
 
+    private val dShadow = 15F
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (isPlaying) {
@@ -76,6 +78,11 @@ class GameView : View, View.OnTouchListener {
         //draw the main heart
         canvas?.save()
         canvas?.translate(mHeart.wakaX, mHeart.wakaY)
+        //draw the shadow
+        canvas?.translate(dShadow, dShadow)
+        canvas?.drawPath(mHeart.path, mHeart.paintShadow)
+        canvas?.translate(-dShadow, -dShadow)
+        //draw the heart
         canvas?.drawPath(mHeart.path, mHeart.paint)
         canvas?.restore()
     }
@@ -98,18 +105,9 @@ class GameView : View, View.OnTouchListener {
         return false
     }
 
-    private fun playHeartSound() {
-        if (mSoundHeartPlayer.isPlaying) {
-            mSoundHeartPlayer.stop()
-            mSoundHeartPlayer.reset()
-            mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
-        }
-        mSoundHeartPlayer.start()
-    }
-
     private fun win() {
         gameData.score += POINTS * gameData.level * awardLevel
-        mHeart.updateRandomly()
+        mHeart.doMagic()
         mActivity.updateScore()
     }
 
@@ -136,6 +134,7 @@ class GameView : View, View.OnTouchListener {
         Toast.makeText(context, "+ 1 ${context.getString(R.string.word_level)}!", Toast.LENGTH_SHORT).show()
         mHeart.updateToLevel(gameData.level)
         mActivity.updateLevel()
+        mSoundHeartPlayer.start()
     }
 
     fun play() {

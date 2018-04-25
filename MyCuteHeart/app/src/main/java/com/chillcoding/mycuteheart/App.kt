@@ -21,13 +21,14 @@ class App : Application() {
         const val SCORE_PER_AWARD = 300
         val sColors: List<Int> by lazy {
             listOf(
-                    ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null),
+                    ResourcesCompat.getColor(instance.resources, R.color.colorPrimarySuperDark, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorPrimary, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryDark, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorAccentLight, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorAccent, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorAccentDark, null))
         }
+        val shadowColor: Int by lazy { ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null) }
     }
 
     override fun onCreate() {
