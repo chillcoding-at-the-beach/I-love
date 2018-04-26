@@ -48,7 +48,6 @@
             android:layout_width="@dimen/little_size"
             android:layout_height="@dimen/little_size"
             android:background="@drawable/ic_star_shadow"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/middleStarImageView"

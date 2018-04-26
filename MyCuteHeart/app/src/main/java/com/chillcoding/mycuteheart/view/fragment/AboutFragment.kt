@@ -76,7 +76,6 @@ class AboutFragment : Fragment() {
                 else
                     setImageResource(R.drawable.ic_star_border)
                 star = !star
-
             }
         }
         with(facebookLikeIcon) {

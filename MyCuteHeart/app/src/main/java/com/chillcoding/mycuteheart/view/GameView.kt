@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.media.MediaPlayer
-import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -40,6 +39,7 @@ class GameView : View, View.OnTouchListener {
     companion object {
         private val POINTS = 1
         private val TAPS_PER_LEVEL = 10
+        private val D_SHADOW = 15F
     }
 
     constructor(context: Context) : this(context, null)
@@ -67,8 +67,6 @@ class GameView : View, View.OnTouchListener {
         }
     }
 
-    private val dShadow = 15F
-
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (isPlaying) {
@@ -79,9 +77,9 @@ class GameView : View, View.OnTouchListener {
         canvas?.save()
         canvas?.translate(mHeart.wakaX, mHeart.wakaY)
         //draw the shadow
-        canvas?.translate(dShadow, dShadow)
+        canvas?.translate(D_SHADOW, D_SHADOW)
         canvas?.drawPath(mHeart.path, mHeart.paintShadow)
-        canvas?.translate(-dShadow, -dShadow)
+        canvas?.translate(-D_SHADOW, -D_SHADOW)
         //draw the heart
         canvas?.drawPath(mHeart.path, mHeart.paint)
         canvas?.restore()
