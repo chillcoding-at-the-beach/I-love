@@ -406,6 +406,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setUpSound() {
         mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
         mSoundPlayer.isLooping = true
+        mSoundPlayer.setVolume(0.6F, 0.6F)
     }
 
     fun updateScore() {
@@ -447,8 +448,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun resetSound() {
         mSoundPlayer.reset()
-        mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
-        mSoundPlayer.isLooping = true
+        setUpSound()
     }
 
     fun setUpNewGame() {
