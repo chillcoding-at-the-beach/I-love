@@ -13,7 +13,7 @@ import java.util.*
 /**
  * Created by macha on 19/04/2018.
  */
-class ScoreListAdapter(val items: List<Score>) : RecyclerView.Adapter<ScoreListAdapter.ViewHolder>() {
+class ScoreListAdapter(var items: List<Score>) : RecyclerView.Adapter<ScoreListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(parent.inflate(R.layout.item_score))
@@ -23,6 +23,10 @@ class ScoreListAdapter(val items: List<Score>) : RecyclerView.Adapter<ScoreListA
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindScore(items[position])
+    }
+
+    fun setScores(scores: List<Score>) {
+        items = scores
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {

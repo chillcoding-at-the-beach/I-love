@@ -13,7 +13,10 @@ import com.chillcoding.mycuteheart.model.User
 import com.chillcoding.mycuteheart.network.GameService
 import com.chillcoding.mycuteheart.view.adapter.ScoreListAdapter
 import kotlinx.android.synthetic.main.fragment_top_scores.*
-import org.jetbrains.anko.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,9 +29,11 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  */
 class TopScoresFragment : Fragment(), AnkoLogger {
 
-    private val url = "https://i-love-api.herokuapp.com/api/"
+    private val url = "https://i-love-api.herokuapp.com/"
 
     var allTopScores = listOf<Score>(Score(User("Marina"), 51032), Score(User("Macha"), 4973), Score(User("Jean-Michel"), 3542), Score(User("Carole"), 3333), Score(User("Zozo"), 2203), Score(User("Lola"), 2199), Score(User("Léo"), 999), Score(User("Matéo"), 998), Score(User("Léa"), 997), Score(User("Joe"), 995))
+
+    private var adapter = ScoreListAdapter(allTopScores)
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_top_scores, container, false)
@@ -46,8 +51,10 @@ class TopScoresFragment : Fragment(), AnkoLogger {
 
             scoreRequest.enqueue(object : Callback<List<Score>> {
                 override fun onResponse(call: Call<List<Score>>, response: Response<List<Score>>) {
-                    if (response.body() != null)
+                    if (response.body() != null) {
                         allTopScores = response.body()!!
+                        updateUI()
+                    }
                 }
 
                 override fun onFailure(call: Call<List<Score>>, t: Throwable) {
@@ -62,8 +69,13 @@ class TopScoresFragment : Fragment(), AnkoLogger {
         return view!!
     }
 
+    private fun updateUI() {
+        adapter.setScores(allTopScores)
+        adapter.notifyDataSetChanged()
+    }
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         topScoreRecycler.layoutManager = LinearLayoutManager(activity)
-        topScoreRecycler.adapter = ScoreListAdapter(allTopScores)
+        topScoreRecycler.adapter = adapter
     }
 }

@@ -9,6 +9,6 @@ import retrofit2.http.GET
  * Created by macha on 24/11/2017.
  */
 interface GameService {
-    @GET("/scores")
+    @GET("/api/scores")
     fun listScores(): Call<List<Score>>
 }
