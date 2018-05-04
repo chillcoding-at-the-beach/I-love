@@ -61,14 +61,14 @@
         <item>Perfect</item>
     </string-array>
     <string-array name="text_love">
-        <item>The only way to do great work\nIs to LOVE what you do.</item>
-        <item>All you need is LOVE.</item>
-        <item>The good things in LIFE are better with you!</item>
-        <item>We fall in LOVE by chance\nWe stay in LOVE by choice.</item>
-        <item>One LIFE\nOne LOVE\nOne HEART\nOne DESTINY.</item>
-        <item>You are my butter HALF.</item>
-        <item>You know you\'re in LOVE when you can\'t fall asleep because reality is finally better than your dreams.</item>
-        <item>Where is LOVE\nThere is LIFE.</item>
+        <item>THE ONLY WAY\nTO DO\nGREAT WORK\nIS TO\nLOVE\nWHAT YOU DO.</item>
+        <item>ALL YOU\nNEED IS\nLOVE.</item>
+        <item>THE GOOD\nTHINGS IN\nLIFE\nARE BETTER\nWITH YOU!</item>
+        <item>WE FALL IN\nLOVE\nBY CHANCE\nWE STAY IN\nLOVE\nBY CHOICE.</item>
+        <item>ONE LIFE\nONE LOVE\nONE HEART\nONE DESTINY.</item>
+        <item>YOU ARE\nMY BUTTER\nHALF.</item>
+        <item>YOU KNOW\nYOU ARE IN\nLOVE\nWHEN YOU CAN\'T\nFALL ASLEEP\nBECAUSE REALITY\nIS FINALLY\nBETTER THAN YOUR\nDREAMS.</item>
+        <item>WHERE IS\nLOVE\nTHERE IS\nLIFE.</item>
     </string-array>
     <string-array name="word_mode">
         <item>Normal</item>
