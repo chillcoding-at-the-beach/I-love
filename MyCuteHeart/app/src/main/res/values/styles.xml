@@ -35,13 +35,13 @@
     </style>
 
     <style name="MyCardText">
-        <item name="android:paddingLeft">@dimen/cards_middle_margin</item>
-        <item name="android:paddingRight">@dimen/cards_middle_margin</item>
+        <item name="android:paddingLeft">@dimen/margin_16</item>
+        <item name="android:paddingRight">@dimen/margin_16</item>
     </style>
 
     <style name="MyCardText.Title">
         <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:layout_marginTop">@dimen/cards_big_margin</item>
+        <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">@dimen/subtitle_size</item>
     </style>
@@ -54,7 +54,7 @@
 
     <style name="MyCardText.Body">
         <item name="android:fontFamily">sans-serif</item>
-        <item name="android:layout_marginTop">@dimen/cards_middle_margin</item>
+        <item name="android:layout_marginTop">@dimen/margin_16</item>
         <item name="android:textSize">@dimen/body_size</item>
         <item name="android:textColor">#87000000</item>
     </style>
@@ -63,7 +63,7 @@
         <item name="android:layout_marginTop">@dimen/cards_margin</item>
         <item name="android:layout_marginLeft">@dimen/cards_margin</item>
         <item name="android:layout_marginRight">@dimen/cards_margin</item>
-        <item name="android:layout_marginBottom">@dimen/cards_big_margin</item>
+        <item name="android:layout_marginBottom">@dimen/margin_24</item>
     </style>
 
     <style name="MyAnimation.Activity" parent="@android:style/Animation.Activity">
