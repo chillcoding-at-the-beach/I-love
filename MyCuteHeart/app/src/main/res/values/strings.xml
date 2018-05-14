@@ -71,12 +71,28 @@
         <item>WHERE IS\nLOVE\nTHERE IS\nLIFE.</item>
     </string-array>
     <string-array name="word_mode">
-        <item>Normal</item>
-        <item>Multi</item>
-        <item>Color</item>
-        <item>Bonzai</item>
-        <item>Whang</item>
+        <item>Love</item>
+        <item>I Love</item>
+        <item>Beach</item>
+        <item>Sea</item>
+        <item>Jungle</item>
         <item>Loxodromic</item>
         <item>Verisimilitude</item>
     </string-array>
+    <string name="title_activity_award_detail">AwardDetailActivity</string>
+    <string-array name="text_award">
+        <item>"Congratulation!\n\n"
+        "You won the 'I Love' award, it's the first of a long set.\n"
+        "Note: The followings awards are only available with premium purchase.\n"
+        "To win award you have to touch as mush as possible hearts.\n\n"
+        "'I Love' start with an exceptional heart, as you have certainly noticed only its size, its color and its speed change. The shape is always the same, in this way it is unique.\n\n"
+            "I ❤️ is the global symbol for souvenirs of every place.\n
+            I ❤️ SF\n
+            I ❤️ LA\n
+            I ❤️ BCN\n
+            I ❤ Martinique\n
+            I ❤ Cannes\n\n"
+        "By the way, the story of 'I Love' start at Cannes.\n6:08 AM darkness had not long surrendered to the light. While the sun rise, the thin clouds are cast over the sky, taking sequentially the most beautiful colors of a rainbow, from purple to yellow. The sea was tainted; no longer an abyss of black. Instead it looked a metallic blue.  Any words can explain the feeling of a sunrise, it goes without saying that fortunately everyone can live these stolen moment.Last, but not least under the sun we are all the same."</item>
+    </string-array>
+    <string name="action_settings">Settings</string>
 </resources>

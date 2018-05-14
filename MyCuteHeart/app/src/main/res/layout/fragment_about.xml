@@ -38,8 +38,8 @@
                     style="@style/MyCardText.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/cards_middle_margin"
-                    android:paddingRight="@dimen/cards_middle_margin"
+                    android:paddingLeft="@dimen/margin_16"
+                    android:paddingRight="@dimen/margin_16"
                     android:text="@string/about_app"
                     app:layout_constraintTop_toBottomOf="@id/aboutChillcodingImg" />
 
@@ -48,7 +48,7 @@
                     style="@style/MyCardText.Subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/cards_middle_margin"
+                    android:paddingLeft="@dimen/margin_16"
                     android:text="@string/slogan_chillcoding"
                     app:layout_constraintTop_toBottomOf="@id/aboutChillcodingTitle" />
 
@@ -57,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginBottom="@dimen/cards_margin"
-                    android:layout_marginTop="@dimen/cards_middle_margin"
+                    android:layout_marginTop="@dimen/margin_16"
                     android:background="@color/colorPrimaryLight"
                     app:layout_constraintTop_toBottomOf="@id/aboutChillcodingSubtitle" />
 
@@ -65,7 +65,7 @@
                     android:id="@+id/aboutChillcodingIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/cards_middle_margin"
+                    android:padding="@dimen/margin_16"
                     android:tint="@color/colorPrimaryDark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/aboutChillCodingLine"
@@ -75,7 +75,7 @@
                     android:id="@+id/aboutChillcodingBeachIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/cards_middle_margin"
+                    android:padding="@dimen/margin_16"
                     android:tint="@color/colorPrimaryDark"
                     app:layout_constraintLeft_toRightOf="@id/aboutChillcodingIcon"
                     app:layout_constraintTop_toTopOf="@id/aboutChillcodingIcon"
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:tint="@color/colorPrimaryDark"
-                    android:padding="@dimen/cards_middle_margin"
+                    android:padding="@dimen/margin_16"
                     app:layout_constraintLeft_toRightOf="@id/aboutChillcodingBeachIcon"
                     app:layout_constraintTop_toTopOf="@id/aboutChillcodingIcon"
                     app:srcCompat="@drawable/ic_star_border" />
@@ -168,7 +168,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/cards_big_margin"
+                android:layout_marginBottom="@dimen/margin_24"
                 android:layout_marginTop="@dimen/cards_margin"
                 android:orientation="vertical">
 
@@ -276,8 +276,8 @@
                     style="@style/MyCardText.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/cards_middle_margin"
-                    android:paddingRight="@dimen/cards_middle_margin"
+                    android:paddingLeft="@dimen/margin_16"
+                    android:paddingRight="@dimen/margin_16"
                     android:text="@string/title_facebook"
                     app:layout_constraintTop_toBottomOf="@id/facebookImg" />
 
@@ -286,7 +286,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginBottom="@dimen/cards_margin"
-                    android:layout_marginTop="@dimen/cards_middle_margin"
+                    android:layout_marginTop="@dimen/margin_16"
                     android:background="@color/colorPrimaryLight"
                     app:layout_constraintTop_toBottomOf="@id/facebookTitle" />
 
@@ -294,7 +294,7 @@
                     android:id="@+id/facebookLikeIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/cards_middle_margin"
+                    android:padding="@dimen/margin_16"
                     android:tint="@color/colorPrimaryDark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/facebookLine"

@@ -19,6 +19,7 @@ class App : Application() {
         const val PREF_SOUND = "PREF_SOUND"
         const val PREF_PREMIUM = "PREF_PREMIUM"
         const val SCORE_PER_AWARD = 300
+        const val AWARD_MODE = "AWARD_MODE"
         val sColors: List<Int> by lazy {
             listOf(
                     ResourcesCompat.getColor(instance.resources, R.color.colorPrimarySuperDark, null),

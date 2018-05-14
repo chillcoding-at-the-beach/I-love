@@ -7,7 +7,7 @@
     android:layout_column="0"
     android:layout_columnSpan="2"
     android:layout_gravity="fill_horizontal"
-    android:layout_margin="@dimen/cards_sub_margin"
+    android:layout_margin="@dimen/margin_4"
     android:layout_row="0"
     app:cardCornerRadius="@dimen/general_corner_radius">
 
@@ -15,22 +15,24 @@
         android:id="@+id/award"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/cards_middle_margin"
+        android:layout_margin="@dimen/margin_16"
         android:visibility="invisible">
 
         <ImageView
             android:id="@+id/awardImg"
             android:layout_width="@dimen/middle_size"
             android:layout_height="@dimen/middle_size"
-            android:layout_marginBottom="@dimen/cards_middle_margin"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:id="@+id/awardName"
             style="@style/MyCardText.Title"
             android:layout_width="@dimen/big_size"
-            android:layout_height="26dp"
-            android:layout_marginLeft="@dimen/cards_middle_margin"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_16"
             android:layout_marginTop="@dimen/cards_margin"
             app:layout_constraintLeft_toRightOf="@id/awardImg"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,8 +41,8 @@
             android:id="@+id/awardInfo"
             style="@style/MyCardText.Subtitle"
             android:layout_width="@dimen/big_size"
-            android:layout_height="15dp"
-            android:layout_marginLeft="@dimen/cards_middle_margin"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_16"
             app:layout_constraintLeft_toRightOf="@id/awardImg"
             app:layout_constraintTop_toBottomOf="@id/awardName" />
 
@@ -49,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginLeft="@dimen/cards_special_margin"
-            android:layout_marginTop="@dimen/cards_big_margin"
+            android:layout_marginTop="@dimen/margin_24"
             android:background="@color/colorPrimaryLight"
             app:layout_constraintLeft_toRightOf="@id/awardImg"
             app:layout_constraintTop_toBottomOf="@id/awardInfo" />
@@ -58,7 +60,7 @@
             android:id="@+id/awardIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cards_middle_margin"
+            android:layout_marginTop="@dimen/margin_16"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/awardLine"
@@ -68,7 +70,7 @@
             android:id="@+id/awardDownIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/cards_middle_margin"
+            android:layout_marginRight="@dimen/margin_16"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardIcon"
             app:layout_constraintTop_toTopOf="@id/awardIcon"
@@ -78,7 +80,7 @@
             android:id="@+id/awardLoveIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/cards_middle_margin"
+            android:layout_marginRight="@dimen/margin_16"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardDownIcon"
             app:layout_constraintTop_toTopOf="@id/awardIcon"
@@ -88,7 +90,7 @@
             android:id="@+id/awardPlayIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/cards_middle_margin"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_marginTop="@dimen/cards_margin"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardLoveIcon"
@@ -100,18 +102,18 @@
         android:id="@+id/awardEmpty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/cards_middle_margin">
+        android:layout_margin="@dimen/margin_16">
 
         <ImageView
             android:id="@+id/awardEmptyImg"
             android:layout_width="@dimen/middle_size"
             android:layout_height="@dimen/middle_size"
-            android:layout_marginBottom="@dimen/cards_middle_margin"
-            android:layout_marginRight="@dimen/cards_middle_margin"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:layout_marginRight="@dimen/margin_16"
             android:background="@color/colorPrimaryLight"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_goneMarginRight="@dimen/cards_middle_margin"
+            app:layout_goneMarginRight="@dimen/margin_16"
             app:srcCompat="@drawable/ic_menu_awards" />
 
         <View
@@ -139,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginLeft="@dimen/cards_special_margin"
-            android:layout_marginTop="@dimen/cards_big_margin"
+            android:layout_marginTop="@dimen/margin_24"
             android:background="@color/colorPrimaryLight"
             app:layout_constraintLeft_toRightOf="@id/awardEmptyImg"
             app:layout_constraintTop_toBottomOf="@id/awardEmptyInfo" />
@@ -148,7 +150,7 @@
             android:id="@+id/awardEmptyIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cards_middle_margin"
+            android:layout_marginTop="@dimen/margin_16"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/awardEmptyLine"
@@ -158,7 +160,7 @@
             android:id="@+id/awardEmptyDownIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/cards_middle_margin"
+            android:layout_marginRight="@dimen/margin_16"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardEmptyIcon"
             app:layout_constraintTop_toTopOf="@id/awardEmptyIcon"
@@ -168,7 +170,7 @@
             android:id="@+id/awardEmptyNormalIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/cards_middle_margin"
+            android:layout_marginRight="@dimen/margin_16"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardEmptyDownIcon"
             app:layout_constraintTop_toTopOf="@id/awardEmptyIcon"
@@ -177,7 +179,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/cards_middle_margin"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_marginTop="@dimen/cards_margin"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardEmptyNormalIcon"
