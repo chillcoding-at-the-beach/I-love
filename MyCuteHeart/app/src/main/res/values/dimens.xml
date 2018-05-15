@@ -18,9 +18,9 @@
     <dimen name="general_corner_radius">2dp</dimen>
     <dimen name="cards_margin">8dp</dimen>
     <dimen name="cards_inter_margin">12dp</dimen>
-    <dimen name="cards_middle_margin">16dp</dimen>
-    <dimen name="cards_big_margin">24dp</dimen>
-    <dimen name="cards_sub_margin">4dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
     <dimen name="cards_special_margin">136dp</dimen>
     <dimen name="line_height">1dp</dimen>
     <dimen name="title_width">80dp</dimen>

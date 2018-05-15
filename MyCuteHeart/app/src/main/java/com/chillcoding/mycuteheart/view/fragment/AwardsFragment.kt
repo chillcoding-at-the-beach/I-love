@@ -29,17 +29,22 @@ class AwardsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_awards, container, false)
         val bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
-        val awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 1)
+        val awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 0)
 
         if (isPremium) {
-            for (k in 0..(awardLevel - 2)) {
-                items[k] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[k], (k + 1) * App.SCORE_PER_AWARD, k + 1)
+            for (k in 0..(awardLevel - 1)) {
+                items[k] = Award(R.drawable.ic_award, resources.getStringArray(R.array.word_mode)[k], (k + 1) * App.SCORE_PER_AWARD, k)
             }
-            items[awardLevel - 1] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[awardLevel - 1], bestScore, awardLevel)
+            items[awardLevel] = Award(R.drawable.ic_award, resources.getStringArray(R.array.word_mode)[awardLevel], bestScore, awardLevel)
         } else {
-            items[0] = Award(R.drawable.ic_menu_awards, resources.getString(R.string.get_premium_text), bestScore, 2)
-        }
+            if (bestScore != 0) {
+                if (awardLevel > 0)
+                    items[0] = Award(R.drawable.ic_award,resources.getStringArray(R.array.word_mode)[awardLevel], bestScore, awardLevel)
+                else
+                    items[0] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[awardLevel], bestScore, awardLevel)
 
+            }
+        }
         return view!!
     }
 

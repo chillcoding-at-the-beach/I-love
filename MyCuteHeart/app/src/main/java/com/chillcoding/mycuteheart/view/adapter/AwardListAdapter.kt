@@ -7,7 +7,9 @@ import com.chillcoding.mycuteheart.App
 import com.chillcoding.mycuteheart.R
 import com.chillcoding.mycuteheart.extension.inflate
 import com.chillcoding.mycuteheart.model.Award
-import kotlinx.android.synthetic.main.item_awards.view.*
+import com.chillcoding.mycuteheart.view.activity.AwardDetailActivity
+import kotlinx.android.synthetic.main.item_award.view.*
+import org.jetbrains.anko.startActivity
 
 /**
  * Created by macha on 21/09/2017.
@@ -15,7 +17,7 @@ import kotlinx.android.synthetic.main.item_awards.view.*
 class AwardListAdapter(val items: Array<Award>) : RecyclerView.Adapter<AwardListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent.inflate(R.layout.item_awards))
+        return ViewHolder(parent.inflate(R.layout.item_award))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -27,21 +29,21 @@ class AwardListAdapter(val items: Array<Award>) : RecyclerView.Adapter<AwardList
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bindMyAwards(award: Award) {
             with(award) {
-                if (mode > 0) {
+                if (score != 0) {
                     itemView.awardEmpty.visibility = View.INVISIBLE
                     itemView.award.visibility = View.VISIBLE
-                    itemView.awardImg.setImageResource(img)
                     itemView.awardName.text = "${view.context.getString(R.string.word_best_score)}: $score"
+                    itemView.awardImg.setImageResource(img)
                     itemView.awardInfo.text = "${view.context.getString(R.string.word_mode)}: $name"
-                    if (mode > 1)
-                        itemView.awardPlayIcon.setColorFilter(App.sColors[4])
-                    if (mode > 2)
+                    itemView.awardPlayIcon.setColorFilter(App.sColors[4])
+                }
+                when {
+                    mode > 0 -> {
+                        itemView.setOnClickListener { itemView.context.startActivity<AwardDetailActivity>(App.AWARD_MODE to mode) }
                         itemView.awardLoveIcon.setColorFilter(App.sColors[2])
-                    if (mode > 3)
-                        itemView.awardDownIcon.setColorFilter(App.sColors[3])
-                    if (mode > 4)
-                        itemView.awardIcon.setColorFilter(App.sColors[5])
-
+                    }
+                    mode > 1 -> itemView.awardDownIcon.setColorFilter(App.sColors[3])
+                    mode > 2 -> itemView.awardIcon.setColorFilter(App.sColors[5])
                 }
             }
         }

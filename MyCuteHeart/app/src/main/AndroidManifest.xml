@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondActivity" />
+        <activity android:name=".view.activity.AwardDetailActivity" />
     </application>
 
 </manifest>

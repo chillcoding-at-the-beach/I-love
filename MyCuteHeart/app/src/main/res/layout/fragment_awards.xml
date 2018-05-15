@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/cards_sub_margin">
+    android:layout_margin="@dimen/margin_4">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/awardsList"

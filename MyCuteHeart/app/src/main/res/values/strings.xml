@@ -71,12 +71,33 @@
         <item>WHERE IS\nLOVE\nTHERE IS\nLIFE.</item>
     </string-array>
     <string-array name="word_mode">
-        <item>Normal</item>
-        <item>Multi</item>
-        <item>Color</item>
-        <item>Bonzai</item>
-        <item>Whang</item>
-        <item>Loxodromic</item>
-        <item>Verisimilitude</item>
+        <item>Love</item>
+        <item>I Love</item>
+        <item>Beach</item>
+        <item>Sea</item>
+        <item>Jungle</item>
+        <item>Dolphin</item>
+        <item>Elephant</item>
     </string-array>
+    <string name="title_activity_award_detail">AwardDetailActivity</string>
+    <string-array name="text_award">
+        <item>"Congratulation!\n\n"
+        "You won the 'I Love' award, it's the first of a long set.\n"
+        "Note: The following awards are only available with the premium purchase.\n"
+        "To win awards you have to touch as many hearts as possible.\n\n"
+        "'I Love' starts with an exceptional heart, as you have certainly noticed only its size, its color and its speed change. The shape is always the same, in this way it is unique.\n\n"
+            "I ❤️ is the global symbol for souvenirs of every places.\n
+            I ❤️ SF\n
+            I ❤️ LA\n
+            I ❤️ BCN\n
+            I ❤ Martinique\n
+            I ❤ Cannes\n\n"
+        "By the way, the story of 'I Love' starts in Cannes.\n6:08 AM darkness had not long surrendered to the light. While the sun rises, the thin clouds are cast over the sky, taking sequentially the most beautiful colors of a rainbow, from purple to yellow. The sea is tainted; no longer an abyss of black. Instead, it looked a metallic blue. There is no denying that any words can describe a sunrise. Nevertheless everyone can see it.Last but not least, under the sun we are all the same."</item>
+        <item>Beach Not yet ready!</item>
+        <item>Sea Not yet ready!</item>
+        <item>Jungle Not yet ready!</item>
+        <item>Dolphin Not yet ready!</item>
+        <item>Elephant Not yet ready!</item>
+    </string-array>
+    <string name="action_settings">Settings</string>
 </resources>
