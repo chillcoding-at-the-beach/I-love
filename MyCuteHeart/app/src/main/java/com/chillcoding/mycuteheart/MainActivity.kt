@@ -459,6 +459,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onRestart() {
         super.onRestart()
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
-        fab.changeMode(FloatingMusicActionButton.Mode.PLAY_TO_PAUSE)
     }
 }
