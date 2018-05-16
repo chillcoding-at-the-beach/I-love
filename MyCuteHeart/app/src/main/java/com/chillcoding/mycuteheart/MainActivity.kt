@@ -344,7 +344,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onStop() {
         super.onStop()
         drawer_layout.removeDrawerListener(mToggle)
-        pauseGame()
+        if (gameView.isPlaying)
+            pauseGame(true)
     }
 
     private fun complain(msg: String) {
