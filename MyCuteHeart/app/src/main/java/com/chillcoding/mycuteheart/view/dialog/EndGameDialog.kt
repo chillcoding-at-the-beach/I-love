@@ -36,21 +36,32 @@ class EndGameDialog : DialogFragment() {
         endGameView.dialogLevelTextView.text = "${resources.getString(R.string.word_level)} ${data.level}"
 
         when {
-            data.score > (awardLevel+1) * App.SCORE_PER_AWARD -> {
+            data.score > (awardLevel + 1) * App.SCORE_PER_AWARD -> {
                 if (isPremium)
                     awardLevel = (data.score / App.SCORE_PER_AWARD)
                 else
                     awardLevel = 1
+                endGameView.starImageView.visibility = View.GONE
+                endGameView.middleStarImageView.visibility = View.GONE
+                endGameView.endStarImageView.visibility = View.GONE
+                endGameView.dialogAwardImg.visibility = View.VISIBLE
                 endGameView.dialogAwardTextView.visibility = View.VISIBLE
+                endGameView.dialogAwardBisTextView.visibility = View.VISIBLE
                 bestScore = data.score
             }
             data.score > bestScore -> {
                 bestScore = data.score
                 endGameView.dialogBestTextView.visibility = View.VISIBLE
+                endGameView.starImageView.setColorFilter(App.goldColor)
+                endGameView.middleStarImageView.setColorFilter(App.goldColor)
+                endGameView.endStarImageView.setColorFilter(App.goldColor)
             }
             data.score < 10 -> {
                 endGameView.dialogTitleTextView.text = getString(R.string.failure).toUpperCase()
                 endGameView.dialogLevelTextView.text = getString(R.string.you_can_better_text)
+                endGameView.starImageView.setColorFilter(App.sColors[1])
+                endGameView.middleStarImageView.setColorFilter(App.sColors[1])
+                endGameView.endStarImageView.setColorFilter(App.sColors[1])
             }
 
         }
