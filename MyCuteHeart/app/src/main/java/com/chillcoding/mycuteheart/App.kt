@@ -30,6 +30,7 @@ class App : Application() {
                     ResourcesCompat.getColor(instance.resources, R.color.colorAccentDark, null))
         }
         val shadowColor: Int by lazy { ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null) }
+        val goldColor: Int by lazy { ResourcesCompat.getColor(instance.resources, R.color.colorYellowGold, null) }
     }
 
     override fun onCreate() {

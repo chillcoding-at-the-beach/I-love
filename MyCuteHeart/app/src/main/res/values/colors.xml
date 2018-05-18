@@ -9,5 +9,6 @@
     <color name="colorAccentLight">#ff5131</color>
 
     <color name="colorYellowDark">#c7a500</color>
+    <color name="colorYellowGold"> #ffd700</color>
     <color name="colorYellowLight">#ffff52</color>
 </resources>
