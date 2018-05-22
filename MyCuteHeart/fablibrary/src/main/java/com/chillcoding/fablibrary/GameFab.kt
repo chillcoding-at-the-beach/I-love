@@ -79,7 +79,7 @@ class GameFab : FloatingActionButton {
         this.setImageDrawable(animatedVector)
     }
 
-    fun doClick(view: View) {
+    fun playAnimation(view: View) {
         eventActor.offer(view)
     }
 

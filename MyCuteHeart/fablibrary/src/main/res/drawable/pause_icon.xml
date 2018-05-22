@@ -15,7 +15,7 @@
         <group android:name="upperpart">
             <path
                 android:name="upper"
-                android:pathData="@string/pause_icon_upper_path_data"
+                android:pathData="M 32 40 L 32 56  L 96 56 L 96 40 Z"
                 android:fillColor="#FFffffff"
                 android:strokeLineCap="butt"
                 android:strokeLineJoin="miter"
@@ -24,7 +24,7 @@
         <group android:name="bottompart">
             <path
                 android:name="bottom"
-                android:pathData="@string/pause_icon_bottom_path_data"
+                android:pathData="M 32 88 L 32 72 L 96 72 L 96 88 Z"
                 android:fillColor="#FFffffff"
                 android:strokeLineCap="butt"
                 android:strokeLineJoin="miter"
