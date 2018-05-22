@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:drawable="@drawable/pause_icon">
+
+    <target
+        android:name="parts"
+        android:animation="@animator/rotate_minus_90_animation"/>
+
+    <target
+        android:name="upper"
+        android:animation="@animator/upper_pause_to_play_animation"/>
+
+    <target
+        android:name="bottom"
+        android:animation="@animator/bottom_pause_to_play_animation"/>
+</animated-vector>

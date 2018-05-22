@@ -16,7 +16,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import be.rijckaert.tim.animatedvector.FloatingMusicActionButton
+import com.chillcoding.fablibrary.GameFab
 import com.chillcoding.mycuteheart.extension.DelegatesExt
 import com.chillcoding.mycuteheart.model.FragmentId
 import com.chillcoding.mycuteheart.util.IabBroadcastReceiver
@@ -82,14 +82,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setUpInAppPurchase() {
         requestAccountPermission()
-        info("Creating IAB helper.")
         mHelper = IabHelper(this, getString(R.string.base64_encoded_public_key))
 
         // /!\ for a production application, you should set this to false).
         mHelper!!.enableDebugLogging(false)
 
         mHelper!!.startSetup(IabHelper.OnIabSetupFinishedListener { result ->
-            info("Setup finished.")
 
             if (!result.isSuccess) {
                 complain("Problem setting up in-app billing: $result")
@@ -111,7 +109,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             registerReceiver(mBroadcastReceiver, broadcastFilter)
 
             // IAB is fully set up. Now, let's get an inventory of stuff we own.
-            info("Setup successful. Querying inventory.")
             try {
                 mHelper!!.queryInventoryAsync(mGotInventoryListener)
             } catch (e: IabHelper.IabAsyncInProgressException) {
@@ -248,7 +245,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             override fun onDrawerClosed(view: View?) {}
             override fun onDrawerOpened(drawerView: View?) {
-                pauseGame(true)
+                if (gameView.isPlaying)
+                    pauseGame(true)
             }
         }
 
@@ -256,7 +254,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setUpFab() {
-        fab.setOnMusicFabClickListener(object : FloatingMusicActionButton.OnMusicFabClickListener {
+        fab.setOnGameFabClickListener(object : GameFab.OnGameFabClickListener {
             override fun onClick(view: View) {
                 if (!gameView.isPlaying)
                     playGame()
@@ -317,7 +315,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     public override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(mBroadcastReceiver)
-        info("Destroying helper.")
         if (mHelper != null) {
             mHelper!!.disposeWhenFinished()
             mHelper = null
@@ -381,14 +378,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun pauseGame(animateFab: Boolean = false) {
         if (animateFab)
-            fab.playAnimation()
+            fab.playAnimation(contentView!!)
         gameView.pause()
         mSoundPlayer.pause()
     }
 
     fun playGame(animateFab: Boolean = false) {
         if (animateFab)
-            fab.playAnimation()
+            fab.playAnimation(contentView!!)
         if (isSound)
             mSoundPlayer.start()
         gameView.play()
@@ -396,7 +393,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun endGame() {
         resetSound()
-        fab.playAnimation()
+        fab.playAnimation(contentView!!)
         var bundle = Bundle()
         bundle.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
         var popup = EndGameDialog()
