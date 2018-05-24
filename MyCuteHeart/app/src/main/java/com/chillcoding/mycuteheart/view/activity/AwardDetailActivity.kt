@@ -1,7 +1,8 @@
 package com.chillcoding.mycuteheart.view.activity
 
+import android.graphics.Typeface
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import com.chillcoding.mycuteheart.App
 import com.chillcoding.mycuteheart.R
@@ -32,8 +33,11 @@ class AwardDetailActivity : AppCompatActivity() {
         }
 
         awardDetailImg.setImageResource(R.drawable.ic_award)
-        awardDetailText.text = resources.getStringArray(R.array.text_award)[mode-1]
+        awardDetailText.text = resources.getStringArray(R.array.text_award)[mode - 1]
 
+        val tf: Typeface? = ResourcesCompat.getFont(this.applicationContext, R.font.shadows_into_light)
+        collapsingToolbar.setCollapsedTitleTypeface(tf);
+        collapsingToolbar.setExpandedTitleTypeface(tf);
     }
 
     override fun onSupportNavigateUp(): Boolean {
