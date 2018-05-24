@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/cards_margin">
+    android:layout_margin="@dimen/margin_8">
 
     <GridLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/cards_margin">
+                android:layout_marginBottom="@dimen/margin_8">
 
                 <ImageView
                     android:id="@+id/aboutChillcodingImg"
@@ -56,7 +56,7 @@
                     android:id="@+id/aboutChillCodingLine"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_marginBottom="@dimen/cards_margin"
+                    android:layout_marginBottom="@dimen/margin_8"
                     android:layout_marginTop="@dimen/margin_16"
                     android:background="@color/colorPrimaryLight"
                     app:layout_constraintTop_toBottomOf="@id/aboutChillcodingSubtitle" />
@@ -96,7 +96,7 @@
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/cards_margin"
+                    android:layout_marginTop="@dimen/margin_8"
                     android:text="@string/action_more"
                     android:textColor="@color/colorAccent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -169,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_24"
-                android:layout_marginTop="@dimen/cards_margin"
+                android:layout_marginTop="@dimen/margin_8"
                 android:orientation="vertical">
 
                 <ImageView
@@ -258,15 +258,15 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/cards_margin">
+                android:layout_marginBottom="@dimen/margin_8">
 
                 <ImageView
                     android:id="@+id/facebookImg"
                     android:layout_width="@dimen/middle_size"
                     android:layout_height="@dimen/middle_size"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="@dimen/cards_margin"
-                    android:paddingTop="@dimen/cards_margin"
+                    android:layout_margin="@dimen/margin_8"
+                    android:paddingTop="@dimen/margin_8"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@drawable/ic_facebook" />
@@ -285,7 +285,7 @@
                     android:id="@+id/facebookLine"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_marginBottom="@dimen/cards_margin"
+                    android:layout_marginBottom="@dimen/margin_8"
                     android:layout_marginTop="@dimen/margin_16"
                     android:background="@color/colorPrimaryLight"
                     app:layout_constraintTop_toBottomOf="@id/facebookTitle" />
@@ -305,7 +305,7 @@
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/cards_margin"
+                    android:layout_marginTop="@dimen/margin_8"
                     android:text="@string/action_more"
                     android:textColor="@color/colorAccent"
                     app:layout_constraintEnd_toEndOf="parent"

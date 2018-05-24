@@ -33,7 +33,7 @@
             android:layout_width="@dimen/big_size"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_16"
-            android:layout_marginTop="@dimen/cards_margin"
+            android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintLeft_toRightOf="@id/awardImg"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_16"
-            android:layout_marginTop="@dimen/cards_margin"
+            android:layout_marginTop="@dimen/margin_8"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardLoveIcon"
             app:layout_constraintTop_toBottomOf="@id/awardLine"
@@ -113,7 +113,6 @@
             android:background="@color/colorPrimaryLight"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_goneMarginRight="@dimen/margin_16"
             app:srcCompat="@drawable/ic_menu_awards" />
 
         <View
@@ -121,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="26dp"
             android:layout_marginLeft="@dimen/cards_special_margin"
-            android:layout_marginTop="@dimen/cards_margin"
+            android:layout_marginTop="@dimen/margin_8"
             android:background="@color/colorPrimaryLight"
             app:layout_constraintLeft_toRightOf="@id/awardEmptyImg"
             app:layout_constraintTop_toTopOf="parent" />
@@ -180,7 +179,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_16"
-            android:layout_marginTop="@dimen/cards_margin"
+            android:layout_marginTop="@dimen/margin_8"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintRight_toLeftOf="@id/awardEmptyNormalIcon"
             app:layout_constraintTop_toBottomOf="@id/awardEmptyLine"

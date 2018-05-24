@@ -60,29 +60,26 @@
     </style>
 
     <style name="MyCardText.Title">
-        <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">@dimen/subtitle_size</item>
     </style>
 
     <style name="MyCardText.Subtitle">
-        <item name="android:fontFamily">sans-serif</item>
         <item name="android:layout_marginTop">@dimen/cards_inter_margin</item>
-        <item name="android:textSize">@dimen/body_size</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
     </style>
 
     <style name="MyCardText.Body">
-        <item name="android:fontFamily">sans-serif</item>
         <item name="android:layout_marginTop">@dimen/margin_16</item>
         <item name="android:textSize">@dimen/body_size</item>
         <item name="android:textColor">#87000000</item>
     </style>
 
     <style name="MyCard">
-        <item name="android:layout_marginTop">@dimen/cards_margin</item>
-        <item name="android:layout_marginLeft">@dimen/cards_margin</item>
-        <item name="android:layout_marginRight">@dimen/cards_margin</item>
+        <item name="android:layout_marginTop">@dimen/margin_8</item>
+        <item name="android:layout_marginLeft">@dimen/margin_8</item>
+        <item name="android:layout_marginRight">@dimen/margin_8</item>
         <item name="android:layout_marginBottom">@dimen/margin_24</item>
     </style>
 

@@ -17,7 +17,7 @@
     <dimen name="game_margin">25dp</dimen>
     <dimen name="normal_middle_width">150dp</dimen>
     <dimen name="general_corner_radius">2dp</dimen>
-    <dimen name="cards_margin">8dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
     <dimen name="cards_inter_margin">12dp</dimen>
     <dimen name="margin_16">16dp</dimen>
     <dimen name="margin_24">24dp</dimen>
