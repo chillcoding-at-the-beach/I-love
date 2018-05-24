@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
             android:tint="@color/colorPrimaryLight"
-            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/awardLine"
             app:srcCompat="@drawable/ic_love_side" />
 
@@ -152,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
             android:tint="@color/colorPrimaryLight"
-            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/awardEmptyLine"
             app:srcCompat="@drawable/ic_love_side" />
 
