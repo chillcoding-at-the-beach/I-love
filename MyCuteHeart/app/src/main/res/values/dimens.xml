@@ -8,6 +8,7 @@
     <dimen name="little_size">50dp</dimen>
     <dimen name="big_size">200dp</dimen>
     <dimen name="title_size">34sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
     <dimen name="subtitle_size">24sp</dimen>
     <dimen name="sub_subtitle_size">16sp</dimen>
     <dimen name="body_size">14sp</dimen>
