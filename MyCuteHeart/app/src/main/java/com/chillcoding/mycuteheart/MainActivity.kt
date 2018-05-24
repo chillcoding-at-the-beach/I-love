@@ -23,6 +23,7 @@ import com.chillcoding.mycuteheart.util.IabBroadcastReceiver
 import com.chillcoding.mycuteheart.util.IabHelper
 import com.chillcoding.mycuteheart.util.Purchase
 import com.chillcoding.mycuteheart.view.dialog.EndGameDialog
+import com.chillcoding.mycuteheart.view.dialog.QuoteDialog
 import com.google.android.gms.auth.GoogleAuthUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -369,11 +370,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun showAlertOnLove() {
-        alert(mLoveQuoteArray[mRandom.nextInt(mLoveQuoteArray.size)]) {
-            positiveButton(getString(R.string.action_like)) { showAlertOnLove() }
-            noButton { }
-        }.show()
+    fun showAlertOnLove() {
+        QuoteDialog().show(fragmentManager, MainActivity::class.java.simpleName)
     }
 
     private fun pauseGame(animateFab: Boolean = false) {
@@ -409,9 +407,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun updateScore() {
         when (gameView.gameData.score) {
-            in 0..9 -> mainScore.text = "${getString(R.string.word_score)}: 00${gameView.gameData.score}"
-            in 10..99 -> mainScore.text = "${getString(R.string.word_score)}: 0${gameView.gameData.score}"
-            else -> mainScore.text = "${getString(R.string.word_score)}: ${gameView.gameData.score}"
+            in 0..9 -> mainScorePoints.text = "00${gameView.gameData.score}"
+            in 10..99 -> mainScorePoints.text = "0${gameView.gameData.score}"
+            else -> mainScorePoints.text = "${gameView.gameData.score}"
         }
     }
 

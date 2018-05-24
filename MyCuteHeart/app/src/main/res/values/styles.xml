@@ -6,11 +6,25 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/shadows_into_light</item>
+
     </style>
 
+    <style name="TitleBarTextAppearance" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/shadows_into_light</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">23sp</item>
+        <item name="android:fontFamily">@font/shadows_into_light</item>
     </style>
 
     <style name="AppTheme.MainAnim">
@@ -22,7 +36,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="MyText">
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:fontFamily">@font/shadows_into_light</item>
     </style>
 
     <style name="MyText.Title">
@@ -30,7 +44,7 @@
     </style>
 
     <style name="MyText.SubTitle">
-        <item name="android:textSize">@dimen/sub_subtitle_size</item>
+        <item name="android:textSize">@dimen/subtitle_size</item>
         <item name="android:textColor">#87000000</item>
     </style>
 
@@ -46,29 +60,26 @@
     </style>
 
     <style name="MyCardText.Title">
-        <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">@dimen/subtitle_size</item>
     </style>
 
     <style name="MyCardText.Subtitle">
-        <item name="android:fontFamily">sans-serif</item>
         <item name="android:layout_marginTop">@dimen/cards_inter_margin</item>
-        <item name="android:textSize">@dimen/body_size</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
     </style>
 
     <style name="MyCardText.Body">
-        <item name="android:fontFamily">sans-serif</item>
         <item name="android:layout_marginTop">@dimen/margin_16</item>
         <item name="android:textSize">@dimen/body_size</item>
         <item name="android:textColor">#87000000</item>
     </style>
 
     <style name="MyCard">
-        <item name="android:layout_marginTop">@dimen/cards_margin</item>
-        <item name="android:layout_marginLeft">@dimen/cards_margin</item>
-        <item name="android:layout_marginRight">@dimen/cards_margin</item>
+        <item name="android:layout_marginTop">@dimen/margin_8</item>
+        <item name="android:layout_marginLeft">@dimen/margin_8</item>
+        <item name="android:layout_marginRight">@dimen/margin_8</item>
         <item name="android:layout_marginBottom">@dimen/margin_24</item>
     </style>
 

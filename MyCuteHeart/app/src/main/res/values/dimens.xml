@@ -8,6 +8,7 @@
     <dimen name="little_size">50dp</dimen>
     <dimen name="big_size">200dp</dimen>
     <dimen name="title_size">34sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
     <dimen name="subtitle_size">24sp</dimen>
     <dimen name="sub_subtitle_size">16sp</dimen>
     <dimen name="body_size">14sp</dimen>
@@ -16,7 +17,7 @@
     <dimen name="game_margin">25dp</dimen>
     <dimen name="normal_middle_width">150dp</dimen>
     <dimen name="general_corner_radius">2dp</dimen>
-    <dimen name="cards_margin">8dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
     <dimen name="cards_inter_margin">12dp</dimen>
     <dimen name="margin_16">16dp</dimen>
     <dimen name="margin_24">24dp</dimen>
@@ -24,6 +25,7 @@
     <dimen name="cards_special_margin">136dp</dimen>
     <dimen name="line_height">1dp</dimen>
     <dimen name="title_width">80dp</dimen>
+    <dimen name="score_width">70dp</dimen>
 </resources>
 
 

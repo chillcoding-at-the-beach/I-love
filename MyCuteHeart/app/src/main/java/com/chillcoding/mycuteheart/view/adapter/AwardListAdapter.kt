@@ -34,7 +34,7 @@ class AwardListAdapter(val items: Array<Award>) : RecyclerView.Adapter<AwardList
                     itemView.award.visibility = View.VISIBLE
                     itemView.awardName.text = "${view.context.getString(R.string.word_best_score)}: $score"
                     itemView.awardImg.setImageResource(img)
-                    itemView.awardInfo.text = "${view.context.getString(R.string.word_mode)}: $name"
+                    itemView.awardInfo.text = "${view.context.getString(R.string.word_award)}: $name"
                     itemView.awardPlayIcon.setColorFilter(App.sColors[4])
                 }
                 when {
