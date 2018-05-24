@@ -12,14 +12,27 @@
     <TextView
         android:id="@+id/mainScore"
         style="@style/MyText.SubTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/score_width"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:gravity="center_horizontal"
         android:text="@string/word_score"
         app:layout_constraintEnd_toStartOf="@+id/mainFirstLife"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mainScorePoints"
+        android:layout_width="@dimen/score_width"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:text="000"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toStartOf="@+id/mainFirstLife"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/mainScore"
+        android:layout_marginTop="@dimen/margin_24"/>
 
     <ImageView
         android:id="@id/mainFirstLife"

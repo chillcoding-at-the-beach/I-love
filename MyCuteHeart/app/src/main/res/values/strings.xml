@@ -5,7 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_love">Love</string>
-    <string name="word_score">Score</string>
+    <string name="word_score">Score:</string>
     <string name="word_level">Level</string>
     <string name="menu_more_features">More features</string>
     <string name="menu_awards">Awards</string>
