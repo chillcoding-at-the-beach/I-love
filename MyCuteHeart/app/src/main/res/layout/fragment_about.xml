@@ -85,8 +85,8 @@
                     android:id="@+id/aboutChillcodingStarIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tint="@color/colorPrimaryDark"
                     android:padding="@dimen/margin_16"
+                    android:tint="@color/colorPrimaryDark"
                     app:layout_constraintLeft_toRightOf="@id/aboutChillcodingBeachIcon"
                     app:layout_constraintTop_toTopOf="@id/aboutChillcodingIcon"
                     app:srcCompat="@drawable/ic_star_border" />
@@ -261,34 +261,56 @@
                 android:layout_marginBottom="@dimen/margin_8">
 
                 <ImageView
+                    android:id="@+id/instagramImg"
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/margin_8"
+                    android:paddingTop="@dimen/margin_8"
+                    app:layout_constraintEnd_toStartOf="@id/facebookImg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_instagram" />
+
+                <ImageView
                     android:id="@+id/facebookImg"
                     android:layout_width="@dimen/middle_size"
                     android:layout_height="@dimen/middle_size"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="@dimen/margin_8"
                     android:paddingTop="@dimen/margin_8"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/twitterImg"
+                    app:layout_constraintStart_toEndOf="@id/instagramImg"
                     app:srcCompat="@drawable/ic_facebook" />
 
+                <ImageView
+                    android:id="@+id/twitterImg"
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/margin_8"
+                    android:paddingTop="@dimen/margin_8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/facebookImg"
+                    app:srcCompat="@drawable/ic_twitter" />
+
                 <TextView
-                    android:id="@+id/facebookTitle"
+                    android:id="@+id/socialNetworksTitle"
                     style="@style/MyCardText.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/margin_16"
                     android:paddingRight="@dimen/margin_16"
-                    android:text="@string/title_facebook"
+                    android:text="@string/title_social_networks"
                     app:layout_constraintTop_toBottomOf="@id/facebookImg" />
 
                 <View
-                    android:id="@+id/facebookLine"
+                    android:id="@+id/socialLine"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginBottom="@dimen/margin_8"
                     android:layout_marginTop="@dimen/margin_16"
                     android:background="@color/colorPrimaryLight"
-                    app:layout_constraintTop_toBottomOf="@id/facebookTitle" />
+                    app:layout_constraintTop_toBottomOf="@id/socialNetworksTitle" />
 
                 <ImageView
                     android:id="@+id/facebookLikeIcon"
@@ -297,11 +319,11 @@
                     android:padding="@dimen/margin_16"
                     android:tint="@color/colorPrimaryDark"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/facebookLine"
+                    app:layout_constraintTop_toBottomOf="@id/socialLine"
                     app:srcCompat="@drawable/ic_thumb_up" />
 
                 <Button
-                    android:id="@+id/facebookButton"
+                    android:id="@+id/socialButton"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -309,7 +331,7 @@
                     android:text="@string/action_more"
                     android:textColor="@color/colorAccent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/facebookLine" />
+                    app:layout_constraintTop_toBottomOf="@id/socialLine" />
 
             </android.support.constraint.ConstraintLayout>
 

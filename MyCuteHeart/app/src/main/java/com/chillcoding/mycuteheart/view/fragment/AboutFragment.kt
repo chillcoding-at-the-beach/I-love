@@ -87,7 +87,13 @@ class AboutFragment : Fragment() {
                 thumbUp = !thumbUp
             }
         }
-        facebookButton.setOnClickListener { browse("https://www.facebook.com/Jaime.EuAmo/") }
+        socialButton.setOnClickListener { browse("https://www.chillcoding.com/app/ilove/") }
+
+        facebookImg.setOnClickListener { browse("https://www.facebook.com/ilovekotlin/") }
+
+        instagramImg.setOnClickListener { browse("https://www.instagram.com/ilovekotlin/") }
+
+        twitterImg.setOnClickListener { browse("https://twitter.com/ILovekotlin/") }
     }
 }
 
