@@ -142,7 +142,8 @@ class GameView : View, View.OnTouchListener {
         gameData.award += 1
         mHeart.updateToLevel(gameData.level)
         mActivity.updateLevel()
-        Toast.makeText(context, "+ 1 ${context.getString(R.string.word_award)}!", Toast.LENGTH_LONG).show()
+        mActivity.showAwardDialog()
+        mActivity.updateGauge()
     }
 
     fun play() {
