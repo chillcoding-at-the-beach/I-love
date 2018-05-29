@@ -414,7 +414,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun updateLevel() {
-        mainLevel.text = "${getString(R.string.word_level)}: ${gameView.gameData.level}"
+           mainLevel.text = "${gameView.gameData.level}"
+    }
+
+    fun updateGauge() {
+        mainGauge.value = 200 + gameView.gameData.score * 600 / gameView.scoreForNextAward()
     }
 
     fun updateNbLife() {
@@ -440,6 +444,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         updateScore()
         updateNbLife()
         updateLevel()
+        updateGauge()
     }
 
     private fun resetSound() {

@@ -40,6 +40,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation 'pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3'
 }
 
 
