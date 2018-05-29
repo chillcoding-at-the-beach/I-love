@@ -27,12 +27,12 @@
         android:layout_width="@dimen/score_width"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/margin_24"
         android:text="000"
         android:textSize="35sp"
         app:layout_constraintEnd_toStartOf="@+id/mainFirstLife"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/mainScore"
-        android:layout_marginTop="@dimen/margin_24"/>
+        app:layout_constraintTop_toTopOf="@id/mainScore" />
 
     <ImageView
         android:id="@id/mainFirstLife"
@@ -57,19 +57,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_life_shadow"
-        app:layout_constraintEnd_toStartOf="@+id/mainLevel"
+        app:layout_constraintEnd_toStartOf="@+id/mainGauge"
         app:layout_constraintStart_toEndOf="@id/mainSecondLife"
         app:srcCompat="@drawable/ic_life" />
+
+    <pl.pawelkleczkowski.customgauge.CustomGauge
+        android:id="@+id/mainGauge"
+        android:layout_width="@dimen/score_width"
+        android:layout_height="@dimen/score_width"
+        android:padding="10dp"
+        app:gaugeEndValue="800"
+        app:gaugePointEndColor="@color/colorYellowDark"
+        app:gaugePointStartColor="@color/colorYellowLight"
+        app:gaugeStartAngle="135"
+        app:gaugeStartValue="200"
+        app:gaugeStrokeCap="ROUND"
+        app:gaugeStrokeColor="@color/colorPrimaryLight"
+        app:gaugeStrokeWidth="10dp"
+        app:gaugeSweepAngle="270"
+        app:layout_constraintStart_toEndOf="@id/mainThirdLife"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="@dimen/activity_vertical_margin"/>
 
     <TextView
         android:id="@+id/mainLevel"
         style="@style/MyText.SubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:text="@string/word_level"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/mainThirdLife" />
+        app:layout_constraintBottom_toBottomOf="@id/mainGauge"
+        app:layout_constraintTop_toTopOf="@id/mainGauge"
+        app:layout_constraintStart_toStartOf="@id/mainGauge"
+        app:layout_constraintEnd_toEndOf="@id/mainGauge"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.5"/>
 
     <com.chillcoding.mycuteheart.view.GameView
         android:id="@+id/gameView"

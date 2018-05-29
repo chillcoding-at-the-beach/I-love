@@ -90,8 +90,7 @@ class GameView : View, View.OnTouchListener {
             if (mHeart.isIn(event.x.toInt(), event.y.toInt())) {
                 if (isPlaying) {
                     win()
-                    if (gameData.score > scoreForNextLevel())
-                        levelUp()
+                    checkScore()
                 } else {
                     mActivity.playGame(true)
                 }
@@ -107,17 +106,14 @@ class GameView : View, View.OnTouchListener {
         gameData.score += POINTS * gameData.level * awardLevel
         mHeart.doMagic()
         mActivity.updateScore()
+        mActivity.updateGauge()
     }
 
-    private fun lost() {
-        mVibrator.vibrate(100)
-        gameData.nbLife--
-        mActivity.updateNbLife()
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        stop()
+    private fun checkScore() {
+        if (gameData.score > scoreForNextLevel())
+            levelUp()
+        if (gameData.score > scoreForNextAward())
+            awardUp()
     }
 
     private fun scoreForNextLevel(): Int {
@@ -127,12 +123,27 @@ class GameView : View, View.OnTouchListener {
         return score
     }
 
+    fun scoreForNextAward(): Int {
+        var score = 0
+        for (k in 1..gameData.award)
+            score += k * App.SCORE_PER_AWARD
+        return score
+    }
+
     private fun levelUp() {
         gameData.level += 1
         Toast.makeText(context, "+ 1 ${context.getString(R.string.word_level)}!", Toast.LENGTH_SHORT).show()
         mHeart.updateToLevel(gameData.level)
         mActivity.updateLevel()
         mSoundHeartPlayer.start()
+    }
+
+    private fun awardUp() {
+        gameData.award += 1
+        mHeart.updateToLevel(gameData.level)
+        mActivity.updateLevel()
+        mActivity.showAwardDialog()
+        mActivity.updateGauge()
     }
 
     fun play() {
@@ -149,10 +160,21 @@ class GameView : View, View.OnTouchListener {
         isPlaying = false
     }
 
+    private fun lost() {
+        mVibrator.vibrate(100)
+        gameData.nbLife--
+        mActivity.updateNbLife()
+    }
+
     fun setUpNewGame() {
         stop()
         gameData = GameData()
         mHeart.updateToLevel(1)
         invalidate()
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        stop()
     }
 }

@@ -18,7 +18,7 @@ class App : Application() {
         const val PREF_PAYLOAD = "PREF_PAYLOAD"
         const val PREF_SOUND = "PREF_SOUND"
         const val PREF_PREMIUM = "PREF_PREMIUM"
-        const val SCORE_PER_AWARD = 300
+        const val SCORE_PER_AWARD = 150
         const val AWARD_MODE = "AWARD_MODE"
         val sColors: List<Int> by lazy {
             listOf(

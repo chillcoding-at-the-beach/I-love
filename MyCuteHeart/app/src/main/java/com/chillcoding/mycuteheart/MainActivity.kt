@@ -22,6 +22,7 @@ import com.chillcoding.mycuteheart.model.FragmentId
 import com.chillcoding.mycuteheart.util.IabBroadcastReceiver
 import com.chillcoding.mycuteheart.util.IabHelper
 import com.chillcoding.mycuteheart.util.Purchase
+import com.chillcoding.mycuteheart.view.dialog.AwardDialog
 import com.chillcoding.mycuteheart.view.dialog.EndGameDialog
 import com.chillcoding.mycuteheart.view.dialog.QuoteDialog
 import com.google.android.gms.auth.GoogleAuthUtil
@@ -374,6 +375,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         QuoteDialog().show(fragmentManager, MainActivity::class.java.simpleName)
     }
 
+    fun showAwardDialog() {
+        AwardDialog().show(fragmentManager, MainActivity::class.java.simpleName)
+    }
+
     private fun pauseGame(animateFab: Boolean = false) {
         if (animateFab)
             fab.playAnimation(contentView!!)
@@ -414,7 +419,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun updateLevel() {
-        mainLevel.text = "${getString(R.string.word_level)}: ${gameView.gameData.level}"
+        mainLevel.text = "${gameView.gameData.level}"
+    }
+
+    fun updateGauge() {
+        mainGauge.value = 200 + gameView.gameData.score * 600 / gameView.scoreForNextAward()
     }
 
     fun updateNbLife() {
@@ -440,6 +449,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         updateScore()
         updateNbLife()
         updateLevel()
+        updateGauge()
     }
 
     private fun resetSound() {
