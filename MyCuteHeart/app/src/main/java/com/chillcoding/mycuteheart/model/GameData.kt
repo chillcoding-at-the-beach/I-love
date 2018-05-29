@@ -11,6 +11,7 @@ class GameData : Parcelable {
     var score = 0
     var level = 1
     var nbLife = 3
+    var award = 1
 
     constructor()
 
@@ -24,6 +25,7 @@ class GameData : Parcelable {
         dest?.writeInt(score)
         dest?.writeInt(level)
         dest?.writeInt(nbLife)
+        dest?.writeInt(award)
     }
 
     override fun describeContents(): Int {
