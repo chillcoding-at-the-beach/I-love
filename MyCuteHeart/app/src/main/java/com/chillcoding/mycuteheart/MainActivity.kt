@@ -414,7 +414,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun updateLevel() {
-           mainLevel.text = "${gameView.gameData.level}"
+        mainLevel.text = "${gameView.gameData.level}"
     }
 
     fun updateGauge() {

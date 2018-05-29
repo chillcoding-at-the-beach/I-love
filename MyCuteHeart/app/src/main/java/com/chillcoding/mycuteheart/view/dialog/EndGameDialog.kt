@@ -36,9 +36,10 @@ class EndGameDialog : DialogFragment() {
         endGameView.dialogLevelTextView.text = "${resources.getString(R.string.word_level)} ${data.level}"
 
         when {
-            data.score > (awardLevel + 1) * App.SCORE_PER_AWARD -> {
+
+            data.award - 1 > awardLevel -> {
                 if (isPremium)
-                    awardLevel = (data.score / App.SCORE_PER_AWARD)
+                    awardLevel = data.award - 1
                 else
                     awardLevel = 1
                 endGameView.starImageView.visibility = View.GONE
