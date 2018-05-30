@@ -163,10 +163,7 @@ class CuteHeart {
     }
 
     private fun updateSpeedToLevel(level: Int) {
-        if (level < 5)
             speed = Math.pow(2.0, (level - 1).toDouble()).toInt()
-        else
-            speed = 8
     }
 
     fun updateRandomly() {
