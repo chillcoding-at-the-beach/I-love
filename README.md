@@ -52,4 +52,4 @@ In two steps:
 [Android classdiagram]:
 https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/assets/myCuteHeartClassDiagram.png
 [ILove Icon]:
-https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/assets/ic_launcher-web.png.png
+https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/assets/ic_launcher-web.png
