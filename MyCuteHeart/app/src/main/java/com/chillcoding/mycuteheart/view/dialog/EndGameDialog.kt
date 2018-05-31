@@ -53,9 +53,9 @@ class EndGameDialog : DialogFragment() {
             data.score > bestScore -> {
                 bestScore = data.score
                 endGameView.dialogBestTextView.visibility = View.VISIBLE
-                endGameView.starImageView.setColorFilter(App.goldColor)
-                endGameView.middleStarImageView.setColorFilter(App.goldColor)
-                endGameView.endStarImageView.setColorFilter(App.goldColor)
+                endGameView.starImageView.setColorFilter(App.sColors[7])
+                endGameView.middleStarImageView.setColorFilter(App.sColors[7])
+                endGameView.endStarImageView.setColorFilter(App.sColors[7])
             }
             data.score < 10 -> {
                 endGameView.dialogTitleTextView.text = getString(R.string.failure).toUpperCase()

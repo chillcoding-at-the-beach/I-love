@@ -19,7 +19,7 @@ class CuteHeart {
     var wakaX = 0f
     var wakaY = 0f
 
-    var contrast = 0
+    var colorIndex = 0
 
     private lateinit var mX: FloatArray
     private lateinit var mY: FloatArray
@@ -48,7 +48,7 @@ class CuteHeart {
     private fun init() {
         paint.style = Paint.Style.FILL
         paint.isAntiAlias = true
-        paint.color = App.sColors.last()
+        paint.color = App.sColors.first()
 
         paintShadow.style = Paint.Style.FILL_AND_STROKE
         paintShadow.color = App.shadowColor
@@ -100,11 +100,8 @@ class CuteHeart {
     }
 
     private fun changeHeartColorRandomly() {
-        if (contrast < App.sColors.size) {
             val random = Random()
-            paint.color = App.sColors[random.nextInt(App.sColors.size - contrast)]
-        } else
-            paint.color = App.sColors.first()
+            paint.color = App.sColors[random.nextInt(colorIndex)]
     }
 
     private fun changeDirection() {
@@ -131,10 +128,15 @@ class CuteHeart {
 
     fun updateToLevel(level: Int) {
         this.level = level
-        contrast = level - 1
+        updateColorToLevel(level)
         updateSpeedToLevel(level)
         updateSizeToLevel(level)
         updateRandomly()
+    }
+
+    private fun updateColorToLevel(level: Int) {
+        if (level <= App.sColors.size)
+            colorIndex = level
     }
 
     private fun updateSizeToLevel(level: Int) {
@@ -161,10 +163,7 @@ class CuteHeart {
     }
 
     private fun updateSpeedToLevel(level: Int) {
-        if (level < 5)
             speed = Math.pow(2.0, (level - 1).toDouble()).toInt()
-        else
-            speed = 8
     }
 
     fun updateRandomly() {
