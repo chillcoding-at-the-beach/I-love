@@ -61,7 +61,7 @@
         <item>Perfect</item>
     </string-array>
     <string-array name="text_love">
-        <item>THE ONLY WAY\nTO DO\nGREAT WORK\nIS TO\nLOVE\nWHAT YOU DO.</item>
+        <item>THE ONLY WAY\nTO DO\nGREAT WORK\nIS TO\nLOVE\nWHAT YOU DO.\n-> Steve Jobs</item>
         <item>ALL YOU\nNEED IS\nLOVE.</item>
         <item>THE GOOD\nTHINGS IN\nLIFE\nARE BETTER\nWITH YOU!</item>
         <item>WE FALL IN\nLOVE\nBY CHANCE\nWE STAY IN\nLOVE\nBY CHOICE.</item>
@@ -69,6 +69,18 @@
         <item>YOU ARE\nMY BUTTER\nHALF.</item>
         <item>YOU KNOW\nYOU ARE IN\nLOVE\nWHEN YOU CAN\'T\nFALL ASLEEP\nBECAUSE REALITY\nIS FINALLY\nBETTER THAN YOUR\nDREAMS.</item>
         <item>WHERE IS\nLOVE\nTHERE IS\nLIFE.</item>
+        <item>ALONE\nWE GO FASTER\nTOGETHER\nWE GO FURTHER.\n-> African proverb</item>
+        <item>TO IMPROVE\nIS TO CHANGE\nTO BE PERFECT\nIS TO CHANGE OFTEN.\n-> Winston Churchill</item>
+        <item>THE\nEXPERT AT\nANYTHING\nWAS\nONCE A\nBEGINNER.\n-> Helen Hayes</item>
+        <item>EVERYTHING\nWILL BE\nOK IN\nTHE END.\nIF IT’S NOT OK\nIT’S NOT\nTHE END.</item>
+        <item>DIFFICULT ROADS\nOFTEN\nLEAD TO\nBEAUTIFUL\nDESTINATIONS.</item>
+        <item>THIS IS A TEST\nIF YOU CAN\nREAD THIS\nALL THE WAY\nDOWN TO HERE\nPLEASE\nGET OFF MY COMPUTER.</item>
+        <item>EVERY\nTHING\nHAPPENS\nFOR A REASON.</item>
+        <item>WHAT\nA\nSMALL\nWORLD.</item>
+        <item>TO BE A\nCHAMP\nYOU HAVE TO\nBELIEVE\nIN YOURSELF\nWHEN NOBODY\nELSE WILL.\n-> Sugar Ray Robinson</item>
+        <item>GOOD\nVIBES\nONLY.</item>
+        <item>ONE\nDAY\nAT A TIME.</item>
+        <item>THINK Positively\nEXERCISE Daily\nEAT Healthy\nWORK Hard\n STAY Strong\nWORRY Less\nDANCE More\nLOVE Often\nBE Happy.</item>
     </string-array>
     <string-array name="word_mode">
         <item>Love</item>
