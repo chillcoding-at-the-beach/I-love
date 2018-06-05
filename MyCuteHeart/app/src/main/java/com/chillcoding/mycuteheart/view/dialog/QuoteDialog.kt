@@ -22,9 +22,11 @@ class QuoteDialog : DialogFragment() {
         val builder = AlertDialog.Builder(activity)
         var activity = (activity as MainActivity)
         var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
-
+        var nbQuotes = mLoveQuoteArray.size
+        if (!isPremium)
+            nbQuotes = 8
         val dialogQuoteView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_quote, null)
-        dialogQuoteView.dialogQuote.text = mLoveQuoteArray[mRandom.nextInt(mLoveQuoteArray.size)]
+        dialogQuoteView.dialogQuote.text = mLoveQuoteArray[mRandom.nextInt(nbQuotes)]
         builder.setView(dialogQuoteView)
                 .setPositiveButton(R.string.action_like, { _, _ -> activity.showAlertOnLove() })
                 .setNegativeButton(android.R.string.cancel, null)
