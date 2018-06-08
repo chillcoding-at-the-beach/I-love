@@ -50,6 +50,6 @@ In two steps:
 * [Kotlin for Android](https://gitlab.com/chillcoding-at-the-beach/kotlin-for-android)
 
 [Android classdiagram]:
-https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/assets/myCuteHeartClassDiagram.png
+https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/assets/ILoveClassDiagram.png
 [ILove Icon]:
 https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/assets/ic_launcher-web.png
