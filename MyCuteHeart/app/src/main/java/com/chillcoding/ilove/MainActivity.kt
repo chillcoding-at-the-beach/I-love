@@ -423,7 +423,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun updateGauge() {
-        mainGauge.value = 200 + gameView.gameData.score * 600 / gameView.scoreForNextAward()
+        mainGaugeAward.value = 200 + (gameView.gameData.score - gameView.scoreForAward(gameView.gameData.award - 1)) * 600 / (gameView.scoreForAward(gameView.gameData.award) - gameView.scoreForAward(gameView.gameData.award - 1))
+        mainGaugeLevel.value = 200 + (gameView.gameData.score - gameView.scoreForLevel(gameView.gameData.level - 1)) * 600 / (gameView.scoreForLevel(gameView.gameData.level) - gameView.scoreForLevel(gameView.gameData.level - 1))
     }
 
     fun updateNbLife() {

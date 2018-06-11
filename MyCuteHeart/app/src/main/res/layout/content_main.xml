@@ -9,62 +9,11 @@
     tools:context="com.chillcoding.ilove.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:id="@+id/mainScore"
-        style="@style/MyText.Subtitle"
-        android:layout_width="@dimen/score_width"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:gravity="center_horizontal"
-        android:text="@string/word_score"
-        app:layout_constraintEnd_toStartOf="@+id/mainFirstLife"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/mainScorePoints"
-        android:layout_width="@dimen/score_width"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginTop="@dimen/margin_24"
-        android:text="000"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toStartOf="@+id/mainFirstLife"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/mainScore" />
-
-    <ImageView
-        android:id="@id/mainFirstLife"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_life_shadow"
-        app:layout_constraintEnd_toStartOf="@+id/mainSecondLife"
-        app:layout_constraintStart_toEndOf="@id/mainScore"
-        app:srcCompat="@drawable/ic_life" />
-
-    <ImageView
-        android:id="@id/mainSecondLife"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_life_shadow"
-        app:layout_constraintEnd_toStartOf="@+id/mainThirdLife"
-        app:layout_constraintStart_toEndOf="@id/mainFirstLife"
-        app:srcCompat="@drawable/ic_life" />
-
-    <ImageView
-        android:id="@id/mainThirdLife"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_life_shadow"
-        app:layout_constraintEnd_toStartOf="@+id/mainGauge"
-        app:layout_constraintStart_toEndOf="@id/mainSecondLife"
-        app:srcCompat="@drawable/ic_life" />
-
     <pl.pawelkleczkowski.customgauge.CustomGauge
-        android:id="@+id/mainGauge"
+        android:id="@+id/mainGaugeAward"
         android:layout_width="@dimen/score_width"
         android:layout_height="@dimen/score_width"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:padding="10dp"
         app:gaugeEndValue="800"
         app:gaugePointEndColor="@color/colorYellowDark"
@@ -75,22 +24,87 @@
         app:gaugeStrokeColor="@color/colorPrimaryLight"
         app:gaugeStrokeWidth="10dp"
         app:gaugeSweepAngle="270"
-        app:layout_constraintStart_toEndOf="@id/mainThirdLife"
+        app:layout_constraintEnd_toStartOf="@+id/mainFirstLife"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mainScorePoints"
+        style="@style/MyText.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="000"
+
+        app:layout_constraintEnd_toEndOf="@id/mainGaugeAward"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/mainGaugeAward"
+        app:layout_constraintBottom_toBottomOf="@id/mainGaugeAward"
+        app:layout_constraintTop_toTopOf="@id/mainGaugeAward"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <ImageView
+        android:id="@id/mainFirstLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_life_shadow"
+        app:layout_constraintEnd_toStartOf="@+id/mainSecondLife"
+        app:layout_constraintStart_toEndOf="@id/mainGaugeAward"
+        app:layout_constraintBottom_toBottomOf="@id/mainGaugeAward"
+        app:layout_constraintTop_toTopOf="@id/mainGaugeAward"
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@drawable/ic_life" />
+
+    <ImageView
+        android:id="@id/mainSecondLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_life_shadow"
+        app:layout_constraintEnd_toStartOf="@+id/mainThirdLife"
+        app:layout_constraintStart_toEndOf="@id/mainFirstLife"
+        app:layout_constraintTop_toTopOf="@id/mainFirstLife"
+        app:srcCompat="@drawable/ic_life" />
+
+    <ImageView
+        android:id="@id/mainThirdLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_life_shadow"
+        app:layout_constraintEnd_toStartOf="@+id/mainGaugeLevel"
+        app:layout_constraintTop_toTopOf="@id/mainFirstLife"
+        app:layout_constraintStart_toEndOf="@id/mainSecondLife"
+        app:srcCompat="@drawable/ic_life" />
+
+    <pl.pawelkleczkowski.customgauge.CustomGauge
+        android:id="@+id/mainGaugeLevel"
+        android:layout_width="@dimen/score_width"
+        android:layout_height="@dimen/score_width"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:padding="10dp"
+        app:gaugeEndValue="800"
+        app:gaugePointEndColor="@color/colorYellowDark"
+        app:gaugePointStartColor="@color/colorYellowLight"
+        app:gaugeStartAngle="135"
+        app:gaugeStartValue="200"
+        app:gaugeStrokeCap="ROUND"
+        app:gaugeStrokeColor="@color/colorPrimaryLight"
+        app:gaugeStrokeWidth="10dp"
+        app:gaugeSweepAngle="270"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="@dimen/activity_vertical_margin"/>
+        app:layout_constraintStart_toEndOf="@id/mainThirdLife"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/mainLevel"
         style="@style/MyText.Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/mainGauge"
-        app:layout_constraintTop_toTopOf="@id/mainGauge"
-        app:layout_constraintStart_toStartOf="@id/mainGauge"
-        app:layout_constraintEnd_toEndOf="@id/mainGauge"
+        app:layout_constraintBottom_toBottomOf="@id/mainGaugeLevel"
+        app:layout_constraintEnd_toEndOf="@id/mainGaugeLevel"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintVertical_bias="0.5"/>
+        app:layout_constraintStart_toStartOf="@id/mainGaugeLevel"
+        app:layout_constraintTop_toTopOf="@id/mainGaugeLevel"
+        app:layout_constraintVertical_bias="0.5" />
 
     <com.chillcoding.ilove.view.GameView
         android:id="@+id/gameView"

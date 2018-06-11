@@ -116,17 +116,21 @@ class GameView : View, View.OnTouchListener {
             awardUp()
     }
 
-    private fun scoreForNextLevel(): Int {
+    private fun scoreForNextLevel() = scoreForLevel(gameData.level)
+
+    private fun scoreForNextAward() = scoreForAward(gameData.award)
+
+    fun scoreForAward(awardLevel: Int): Int {
         var score = 0
-        for (k in 1..gameData.level)
-            score += TAPS_PER_LEVEL * k * k
+        for (k in 1..awardLevel)
+            score += k * App.SCORE_PER_AWARD
         return score
     }
 
-    fun scoreForNextAward(): Int {
+    fun scoreForLevel(level: Int): Int {
         var score = 0
-        for (k in 1..gameData.award)
-            score += k * App.SCORE_PER_AWARD
+        for (k in 1..level)
+            score += (TAPS_PER_LEVEL + k) * k
         return score
     }
 
@@ -136,6 +140,7 @@ class GameView : View, View.OnTouchListener {
         mHeart.updateToLevel(gameData.level)
         mActivity.updateLevel()
         mSoundHeartPlayer.start()
+        mActivity.updateGauge()
     }
 
     private fun awardUp() {
