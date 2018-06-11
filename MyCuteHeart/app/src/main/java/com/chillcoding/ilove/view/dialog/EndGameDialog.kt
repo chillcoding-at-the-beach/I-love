@@ -9,10 +9,13 @@ import android.view.View
 import com.chillcoding.ilove.App
 import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
+import com.chillcoding.ilove.SecondActivity
 import com.chillcoding.ilove.extension.DelegatesExt
+import com.chillcoding.ilove.model.FragmentId
 import com.chillcoding.ilove.model.GameData
 import kotlinx.android.synthetic.main.dialog_end_game.view.*
 import org.jetbrains.anko.share
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 /**
@@ -71,7 +74,9 @@ class EndGameDialog : DialogFragment() {
         builder.setView(endGameView)
                 .setPositiveButton(R.string.action_play, { _, _ -> activity.playGame(true) })
                 .setNeutralButton(R.string.action_share, { _, _ -> share("${getString(R.string.text_share_score)} ${data.score} <3 ${getString(R.string.word_with)} ${getString(R.string.app_name)}!", "I Love") })
-                .setNegativeButton(android.R.string.cancel, null)
+                .setNegativeButton(R.string.action_see_awards, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal) })
+
+
         return builder.create()
     }
 }

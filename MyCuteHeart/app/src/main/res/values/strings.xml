@@ -111,4 +111,5 @@
     <string name="text_win_award">You win an award.</string>
     <string name="action_continue">Continue</string>
     <string name="word_levelup">Level Up!</string>
+    <string name="action_see_awards">See Awards</string>
 </resources>
