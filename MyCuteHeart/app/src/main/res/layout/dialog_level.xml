@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/levelNumber"
-            style="@style/MyText.SubTitle"
+            style="@style/MyText.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

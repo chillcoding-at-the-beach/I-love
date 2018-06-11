@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/mainScore"
-        style="@style/MyText.SubTitle"
+        style="@style/MyText.Subtitle"
         android:layout_width="@dimen/score_width"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
@@ -82,7 +82,7 @@
 
     <TextView
         android:id="@+id/mainLevel"
-        style="@style/MyText.SubTitle"
+        style="@style/MyText.Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/mainGauge"
