@@ -108,7 +108,7 @@
     <string name="text_award_unlocked">New award unlocked.</string>
     <string name="title_social_networks">Social networks</string>
     <string name="word_congrats">Congratulations!</string>
-    <string name="text_win_award">You won an award.</string>
+    <string name="text_win_award">You win an award.</string>
     <string name="action_continue">Continue</string>
     <string name="word_levelup">Level Up!</string>
 </resources>
