@@ -9,11 +9,11 @@ import android.os.Vibrator
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
 import com.chillcoding.ilove.App
 import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.extension.DelegatesExt
+import com.chillcoding.ilove.extension.showLevelDialog
 import com.chillcoding.ilove.model.GameData
 
 /**
@@ -132,7 +132,7 @@ class GameView : View, View.OnTouchListener {
 
     private fun levelUp() {
         gameData.level += 1
-        Toast.makeText(context, "+ 1 ${context.getString(R.string.word_level)}!", Toast.LENGTH_SHORT).show()
+        mActivity.showLevelDialog()
         mHeart.updateToLevel(gameData.level)
         mActivity.updateLevel()
         mSoundHeartPlayer.start()
@@ -178,3 +178,4 @@ class GameView : View, View.OnTouchListener {
         stop()
     }
 }
+
