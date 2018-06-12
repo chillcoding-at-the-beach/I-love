@@ -30,7 +30,10 @@ class App : Application() {
                     ResourcesCompat.getColor(instance.resources, R.color.colorPrimary, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorYellowDark, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorYellowGold, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorYellowLight, null)
+                    ResourcesCompat.getColor(instance.resources, R.color.colorYellowLight, null),
+                    ResourcesCompat.getColor(instance.resources, R.color.colorGreenDark, null),
+                    ResourcesCompat.getColor(instance.resources, R.color.colorGreen, null),
+                    ResourcesCompat.getColor(instance.resources, R.color.colorGreenLight, null)
                     )
         }
         val shadowColor: Int by lazy { ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null) }

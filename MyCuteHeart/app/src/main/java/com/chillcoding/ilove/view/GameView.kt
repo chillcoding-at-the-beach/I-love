@@ -9,11 +9,11 @@ import android.os.Vibrator
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
 import com.chillcoding.ilove.App
 import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.extension.DelegatesExt
+import com.chillcoding.ilove.extension.showLevelDialog
 import com.chillcoding.ilove.model.GameData
 
 /**
@@ -116,26 +116,31 @@ class GameView : View, View.OnTouchListener {
             awardUp()
     }
 
-    private fun scoreForNextLevel(): Int {
+    private fun scoreForNextLevel() = scoreForLevel(gameData.level)
+
+    private fun scoreForNextAward() = scoreForAward(gameData.award)
+
+    fun scoreForAward(awardLevel: Int): Int {
         var score = 0
-        for (k in 1..gameData.level)
-            score += TAPS_PER_LEVEL * k * k
+        for (k in 1..awardLevel)
+            score += k * App.SCORE_PER_AWARD
         return score
     }
 
-    fun scoreForNextAward(): Int {
+    fun scoreForLevel(level: Int): Int {
         var score = 0
-        for (k in 1..gameData.award)
-            score += k * App.SCORE_PER_AWARD
+        for (k in 1..level)
+            score += (TAPS_PER_LEVEL + k) * k
         return score
     }
 
     private fun levelUp() {
         gameData.level += 1
-        Toast.makeText(context, "+ 1 ${context.getString(R.string.word_level)}!", Toast.LENGTH_SHORT).show()
+        mActivity.showLevelDialog()
         mHeart.updateToLevel(gameData.level)
         mActivity.updateLevel()
         mSoundHeartPlayer.start()
+        mActivity.updateGauge()
     }
 
     private fun awardUp() {
@@ -178,3 +183,4 @@ class GameView : View, View.OnTouchListener {
         stop()
     }
 }
+

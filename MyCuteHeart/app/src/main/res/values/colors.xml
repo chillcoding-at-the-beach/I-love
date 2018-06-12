@@ -9,6 +9,10 @@
     <color name="colorAccentLight">#ff5131</color>
 
     <color name="colorYellowDark">#c7a500</color>
-    <color name="colorYellowGold"> #ffd700</color>
+    <color name="colorYellowGold">#ffd700</color>
     <color name="colorYellowLight">#ffff52</color>
+
+    <color name="colorGreenDark">#009624</color>
+    <color name="colorGreen">#00c853</color>
+    <color name="colorGreenLight">#5efc82</color>
 </resources>
