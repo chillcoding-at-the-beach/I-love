@@ -63,8 +63,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setUpGame()
 
-        setUpInAppPurchase()
-
         setUpMenus()
     }
 
@@ -74,7 +72,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setUpInAppPurchase() {
-        requestAccountPermission()
+
         mHelper = IabHelper(this, getString(R.string.base64_encoded_public_key))
 
         // /!\ for a production application, you should set this to false).
@@ -108,7 +106,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 complain("Error querying inventory. Another async operation in progress.")
             }
         })
-
     }
 
     internal var mGotInventoryListener: IabHelper.QueryInventoryFinishedListener = IabHelper.QueryInventoryFinishedListener { result, inventory ->
@@ -128,8 +125,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Do we have the premium upgrade?
         val premiumPurchase = inventory.getPurchase(SKU_PREMIUM)
         isPremium = premiumPurchase != null && verifyDeveloperPayload(premiumPurchase)
-        updateUi()
         info("Initial inventory query finished; enabling main UI. PREMIUM : $isPremium")
+        if (!isPremium)
+            launchPurchase()
+        else
+            updateUi()
     }
 
     internal var mPurchaseFinishedListener: IabHelper.OnIabPurchaseFinishedListener = IabHelper.OnIabPurchaseFinishedListener { result, purchase ->
@@ -172,7 +172,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //In aim of getting userPayload we ask for permissions
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.GET_ACCOUNTS)
                 != PackageManager.PERMISSION_GRANTED) {
-
             alert(R.string.text_permissions_explanation) {
                 yesButton {
                     ActivityCompat.requestPermissions(this@MainActivity,
@@ -181,7 +180,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 noButton { }
             }.show()
-        }
+        } else
+            setUpInAppPurchase()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
@@ -218,6 +218,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun myCallBack() {
         progressDialog.dismiss()
+        setUpInAppPurchase()
     }
 
     private fun getAccountName(): String {
@@ -242,7 +243,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     pauseGame(true)
             }
         }
-
         navView.setNavigationItemSelectedListener(this)
     }
 
@@ -283,7 +283,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawer_layout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
-            R.id.nav_premium -> launchPurchase()
+            R.id.nav_premium -> requestAccountPermission()
             R.id.nav_about -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.ABOUT.ordinal)
             R.id.nav_awards -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal)
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
