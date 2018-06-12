@@ -11,6 +11,8 @@ import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.SecondActivity
 import com.chillcoding.ilove.extension.DelegatesExt
+import com.chillcoding.ilove.extension.playGame
+import com.chillcoding.ilove.extension.setUpNewGame
 import com.chillcoding.ilove.model.FragmentId
 import com.chillcoding.ilove.model.GameData
 import kotlinx.android.synthetic.main.dialog_end_game.view.*
