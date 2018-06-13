@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var mHelper: IabHelper? = null
 
     // Provides purchase notification while this app is running
-    private lateinit var mBroadcastReceiver: IabBroadcastReceiver
+    private var mBroadcastReceiver: IabBroadcastReceiver? = null
 
     private lateinit var mToggle: ActionBarDrawerToggle
     private val mLoveQuoteArray: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
@@ -307,7 +307,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     public override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(mBroadcastReceiver)
+        if (mBroadcastReceiver != null)
+            unregisterReceiver(mBroadcastReceiver)
         if (mHelper != null) {
             mHelper!!.disposeWhenFinished()
             mHelper = null
