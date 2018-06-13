@@ -21,8 +21,8 @@ class CuteHeart {
 
     var colorIndex = 0
 
-    private lateinit var mX: FloatArray
-    private lateinit var mY: FloatArray
+    private var mX = FloatArray(7)
+    private var mY = FloatArray(7)
 
     private var mDirectionToRight = true
     private var mDirectionToDown = true
@@ -50,7 +50,7 @@ class CuteHeart {
     }
 
     private fun initializeHeartCoordinates() {
-        mX = floatArrayOf(75f, 60f, 40f, 5f, 40f, 110f, 145f, 110f, 90f)
+        mX = floatArrayOf(75f, 60f, 40f, 5f, 110f, 145f, 90f)
         mY = floatArrayOf(22f, 20f, 5f, 40f, 80f, 102f, 135f)
 
         for (i in mX.indices)
@@ -64,10 +64,10 @@ class CuteHeart {
         path.moveTo(mX[0], mY[0])
         path.cubicTo(mX[0], mY[1], mX[1], mY[2], mX[2], mY[2])
         path.cubicTo(mX[3], mY[2], mX[3], mY[3], mX[3], mY[3])
-        path.cubicTo(mX[3], mY[4], mX[4], mY[5], mX[0], mY[6])
-        path.cubicTo(mX[5], mY[5], mX[6], mY[4], mX[6], mY[3])
-        path.cubicTo(mX[6], mY[3], mX[6], mY[2], mX[7], mY[2])
-        path.cubicTo(mX[8], mY[2], mX[0], mY[1], mX[0], mY[0])
+        path.cubicTo(mX[3], mY[4], mX[2], mY[5], mX[0], mY[6])
+        path.cubicTo(mX[4], mY[5], mX[5], mY[4], mX[5], mY[3])
+        path.cubicTo(mX[5], mY[3], mX[5], mY[2], mX[4], mY[2])
+        path.cubicTo(mX[6], mY[2], mX[0], mY[1], mX[0], mY[0])
     }
 
     private fun updatePosition() {
@@ -110,7 +110,7 @@ class CuteHeart {
     }
 
     private fun updateZone() {
-        mXZone[0] = mXZone.last() - mX[6].toInt()
+        mXZone[0] = mXZone.last() - mX[5].toInt()
         mYZone[0] = mYZone[1] - mYZone.last() - mY[6].toInt()
     }
 
@@ -165,14 +165,13 @@ class CuteHeart {
     }
 
     fun updateRandomly() {
-        updateSizeToLevel(level)
         updatePositionRandomly()
         changeDirection()
         changeHeartColorRandomly()
     }
 
     fun isIn(xOf: Int, yOf: Int): Boolean {
-        return (xOf in wakaX..wakaX + mX[6] && yOf in wakaY..wakaY + mY[6])
+        return (xOf in wakaX..wakaX + mX[5] && yOf in wakaY..wakaY + mY[6])
     }
 
     private var isMagic: Boolean = false
