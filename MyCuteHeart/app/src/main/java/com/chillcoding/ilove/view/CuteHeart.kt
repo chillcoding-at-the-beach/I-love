@@ -36,7 +36,6 @@ class CuteHeart {
         mXZone = intArrayOf(0, width)
         mYZone = intArrayOf(0, height, marginTop)
         updateToLevel(level)
-        updatePositionRandomly()
         init()
     }
 
@@ -153,6 +152,7 @@ class CuteHeart {
         updateSize()
         if (size < 0.1) {
             isMagic = false
+            updateSizeToLevel(level)
             updateRandomly()
         }
     }
