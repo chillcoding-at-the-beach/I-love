@@ -17,14 +17,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.chillcoding.fablibrary.GameFab
-import com.chillcoding.ilove.extension.DelegatesExt
+import com.chillcoding.ilove.extension.*
 import com.chillcoding.ilove.model.FragmentId
 import com.chillcoding.ilove.util.IabBroadcastReceiver
 import com.chillcoding.ilove.util.IabHelper
 import com.chillcoding.ilove.util.Purchase
-import com.chillcoding.ilove.view.dialog.AwardDialog
-import com.chillcoding.ilove.view.dialog.EndGameDialog
-import com.chillcoding.ilove.view.dialog.QuoteDialog
 import com.google.android.gms.auth.GoogleAuthUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -48,7 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     val isSound: Boolean by DelegatesExt.preference(this, App.PREF_SOUND, true)
     var userPayload: String  by DelegatesExt.preference(this, App.PREF_PAYLOAD, "newinstall")
-    private lateinit var mSoundPlayer: MediaPlayer
+    lateinit var mSoundPlayer: MediaPlayer
 
     val progressDialog by lazy { indeterminateProgressDialog(R.string.text_waiting_explanation) }
 
@@ -66,15 +63,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setUpGame()
 
-        setUpInAppPurchase()
-
         setUpMenus()
-    }
-
-    private fun setUpGame() {
-        setUpSound()
-        updateScore()
-        updateLevel()
     }
 
     private fun setUpMenus() {
@@ -83,7 +72,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setUpInAppPurchase() {
-        requestAccountPermission()
+
         mHelper = IabHelper(this, getString(R.string.base64_encoded_public_key))
 
         // /!\ for a production application, you should set this to false).
@@ -117,7 +106,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 complain("Error querying inventory. Another async operation in progress.")
             }
         })
-
     }
 
     internal var mGotInventoryListener: IabHelper.QueryInventoryFinishedListener = IabHelper.QueryInventoryFinishedListener { result, inventory ->
@@ -137,8 +125,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Do we have the premium upgrade?
         val premiumPurchase = inventory.getPurchase(SKU_PREMIUM)
         isPremium = premiumPurchase != null && verifyDeveloperPayload(premiumPurchase)
-        updateUi()
         info("Initial inventory query finished; enabling main UI. PREMIUM : $isPremium")
+        if (!isPremium)
+            launchPurchase()
+        else
+            updateUi()
     }
 
     internal var mPurchaseFinishedListener: IabHelper.OnIabPurchaseFinishedListener = IabHelper.OnIabPurchaseFinishedListener { result, purchase ->
@@ -181,7 +172,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //In aim of getting userPayload we ask for permissions
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.GET_ACCOUNTS)
                 != PackageManager.PERMISSION_GRANTED) {
-
             alert(R.string.text_permissions_explanation) {
                 yesButton {
                     ActivityCompat.requestPermissions(this@MainActivity,
@@ -190,7 +180,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 noButton { }
             }.show()
-        }
+        } else
+            setUpInAppPurchase()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
@@ -227,6 +218,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun myCallBack() {
         progressDialog.dismiss()
+        setUpInAppPurchase()
     }
 
     private fun getAccountName(): String {
@@ -251,7 +243,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     pauseGame(true)
             }
         }
-
         navView.setNavigationItemSelectedListener(this)
     }
 
@@ -292,7 +283,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawer_layout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
-            R.id.nav_premium -> launchPurchase()
+            R.id.nav_premium -> requestAccountPermission()
             R.id.nav_about -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.ABOUT.ordinal)
             R.id.nav_awards -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal)
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
@@ -369,98 +360,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navView.menu.findItem(R.id.nav_premium).isVisible = false
             navView.menu.findItem(R.id.nav_more_features).isVisible = false
         }
-    }
-
-    fun showAlertOnLove() {
-        QuoteDialog().show(fragmentManager, MainActivity::class.java.simpleName)
-    }
-
-    fun showAwardDialog() {
-        AwardDialog().show(fragmentManager, MainActivity::class.java.simpleName)
-    }
-
-    private fun pauseGame(animateFab: Boolean = false) {
-        if (animateFab)
-            fab.playAnimation(contentView!!)
-        gameView.pause()
-        mSoundPlayer.pause()
-    }
-
-    fun playGame(animateFab: Boolean = false) {
-        if (animateFab)
-            fab.playAnimation(contentView!!)
-        if (isSound)
-            mSoundPlayer.start()
-        gameView.play()
-    }
-
-    fun endGame() {
-        resetSound()
-        fab.playAnimation(contentView!!)
-        var bundle = Bundle()
-        bundle.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
-        var popup = EndGameDialog()
-        popup.arguments = bundle
-        popup.show(fragmentManager, MainActivity::class.java.simpleName)
-    }
-
-    private fun setUpSound() {
-        mSoundPlayer = MediaPlayer.create(this, R.raw.latina)
-        mSoundPlayer.isLooping = true
-        mSoundPlayer.setVolume(0.6F, 0.6F)
-    }
-
-    fun updateScore() {
-        when (gameView.gameData.score) {
-            in 0..9 -> mainScorePoints.text = "00${gameView.gameData.score}"
-            in 10..99 -> mainScorePoints.text = "0${gameView.gameData.score}"
-            else -> mainScorePoints.text = "${gameView.gameData.score}"
-        }
-    }
-
-    fun updateLevel() {
-        mainLevel.text = "${gameView.gameData.level}"
-    }
-
-    fun updateGauge() {
-        mainGaugeAward.value = 200 + (gameView.gameData.score - gameView.scoreForAward(gameView.gameData.award - 1)) * 600 / (gameView.scoreForAward(gameView.gameData.award) - gameView.scoreForAward(gameView.gameData.award - 1))
-        mainGaugeLevel.value = 200 + (gameView.gameData.score - gameView.scoreForLevel(gameView.gameData.level - 1)) * 600 / (gameView.scoreForLevel(gameView.gameData.level) - gameView.scoreForLevel(gameView.gameData.level - 1))
-    }
-
-    fun updateNbLife() {
-        when (gameView.gameData.nbLife) {
-            0 -> {
-                mainFirstLife.setImageResource(R.drawable.ic_life_lost)
-                endGame()
-            }
-            1 -> {
-                mainSecondLife.setImageResource(R.drawable.ic_life_lost)
-                mainThirdLife.setImageResource(R.drawable.ic_life_lost)
-            }
-            2 -> mainThirdLife.setImageResource(R.drawable.ic_life_lost)
-            3 -> {
-                mainFirstLife.setImageResource(R.drawable.ic_life)
-                mainSecondLife.setImageResource(R.drawable.ic_life)
-                mainThirdLife.setImageResource(R.drawable.ic_life)
-            }
-        }
-    }
-
-    private fun updateGameInfo() {
-        updateScore()
-        updateNbLife()
-        updateLevel()
-        updateGauge()
-    }
-
-    private fun resetSound() {
-        mSoundPlayer.reset()
-        setUpSound()
-    }
-
-    fun setUpNewGame() {
-        gameView.setUpNewGame()
-        updateGameInfo()
     }
 
     override fun onRestart() {

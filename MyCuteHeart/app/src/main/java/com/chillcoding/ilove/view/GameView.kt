@@ -12,8 +12,7 @@ import android.view.View
 import com.chillcoding.ilove.App
 import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
-import com.chillcoding.ilove.extension.DelegatesExt
-import com.chillcoding.ilove.extension.showLevelDialog
+import com.chillcoding.ilove.extension.*
 import com.chillcoding.ilove.model.GameData
 
 /**

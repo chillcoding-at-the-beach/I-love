@@ -9,6 +9,7 @@ import com.chillcoding.ilove.App
 import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.extension.DelegatesExt
+import com.chillcoding.ilove.extension.showAlertOnLove
 import kotlinx.android.synthetic.main.dialog_quote.view.*
 import org.jetbrains.anko.share
 import java.util.*
@@ -21,7 +22,7 @@ class QuoteDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         var activity = (activity as MainActivity)
-        var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, true)
+        var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
 
         var nbQuotes = mLoveQuoteArray.size
         if (!isPremium)
