@@ -18,11 +18,10 @@ class QuoteDialog : DialogFragment() {
     private val mLoveQuoteArray: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
     private val mRandom = Random()
 
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, true)
         val builder = AlertDialog.Builder(activity)
-        var activity = (activity as MainActivity)
-        var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
+        val activity = (activity as MainActivity)
 
         var nbQuotes = mLoveQuoteArray.size
         if (!isPremium)
