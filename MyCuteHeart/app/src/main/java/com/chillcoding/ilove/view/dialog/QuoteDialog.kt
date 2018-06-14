@@ -29,7 +29,7 @@ class QuoteDialog : DialogFragment() {
         val dialogQuoteView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_quote, null)
         dialogQuoteView.dialogQuote.text = mLoveQuoteArray[mRandom.nextInt(nbQuotes)]
         builder.setView(dialogQuoteView)
-                .setPositiveButton(R.string.action_like, { _, _ -> activity.showAlertOnLove() })
+                .setPositiveButton(R.string.action_love, { _, _ -> activity.showAlertOnLove() })
                 .setNegativeButton(android.R.string.cancel, null)
         if (isPremium)
             builder.setNeutralButton(R.string.action_share, { _, _ -> share("${dialogQuoteView.dialogQuote.text}", "I Love") })
