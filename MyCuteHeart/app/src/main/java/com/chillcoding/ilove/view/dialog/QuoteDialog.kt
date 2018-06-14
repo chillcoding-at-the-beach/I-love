@@ -18,11 +18,10 @@ class QuoteDialog : DialogFragment() {
     private val mLoveQuoteArray: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
     private val mRandom = Random()
 
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, true)
         val builder = AlertDialog.Builder(activity)
-        var activity = (activity as MainActivity)
-        var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
+        val activity = (activity as MainActivity)
 
         var nbQuotes = mLoveQuoteArray.size
         if (!isPremium)
@@ -30,7 +29,7 @@ class QuoteDialog : DialogFragment() {
         val dialogQuoteView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_quote, null)
         dialogQuoteView.dialogQuote.text = mLoveQuoteArray[mRandom.nextInt(nbQuotes)]
         builder.setView(dialogQuoteView)
-                .setPositiveButton(R.string.action_like, { _, _ -> activity.showAlertOnLove() })
+                .setPositiveButton(R.string.action_love, { _, _ -> activity.showAlertOnLove() })
                 .setNegativeButton(android.R.string.cancel, null)
         if (isPremium)
             builder.setNeutralButton(R.string.action_share, { _, _ -> share("${dialogQuoteView.dialogQuote.text}", "I Love") })

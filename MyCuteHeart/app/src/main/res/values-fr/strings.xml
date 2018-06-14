@@ -1,0 +1,115 @@
+<resources>
+    <string name="app_name">I LOVE</string>
+
+    <string name="navigation_drawer_open">Ouvrir le menu latéral</string>
+    <string name="navigation_drawer_close">Fermer le menu latéral</string>
+
+    <string name="action_love">Cool</string>
+    <string name="action_play">Jouer</string>
+    <string name="action_more">Plus</string>
+    <string name="action_share">Partager</string>
+    <string name="action_see_awards">Voir les trophées</string>
+    <string name="action_continue">Continuez</string>
+    <string name="menu_more_features">Plus de fonctionnalités</string>
+    <string name="menu_awards">Trophées</string>
+    <string name="menu_premium">Premium</string>
+    <string name="menu_settings">Paramètre</string>
+    <string name="menu_about">À propos</string>
+    <string name="menu_send">Donner son avis</string>
+    <string name="menu_top">Top Scores</string>
+
+    <string name="word_level">Niveau</string>
+    <string name="word_error">Erreur :</string>
+    <string name="text_thank_you_premium">Merci d\'être passer à la version premium!</string>
+    <string name="text_wait">Attendez svp</string>
+    <string name="text_launch_in_app">Chargement de l\'achat intégré</string>
+    <string name="word_points">points</string>
+    <string name="text_about">I Love vous distrait avec ses coeurs,\nDe tailles diverses, de toutes les couleurs.\nEt dansant sur un rythme endiablé.\nUne belle poésie vous est contée.</string>
+    <string name="text_best_score">Tu as battu ton propre score !</string>
+    <string name="subject_feedback">Retour sur l\'application I Love.</string>
+    <string name="text_share_app">Fait partie de l\'aventure avec l\'application I Love en Bêta: https://www.chillcoding.com/app/ilove/</string>
+    <string name="title_chillcoding">By ChillCoding</string>
+    <string name="title_pref_sound">Jouer la musique</string>
+    <string name="about_app">Une application faite par ChillCoding</string>
+    <string name="word_award">Trophée</string>
+    <string name="word_best_score">Meilleur Score</string>
+    <string name="text_record_breaker">Nouveau record !</string>
+    <string name="text_share_score">J\'ai attrapé</string>
+    <string name="text_share_award">J\'ai gagné un trophée I Love!</string>
+    <string name="word_with">avec</string>
+    <string name="text_permissions_explanation">L\'application a besoin de permission pour l\'achat intégré.</string>
+    <string name="text_waiting_explanation">Attente de connexion...</string>
+    <string name="text_no_internet_in_top_scores">Le Top des scores ne peut être mis à jour à cause de la connexion internet.</string>
+    <string name="get_premium_text">Obtient la version Premium</string>
+    <string name="server_error_text">Les derniers scores n\'ont pu être obtenu, essayez plus tard.</string>
+    <string name="failure">Allez...</string>
+    <string name="you_can_better_text">Tu peux mieux faire !</string>
+    <string-array name="word_sucess">
+        <item>Génie</item>
+        <item>Brilliant</item>
+        <item>Impressionnant</item>
+        <item>Exceptionnel</item>
+        <item>Impeccable</item>
+        <item>Parfait</item>
+    </string-array>
+    <string-array name="text_love">
+        <item>Loin des yeux,\nprès du coeur.</item><!-- 0 -->
+        <item>Avoir le coeur\n qui bat\nla chamade.</item><!-- 1 -->
+        <item>L\'esprit et le coeur\nse contredise sans cesse.\n-> P-C-V. Boiste</item><!-- 2 -->
+        <item>Faire le joli coeur.</item><!-- 3 -->
+        <item>Au coeur de l\'action.</item>
+        <item>Le coeur\nest la source\nde l\'innocence\net du bonheur.\n-> marquise de Lambert</item><!-- 4 -->
+        <item>Essaye d\'être heureux,\nça vaut le coup.\n-> France Gall</item><!-- 5 -->
+        <item>Des oiseaux nous chantaient\nleur mélopée\nEt nous vivions heureux\ndans la canopée.\n-> Polo &amp; Pan</item>
+        <item>Trouvez\nle temps\npour les choses\nqui vous rendent\nheureux.</item>
+        <item>N\'oubliez pas de fréquenter\ndes gens heureux\ncar le bonheur\nc\'est contagieux.</item><!-- 6 -->
+        <item>Nous ne faisons pas\n de nouvelles rencontres\npar hasard.\nElles sont destinées\nà croiser notre chemin\npour une raison.</item>
+        <item>Seul\non va plus vite\nensemble\non va plus loin.\n-> proverbe africain</item>
+        <item>À coeur vaillant\nrien d\'impossible.</item>
+        <item>Soyez le changement\nque vous voulez voir\ndans le monde.\n-> Gandhi</item>
+        <item>L\'art que tu apprends\ndevient ce que tu en fais.\n-> proverbe martiaux</item>
+        <item>Vivre\nest la chose\nla plus rare\nau monde,\nla plupart des gens\nne font qu\'exister.\n-> Oscar Wilde</item>
+        <item>Vis ton rêve.\n-> Macha da Costa</item>
+        <item>Profite\nde la vie !\n-> Macha da Costa</item>
+        <item>Bonnes ondes\nseulement.</item>
+        <item>Le monde est petit.</item>
+        <item>Je ne m\'interesse qu\'aux qualités des gens.\nJ\'ai moi-même des défauts\nalors comment me permettre de juger ceux des autres.\n-> Gandhi</item>
+        <item>Ne compare pas\nta vie\navec celles des autres.\nIl n\'y a pas\nde comparaison\nentre le soleil\net la lune.\nIls brillent quand\nc\'est leur moment.</item>
+    </string-array>
+    <string-array name="word_mode">
+        <item>Love</item>
+        <item>I ♡️</item>
+        <item>I ♡ 🏝️️</item>
+        <item>I ♡ 🐟</item>
+        <item>I ♡ </item>
+        <item>I ♡ 🐬</item>
+        <item>I ♡ 🦀</item>
+    </string-array>
+    <string-array name="text_award">
+        <item>"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡' .\n"
+            "\nI ♡ vous distrait avec ses coeurs,\nDe tailles diverses, de toutes les couleurs.\n"
+            "\nEt dansant sur un rythme endiablé.\nUne belle poésie vous est contée.\n"
+            "\n'I ♡'️ est l\'emblème universel\nimprimé sur les souvenirs\nà l'effigie de divers lieux :\nI ♡ SF\nI ♡️ LA\nI ♡️ BCN\nI ♡ Cannes\n"
+            "\n5:45, notez l'heure précise,\nEt osez sentir cette fleur indécise.\n"
+            "\nL'histoire commence à Cannes, au bord de la mer,\nLa lueur du jour apparaît sur la terre.\n"
+            "\nL'aube s'efface devant cet instant magique,\nOù l'eau se teinte de couleurs magnifiques.\n"
+            "\nLe soleil se lève dans un enchantement,\nUne vie de rêve comblée d'émerveillement.\n\n"
+            "\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+           </item>
+        <item> "\n20: 56 à une heure banale,\nLa fleur mystérieuse s'empare d'un teint pâle.\n"
+            "\nUn couché de soleil facile à saisir,\nLa nuit s'incruste dans un cocktail de plaisir.\n"
+            "\nLa beauté d'un spectacle inattendu,\nLes dauphins nagent dans un calme absolu.\n"
+            "\nAu crépuscule, sautant dans les vagues,\nDolphine se dérobe de la madrague.\n"
+            "\nLe soleil se lève dans un enchantement,\nUne vie de rêve comblée d'émerveillement.\n\n"
+            "\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"</item>
+        <item>Pas prêt !</item>
+        <item>Pas prêt !</item>
+        <item>Pas prêt !</item>
+        <item>Pas prêt !</item>
+    </string-array>
+    <string name="text_award_unlocked">Nouveau trophée débloqué.</string>
+    <string name="title_social_networks">Réseaux sociaux</string>
+    <string name="word_congrats">Félicitation !</string>
+    <string name="text_win_award">Vous avez gagné un trophée.</string>
+    <string name="word_levelup">Niveau supérieur !</string>
+</resources>
