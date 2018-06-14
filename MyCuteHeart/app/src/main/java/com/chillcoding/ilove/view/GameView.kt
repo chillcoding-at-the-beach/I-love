@@ -37,7 +37,7 @@ class GameView : View, View.OnTouchListener {
 
     companion object {
         private val POINTS = 1
-        private val TAPS_PER_LEVEL = 10
+        private val TAPS_PER_LEVEL = 6
         private val D_SHADOW = 15F
     }
 
