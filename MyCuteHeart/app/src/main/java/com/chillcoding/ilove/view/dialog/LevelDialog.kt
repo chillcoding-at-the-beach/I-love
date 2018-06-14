@@ -27,7 +27,7 @@ class LevelDialog : DialogFragment() {
 
         //draw the UI
         dialogLevelView.levelNumber.text = "${getString(R.string.word_level)} ${data.level}"
-        dialogLevelView.levelQuote.text = mLoveQuoteArray[data.level % mLoveQuoteArray.size]
+        dialogLevelView.levelQuote.text = mLoveQuoteArray[(data.level-2) % mLoveQuoteArray.size]
         
         builder.setView(dialogLevelView)
                 .setPositiveButton(R.string.action_continue, null)
