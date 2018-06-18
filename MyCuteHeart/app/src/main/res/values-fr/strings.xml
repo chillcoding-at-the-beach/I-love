@@ -13,14 +13,14 @@
     <string name="menu_more_features">Plus de fonctionnalités</string>
     <string name="menu_awards">Trophées</string>
     <string name="menu_premium">Premium</string>
-    <string name="menu_settings">Paramètre</string>
+    <string name="menu_settings">Paramètres</string>
     <string name="menu_about">À propos</string>
     <string name="menu_send">Donner son avis</string>
     <string name="menu_top">Top Scores</string>
 
     <string name="word_level">Niveau</string>
     <string name="word_error">Erreur :</string>
-    <string name="text_thank_you_premium">Merci d\'être passer à la version premium!</string>
+    <string name="text_thank_you_premium">Merci d\'être passer à la version Premium !</string>
     <string name="text_wait">Attendez svp</string>
     <string name="text_launch_in_app">Chargement de l\'achat intégré</string>
     <string name="word_points">points</string>
@@ -44,9 +44,9 @@
     <string name="server_error_text">Les derniers scores n\'ont pu être obtenu, essayez plus tard.</string>
     <string name="failure">Allez...</string>
     <string name="you_can_better_text">Tu peux mieux faire !</string>
-    <string-array name="word_sucess">
-        <item>Génie</item>
-        <item>Brilliant</item>
+    <string-array name="word_success">
+        <item>Cool</item>
+        <item>Brillant</item>
         <item>Impressionnant</item>
         <item>Exceptionnel</item>
         <item>Impeccable</item>
@@ -73,7 +73,7 @@
         <item>Profite\nde la vie !\n-> Macha da Costa</item>
         <item>Bonnes ondes\nseulement.</item>
         <item>Le monde est petit.</item>
-        <item>Je ne m\'interesse qu\'aux qualités des gens.\nJ\'ai moi-même des défauts\nalors comment me permettre de juger ceux des autres.\n-> Gandhi</item>
+        <item>Je ne m\'intéresse qu\'aux qualités des gens.\nJ\'ai moi-même des défauts\nalors comment me permettre de juger ceux des autres.\n-> Gandhi</item>
         <item>Ne compare pas\nta vie\navec celles des autres.\nIl n\'y a pas\nde comparaison\nentre le soleil\net la lune.\nIls brillent quand\nc\'est leur moment.</item>
     </string-array>
     <string-array name="word_mode">
