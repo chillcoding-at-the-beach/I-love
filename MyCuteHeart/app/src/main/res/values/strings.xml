@@ -109,4 +109,8 @@
     <string name="text_win_award">You win an award.</string>
     <string name="word_levelup">Level Up!</string>
     <string name="action_see_top">See Top Scores</string>
+    <string name="acronym_first">st</string>
+    <string name="acronym_second">nd</string>
+    <string name="acronym_third">rd</string>
+    <string name="acronym_number">th</string>
 </resources>

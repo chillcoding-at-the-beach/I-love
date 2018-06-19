@@ -113,4 +113,8 @@
     <string name="word_congrats">Félicitation !</string>
     <string name="text_win_award">Vous avez gagné un trophée.</string>
     <string name="word_levelup">Niveau supérieur !</string>
+    <string name="acronym_first">er</string>
+    <string name="acronym_second">ième</string>
+    <string name="acronym_third">ième</string>
+    <string name="acronym_number">ième</string>
 </resources>
