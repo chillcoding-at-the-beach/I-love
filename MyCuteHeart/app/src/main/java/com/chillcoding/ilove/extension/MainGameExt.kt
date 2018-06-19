@@ -122,3 +122,7 @@ fun MainActivity.setUpNewGame() {
     gameView.setUpNewGame()
     updateGameInfo()
 }
+
+fun MainActivity.awardUnlocked() {
+    gameView.gameData.awardUnlocked = true
+}

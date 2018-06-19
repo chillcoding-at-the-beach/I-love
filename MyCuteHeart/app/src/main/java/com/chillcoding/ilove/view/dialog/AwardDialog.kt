@@ -10,6 +10,7 @@ import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.SecondActivity
 import com.chillcoding.ilove.extension.DelegatesExt
+import com.chillcoding.ilove.extension.awardUnlocked
 import com.chillcoding.ilove.model.FragmentId
 import org.jetbrains.anko.share
 import org.jetbrains.anko.startActivity
@@ -25,10 +26,13 @@ class AwardDialog : DialogFragment() {
 
         var award = arguments.getInt(App.BUNDLE_AWARD_DATA)
 
-        if (isPremium)
-            awardLevel = award - 1
-        else
-            awardLevel = 1
+        if (award - 1 > awardLevel) {
+            activity.awardUnlocked()
+            if (isPremium)
+                awardLevel = award - 1
+            else
+                awardLevel = 1
+        }
 
         if (bestScore < 150)
             bestScore = 154
