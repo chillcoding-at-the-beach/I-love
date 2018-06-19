@@ -139,10 +139,10 @@ class CuteHeart {
             ref = ((mXZone[1] * 3) / 1000).toFloat()
         else
             ref = ((mYZone[1] * 3) / 1000).toFloat()
-        if (level < 3)
-            size = ref / level
+        if (level < 7)
+            size = ref - ((level - 1) * 0.7F)
         else
-            size = ref / 3
+            size = ref - 4
         updateSize()
         updateZone()
     }
@@ -158,10 +158,7 @@ class CuteHeart {
     }
 
     private fun updateSpeedToLevel(level: Int) {
-        if (level < 5)
-            speed = Math.pow(2.0, (level - 1).toDouble()).toInt()
-        else
-            speed = 16
+        speed = 2 * (level - 1) + 1
     }
 
     fun updateRandomly() {

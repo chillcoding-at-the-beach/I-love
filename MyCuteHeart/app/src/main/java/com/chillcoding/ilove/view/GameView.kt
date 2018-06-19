@@ -37,7 +37,7 @@ class GameView : View, View.OnTouchListener {
 
     companion object {
         private val POINTS = 1
-        private val TAPS_PER_LEVEL = 6
+        private val TAPS_PER_LEVEL = 7
         private val D_SHADOW = 15F
     }
 
@@ -129,7 +129,7 @@ class GameView : View, View.OnTouchListener {
     fun scoreForLevel(level: Int): Int {
         var score = 0
         for (k in 1..level)
-            score += (TAPS_PER_LEVEL + k) * k
+            score += TAPS_PER_LEVEL * (level - 1) + TAPS_PER_LEVEL
         return score
     }
 
