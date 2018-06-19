@@ -108,4 +108,5 @@
     <string name="word_congrats">Congratulations!</string>
     <string name="text_win_award">You win an award.</string>
     <string name="word_levelup">Level Up!</string>
+    <string name="action_see_top">See Top Scores</string>
 </resources>
