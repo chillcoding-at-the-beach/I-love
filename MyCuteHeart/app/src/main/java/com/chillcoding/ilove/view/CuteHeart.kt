@@ -27,8 +27,8 @@ class CuteHeart {
     private var mDirectionToRight = true
     private var mDirectionToDown = true
 
-    private var mXZone = intArrayOf(0, 0)
-    private var mYZone = intArrayOf(0, 0, 0)
+    private var mXZone = intArrayOf(10, 10)
+    private var mYZone = intArrayOf(10, 10, 10)
 
     var level = 1
 
