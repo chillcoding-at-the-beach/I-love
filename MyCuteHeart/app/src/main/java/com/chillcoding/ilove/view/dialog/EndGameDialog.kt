@@ -56,6 +56,8 @@ class EndGameDialog : DialogFragment() {
                 endGameView.middleStarImageView.setColorFilter(App.sColors[7])
                 endGameView.endStarImageView.setColorFilter(App.sColors[7])
                 builder.setNegativeButton(R.string.action_see_top, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal) })
+                if (data.awardUnlocked)
+                    endGameView.dialogAwardTextView.visibility = View.VISIBLE
             }
         }
         var activity = (activity as MainActivity)

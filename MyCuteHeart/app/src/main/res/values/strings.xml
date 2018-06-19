@@ -52,7 +52,7 @@
     <string name="server_error_text">Cannot have latest top scores, try later :)</string>
     <string name="failure">Come On...</string>
     <string name="you_can_better_text">You can do better!</string>
-    <string-array name="word_sucess">
+    <string-array name="word_success">
         <item>Genius</item>
         <item>Brilliant</item>
         <item>Awesome</item>
