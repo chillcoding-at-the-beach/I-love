@@ -24,17 +24,17 @@ class App : Application() {
         const val AWARD_MODE = "AWARD_MODE"
         val sColors: List<Int> by lazy {
             listOf(
-                    ResourcesCompat.getColor(instance.resources, R.color.colorAccentDark, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorAccent, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorAccentLight, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorPrimarySuperDark, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryDark, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorPrimary, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorYellowDark, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorYellowGold, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorYellowLight, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorGreenDark, null),
-                    ResourcesCompat.getColor(instance.resources, R.color.colorGreen, null),
+                    ResourcesCompat.getColor(instance.resources, R.color.colorAccentDark, null),//0
+                    ResourcesCompat.getColor(instance.resources, R.color.colorAccent, null),//1
+                    ResourcesCompat.getColor(instance.resources, R.color.colorAccentLight, null),//2
+                    ResourcesCompat.getColor(instance.resources, R.color.colorPrimarySuperDark, null),//3
+                    ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryDark, null),//4
+                    ResourcesCompat.getColor(instance.resources, R.color.colorPrimary, null),//5
+                    ResourcesCompat.getColor(instance.resources, R.color.colorYellowDark, null),//6
+                    ResourcesCompat.getColor(instance.resources, R.color.colorYellowGold, null),//7
+                    ResourcesCompat.getColor(instance.resources, R.color.colorYellowLight, null),//8
+                    ResourcesCompat.getColor(instance.resources, R.color.colorGreenDark, null),//9
+                    ResourcesCompat.getColor(instance.resources, R.color.colorGreen, null),//10
                     ResourcesCompat.getColor(instance.resources, R.color.colorGreenLight, null)
             )
         }
