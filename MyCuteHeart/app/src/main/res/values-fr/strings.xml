@@ -41,7 +41,7 @@
     <string name="text_permissions_explanation">L\'application a besoin de permission pour l\'achat intégré.</string>
     <string name="text_waiting_explanation">Attente de connexion...</string>
     <string name="text_no_internet_in_top_scores">Le Top des scores ne peut être mis à jour à cause de la connexion internet.</string>
-    <string name="get_premium_text">Obtient la version Premium</string>
+    <string name="get_premium_text">Disponible avec la version\nPremium</string>
     <string name="server_error_text">Les derniers scores n\'ont pu être obtenu, essayez plus tard.</string>
     <string name="failure">Allez...</string>
     <string name="you_can_better_text">Tu peux mieux faire !</string>
@@ -78,18 +78,20 @@
         <item>Ne compare pas\nta vie\navec celles des autres.\nIl n\'y a pas\nde comparaison\nentre le soleil\net la lune.\nIls brillent quand\nc\'est leur moment.</item>
     </string-array>
     <string-array name="word_mode">
-        <item>Love</item>
+        <item>♡</item>
         <item>I ♡️</item>
-        <item>I ♡ 🏝️️</item>
-        <item>I ♡ 🐟</item>
-        <item>I ♡ </item>
-        <item>I ♡ 🐬</item>
-        <item>I ♡ 🦀</item>
+        <item>I ♡ 🐜</item>
+        <item>I ♡ 🦊</item>
+        <item>I ♡ 🐢</item>
+        <item>I ♡ 🐺️</item>
+        <item>I ♡ 🏝️ 🦀</item>
     </string-array>
     <string-array name="text_award">
-        <item>"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡' .\n"
+        <item>
             "\nI ♡ vous distrait avec ses coeurs,\nDe tailles diverses, de toutes les couleurs.\n"
             "\nEt dansant sur un rythme endiablé.\nUne belle poésie vous est contée.\n"
+        </item>
+        <item>"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡' .\n"
             "\n'I ♡'️ est l\'emblème universel\nimprimé sur les souvenirs\nà l'effigie de divers lieux :\nI ♡ SF\nI ♡️ LA\nI ♡️ BCN\nI ♡ Cannes\n"
             "\n5:45, notez l'heure précise,\nEt osez sentir cette fleur indécise.\n"
             "\nL'histoire commence à Cannes, au bord de la mer,\nLa lueur du jour apparaît sur la terre.\n"
@@ -97,16 +99,143 @@
             "\nLe soleil se lève dans un enchantement,\nUne vie de rêve comblée d'émerveillement.\n\n"
             "\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
            </item>
-        <item> "\n20: 56 à une heure banale,\nLa fleur mystérieuse s'empare d'un teint pâle.\n"
+        <item>
+"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🐜' .\n\n"
+"La Cigale et la Fourmi\n"
+"\nLa Cigale, ayant chanté"
+"\nTout l'été,"
+"\nSe trouva fort dépourvue"
+"\nQuand la bise fut venue :"
+"\nPas un seul petit morceau"
+"\nDe mouche ou de vermisseau."
+"\nElle alla crier famine"
+"\nChez la Fourmi sa voisine,"
+"\nLa priant de lui prêter"
+"\nQuelque grain pour subsister"
+"\nJusqu'à la saison nouvelle."
+"\n« Je vous paierai, lui dit-elle,"
+"\nAvant l'août, foi d'animal,"
+"\nIntérêt et principal. »"
+"\nLa Fourmi n'est pas prêteuse :"
+"\nC'est là son moindre défaut."
+"\n« Que faisiez-vous au temps chaud ?"
+"\nDit-elle à cette emprunteuse."
+"\n— Nuit et jour à tout venant"
+"\nJe chantais, ne vous déplaise."
+"\n— Vous chantiez ? J’en suis fort aise."
+"\nEh bien ! Dansez maintenant. »\n"
+"\n-> Jean de La Fontaine\n"
+"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🦊' .\n\n"
+"Le Corbeau et le Renard\n"
+"\nMaître Corbeau, sur un arbre perché,"
+"\nTenait en son bec un fromage."
+"\nMaître Renard, par l’odeur alléché,"
+"\nLui tint à peu près ce langage :"
+"\n« Hé ! bonjour Monsieur du Corbeau."
+"\nQue vous êtes joli ! que vous me semblez beau !"
+"\nSans mentir, si votre ramage"
+"\nSe rapporte à votre plumage,"
+"\nVous êtes le Phénix des hôtes de ces bois. »"
+"\nÀ ces mots le Corbeau ne se sent pas de joie ;"
+"\nEt pour montrer sa belle voix,"
+"\nIl ouvre un large bec, laisse tomber sa proie."
+"\nLe Renard s’en saisit, et dit : « Mon bon Monsieur,"
+"\nApprenez que tout flatteur"
+"\nVit aux dépens de celui qui l’écoute."
+"\nCette leçon vaut bien un fromage, sans doute. »"
+"\nLe Corbeau, honteux et confus,"
+"\nJura, mais un peu tard, qu’on ne l’y prendrait plus.\n"
+"\n-> Jean de La Fontaine\n"
+"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🐢' .\n\n"
+"Le Lièvre et la Tortue\n"
+"\nRien ne sert de courir ; il faut partir à point."
+"\nLe Lièvre et la Tortue en sont un témoignage."
+"\nGageons, dit celle-ci, que vous n'atteindrez point"
+"\nSitôt que moi ce but. — Sitôt ? Êtes-vous sage ?"
+"\nRepartit l'animal léger."
+"\nMa commère, il vous faut purger"
+"\nAvec quatre grains d'ellébore."
+"\n- Sage ou non, je parie encore."
+"\nAinsi fut fait : et de tous deux"
+"\nOn mit près du but les enjeux :"
+"\nSavoir quoi, ce n'est pas l'affaire,"
+"\nNi de quel juge l'on convint."
+"\nNotre Lièvre n'avait que quatre pas à faire ;"
+"\nJ'entends de ceux qu'il fait lorsque prêt d'être atteint"
+"\nIl s'éloigne des chiens, les renvoie aux Calendes,"
+"\nEt leur fait arpenter les landes."
+"\nAyant, dis-je, du temps de reste pour brouter,"
+"\nPour dormir, et pour écouter"
+"\nD'où vient le vent, il laisse la Tortue"
+"\nAller son train de Sénateur."
+"\nElle part, elle s'évertue ;"
+"\nElle se hâte avec lenteur."
+"\nLui cependant méprise une telle victoire,"
+"\nTient la gageure à peu de gloire,"
+"\nCroit qu'il y va de son honneur"
+"\nDe partir tard. Il broute, il se repose,"
+"\nIl s'amuse à toute autre chose"
+"\nQu'à la gageure. À la fin quand il vit"
+"\nQue l'autre touchait presque au bout de la carrière,"
+"\nIl partit comme un trait ; mais les élans qu'il fit"
+"\nFurent vains : la Tortue arriva la première."
+"\nEh bien ! lui cria-t-elle, avais-je pas raison ?"
+"\nDe quoi vous sert votre vitesse ?"
+"\nMoi, l'emporter ! et que serait-ce"
+"\nSi vous portiez une maison ?\n"
+"\n-> Jean de La Fontaine\n"
+"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🐺️' .\n\n"
+"Le Loup et l'Agneau\n"
+"\nLa raison du plus fort est toujours la meilleure :"
+"\nNous l'allons montrer tout à l'heure."
+"\nUn Agneau se désaltérait"
+"\nDans le courant d'une onde pure."
+"\nUn Loup survient à jeun qui cherchait aventure,"
+"\nEt que la faim en ces lieux attirait."
+"\nQui te rend si hardi de troubler mon breuvage ?"
+"\nDit cet animal plein de rage :"
+"\nTu seras châtié de ta témérité."
+"\n- Sire, répond l'Agneau, que votre Majesté"
+"\nNe se mette pas en colère ;"
+"\nMais plutôt qu'elle considère"
+"\nQue je me vas désaltérant"
+"\nDans le courant,"
+"\nPlus de vingt pas au-dessous d'Elle,"
+"\nEt que par conséquent, en aucune façon,"
+"\nJe ne puis troubler sa boisson."
+"\n- Tu la troubles, reprit cette bête cruelle,"
+"\nEt je sais que de moi tu médis l'an passé."
+"\n- Comment l'aurais-je fait si je n'étais pas né ?"
+"\nReprit l'Agneau, je tette encor ma mère."
+"\n- Si ce n'est toi, c'est donc ton frère."
+"\n- Je n'en ai point."
+"\n- C'est donc quelqu'un des tiens :"
+"\nCar vous ne m'épargnez guère,"
+"\nVous, vos bergers, et vos chiens."
+"\nOn me l'a dit : il faut que je me venge."
+"\nLà-dessus, au fond des forêts"
+"\nLe Loup l'emporte, et puis le mange,"
+"\nSans autre forme de procès.\n"
+"\n-> Jean de La Fontaine\n"
+"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
+        <item>
+            "<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🏝️ 🦀'.\n\n"
+            "\n20: 56 à une heure banale,\nLa fleur mystérieuse s'empare d'un teint pâle.\n"
             "\nUn couché de soleil facile à saisir,\nLa nuit s'incruste dans un cocktail de plaisir.\n"
             "\nLa beauté d'un spectacle inattendu,\nLes dauphins nagent dans un calme absolu.\n"
             "\nAu crépuscule, sautant dans les vagues,\nDolphine se dérobe de la madrague.\n"
             "\nLe soleil se lève dans un enchantement,\nUne vie de rêve comblée d'émerveillement.\n\n"
-            "\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"</item>
-        <item>Pas prêt !</item>
-        <item>Pas prêt !</item>
-        <item>Pas prêt !</item>
-        <item>Pas prêt !</item>
+            "\n♡ ♡ ♡ 🐟 ♡ 🐬️ ♡ ♡ ♡\n"</item>
     </string-array>
     <string name="text_award_unlocked">Nouveau trophée débloqué.</string>
     <string name="title_social_networks">Réseaux sociaux</string>

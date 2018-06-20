@@ -27,7 +27,7 @@ fun MainActivity.showAlertOnLove() {
 
 fun MainActivity.showAwardDialog() {
     var bundle = Bundle()
-    bundle.putInt(App.BUNDLE_AWARD_DATA, gameView.gameData.award)
+    bundle.putInt(App.BUNDLE_AWARD_DATA, gameView.gameData.awardLevel)
     var popup = AwardDialog()
     popup.arguments = bundle
     popup.show(fragmentManager, MainActivity::class.java.simpleName)
@@ -83,7 +83,11 @@ fun MainActivity.updateLevel() {
 }
 
 fun MainActivity.updateGauge() {
-    mainGaugeAward.value = 200 + (gameView.gameData.score - gameView.scoreForAward(gameView.gameData.award - 1)) * 600 / (gameView.scoreForAward(gameView.gameData.award) - gameView.scoreForAward(gameView.gameData.award - 1))
+    var temp = gameView.gameData.score * 600 / gameView.scoreForNextAward()
+    if (temp < 3)
+        mainGaugeAward.value = 200 + 3
+    else
+        mainGaugeAward.value = 200 + temp
     mainGaugeLevel.value = 200 + (gameView.gameData.score - gameView.scoreForLevel(gameView.gameData.level - 1)) * 600 / (gameView.scoreForLevel(gameView.gameData.level) - gameView.scoreForLevel(gameView.gameData.level - 1))
 }
 

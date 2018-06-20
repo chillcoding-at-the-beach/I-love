@@ -48,7 +48,7 @@
     <string name="text_permissions_explanation">The Application need permissions for the in-app purchase.</string>
     <string name="text_waiting_explanation">Waiting for connection...</string>
     <string name="text_no_internet_in_top_scores">Cannot update top scores because of internet connection.</string>
-    <string name="get_premium_text">Get Premium</string>
+    <string name="get_premium_text">Available with Premium version.</string>
     <string name="server_error_text">Cannot have latest top scores, try later :)</string>
     <string name="failure">Come On...</string>
     <string name="you_can_better_text">You can do better!</string>
@@ -61,47 +61,231 @@
         <item>Perfect</item>
     </string-array>
     <string-array name="text_love">
-        <item>THE ONLY WAY\nTO DO\nGREAT WORK\nIS TO\nLOVE\nWHAT YOU DO.\n-> Steve Jobs</item>
+        <item>GOOD\nVIBES\nONLY.</item>
+        <item>DON\'T WORRY\nBE HAPPY.\n-> Bobby McFerrin</item>
         <item>ALL YOU\nNEED IS\nLOVE.</item>
+        <item>ONE LOVE\nONE HEART\nONE LIFE\nONE DESTINY.</item>
+        <item>FOLLOW YOUR DREAMS.</item>
+        <item>EVERY\nTHING\nHAPPENS\nFOR A REASON.</item>
+        <item>THINK Positively\nEXERCISE Daily\nEAT Healthy\nWORK Hard\n STAY Strong\nWORRY Less\nDANCE More\nLOVE Often\nBE Happy.</item>
+        <item>WHAT\nA\nSMALL\nWORLD.</item>
         <item>THE GOOD\nTHINGS IN\nLIFE\nARE BETTER\nWITH YOU!</item>
-        <item>WE FALL IN\nLOVE\nBY CHANCE\nWE STAY IN\nLOVE\nBY CHOICE.</item>
-        <item>ONE LIFE\nONE LOVE\nONE HEART\nONE DESTINY.</item>
         <item>YOU ARE\nMY BUTTER\nHALF.</item>
-        <item>YOU KNOW\nYOU ARE IN\nLOVE\nWHEN YOU CAN\'T\nFALL ASLEEP\nBECAUSE REALITY\nIS FINALLY\nBETTER THAN YOUR\nDREAMS.</item>
+        <item>WE FALL IN\nLOVE\nBY CHANCE\nWE STAY IN\nLOVE\nBY CHOICE.</item>
         <item>WHERE IS\nLOVE\nTHERE IS\nLIFE.</item>
+        <item>YOU KNOW\nYOU ARE IN\nLOVE\nWHEN YOU CAN\'T\nFALL ASLEEP\nBECAUSE REALITY\nIS FINALLY\nBETTER THAN YOUR\nDREAMS.</item>
         <item>ALONE\nWE GO FASTER\nTOGETHER\nWE GO FURTHER.\n-> African proverb</item>
-        <item>TO IMPROVE\nIS TO CHANGE\nTO BE PERFECT\nIS TO CHANGE OFTEN.\n-> Winston Churchill</item>
+        <item>DIFFICULT ROADS\nOFTEN\nLEAD TO\nBEAUTIFUL\nDESTINATIONS.</item>
         <item>THE\nEXPERT AT\nANYTHING\nWAS\nONCE A\nBEGINNER.\n-> Helen Hayes</item>
         <item>EVERYTHING\nWILL BE\nOK IN\nTHE END.\nIF IT’S NOT OK\nIT’S NOT\nTHE END.</item>
-        <item>DIFFICULT ROADS\nOFTEN\nLEAD TO\nBEAUTIFUL\nDESTINATIONS.</item>
         <item>THIS IS A TEST\nIF YOU CAN\nREAD THIS\nALL THE WAY\nDOWN TO HERE\nPLEASE\nGET OFF MY COMPUTER.</item>
-        <item>EVERY\nTHING\nHAPPENS\nFOR A REASON.</item>
-        <item>WHAT\nA\nSMALL\nWORLD.</item>
         <item>TO BE A\nCHAMP\nYOU HAVE TO\nBELIEVE\nIN YOURSELF\nWHEN NOBODY\nELSE WILL.\n-> Sugar Ray Robinson</item>
-        <item>GOOD\nVIBES\nONLY.</item>
         <item>ONE\nDAY\nAT A TIME.</item>
-        <item>THINK Positively\nEXERCISE Daily\nEAT Healthy\nWORK Hard\n STAY Strong\nWORRY Less\nDANCE More\nLOVE Often\nBE Happy.</item>
+        <item>TO IMPROVE\nIS TO CHANGE\nTO BE PERFECT\nIS TO CHANGE OFTEN.\n-> Winston Churchill</item>
+        <item>THE ONLY WAY\nTO DO\nGREAT WORK\nIS TO\nLOVE\nWHAT YOU DO.\n-> Steve Jobs</item>
     </string-array>
     <string-array name="word_mode">
-        <item>Love</item>
+        <item>♡</item>
         <item>I ♡️</item>
-        <item>I ♡ 🏝️️</item>
-        <item>I ♡ 🐟</item>
-        <item>I ♡ </item>
-        <item>I ♡ 🐬</item>
+        <item>I ♡ ⛰️️</item>
+        <item>I ♡ 🌊</item>
+        <item>I ♡ ⭐</item>
+        <item>I ♡ 🏝</item>
         <item>I ♡ 🦀</item>
     </string-array>
     <string-array name="text_award">
-        <item>"<b>Congratulations!</b>\nYou won the 'I ♡' award, it's the first of a long set.\n"
-        "Note: The following awards are only available with the premium purchase.\n"
-            "\n<b>I Love App</b>\nThe 'I Love' app starts with an exceptional heart, as you have certainly noticed only its size, its color and its speed change. The shape is always the same, in this way it is unique.\n"
-            "\n<b>I ♡</b>\n'I ♡'️ is the global symbol for souvenirs of every places:\nI ♡ SF\nI ♡️ LA\nI ♡️ BCN\n"
-             "\n<b>I ♡ Cannes</b>\nBy the way, the story starts in Cannes, in french riviera.\n6:08 AM darkness had not long surrendered to the light. While the sun rises, the thin clouds are cast over the sky, taking sequentially the most beautiful colors of a rainbow, from purple to yellow. The sea is tainted; no longer an abyss of black. Instead, it looked a metallic blue. There is no denying that any words can describe a sunrise. Nevertheless everyone can see it. Last but not least, under the sun we are all the same."</item>
-        <item>Beach Not yet ready!</item>
-        <item>Sea Not yet ready!</item>
-        <item>Jungle Not yet ready!</item>
-        <item>Dolphin Not yet ready!</item>
-        <item>Elephant Not yet ready!</item>
+        <item>
+             "\nI ♡ application starts with an incredible heart."
+            "\nOnly its size, its speed and  its color evolved."
+            "\nDiscover an amazing story by catch ♡.\n"
+        </item>
+        <item>"<b>Congratulations!</b>\nYou won the 'I ♡' award.\n"
+            "\n<b>I ♡</b>\n'I ♡'️ is the global symbol for souvenirs of every places:\nI ♡ SF\nI ♡️ LA\nI ♡️ BCN\nI ♡ Cannes\n"
+             "\nBy the way, the story starts in Cannes, in french riviera."
+            "\n5:45 AM darkness had not long surrendered to the light."
+            "\nWhile the sun rises, the thin clouds are cast over the sky,"
+            "\nTaking sequentially the most beautiful colors of a rainbow, from purple to yellow."
+            "\nThe sea is tainted; no longer an abyss of black.\nInstead, it looked a metallic blue."
+            "\nAny words can describe a sunrise."
+            "\nNevertheless everyone can see it.\n"
+            "\nLast but not least, under the sun we are all the same.\n"
+         "\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Congratulations!</b>\nYou won the 'I ♡ ⛰' award.\n\n"
+"Eldorado\n"
+"\nGaily bedight,"
+"\nA gallant knight,"
+"\nIn sunshine and in shadow,"
+"\nHad journeyed long,"
+"\n Singing a song,"
+"\nIn search of Eldorado.\n"
+
+"\nBut he grew old -"
+"\nThis knight so bold -"
+"\nAnd o'er his heart a shadow"
+"\nFell as he found"
+"\nNo spot of ground"
+"\nThat looked like Eldorado.\n"
+
+"\nAnd, as his strength"
+"\nFailed him at length,"
+"\nHe met a pilgrim shadow -"
+"\n«Shadow,» said he,"
+"\n«Where can it be -"
+"\nThis land of Eldorado?»\n"
+
+"\n«Over the Mountains"
+"\nOf the Moon,"
+"\nDown the Valley of the Shadow,"
+"\nRide, boldly ride,»"
+"\nThe shade replied, -"
+"\n«If you seek for Eldorado!»\n"
+"\n-> Edgar Allan Poe\n"
+"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+</item>
+        <item>
+"<b>Congratulations!</b>\nYou won the 'I ♡ 🌊' award.\n\n"
+"To The River\n"
+"\nFair river! in thy bright, clear flow"
+"\n   Of crystal, wandering water,"
+"\nThou art an emblem of the glow"
+"\n       Of beauty -- the unhidden heart --"
+"\n       The playful maziness of art"
+"\nIn old Alberto's daughter;"
+
+"\nBut when within thy wave she looks --"
+"\n       Which glistens then, and trembles --"
+"\nWhy, then, the prettiest of brooks"
+"\n       Her worshipper resembles;"
+"\nFor in my heart, as in thy stream,"
+"\n    Her image deeply lies --"
+"\nThe heart which trembles at the beam"
+"\n    Of her soul-searching eyes.\n"
+"\n-> Edgar Allan Poe\n"
+"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Congratulations!</b>\nYou won the 'I ♡ ⭐' award.\n\n"
+"Evening Star\n"
+"\n'Twas noontide of summer,"
+"\nAnd mid-time of night;"
+"\nAnd stars, in their orbits,"
+"\nShone pale, thro' the light"
+"\nOf the brighter, cold moon,"
+"\n'Mid planets her slaves,"
+"\nHerself in the Heavens,"
+"\nHer beam on the waves."
+"\nI gazed awhile"
+"\nOn her cold smile;"
+"\nToo cold- too cold for me-"
+"\nThere pass'd, as a shroud,"
+"\nA fleecy cloud,"
+"\nAnd I turned away to thee,"
+"\nProud Evening Star,"
+"\nIn thy glory afar,"
+"\nAnd dearer thy beam shall be;"
+"\nFor joy to my heart"
+"\nIs the proud part"
+"\nThou bearest in Heaven at night,"
+"\nAnd more I admire"
+"\nThy distant fire,"
+"\nThan that colder, lowly light.\n"
+"\n-> Edgar Allan Poe\n"
+"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Congratulations!</b>\nYou won the 'I ♡ 🏝' award.\n\n"
+"A Dream Within A Dream\n"
+"\nTake this kiss upon the brow!"
+"\nAnd, in parting from you now,"
+"\nThus much let me avow --"
+"\nYou are not wrong, who deem"
+"\nThat my days have been a dream;"
+"\nYet if hope has flown away"
+"\nIn a night, or in a day,"
+"\nIn a vision, or in none,"
+"\nIs it therefore the less gone?"
+"\nAll that we see or seem"
+"\nIs but a dream within a dream.\n"
+
+"\nI stand amid the roar"
+"\nOf a surf-tormented shore,"
+"\nAnd I hold within my hand"
+"\nGrains of the golden sand --"
+"\nHow few! yet how they creep"
+"\nThrough my fingers to the deep,"
+"\nWhile I weep -- while I weep!"
+"\nO God! can I not grasp"
+"\nThem with a tighter clasp?"
+"\nO God! can I not save"
+"\nOne from the pitiless wave?"
+"\nIs all that we see or seem"
+"\nBut a dream within a dream?\n"
+"\n-> Edgar Allan Poe\n"
+"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Congratulations!</b>\nYou won the 'I ♡ 🦀' award.\n\n"
+"The City in the Sea\n"
+"\nLo! Death has reared himself a throne"
+"\nIn a strange city lying alone"
+"\nFar down within the dim West,"
+"\nWhere the good and the bad and the worst and the best"
+"\nHave gone to their eternal rest."
+"\nThere shrines and palaces and towers"
+"\n(Time-eaten towers that tremble not!)"
+"\nResemble nothing that is ours."
+"\nAround, by lifting winds forgot,"
+"\nResignedly beneath the sky"
+"\nThe melancholy waters lie."
+"\nNo rays from the holy heaven come down"
+"\nOn the long night-time of that town;"
+"\nBut light from out the lurid sea"
+"\nStreams up the turrets silently-"
+"\nGleams up the pinnacles far and free-"
+"\nUp domes- up spires- up kingly halls-"
+"\nUp fanes- up Babylon-like walls-"
+"\nUp shadowy long-forgotten bowers"
+"\nOf sculptured ivy and stone flowers-"
+"\nUp many and many a marvellous shrine"
+"\nWhose wreathed friezes intertwine"
+"\nThe viol, the violet, and the vine."
+"\nResignedly beneath the sky"
+"\nThe melancholy waters lie."
+"\nSo blend the turrets and shadows there"
+"\nThat all seem pendulous in air,"
+"\nWhile from a proud tower in the town"
+"\nDeath looks gigantically down.\n"
+
+"\nThere open fanes and gaping graves"
+"\nYawn level with the luminous waves;"
+"\nBut not the riches there that lie"
+"\nIn each idol's diamond eye-"
+"\nNot the gaily-jewelled dead"
+"\nTempt the waters from their bed;"
+"\nFor no ripples curl, alas!"
+"\nAlong that wilderness of glass-"
+"\nNo swellings tell that winds may be"
+"\nUpon some far-off happier sea-"
+"\nNo heavings hint that winds have been"
+"\nOn seas less hideously serene."
+
+"\nBut lo, a stir is in the air!"
+"\nThe wave- there is a movement there!"
+"\nAs if the towers had thrust aside,"
+"\nIn slightly sinking, the dull tide-"
+"\nAs if their tops had feebly given"
+"\nA void within the filmy Heaven."
+"\nThe waves have now a redder glow-"
+"\nThe hours are breathing faint and low-"
+"\nAnd when, amid no earthly moans,"
+"\nDown, down that town shall settle hence,"
+"\nHell, rising from a thousand thrones,"
+"\nShall do it reverence.\n"
+"\n-> Edgar Allan Poe\n"
+"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
     </string-array>
     <string name="text_award_unlocked">New award unlocked.</string>
     <string name="title_social_networks">Social networks</string>

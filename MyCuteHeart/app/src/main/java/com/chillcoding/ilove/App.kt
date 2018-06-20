@@ -20,6 +20,7 @@ class App : Application() {
         const val PREF_SOUND = "PREF_SOUND"
         const val PREF_PREMIUM = "PREF_PREMIUM"
         const val SCORE_PER_AWARD = 150
+        const val AWARD_LIST_SIZE = 6
         const val AWARD_MODE = "AWARD_MODE"
         val sColors: List<Int> by lazy {
             listOf(
@@ -38,6 +39,7 @@ class App : Application() {
             )
         }
         val shadowColor: Int by lazy { ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null) }
+        val sAwardImg = intArrayOf(R.drawable.ic_menu_awards, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award)
     }
 
     override fun onCreate() {

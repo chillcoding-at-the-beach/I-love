@@ -6,6 +6,7 @@ import android.app.DialogFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.chillcoding.ilove.App
+import com.chillcoding.ilove.App.Companion.AWARD_LIST_SIZE
 import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.SecondActivity
@@ -20,22 +21,18 @@ class AwardDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         var activity = (activity as MainActivity)
-        var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
-        var awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 0)
+        val isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
+        var awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, -1)
         var bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
 
         var award = arguments.getInt(App.BUNDLE_AWARD_DATA)
 
         if (award - 1 > awardLevel) {
             activity.awardUnlocked()
-            if (isPremium)
-                awardLevel = award - 1
-            else
-                awardLevel = 1
+            awardLevel = award - 1
+            if (awardLevel > AWARD_LIST_SIZE)
+                awardLevel = AWARD_LIST_SIZE
         }
-
-        if (bestScore < 150)
-            bestScore = 154
 
         val dialogAwardView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_award, null)
 

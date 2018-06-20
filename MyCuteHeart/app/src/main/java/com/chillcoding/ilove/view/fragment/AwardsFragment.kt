@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chillcoding.ilove.App
+import com.chillcoding.ilove.App.Companion.AWARD_LIST_SIZE
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.extension.DelegatesExt
 import com.chillcoding.ilove.model.Award
@@ -18,38 +19,28 @@ import kotlinx.android.synthetic.main.fragment_awards.*
  */
 class AwardsFragment : Fragment() {
 
-    var isPremium: Boolean by DelegatesExt.preference(this, App.PREF_PREMIUM, false)
-
-    companion object {
-        val awardListSize = 8
-    }
-
-    private var items = Array<Award>(awardListSize, { Award() })
+    private var items = Array<Award>(AWARD_LIST_SIZE + 1, { Award() })
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_awards, container, false)
         val bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
-        val awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 0)
+        var awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, -1)
+        var isPremium: Boolean by DelegatesExt.preference(this, App.PREF_PREMIUM, false)
 
-        if (isPremium) {
-            for (k in 0..(awardLevel - 1)) {
-                items[k] = Award(R.drawable.ic_award, resources.getStringArray(R.array.word_mode)[k], (k + 1) * App.SCORE_PER_AWARD, k)
-            }
-            items[awardLevel] = Award(R.drawable.ic_award, resources.getStringArray(R.array.word_mode)[awardLevel], bestScore, awardLevel)
-        } else {
-            if (bestScore != 0) {
-                if (awardLevel > 0)
-                    items[0] = Award(R.drawable.ic_award, resources.getStringArray(R.array.word_mode)[awardLevel], bestScore, awardLevel)
-                else
-                    items[0] = Award(R.drawable.ic_menu_awards, resources.getStringArray(R.array.word_mode)[awardLevel], bestScore, awardLevel)
-
-            }
+        for (k in 0..(awardLevel - 1)) {
+            items[k] = Award(App.sAwardImg[k], resources.getStringArray(R.array.word_mode)[k], 0, k)
         }
+        if (!isPremium && awardLevel > 1)
+            items[1].score = bestScore
+        if (awardLevel > -1)
+            items[awardLevel] = Award(App.sAwardImg[awardLevel], resources.getStringArray(R.array.word_mode)[awardLevel], bestScore, awardLevel)
+
         return view!!
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        val isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
         awardsList.layoutManager = LinearLayoutManager(activity)
-        awardsList.adapter = AwardListAdapter(items)
+        awardsList.adapter = AwardListAdapter(items, isPremium)
     }
 }

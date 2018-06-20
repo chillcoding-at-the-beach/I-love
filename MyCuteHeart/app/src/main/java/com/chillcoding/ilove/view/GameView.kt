@@ -102,7 +102,7 @@ class GameView : View, View.OnTouchListener {
     }
 
     private fun win() {
-        gameData.score += POINTS * gameData.level * awardLevel
+        gameData.score += POINTS * gameData.level
         mHeart.doMagic()
         mActivity.updateScore()
         mActivity.updateGauge()
@@ -117,12 +117,14 @@ class GameView : View, View.OnTouchListener {
 
     private fun scoreForNextLevel() = scoreForLevel(gameData.level)
 
-    private fun scoreForNextAward() = scoreForAward(gameData.award)
+    fun scoreForNextAward() = scoreForAward(gameData.awardLevel)
 
     fun scoreForAward(awardLevel: Int): Int {
         var score = 0
-        for (k in 1..awardLevel)
-            score += k * App.SCORE_PER_AWARD
+        if (awardLevel == -1)
+            score = TAPS_PER_LEVEL + TAPS_PER_LEVEL / 2
+        else
+            score = 2 * awardLevel * App.SCORE_PER_AWARD + App.SCORE_PER_AWARD
         return score
     }
 
@@ -143,7 +145,7 @@ class GameView : View, View.OnTouchListener {
     }
 
     private fun awardUp() {
-        gameData.award += 1
+        gameData.awardLevel += 1
         mHeart.updateToLevel(gameData.level)
         mActivity.updateLevel()
         mActivity.showAwardDialog()

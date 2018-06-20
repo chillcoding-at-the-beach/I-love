@@ -29,9 +29,6 @@ class EndGameDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the Builder class for convenient dialog construction
         var bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
-        var awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 0)
-        var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
-
 
         val builder = AlertDialog.Builder(activity)
         val successString = resources.getStringArray(R.array.word_success)
