@@ -23,7 +23,7 @@ class GameView : View, View.OnTouchListener {
     var isPlaying = false
     var gameData = GameData()
 
-    private lateinit var mHeart: CuteHeart
+    private var iLove = ILoveHeart()
 
     private var mSoundHeartPlayer = MediaPlayer.create(context, R.raw.heart)
     private var mVibrator = context.getSystemService(Activity.VIBRATOR_SERVICE) as Vibrator
@@ -59,7 +59,11 @@ class GameView : View, View.OnTouchListener {
                 coef = height
             else
                 coef = width
-            mHeart = CuteHeart(width, height, mTopMargin.last().toInt(), gameData.level)
+            iLove.widthScreen = width
+            iLove.heightScreen = height
+            iLove.marginTopZone = mTopMargin.last().toInt()
+            iLove.level = gameData.level
+
             mTextPaint.textSize = (coef / 20).toFloat()
             mTopMargin[0] = (coef / 70).toFloat()
             mTopMargin[1] = (coef / 17).toFloat()
@@ -70,23 +74,23 @@ class GameView : View, View.OnTouchListener {
         super.onDraw(canvas)
         if (isPlaying) {
             invalidate()
-            mHeart.updateTrajectory()
+            iLove.updateTrajectory()
         }
         //draw the main heart
         canvas?.save()
-        canvas?.translate(mHeart.wakaX, mHeart.wakaY)
+        canvas?.translate(iLove.iLoveX, iLove.iLoveY)
         //draw the shadow
         canvas?.translate(D_SHADOW, D_SHADOW)
-        canvas?.drawPath(mHeart.path, mHeart.paintShadow)
+        canvas?.drawPath(iLove.path, iLove.paintShadow)
         canvas?.translate(-D_SHADOW, -D_SHADOW)
         //draw the heart
-        canvas?.drawPath(mHeart.path, mHeart.paint)
+        canvas?.drawPath(iLove.path, iLove.paint)
         canvas?.restore()
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         if (event != null) {
-            if (mHeart.isIn(event.x.toInt(), event.y.toInt())) {
+            if (iLove.isIn(event.x.toInt(), event.y.toInt())) {
                 if (isPlaying) {
                     win()
                     checkScore()
@@ -103,7 +107,7 @@ class GameView : View, View.OnTouchListener {
 
     private fun win() {
         gameData.score += POINTS * gameData.level
-        mHeart.doMagic()
+        iLove.doMagic()
         mActivity.updateScore()
         mActivity.updateGauge()
     }
@@ -138,7 +142,7 @@ class GameView : View, View.OnTouchListener {
     private fun levelUp() {
         gameData.level += 1
         mActivity.showLevelDialog()
-        mHeart.updateToLevel(gameData.level)
+        iLove.level = gameData.level
         mActivity.updateLevel()
         mSoundHeartPlayer.start()
         mActivity.updateGauge()
@@ -146,8 +150,6 @@ class GameView : View, View.OnTouchListener {
 
     private fun awardUp() {
         gameData.awardLevel += 1
-        mHeart.updateToLevel(gameData.level)
-        mActivity.updateLevel()
         mActivity.showAwardDialog()
         mActivity.updateGauge()
     }
@@ -175,7 +177,7 @@ class GameView : View, View.OnTouchListener {
     fun setUpNewGame() {
         stop()
         gameData = GameData()
-        mHeart?.updateToLevel(1)
+        iLove.level = 1
         invalidate()
     }
 
