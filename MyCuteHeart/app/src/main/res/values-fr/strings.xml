@@ -10,6 +10,7 @@
     <string name="action_share">Partager</string>
     <string name="action_see_awards">Voir les trophées</string>
     <string name="action_continue">Continuez</string>
+    <string name="action_see_top">Voir le Top 10</string>
     <string name="menu_more_features">Plus de fonctionnalités</string>
     <string name="menu_awards">Trophées</string>
     <string name="menu_premium">Premium</string>
@@ -112,4 +113,8 @@
     <string name="word_congrats">Félicitation !</string>
     <string name="text_win_award">Vous avez gagné un trophée.</string>
     <string name="word_levelup">Niveau supérieur !</string>
+    <string name="acronym_first">er</string>
+    <string name="acronym_second">ième</string>
+    <string name="acronym_third">ième</string>
+    <string name="acronym_number">ième</string>
 </resources>

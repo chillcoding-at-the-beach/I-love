@@ -54,17 +54,6 @@
             app:layout_constraintTop_toBottomOf="@id/dialogTitleTextView"
             app:srcCompat="@drawable/ic_star" />
 
-        <ImageView
-            android:id="@+id/dialogAwardImg"
-            android:layout_width="@dimen/middle_size"
-            android:layout_height="@dimen/middle_size"
-            android:layout_centerHorizontal="true"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dialogTitleTextView"
-            app:srcCompat="@drawable/ic_menu_awards" />
-
         <TextView
             android:id="@+id/dialogScoreTextView"
             android:layout_width="match_parent"
@@ -73,7 +62,8 @@
             android:gravity="center"
             android:textColor="@android:color/black"
             android:textSize="@dimen/main_number_size"
-            app:layout_constraintTop_toBottomOf="@+id/dialogAwardImg"
+            android:layout_marginTop="@dimen/margin_16"
+            app:layout_constraintTop_toBottomOf="@+id/starImageView"
             tools:text="500" />
 
         <View
@@ -109,17 +99,6 @@
 
         <TextView
             android:id="@+id/dialogAwardTextView"
-            style="@style/MyText.Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="@string/text_record_breaker"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/dialogLevelTextView" />
-
-        <TextView
-            android:id="@+id/dialogAwardBisTextView"
             style="@style/MyText.Special"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,7 +106,7 @@
             android:gravity="center"
             android:text="@string/text_award_unlocked"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/dialogAwardTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/dialogBestTextView" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

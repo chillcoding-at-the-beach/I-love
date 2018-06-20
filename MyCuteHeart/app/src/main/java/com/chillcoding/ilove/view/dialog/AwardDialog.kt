@@ -10,6 +10,7 @@ import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.SecondActivity
 import com.chillcoding.ilove.extension.DelegatesExt
+import com.chillcoding.ilove.extension.awardUnlocked
 import com.chillcoding.ilove.model.FragmentId
 import org.jetbrains.anko.share
 import org.jetbrains.anko.startActivity
@@ -20,6 +21,21 @@ class AwardDialog : DialogFragment() {
         val builder = AlertDialog.Builder(activity)
         var activity = (activity as MainActivity)
         var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
+        var awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 0)
+        var bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
+
+        var award = arguments.getInt(App.BUNDLE_AWARD_DATA)
+
+        if (award - 1 > awardLevel) {
+            activity.awardUnlocked()
+            if (isPremium)
+                awardLevel = award - 1
+            else
+                awardLevel = 1
+        }
+
+        if (bestScore < 150)
+            bestScore = 154
 
         val dialogAwardView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_award, null)
 

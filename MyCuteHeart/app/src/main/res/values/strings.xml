@@ -52,7 +52,7 @@
     <string name="server_error_text">Cannot have latest top scores, try later :)</string>
     <string name="failure">Come On...</string>
     <string name="you_can_better_text">You can do better!</string>
-    <string-array name="word_sucess">
+    <string-array name="word_success">
         <item>Genius</item>
         <item>Brilliant</item>
         <item>Awesome</item>
@@ -108,4 +108,9 @@
     <string name="word_congrats">Congratulations!</string>
     <string name="text_win_award">You win an award.</string>
     <string name="word_levelup">Level Up!</string>
+    <string name="action_see_top">See Top Scores</string>
+    <string name="acronym_first">st</string>
+    <string name="acronym_second">nd</string>
+    <string name="acronym_third">rd</string>
+    <string name="acronym_number">th</string>
 </resources>

@@ -12,6 +12,7 @@ class GameData : Parcelable {
     var level = 1
     var nbLife = 3
     var award = 1
+    var awardUnlocked = false
 
     constructor()
 
@@ -19,6 +20,9 @@ class GameData : Parcelable {
         score = parcel.readInt()
         level = parcel.readInt()
         nbLife = parcel.readInt()
+        if (parcel.readByte().toInt() != 0)
+            awardUnlocked = true
+
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
@@ -26,6 +30,10 @@ class GameData : Parcelable {
         dest?.writeInt(level)
         dest?.writeInt(nbLife)
         dest?.writeInt(award)
+        var valToWrite = 0
+        if (awardUnlocked)
+            valToWrite = 1
+        dest?.writeByte(valToWrite.toByte())
     }
 
     override fun describeContents(): Int {

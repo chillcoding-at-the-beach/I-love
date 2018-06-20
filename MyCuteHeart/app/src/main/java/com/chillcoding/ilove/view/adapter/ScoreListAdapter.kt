@@ -42,10 +42,10 @@ class ScoreListAdapter(var items: List<Score>) : RecyclerView.Adapter<ScoreListA
 
         private fun getRanking(rank: Int): String {
             when (rank) {
-                0 -> return "1st"
-                1 -> return "2nd"
-                2 -> return "3rd"
-                else -> return "${rank + 1}th"
+                0 -> return "1${view.context.getString(R.string.acronym_first)}"
+                1 -> return "2${view.context.getString(R.string.acronym_second)}"
+                2 -> return "3${view.context.getString(R.string.acronym_third)}"
+                else -> return "${rank + 1}${view.context.getString(R.string.acronym_number)}"
             }
         }
     }

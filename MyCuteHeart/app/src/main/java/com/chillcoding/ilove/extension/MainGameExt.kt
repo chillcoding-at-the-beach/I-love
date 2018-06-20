@@ -26,7 +26,11 @@ fun MainActivity.showAlertOnLove() {
 }
 
 fun MainActivity.showAwardDialog() {
-    AwardDialog().show(fragmentManager, MainActivity::class.java.simpleName)
+    var bundle = Bundle()
+    bundle.putInt(App.BUNDLE_AWARD_DATA, gameView.gameData.award)
+    var popup = AwardDialog()
+    popup.arguments = bundle
+    popup.show(fragmentManager, MainActivity::class.java.simpleName)
 }
 
 fun MainActivity.setUpGame() {
@@ -117,4 +121,8 @@ fun MainActivity.resetSound() {
 fun MainActivity.setUpNewGame() {
     gameView.setUpNewGame()
     updateGameInfo()
+}
+
+fun MainActivity.awardUnlocked() {
+    gameView.gameData.awardUnlocked = true
 }

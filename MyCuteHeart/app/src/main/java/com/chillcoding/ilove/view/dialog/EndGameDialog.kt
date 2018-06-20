@@ -15,6 +15,7 @@ import com.chillcoding.ilove.extension.playGame
 import com.chillcoding.ilove.extension.setUpNewGame
 import com.chillcoding.ilove.model.FragmentId
 import com.chillcoding.ilove.model.GameData
+import com.chillcoding.ilove.view.GameView
 import kotlinx.android.synthetic.main.dialog_end_game.view.*
 import org.jetbrains.anko.share
 import org.jetbrains.anko.startActivity
@@ -41,19 +42,12 @@ class EndGameDialog : DialogFragment() {
         endGameView.dialogLevelTextView.text = "${resources.getString(R.string.word_level)} ${data.level}"
 
         when {
-
-            data.award - 1 > awardLevel -> {
-                if (isPremium)
-                    awardLevel = data.award - 1
-                else
-                    awardLevel = 1
-                endGameView.starImageView.visibility = View.GONE
-                endGameView.middleStarImageView.visibility = View.GONE
-                endGameView.endStarImageView.visibility = View.GONE
-                endGameView.dialogAwardImg.visibility = View.VISIBLE
-                endGameView.dialogAwardTextView.visibility = View.VISIBLE
-                endGameView.dialogAwardBisTextView.visibility = View.VISIBLE
-                bestScore = data.score
+            data.score < GameView.TAPS_PER_LEVEL -> {
+                endGameView.dialogTitleTextView.text = getString(R.string.failure).toUpperCase()
+                endGameView.dialogLevelTextView.text = getString(R.string.you_can_better_text)
+                endGameView.starImageView.setColorFilter(App.sColors[1])
+                endGameView.middleStarImageView.setColorFilter(App.sColors[1])
+                endGameView.endStarImageView.setColorFilter(App.sColors[1])
             }
             data.score > bestScore -> {
                 bestScore = data.score
@@ -61,23 +55,16 @@ class EndGameDialog : DialogFragment() {
                 endGameView.starImageView.setColorFilter(App.sColors[7])
                 endGameView.middleStarImageView.setColorFilter(App.sColors[7])
                 endGameView.endStarImageView.setColorFilter(App.sColors[7])
+                builder.setNegativeButton(R.string.action_see_top, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal) })
+                if (data.awardUnlocked)
+                    endGameView.dialogAwardTextView.visibility = View.VISIBLE
             }
-            data.score < 10 -> {
-                endGameView.dialogTitleTextView.text = getString(R.string.failure).toUpperCase()
-                endGameView.dialogLevelTextView.text = getString(R.string.you_can_better_text)
-                endGameView.starImageView.setColorFilter(App.sColors[1])
-                endGameView.middleStarImageView.setColorFilter(App.sColors[1])
-                endGameView.endStarImageView.setColorFilter(App.sColors[1])
-            }
-
         }
         var activity = (activity as MainActivity)
         activity.setUpNewGame()
         builder.setView(endGameView)
                 .setPositiveButton(R.string.action_play, { _, _ -> activity.playGame(true) })
                 .setNeutralButton(R.string.action_share, { _, _ -> share("${getString(R.string.text_share_score)} ${data.score} <3 ${getString(R.string.word_with)} ${getString(R.string.app_name)}!", "I Love") })
-                .setNegativeButton(R.string.action_see_awards, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal) })
-
 
         return builder.create()
     }

@@ -33,7 +33,7 @@ class TopScoresFragment : Fragment(), AnkoLogger {
 
     private val url = "https://i-love-api.herokuapp.com/"
 
-    var allTopScores = listOf<Score>(Score(User("Marina"), 51032), Score(User("Macha"), 4973), Score(User("Jean-Michel"), 3542), Score(User("Carole"), 3333), Score(User("Zozo"), 2203), Score(User("Lola"), 2199), Score(User("Léo"), 999), Score(User("Matéo"), 998), Score(User("Léa"), 997), Score(User("Joe"), 995))
+    var allTopScores = listOf<Score>(Score(User("Marina"), 436), Score(User("Macha"), 278), Score(User("Jean-Michel"), 251), Score(User("Caroline"), 245), Score(User("Zoé"), 233), Score(User("Lola"), 221), Score(User("Léo"), 197), Score(User("Matéo"), 185), Score(User("Léa"), 179), Score(User("Joe"), 164))
 
     private var adapter = ScoreListAdapter(allTopScores)
 

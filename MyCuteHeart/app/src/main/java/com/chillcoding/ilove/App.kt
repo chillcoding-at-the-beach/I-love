@@ -12,7 +12,8 @@ class App : Application() {
         lateinit var instance: App
             private set
         const val PERMISSIONS_REQUEST_GET_ACCOUNTS: Int = 13
-        const val BUNDLE_GAME_DATA = "BUNDLE_GAME_DATE"
+        const val BUNDLE_GAME_DATA = "BUNDLE_GAME_DATA"
+        const val BUNDLE_AWARD_DATA = "BUNDLE_AWARD_DATA"
         const val PREF_BEST_SCORE = "PREF_BEST_SCORE"
         const val PREF_AWARD_LEVEL = "PREF_AWARD_LEVEL"
         const val PREF_PAYLOAD = "PREF_PAYLOAD"
@@ -34,7 +35,7 @@ class App : Application() {
                     ResourcesCompat.getColor(instance.resources, R.color.colorGreenDark, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorGreen, null),
                     ResourcesCompat.getColor(instance.resources, R.color.colorGreenLight, null)
-                    )
+            )
         }
         val shadowColor: Int by lazy { ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null) }
     }
