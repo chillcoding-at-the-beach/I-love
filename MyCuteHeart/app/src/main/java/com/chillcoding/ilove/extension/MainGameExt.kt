@@ -53,9 +53,9 @@ fun MainActivity.playGame(animateFab: Boolean = false) {
 fun MainActivity.endGame() {
     resetSound()
     fab.playAnimation(contentView!!)
-    var bundle = Bundle()
+    val bundle = Bundle()
     bundle.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
-    var popup = EndGameDialog()
+    val popup = EndGameDialog()
     popup.arguments = bundle
     popup.show(fragmentManager, MainActivity::class.java.simpleName)
 }
