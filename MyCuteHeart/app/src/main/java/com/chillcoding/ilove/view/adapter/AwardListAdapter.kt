@@ -30,7 +30,7 @@ class AwardListAdapter(val items: Array<Award>, val isPremium: Boolean) : Recycl
     class ViewHolder(val view: View, val isPremium: Boolean) : RecyclerView.ViewHolder(view) {
         fun bindMyAwards(award: Award) {
             with(award) {
-                if (mode > -1) {
+                if (level > -1) {
                     itemView.awardEmpty.visibility = View.INVISIBLE
                     itemView.award.visibility = View.VISIBLE
                     itemView.awardName.text = "${view.context.getString(R.string.word_award)}: $name"
@@ -41,13 +41,13 @@ class AwardListAdapter(val items: Array<Award>, val isPremium: Boolean) : Recycl
                     itemView.awardImg.setImageResource(img)
                 }
 
-                if (mode > -1) {
-                    itemView.setOnClickListener { itemView.context.startActivity<AwardDetailActivity>(App.AWARD_MODE to mode) }
+                if (level > -1) {
+                    itemView.setOnClickListener { itemView.context.startActivity<AwardDetailActivity>(App.AWARD_MODE to level) }
                     itemView.awardPlayIcon.setColorFilter(App.sColors[1])
                 }
-                if (mode > 0)
+                if (level > 0)
                     itemView.awardLoveIcon.setColorFilter(App.sColors[7])
-                if (mode > 1) {
+                if (level > 1) {
                     if (!isPremium) {
                         itemView.awardInfo.text = "${view.context.getString(R.string.get_premium_text)}"
                         itemView.awardImg.setImageResource(R.drawable.ic_menu_awards)
@@ -55,7 +55,7 @@ class AwardListAdapter(val items: Array<Award>, val isPremium: Boolean) : Recycl
                     }
                     itemView.awardDownIcon.setColorFilter(App.sColors[10])
                 }
-                if (mode > 2)
+                if (level > 2)
                     itemView.awardIcon.setColorFilter(App.sColors[5])
             }
         }
