@@ -22,19 +22,17 @@ class AwardsFragment : Fragment() {
     private var items = Array<Award>(AWARD_LIST_SIZE + 1, { Award() })
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        var view = inflater?.inflate(R.layout.fragment_awards, container, false)
+        val view = inflater?.inflate(R.layout.fragment_awards, container, false)
         val bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
-        var awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, -1)
-        var isPremium: Boolean by DelegatesExt.preference(this, App.PREF_PREMIUM, false)
+        val awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, -1)
 
         for (k in 0..(awardLevel - 1)) {
             items[k] = Award(App.sAwardImg[k], resources.getStringArray(R.array.word_mode)[k], 0, k)
         }
-        if (!isPremium && awardLevel > 1)
-            items[1].score = bestScore
         if (awardLevel > -1)
             items[awardLevel] = Award(App.sAwardImg[awardLevel], resources.getStringArray(R.array.word_mode)[awardLevel], bestScore, awardLevel)
-
+        if (awardLevel > 1)
+            items[1].score = bestScore
         return view!!
     }
 
