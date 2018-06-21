@@ -178,7 +178,7 @@ class GameView : View, View.OnTouchListener {
 
     fun setUpNewGame() {
         stop()
-        gameData = GameData()
+        gameData.reInit()
         iLove.level = 1
         invalidate()
     }

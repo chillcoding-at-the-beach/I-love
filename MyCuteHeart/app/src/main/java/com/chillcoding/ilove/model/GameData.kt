@@ -42,6 +42,13 @@ class GameData : Parcelable {
         return 0
     }
 
+    fun reInit() {
+        score = 0
+        level = 1
+        nbLife = 3
+        awardUnlocked = false
+    }
+
     val CREATOR: Parcelable.Creator<GameData> = object : Parcelable.Creator<GameData> {
         override fun createFromParcel(`in`: Parcel): GameData {
             return GameData(`in`)
