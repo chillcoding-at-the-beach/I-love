@@ -48,7 +48,7 @@
     <string name="text_permissions_explanation">The Application need permissions for the in-app purchase.</string>
     <string name="text_waiting_explanation">Waiting for connection...</string>
     <string name="text_no_internet_in_top_scores">Cannot update top scores because of internet connection.</string>
-    <string name="get_premium_text">Get Premium</string>
+    <string name="get_premium_text">Available with Premium version.</string>
     <string name="server_error_text">Cannot have latest top scores, try later :)</string>
     <string name="failure">Come On...</string>
     <string name="you_can_better_text">You can do better!</string>
@@ -61,34 +61,36 @@
         <item>Perfect</item>
     </string-array>
     <string-array name="text_love">
-        <item>THE ONLY WAY\nTO DO\nGREAT WORK\nIS TO\nLOVE\nWHAT YOU DO.\n-> Steve Jobs</item>
+        <item>GOOD\nVIBES\nONLY.</item>
+        <item>DON\'T WORRY\nBE HAPPY.\n-> Bobby McFerrin</item>
         <item>ALL YOU\nNEED IS\nLOVE.</item>
+        <item>ONE LOVE\nONE HEART\nONE LIFE\nONE DESTINY.</item>
+        <item>FOLLOW YOUR DREAMS.</item>
+        <item>EVERY\nTHING\nHAPPENS\nFOR A REASON.</item>
+        <item>THINK Positively\nEXERCISE Daily\nEAT Healthy\nWORK Hard\n STAY Strong\nWORRY Less\nDANCE More\nLOVE Often\nBE Happy.</item>
+        <item>WHAT\nA\nSMALL\nWORLD.</item>
         <item>THE GOOD\nTHINGS IN\nLIFE\nARE BETTER\nWITH YOU!</item>
-        <item>WE FALL IN\nLOVE\nBY CHANCE\nWE STAY IN\nLOVE\nBY CHOICE.</item>
-        <item>ONE LIFE\nONE LOVE\nONE HEART\nONE DESTINY.</item>
         <item>YOU ARE\nMY BUTTER\nHALF.</item>
-        <item>YOU KNOW\nYOU ARE IN\nLOVE\nWHEN YOU CAN\'T\nFALL ASLEEP\nBECAUSE REALITY\nIS FINALLY\nBETTER THAN YOUR\nDREAMS.</item>
+        <item>WE FALL IN\nLOVE\nBY CHANCE\nWE STAY IN\nLOVE\nBY CHOICE.</item>
         <item>WHERE IS\nLOVE\nTHERE IS\nLIFE.</item>
+        <item>YOU KNOW\nYOU ARE IN\nLOVE\nWHEN YOU CAN\'T\nFALL ASLEEP\nBECAUSE REALITY\nIS FINALLY\nBETTER THAN YOUR\nDREAMS.</item>
         <item>ALONE\nWE GO FASTER\nTOGETHER\nWE GO FURTHER.\n-> African proverb</item>
-        <item>TO IMPROVE\nIS TO CHANGE\nTO BE PERFECT\nIS TO CHANGE OFTEN.\n-> Winston Churchill</item>
+        <item>DIFFICULT ROADS\nOFTEN\nLEAD TO\nBEAUTIFUL\nDESTINATIONS.</item>
         <item>THE\nEXPERT AT\nANYTHING\nWAS\nONCE A\nBEGINNER.\n-> Helen Hayes</item>
         <item>EVERYTHING\nWILL BE\nOK IN\nTHE END.\nIF IT’S NOT OK\nIT’S NOT\nTHE END.</item>
-        <item>DIFFICULT ROADS\nOFTEN\nLEAD TO\nBEAUTIFUL\nDESTINATIONS.</item>
         <item>THIS IS A TEST\nIF YOU CAN\nREAD THIS\nALL THE WAY\nDOWN TO HERE\nPLEASE\nGET OFF MY COMPUTER.</item>
-        <item>EVERY\nTHING\nHAPPENS\nFOR A REASON.</item>
-        <item>WHAT\nA\nSMALL\nWORLD.</item>
         <item>TO BE A\nCHAMP\nYOU HAVE TO\nBELIEVE\nIN YOURSELF\nWHEN NOBODY\nELSE WILL.\n-> Sugar Ray Robinson</item>
-        <item>GOOD\nVIBES\nONLY.</item>
         <item>ONE\nDAY\nAT A TIME.</item>
-        <item>THINK Positively\nEXERCISE Daily\nEAT Healthy\nWORK Hard\n STAY Strong\nWORRY Less\nDANCE More\nLOVE Often\nBE Happy.</item>
+        <item>TO IMPROVE\nIS TO CHANGE\nTO BE PERFECT\nIS TO CHANGE OFTEN.\n-> Winston Churchill</item>
+        <item>THE ONLY WAY\nTO DO\nGREAT WORK\nIS TO\nLOVE\nWHAT YOU DO.\n-> Steve Jobs</item>
     </string-array>
     <string-array name="word_mode">
-        <item>Love</item>
+        <item>♡</item>
         <item>I ♡️</item>
-        <item>I ♡ 🏝️️</item>
-        <item>I ♡ 🐟</item>
-        <item>I ♡ </item>
-        <item>I ♡ 🐬</item>
+        <item>I ♡ ⛰️️</item>
+        <item>I ♡ 🌊</item>
+        <item>I ♡ ⭐</item>
+        <item>I ♡ 🏝</item>
         <item>I ♡ 🦀</item>
     </string-array>
     <string-array name="text_award">

@@ -8,18 +8,14 @@ import java.util.*
 /**
  * Created by macha on 17/07/2017.
  */
-class CuteHeart {
+class ILoveHeart {
 
-    var size = 0.5f
-    var speed = 1
-    var paint = Paint()
-    var paintShadow = Paint()
-    var path = Path()
+    private var isMagic: Boolean = false
+    private var size = 0.5f
+    private var speed = 1
 
-    var wakaX = 0f
-    var wakaY = 0f
 
-    var colorIndex = 0
+    private var colorIndex = 0
 
     private var mX = FloatArray(7)
     private var mY = FloatArray(7)
@@ -27,15 +23,30 @@ class CuteHeart {
     private var mDirectionToRight = true
     private var mDirectionToDown = true
 
-    private var mXZone = intArrayOf(10, 10)
-    private var mYZone = intArrayOf(10, 10, 10)
+    var paint = Paint()
+    var paintShadow = Paint()
+    var path = Path()
 
-    var level = 1
+    var iLoveX = 0f
+    var iLoveY = 0f
 
-    constructor(width: Int, height: Int, marginTop: Int, level: Int) {
-        mXZone = intArrayOf(0, width)
-        mYZone = intArrayOf(0, height, marginTop)
-        updateToLevel(level)
+    var level: Int = 1
+        set(value) {
+            field = value
+            updateToLevel()
+        }
+
+    private var xZone: Int = 100
+
+    private var yZone: Int = 100
+
+    var widthScreen = 0
+
+    var heightScreen = 0
+
+    var marginTopZone: Int = 10
+
+    constructor() {
         init()
     }
 
@@ -71,26 +82,26 @@ class CuteHeart {
 
     private fun updatePosition() {
         if (mDirectionToRight)
-            wakaX += speed
+            iLoveX += speed
         else
-            wakaX -= speed
+            iLoveX -= speed
         if (mDirectionToDown)
-            wakaY += speed
+            iLoveY += speed
         else
-            wakaY -= speed
+            iLoveY -= speed
     }
 
     private fun updateDirection() {
-        if (wakaX !in 0..mXZone.first())
+        if (iLoveX !in 0..xZone)
             mDirectionToRight = !mDirectionToRight
-        if (wakaY !in mYZone.last()..mYZone.first())
+        if (iLoveY !in marginTopZone..yZone)
             mDirectionToDown = !mDirectionToDown
     }
 
     private fun updatePositionRandomly() {
         val random = Random()
-        wakaX = random.nextInt(mXZone.first()).toFloat()
-        wakaY = (random.nextInt(mYZone.first()) + mYZone.last()).toFloat()
+        iLoveX = random.nextInt(xZone).toFloat()
+        iLoveY = (marginTopZone + random.nextInt(yZone)).toFloat()
     }
 
     private fun changeHeartColorRandomly() {
@@ -109,36 +120,28 @@ class CuteHeart {
     }
 
     private fun updateZone() {
-        mXZone[0] = mXZone.last() - mX[5].toInt()
-        mYZone[0] = mYZone[1] - mYZone.last() - mY[6].toInt()
+        xZone = widthScreen - mX[5].toInt()
+        yZone = heightScreen - marginTopZone - mY[6].toInt()
     }
 
-    fun updateTrajectory() {
-        updatePosition()
-        updateDirection()
-        if (isMagic)
-            updateSizeToMagic()
-    }
-
-    fun updateToLevel(level: Int) {
-        this.level = level
-        updateColorToLevel(level)
-        updateSpeedToLevel(level)
-        updateSizeToLevel(level)
+    private fun updateToLevel() {
+        updateColorToLevel()
+        updateSpeedToLevel()
+        updateSizeToLevel()
         updateRandomly()
     }
 
-    private fun updateColorToLevel(level: Int) {
+    private fun updateColorToLevel() {
         if (level <= App.sColors.size)
             colorIndex = level
     }
 
-    private fun updateSizeToLevel(level: Int) {
+    private fun updateSizeToLevel() {
         var ref: Float
-        if (mXZone[1] > mYZone[1])
-            ref = ((mXZone[1] * 3) / 1000).toFloat()
+        if (widthScreen > heightScreen)
+            ref = ((widthScreen * 3) / 1000).toFloat()
         else
-            ref = ((mYZone[1] * 3) / 1000).toFloat()
+            ref = ((heightScreen * 3) / 1000).toFloat()
         if (level < 7)
             size = ref - ((level - 1) * 0.7F)
         else
@@ -152,26 +155,31 @@ class CuteHeart {
         updateSize()
         if (size < 0.1) {
             isMagic = false
-            updateSizeToLevel(level)
+            updateSizeToLevel()
             updateRandomly()
         }
     }
 
-    private fun updateSpeedToLevel(level: Int) {
+    private fun updateSpeedToLevel() {
         speed = 2 * (level - 1) + 1
     }
 
-    fun updateRandomly() {
+    private fun updateRandomly() {
         updatePositionRandomly()
         changeDirection()
         changeHeartColorRandomly()
     }
 
-    fun isIn(xOf: Int, yOf: Int): Boolean {
-        return (xOf in wakaX..wakaX + mX[5] && yOf in wakaY..wakaY + mY[6])
+    fun updateTrajectory() {
+        updatePosition()
+        updateDirection()
+        if (isMagic)
+            updateSizeToMagic()
     }
 
-    private var isMagic: Boolean = false
+    fun isIn(xOf: Int, yOf: Int): Boolean {
+        return (xOf in iLoveX..iLoveX + mX[5] && yOf in iLoveY..iLoveY + mY[6])
+    }
 
     fun doMagic() {
         isMagic = true

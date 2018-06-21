@@ -31,9 +31,8 @@ class AwardDetailActivity : AppCompatActivity() {
                 fab.setImageResource(R.drawable.ic_love_border)
             isStarred = !isStarred
         }
-
-        awardDetailImg.setImageResource(R.drawable.ic_award)
-        awardDetailText.text = resources.getStringArray(R.array.text_award)[mode - 1]
+        awardDetailImg.setImageResource(App.sAwardImg[mode])
+        awardDetailText.text = resources.getStringArray(R.array.text_award)[mode]
 
         val tf: Typeface? = ResourcesCompat.getFont(this.applicationContext, R.font.shadows_into_light)
         collapsingToolbar.setCollapsedTitleTypeface(tf);
