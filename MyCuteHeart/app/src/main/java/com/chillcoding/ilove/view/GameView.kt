@@ -33,7 +33,6 @@ class GameView : View, View.OnTouchListener {
     private var mTopMargin = floatArrayOf(100f, 10f)
 
     private var mActivity: MainActivity = context as MainActivity
-    var awardLevel: Int by DelegatesExt.preference(context, App.PREF_AWARD_LEVEL, 1)
 
     companion object {
         private val POINTS = 1
@@ -121,14 +120,14 @@ class GameView : View, View.OnTouchListener {
 
     private fun scoreForNextLevel() = scoreForLevel(gameData.level)
 
-    fun scoreForNextAward() = scoreForAward(gameData.awardLevel)
+    fun scoreForNextAward() = scoreForAward(gameData.awardLevel + 1)
 
-    fun scoreForAward(awardLevel: Int): Int {
+    private fun scoreForAward(awardLevel: Int): Int {
         var score = 0
-        if (awardLevel == -1)
+        if (awardLevel == 0)
             score = TAPS_PER_LEVEL + TAPS_PER_LEVEL / 2
         else
-            score = 2 * awardLevel * App.SCORE_PER_AWARD + App.SCORE_PER_AWARD
+            score = 2 * (awardLevel - 1) * App.SCORE_PER_AWARD + App.SCORE_PER_AWARD
         return score
     }
 
@@ -149,9 +148,12 @@ class GameView : View, View.OnTouchListener {
     }
 
     private fun awardUp() {
-        gameData.awardLevel += 1
-        mActivity.showAwardDialog()
-        mActivity.updateGauge()
+        if (gameData.awardLevel < App.AWARD_LIST_SIZE) {
+            gameData.awardLevel += 1
+            gameData.awardUnlocked = true
+            mActivity.showAwardDialog()
+            mActivity.updateGauge()
+        }
     }
 
     fun play() {
