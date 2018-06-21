@@ -83,7 +83,7 @@ fun MainActivity.updateLevel() {
 }
 
 fun MainActivity.updateGauge() {
-    var temp = gameView.gameData.score * 600 / gameView.scoreForNextAward()
+    val temp = gameView.gameData.score * 600 / gameView.scoreForNextAward()
     if (temp < 3)
         mainGaugeAward.value = 200 + 3
     else
