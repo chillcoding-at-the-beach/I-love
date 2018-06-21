@@ -14,9 +14,9 @@ import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.contentView
 
 fun MainActivity.showLevelDialog() {
-    var bundle = Bundle()
-    bundle.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
-    var popup = LevelDialog()
+    val bundle = Bundle()
+    bundle.putInt(App.BUNDLE_GAME_LEVEL, gameView.gameData.level)
+    val popup = LevelDialog()
     popup.arguments = bundle
     popup.show(fragmentManager, MainActivity::class.java.simpleName)
 }
@@ -26,11 +26,7 @@ fun MainActivity.showAlertOnLove() {
 }
 
 fun MainActivity.showAwardDialog() {
-    var bundle = Bundle()
-    bundle.putInt(App.BUNDLE_AWARD_DATA, gameView.gameData.award)
-    var popup = AwardDialog()
-    popup.arguments = bundle
-    popup.show(fragmentManager, MainActivity::class.java.simpleName)
+    AwardDialog().show(fragmentManager, MainActivity::class.java.simpleName)
 }
 
 fun MainActivity.setUpGame() {
@@ -57,9 +53,9 @@ fun MainActivity.playGame(animateFab: Boolean = false) {
 fun MainActivity.endGame() {
     resetSound()
     fab.playAnimation(contentView!!)
-    var bundle = Bundle()
+    val bundle = Bundle()
     bundle.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
-    var popup = EndGameDialog()
+    val popup = EndGameDialog()
     popup.arguments = bundle
     popup.show(fragmentManager, MainActivity::class.java.simpleName)
 }
@@ -83,7 +79,11 @@ fun MainActivity.updateLevel() {
 }
 
 fun MainActivity.updateGauge() {
-    mainGaugeAward.value = 200 + (gameView.gameData.score - gameView.scoreForAward(gameView.gameData.award - 1)) * 600 / (gameView.scoreForAward(gameView.gameData.award) - gameView.scoreForAward(gameView.gameData.award - 1))
+    val temp = gameView.gameData.score * 600 / gameView.scoreForNextAward()
+    if (temp < 3)
+        mainGaugeAward.value = 200 + 3
+    else
+        mainGaugeAward.value = 200 + temp
     mainGaugeLevel.value = 200 + (gameView.gameData.score - gameView.scoreForLevel(gameView.gameData.level - 1)) * 600 / (gameView.scoreForLevel(gameView.gameData.level) - gameView.scoreForLevel(gameView.gameData.level - 1))
 }
 
@@ -121,8 +121,4 @@ fun MainActivity.resetSound() {
 fun MainActivity.setUpNewGame() {
     gameView.setUpNewGame()
     updateGameInfo()
-}
-
-fun MainActivity.awardUnlocked() {
-    gameView.gameData.awardUnlocked = true
 }

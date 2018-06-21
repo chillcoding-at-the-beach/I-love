@@ -14,10 +14,11 @@ import org.jetbrains.anko.startActivity
 /**
  * Created by macha on 21/09/2017.
  */
-class AwardListAdapter(val items: Array<Award>) : RecyclerView.Adapter<AwardListAdapter.ViewHolder>() {
+class AwardListAdapter(val items: Array<Award>, val isPremium: Boolean) : RecyclerView.Adapter<AwardListAdapter.ViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent.inflate(R.layout.item_award))
+        return ViewHolder(parent.inflate(R.layout.item_award), isPremium)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -26,27 +27,37 @@ class AwardListAdapter(val items: Array<Award>) : RecyclerView.Adapter<AwardList
 
     override fun getItemCount(): Int = items.size
 
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, val isPremium: Boolean) : RecyclerView.ViewHolder(view) {
         fun bindMyAwards(award: Award) {
             with(award) {
-                if (score != 0) {
+                if (level > -1) {
                     itemView.awardEmpty.visibility = View.INVISIBLE
                     itemView.award.visibility = View.VISIBLE
-                    itemView.awardName.text = "${view.context.getString(R.string.word_best_score)}: $score"
+                    itemView.awardName.text = "${view.context.getString(R.string.word_award)}: $name"
+                    if (score != 0)
+                        itemView.awardInfo.text = "${view.context.getString(R.string.word_best_score)}: $score"
+                    else
+                        itemView.awardInfo.text = "${view.context.resources.getStringArray(R.array.text_love)[4]}"
                     itemView.awardImg.setImageResource(img)
-                    itemView.awardInfo.text = "${view.context.getString(R.string.word_award)}: $name"
-                    itemView.awardPlayIcon.setColorFilter(App.sColors[4])
                 }
-                when {
-                    mode > 0 -> {
-                        itemView.setOnClickListener { itemView.context.startActivity<AwardDetailActivity>(App.AWARD_MODE to mode) }
-                        itemView.awardLoveIcon.setColorFilter(App.sColors[2])
+
+                if (level > -1) {
+                    itemView.setOnClickListener { itemView.context.startActivity<AwardDetailActivity>(App.AWARD_MODE to level) }
+                    itemView.awardPlayIcon.setColorFilter(App.sColors[1])
+                }
+                if (level > 0)
+                    itemView.awardLoveIcon.setColorFilter(App.sColors[7])
+                if (level > 1) {
+                    if (!isPremium) {
+                        itemView.awardInfo.text = "${view.context.getString(R.string.get_premium_text)}"
+                        itemView.awardImg.setImageResource(R.drawable.ic_menu_awards)
+                        itemView.setOnClickListener {}
                     }
-                    mode > 1 -> itemView.awardDownIcon.setColorFilter(App.sColors[3])
-                    mode > 2 -> itemView.awardIcon.setColorFilter(App.sColors[5])
+                    itemView.awardDownIcon.setColorFilter(App.sColors[10])
                 }
+                if (level > 2)
+                    itemView.awardIcon.setColorFilter(App.sColors[5])
             }
         }
     }
-
 }

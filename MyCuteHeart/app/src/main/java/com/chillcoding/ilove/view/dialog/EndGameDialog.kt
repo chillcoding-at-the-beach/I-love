@@ -29,14 +29,11 @@ class EndGameDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the Builder class for convenient dialog construction
         var bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
-        var awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, 0)
-        var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
-
 
         val builder = AlertDialog.Builder(activity)
         val successString = resources.getStringArray(R.array.word_success)
-        var endGameView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_end_game, null)
-        var data = arguments.getParcelable<GameData>(App.BUNDLE_GAME_DATA)
+        val endGameView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_end_game, null)
+        val data = arguments.getParcelable<GameData>(App.BUNDLE_GAME_DATA)
         endGameView.dialogTitleTextView.text = "${successString[Random().nextInt(successString.size)].toUpperCase()}!"
         endGameView.dialogScoreTextView.text = "${data.score}"
         endGameView.dialogLevelTextView.text = "${resources.getString(R.string.word_level)} ${data.level}"
@@ -60,7 +57,7 @@ class EndGameDialog : DialogFragment() {
                     endGameView.dialogAwardTextView.visibility = View.VISIBLE
             }
         }
-        var activity = (activity as MainActivity)
+        val activity = (activity as MainActivity)
         activity.setUpNewGame()
         builder.setView(endGameView)
                 .setPositiveButton(R.string.action_play, { _, _ -> activity.playGame(true) })

@@ -6,10 +6,8 @@ import android.app.DialogFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.chillcoding.ilove.App
-import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.extension.DelegatesExt
-import com.chillcoding.ilove.model.GameData
 import kotlinx.android.synthetic.main.dialog_level.view.*
 import org.jetbrains.anko.share
 
@@ -18,17 +16,16 @@ class LevelDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
-        var activity = (activity as MainActivity)
-        var isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
+        val isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
 
         val dialogLevelView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_level, null)
 
-        var data = arguments.getParcelable<GameData>(App.BUNDLE_GAME_DATA)
+        val level = arguments.getInt(App.BUNDLE_GAME_LEVEL)
 
         //draw the UI
-        dialogLevelView.levelNumber.text = "${getString(R.string.word_level)} ${data.level}"
-        dialogLevelView.levelQuote.text = mLoveQuoteArray[(data.level-2) % mLoveQuoteArray.size]
-        
+        dialogLevelView.levelNumber.text = "${getString(R.string.word_level)} ${level}"
+        dialogLevelView.levelQuote.text = mLoveQuoteArray[(level - 2) % mLoveQuoteArray.size]
+
         builder.setView(dialogLevelView)
                 .setPositiveButton(R.string.action_continue, null)
         if (isPremium)
