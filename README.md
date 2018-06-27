@@ -4,14 +4,16 @@
 _I Love_ is a game application, available on __PlayStore__.
 
 At the beginning, the goal was to draw a beautiful heart.
-Then, the idea to create a simple game with little hearts came. The goal is to touch as many heart as possible.
+Then, the idea to create a simple game with little hearts came. 
+The goal is to touch as many heart as possible.
 
 The adventure continued with you.
 For the moment, there are no more features to better accommodate your proposals.
+By subscribing to beta list you can [be part of the adventure](https://www.chillcoding.com/app/ilove/).
 
 
 ## Demo: _I Love_ in Beta
-[Be part of the adventure.](https://www.chillcoding.com/app/ilove/)
+[I Love on PlayStore](https://play.google.com/apps/testing/com.chillcoding.ilove)
 
 ## Social Network
 
@@ -53,4 +55,4 @@ In two steps:
 [Android classdiagram]:
 https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/assets/ILoveClassDiagram.png
 [ILove Icon]:
-https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/assets/ic_launcher-web.png
+https://raw.githubusercontent.com/chillcoding-at-the-beach/my-cute-heart/master/MyCuteHeart/app/src/main/ic_launcher-web.png
