@@ -52,9 +52,12 @@ class EndGameDialog : DialogFragment() {
                 endGameView.starImageView.setColorFilter(App.sColors[7])
                 endGameView.middleStarImageView.setColorFilter(App.sColors[7])
                 endGameView.endStarImageView.setColorFilter(App.sColors[7])
-                builder.setNegativeButton(R.string.action_see_top, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal) })
-                if (data.awardUnlocked)
+                if (data.awardUnlocked) {
                     endGameView.dialogAwardTextView.visibility = View.VISIBLE
+                    builder.setNegativeButton(R.string.action_see_awards, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal) })
+
+                } else
+                    builder.setNegativeButton(R.string.action_see_top, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal) })
             }
         }
         val activity = (activity as MainActivity)
