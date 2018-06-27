@@ -90,6 +90,7 @@
         <item>I ♡️</item>
         <item>I ♡ ⛰️️</item>
         <item>I ♡ 🌊</item>
+        <item>I ♡ 🌵</item>
         <item>I ♡ ⭐</item>
         <item>I ♡ 🏝</item>
         <item>I ♡ 🦀</item>
@@ -143,7 +144,7 @@
 "\nThe shade replied, -"
 "\n«If you seek for Eldorado!»\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+"\n♡ ♡ ♡ ⛰ ♡ ♡ ♡\n"
 </item>
         <item>
 "<b>Congratulations!</b>\nYou won the 'I ♡ 🌊' award.\n\n"
@@ -164,7 +165,33 @@
 "\nThe heart which trembles at the beam"
 "\n    Of her soul-searching eyes.\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+"\n♡ ♡ ♡ 🌊 ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Congratulations!</b>\nYou won the 'I ♡ 🌵' award.\n\n"
+"The Road Not Taken\n"
+"\nTwo roads diverged in a yellow wood,"
+"\nAnd sorry I could not travel both"
+"\nAnd be one traveler, long I stood"
+"\nAnd looked down one as far as I could"
+"\nTo where it bent in the undergrowth;"
+"\nThen took the other, as just as fair,"
+"\nAnd having perhaps the better claim,"
+"\nBecause it was grassy and wanted wear;"
+"\nThough as for that the passing there"
+"\nHad worn them really about the same,"
+"\nAnd both that morning equally lay"
+"\nIn leaves no step had trodden black."
+"\nOh, I kept the first for another day!"
+"\nYet knowing how way leads on to way,"
+"\nI doubted if I should ever come back."
+"\nI shall be telling this with a sigh"
+"\nSomewhere ages and ages hence:"
+"\nTwo roads diverged in a wood, and I-"
+"\nI took the one less traveled by,"
+"\nAnd that has made all the difference."
+"\n-> Robert Frost"
+"\n♡ ♡ ♡ 🌵 ♡ ♡ ♡\n"
         </item>
         <item>
 "<b>Congratulations!</b>\nYou won the 'I ♡ ⭐' award.\n\n"
@@ -193,7 +220,7 @@
 "\nThy distant fire,"
 "\nThan that colder, lowly light.\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+"\n♡ ♡ ♡ ⭐ ♡ ♡ ♡\n"
         </item>
         <item>
 "<b>Congratulations!</b>\nYou won the 'I ♡ 🏝' award.\n\n"
@@ -224,7 +251,7 @@
 "\nIs all that we see or seem"
 "\nBut a dream within a dream?\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+"\n♡ ♡ ♡ 🏝 ♡ ♡ ♡\n"
         </item>
         <item>
 "<b>Congratulations!</b>\nYou won the 'I ♡ 🦀' award.\n\n"
@@ -285,7 +312,7 @@
 "\nHell, rising from a thousand thrones,"
 "\nShall do it reverence.\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+"\n♡ ♡ ♡ 🦀 ♡ ♡ ♡\n"
         </item>
     </string-array>
     <string name="text_award_unlocked">New award unlocked.</string>
