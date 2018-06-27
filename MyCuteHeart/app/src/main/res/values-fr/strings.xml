@@ -28,7 +28,7 @@
     <string name="text_about">I Love vous distrait avec ses coeurs,\nDe tailles diverses, de toutes les couleurs.\nEt dansant sur un rythme endiablé.\nUne belle poésie vous est contée.</string>
     <string name="text_best_score">Tu as battu ton propre score !</string>
     <string name="subject_feedback">Retour sur l\'application I Love.</string>
-    <string name="text_share_app">Fait partie de l\'aventure avec l\'application I Love en Bêta: https://www.chillcoding.com/app/ilove/</string>
+    <string name="text_share_app">Fais partie de l\'aventure et teste l\'application I Love : https://play.google.com/apps/testing/com.chillcoding.ilove</string>
     <string name="title_chillcoding">By ChillCoding</string>
     <string name="title_pref_sound">Jouer la musique</string>
     <string name="about_app">Une application faite par ChillCoding</string>
@@ -61,8 +61,9 @@
         <item>Au coeur de l\'action.</item><!-- 4 -->
         <item>Le coeur\nest la source\nde l\'innocence\net du bonheur.\n-> marquise de Lambert</item>
         <item>Essaye d\'être heureux,\nça vaut le coup.\n-> France Gall</item><!-- 5 -->
-        <item>Des oiseaux nous chantaient\nleur mélopée\nEt nous vivions heureux\ndans la canopée.\n-> Polo &amp; Pan</item>
         <item>Trouvez\nle temps\npour les choses\nqui vous rendent\nheureux.</item>
+        <item>Le temps perdu\nnese rattrape plus.</item>
+        <item>Des oiseaux nous chantaient\nleur mélopée\nEt nous vivions heureux\ndans la canopée.\n-> Polo &amp; Pan</item>
         <item>N\'oubliez pas de fréquenter\ndes gens heureux\ncar le bonheur\nc\'est contagieux.</item><!-- 6 -->
         <item>Nous ne faisons pas\n de nouvelles rencontres\npar hasard.\nElles sont destinées\nà croiser notre chemin\npour une raison.</item>
         <item>Seul\non va plus vite\nensemble\non va plus loin.\n-> proverbe africain</item>
@@ -82,6 +83,7 @@
         <item>I ♡️</item>
         <item>I ♡ 🐜</item>
         <item>I ♡ 🦊</item>
+        <item>I ♡ 🦋</item>
         <item>I ♡ 🐢</item>
         <item>I ♡ 🐺️</item>
         <item>I ♡ 🏝️ 🦀</item>
@@ -150,6 +152,41 @@
 "\nJura, mais un peu tard, qu’on ne l’y prendrait plus.\n"
 "\n-> Jean de La Fontaine\n"
 "\n♡ ♡ ♡ 🦊 ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🦋' .\n\n"
+"Le Grillon\n"
+"\nUn pauvre petit grillon"
+"\nCaché dans l’herbe fleurie"
+"\nRegardait un papillon"
+"\nVoltigeant dans la prairie."
+"\nL’insecte ailé brillait des plus vives couleurs ;"
+"\nL’azur, la pourpre et l’or éclataient sur ses ailes ;"
+"\nJeune, beau, petit maître, il court de fleurs en fleurs,"
+"\nPrenant et quittant les plus belles."
+"\nAh! disait le grillon, que son sort et le mien"
+"\nSont différents ! Dame nature"
+"\nPour lui fit tout, et pour moi rien."
+"\nJe n’ai point de talent, encor moins de figure."
+"\nNul ne prend garde à moi, l’on m’ignore ici-bas :"
+"\nAutant vaudrait n’exister pas.\n"
+"\nComme il parlait, dans la prairie"
+"\nArrive une troupe d’enfants :"
+"\nAussitôt les voilà courants"
+"\nAprès ce papillon dont ils ont tous envie."
+"\nChapeaux, mouchoirs, bonnets, servent à l’attraper ;"
+"\nL’insecte vainement cherche à leur échapper,"
+"\nIl devient bientôt leur conquête."
+"\nL’un le saisit par l’aile, un autre par le corps ;"
+"\nUn troisième survient, et le prend par la tête :"
+"\nIl ne fallait pas tant d’efforts"
+"\nPour déchirer la pauvre bête."
+"\nOh! oh! dit le grillon, je ne suis plus fâché ;"
+"\nIl en coûte trop cher pour briller dans le monde."
+"\nCombien je vais aimer ma retraite profonde !"
+"\nPour vivre heureux, vivons caché.\n"
+"\n-> Jean-Pierre Claris de Florian\n"
+"\n♡ ♡ ♡ 🦋 ♡ ♡ ♡\n"
         </item>
         <item>
 "<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🐢' .\n\n"
