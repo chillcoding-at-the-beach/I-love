@@ -61,11 +61,11 @@ class EndGameDialog : DialogFragment() {
             }
         }
         val activity = (activity as MainActivity)
+        val score = data.score
         activity.setUpNewGame()
         builder.setView(endGameView)
                 .setPositiveButton(R.string.action_play, { _, _ -> activity.playGame(true) })
-                .setNeutralButton(R.string.action_share, { _, _ -> share("${getString(R.string.text_share_score)} ${data.score} <3 ${getString(R.string.word_with)} ${getString(R.string.app_name)}!", "I Love") })
-
+                .setNeutralButton(R.string.action_share, { _, _ -> share("${getString(R.string.text_share_score)} ${score} <3 ${getString(R.string.word_with)} ${getString(R.string.app_name)}!", "I Love") })
         return builder.create()
     }
 }
