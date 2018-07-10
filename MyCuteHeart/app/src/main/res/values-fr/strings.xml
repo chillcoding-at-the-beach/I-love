@@ -4,12 +4,11 @@
     <string name="navigation_drawer_open">Ouvrir le menu latéral</string>
     <string name="navigation_drawer_close">Fermer le menu latéral</string>
 
-    <string name="action_love">Cool</string>
     <string name="action_play">Jouer</string>
     <string name="action_more">Plus</string>
     <string name="action_share">Partager</string>
     <string name="action_see_awards">Voir les trophées</string>
-    <string name="action_continue">Continuez</string>
+    <string name="action_continue">Continuer</string>
     <string name="action_see_top">Voir le Top 10</string>
     <string name="menu_more_features">Plus de fonctionnalités</string>
     <string name="menu_awards">Trophées</string>
@@ -22,13 +21,13 @@
     <string name="word_level">Niveau</string>
     <string name="word_error">Erreur :</string>
     <string name="text_thank_you_premium">Merci d\'être passer à la version Premium !</string>
-    <string name="text_wait">Attendez svp</string>
+    <string name="text_wait">Attendez svp.</string>
     <string name="text_launch_in_app">Chargement de l\'achat intégré</string>
     <string name="word_points">points</string>
-    <string name="text_about">I Love vous distrait avec ses coeurs,\nDe tailles diverses, de toutes les couleurs.\nEt dansant sur un rythme endiablé.\nUne belle poésie vous est contée.</string>
+    <string name="text_about">\'I Love\' vous distrait avec ses coeurs,\nDe tailles diverses, de toutes les couleurs.\nEt dansant sur un rythme endiablé.\nUne belle poésie vous est contée.</string>
     <string name="text_best_score">Tu as battu ton propre score !</string>
-    <string name="subject_feedback">Retour sur l\'application I Love.</string>
-    <string name="text_share_app">Fais partie de l\'aventure et teste l\'application I Love : https://play.google.com/apps/testing/com.chillcoding.ilove</string>
+    <string name="subject_feedback">Retour sur l\'application \'I Love\'.</string>
+    <string name="text_share_app">Fais partie de l\'aventure et teste l\'application \'I Love\' : https://play.google.com/apps/testing/com.chillcoding.ilove</string>
     <string name="title_chillcoding">By ChillCoding</string>
     <string name="title_pref_sound">Jouer la musique</string>
     <string name="about_app">Une application faite par ChillCoding</string>
@@ -36,14 +35,14 @@
     <string name="word_best_score">Meilleur Score</string>
     <string name="text_record_breaker">Nouveau record !</string>
     <string name="text_share_score">J\'ai attrapé</string>
-    <string name="text_share_award">J\'ai gagné un trophée I Love!</string>
+    <string name="text_share_award">J\'ai gagné un trophée \'I Love\' !</string>
     <string name="word_with">avec</string>
     <string name="text_permissions_explanation">L\'application a besoin de permission pour l\'achat intégré.</string>
-    <string name="text_waiting_explanation">Attente de connexion...</string>
+    <string name="text_waiting_explanation">Attente de connexion&#8230;</string>
     <string name="text_no_internet_in_top_scores">Le Top des scores ne peut être mis à jour à cause de la connexion internet.</string>
     <string name="get_premium_text">Disponible avec la version\nPremium</string>
     <string name="server_error_text">Les derniers scores n\'ont pu être obtenu, essayez plus tard.</string>
-    <string name="failure">Allez...</string>
+    <string name="failure">Allez&#8230;</string>
     <string name="you_can_better_text">Tu peux mieux faire !</string>
     <string-array name="word_success">
         <item>Cool</item>
