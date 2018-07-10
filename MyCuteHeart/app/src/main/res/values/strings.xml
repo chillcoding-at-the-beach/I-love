@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_love">Love</string>
+    <string name="action_love" translatable="false">Cool</string>
     <string name="action_play">Play</string>
     <string name="action_share">Share</string>
     <string name="action_more">More</string>
@@ -25,10 +25,10 @@
     <string name="text_launch_in_app">Launching In app</string>
     <string name="word_points">points</string>
     <string name="text_about">
-        I Love is an awesome application natively coded in Kotlin. At the beginning, the goal was to draw a beautiful heart.\nThen, the idea to create a simple game with little hearts came.\nFind the easter eggs by touching everywhere ;)</string>
+        \'I Love\' is an awesome application natively coded in Kotlin. At the beginning, the goal was to draw a beautiful heart.\nThen, the idea to create a simple game with little hearts came.\nFind the easter eggs by touching everywhere ;)</string>
     <string name="text_best_score">You\'ve bested yourself!</string>
-    <string name="subject_feedback">Feedback on the I Love app.</string>
-    <string name="text_share_app">Be part of the adventure with I Love app in Beta: https://play.google.com/apps/testing/com.chillcoding.ilove</string>
+    <string name="subject_feedback">Feedback on the \'I Love\' app.</string>
+    <string name="text_share_app">Be part of the adventure with \'I Love\' app in Beta: https://play.google.com/apps/testing/com.chillcoding.ilove</string>
     <string name="title_chillcoding">By ChillCoding</string>
     <string name="title_pref_sound">Play Music</string>
     <string name="about_app">An application made by ChillCoding</string>
@@ -43,14 +43,14 @@
     <string name="word_best_score">Best Score</string>
     <string name="text_record_breaker">Record Breaker!</string>
     <string name="text_share_score">I caught</string>
-    <string name="text_share_award">I win an award with I Love!</string>
+    <string name="text_share_award">I win an award with \'I Love\'!</string>
     <string name="word_with">with</string>
     <string name="text_permissions_explanation">The Application need permissions for the in-app purchase.</string>
-    <string name="text_waiting_explanation">Waiting for connection...</string>
+    <string name="text_waiting_explanation">Waiting for connection&#8230;</string>
     <string name="text_no_internet_in_top_scores">Cannot update top scores because of internet connection.</string>
     <string name="get_premium_text">Available with Premium version.</string>
-    <string name="server_error_text">Cannot have latest top scores, try later :)</string>
-    <string name="failure">Come On...</string>
+    <string name="server_error_text">Cannot have latest top scores, try later.</string>
+    <string name="failure">Come On&#8230;</string>
     <string name="you_can_better_text">You can do better!</string>
     <string-array name="word_success">
         <item>Genius</item>
@@ -68,7 +68,7 @@
         <item>FOLLOW YOUR DREAMS.</item>
         <item>EVERY\nTHING\nHAPPENS\nFOR A REASON.</item>
         <item>THINK Positively\nEXERCISE Daily\nEAT Healthy\nWORK Hard\n STAY Strong\nWORRY Less\nDANCE More\nLOVE Often\nBE Happy.</item>
-        <item>SMILING\nLEADS TO\nHAPPYNESS.</item>
+        <item>SMILING\nLEADS TO\nHAPPINESS.</item>
         <item>WHAT\nA\nSMALL\nWORLD.</item>
         <item>THE GOOD\nTHINGS IN\nLIFE\nARE BETTER\nWITH YOU!</item>
         <item>YOU ARE\nMY BUTTER\nHALF.</item>
@@ -152,16 +152,16 @@
 "\nFair river! in thy bright, clear flow"
 "\n   Of crystal, wandering water,"
 "\nThou art an emblem of the glow"
-"\n       Of beauty -- the unhidden heart --"
+"\n       Of beauty &#8212; the unhidden heart &#8212;"
 "\n       The playful maziness of art"
 "\nIn old Alberto's daughter;"
 
-"\nBut when within thy wave she looks --"
-"\n       Which glistens then, and trembles --"
+"\nBut when within thy wave she looks &#8212;"
+"\n       Which glistens then, and trembles &#8212;"
 "\nWhy, then, the prettiest of brooks"
 "\n       Her worshipper resembles;"
 "\nFor in my heart, as in thy stream,"
-"\n    Her image deeply lies --"
+"\n    Her image deeply lies &#8212;"
 "\nThe heart which trembles at the beam"
 "\n    Of her soul-searching eyes.\n"
 "\n-> Edgar Allan Poe\n"
@@ -227,7 +227,7 @@
 "A Dream Within A Dream\n"
 "\nTake this kiss upon the brow!"
 "\nAnd, in parting from you now,"
-"\nThus much let me avow --"
+"\nThus much let me avow &#8212;"
 "\nYou are not wrong, who deem"
 "\nThat my days have been a dream;"
 "\nYet if hope has flown away"
@@ -240,10 +240,10 @@
 "\nI stand amid the roar"
 "\nOf a surf-tormented shore,"
 "\nAnd I hold within my hand"
-"\nGrains of the golden sand --"
+"\nGrains of the golden sand &#8212;"
 "\nHow few! yet how they creep"
 "\nThrough my fingers to the deep,"
-"\nWhile I weep -- while I weep!"
+"\nWhile I weep &#8212; while I weep!"
 "\nO God! can I not grasp"
 "\nThem with a tighter clasp?"
 "\nO God! can I not save"
