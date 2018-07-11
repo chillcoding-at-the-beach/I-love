@@ -21,14 +21,14 @@
             android:title="@string/menu_awards"
             android:visible="true" />
         <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_settings"
-            android:title="@string/menu_settings"
-            android:visible="true" />
-        <item
             android:id="@+id/nav_top"
             android:icon="@drawable/ic_star"
             android:title="@string/menu_top"
+            android:visible="true" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/menu_settings"
             android:visible="true" />
     </group>
     <group android:id="@+id/menu_communicate">
