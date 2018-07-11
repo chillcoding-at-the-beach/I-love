@@ -343,9 +343,9 @@
     "\n🏆 The 'Awards' section, accessible via the side menu, presents all the unlocked awards."
 "\nThe best score is indicated in the last unlocked award.\n"
     "\n⭐ The 'Top Scores' section displays the top 10 scores of the 'I Love' players.\n"
-        "\n💝 There are some easter egg hidden in the app, touch everywhere and see what happens."
+        "\n💝 There are some easter eggs hidden in the app, touch everywhere and see what happens."
 "\nFollow @ILoveKotlin on Social networks to keep in touch about them."
-        "\nFind more in `About` section.\n"
+        "\nFind more in `About` section."
     </string>
     <string name="title_rules">~ Rules of the game ~</string>
     <string name="symbol_end" translatable="false">~♡~♡~♡~</string>
