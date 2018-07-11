@@ -276,6 +276,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 showAlertOnLove()
                 return true
             }
+            R.id.action_help -> {
+                showHelpDialog()
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -290,6 +294,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_settings -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.SETTINGS.ordinal)
             R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
             R.id.nav_top -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal)
+            R.id.nav_help -> showHelpDialog()
         }
         return true
     }

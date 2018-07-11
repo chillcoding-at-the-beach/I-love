@@ -44,6 +44,11 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_beach_access"
             android:title="@string/menu_about" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_menu_help"
+            android:orderInCategory="100"
+            android:title="@string/action_help" />
     </group>
 
 </menu>
