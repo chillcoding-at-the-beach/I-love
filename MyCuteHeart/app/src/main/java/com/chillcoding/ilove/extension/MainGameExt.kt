@@ -5,10 +5,7 @@ import android.os.Bundle
 import com.chillcoding.ilove.App
 import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
-import com.chillcoding.ilove.view.dialog.AwardDialog
-import com.chillcoding.ilove.view.dialog.EndGameDialog
-import com.chillcoding.ilove.view.dialog.LevelDialog
-import com.chillcoding.ilove.view.dialog.QuoteDialog
+import com.chillcoding.ilove.view.dialog.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.contentView
@@ -27,6 +24,10 @@ fun MainActivity.showAlertOnLove() {
 
 fun MainActivity.showAwardDialog() {
     AwardDialog().show(fragmentManager, MainActivity::class.java.simpleName)
+}
+
+fun MainActivity.showHelpDialog() {
+    RulesDialog().show(fragmentManager, MainActivity::class.java.simpleName)
 }
 
 fun MainActivity.setUpGame() {

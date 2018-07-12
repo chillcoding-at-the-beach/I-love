@@ -10,6 +10,7 @@
     <string name="action_more">More</string>
     <string name="action_see_awards">See Awards</string>
     <string name="action_continue">Continue</string>
+    <string name="action_help">Help</string>
     <string name="menu_more_features">More features</string>
     <string name="menu_awards">Awards</string>
     <string name="menu_premium">Premium</string>
@@ -325,4 +326,27 @@
     <string name="acronym_second">nd</string>
     <string name="acronym_third">rd</string>
     <string name="acronym_number">th</string>
+    <string name="text_rules">
+    "♡ The goal of the game is to catch as much as possible heart.\n-> ❤️👆\n"
+    "\n❤️ The three red hearts, in the center, indicate the number of lives remaining, before the end of the game.\n-> ❤️ ❤️ ♡\n"
+    "\n💚 The green gauge (in the right) indicates progress to the next level."
+"\nIt also shows the current level in the center."
+"\nFor each heart caught, one point is earned at level 1, 2 points at level 2, and so on."
+"\n-> Level  1: ❤️+👆= 1  points"
+"\n-> Level 2: ❤️+👆= 2 points"
+"\n-> Level k: ❤️+👆 = k points\n"
+    "\n💛 The yellow gauge (in the left) indicates progress towards the next award."
+"\nIt also shows the current score in the center."
+"\nExceeded a point limit, an award is unlocked."
+"\nThis limit follows a random algorithm."
+"\n-> n points = 🏆\n"
+    "\n🏆 The 'Awards' section, accessible via the side menu, presents all the unlocked awards."
+"\nThe best score is indicated in the last unlocked award.\n"
+    "\n⭐ The 'Top Scores' section displays the top 10 scores of the 'I Love' players.\n"
+        "\n💝 There are some easter eggs hidden in the app, touch everywhere and see what happens."
+"\nFollow @ILoveKotlin on Social networks to keep in touch about them."
+        "\nFind more in `About` section."
+    </string>
+    <string name="title_rules">~ Rules of the game ~</string>
+    <string name="symbol_end" translatable="false">~♡~♡~♡~</string>
 </resources>

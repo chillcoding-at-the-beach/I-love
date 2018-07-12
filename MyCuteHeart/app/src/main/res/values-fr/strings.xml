@@ -10,6 +10,7 @@
     <string name="action_see_awards">Voir les trophées</string>
     <string name="action_continue">Continuer</string>
     <string name="action_see_top">Voir le Top 10</string>
+    <string name="action_help">Aide</string>
     <string name="menu_more_features">Plus de fonctionnalités</string>
     <string name="menu_awards">Trophées</string>
     <string name="menu_premium">Premium</string>
@@ -282,4 +283,26 @@
     <string name="acronym_second">ième</string>
     <string name="acronym_third">ième</string>
     <string name="acronym_number">ième</string>
+    <string name="title_rules">~ Règles du jeu ~</string>
+    <string name="text_rules">
+        "♡ Le but du jeu est d’attraper le plus de coeur.\n-> ❤️👆\n"
+        "\n❤️ Les trois coeurs rouge, au centre, indiquent le nombre de vies restantes, avant la fin du jeu.\n-> ❤️ ❤️ ♡\n"
+        "\n💚 La jauge verte (à droite) indique l’avancement vers le prochain niveau."
+"\nElle présente également le niveau actuel au centre."
+"\nPour chaque coeur attrapé, un points est gagné au niveau 1, 2 points au niveau 2, etc."
+"\n-> Niveau 1  : ❤️+👆= 1  points"
+"\n-> Niveau 2 : ❤️+👆= 2 points"
+"\n-> Niveau k : ❤️+👆 = k points\n"
+"\n💛 La jauge jaune (à gauche) indique l’avancement vers le prochain trophée."
+"\nElle présente également le score actuel au centre."
+"\nAprès avoir dépassé une certaine limite de points, un trophée est débloqué."
+"\nCette limite respecte un algorithme aléatoire."
+"\n-> n points = 🏆\n"
+        "\n🏆 La partie ‘Trophées’, accessible via le menu latéral, présente tous les trophées débloqués."
+"\nIl est indiqué le meilleure score dans le dernier trophée débloqué.\n"
+        "\n⭐ La partie ‘Top Scores’ affiche les 10 meilleurs scores des joueurs de l’application ’I Love’.\n"
+        "\n💝 Il y a quelques fonctionnalités cachées dans l’application, cliquez partout et observez ce qu’il se passe."
+"\nSuivez @ILoveKotlin sur les réseaux sociaux pour être informé sur ces dernières."
+"\nPlus d’informations dans la partie ‘À propos’."
+    </string>
 </resources>
