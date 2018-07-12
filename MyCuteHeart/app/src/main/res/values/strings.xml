@@ -89,9 +89,9 @@
     <string-array name="word_mode">
         <item>♡</item>
         <item>I ♡️</item>
-        <item>I ♡ ⛰️️</item>
+        <item>I ♡ 🌵️️</item>
         <item>I ♡ 🌊</item>
-        <item>I ♡ 🌵</item>
+        <item>I ♡ ⛰</item>
         <item>I ♡ ⭐</item>
         <item>I ♡ 🏝</item>
         <item>I ♡ 🦀</item>
@@ -113,6 +113,53 @@
             "\nNevertheless everyone can see it.\n"
             "\nLast but not least, under the sun we are all the same.\n"
          "\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Congratulations!</b>\nYou won the 'I ♡ 🌵' award.\n\n"
+"The Road Not Taken\n"
+"\nTwo roads diverged in a yellow wood,"
+"\nAnd sorry I could not travel both"
+"\nAnd be one traveler, long I stood"
+"\nAnd looked down one as far as I could"
+"\nTo where it bent in the undergrowth;"
+"\nThen took the other, as just as fair,"
+"\nAnd having perhaps the better claim,"
+"\nBecause it was grassy and wanted wear;"
+"\nThough as for that the passing there"
+"\nHad worn them really about the same,"
+"\nAnd both that morning equally lay"
+"\nIn leaves no step had trodden black."
+"\nOh, I kept the first for another day!"
+"\nYet knowing how way leads on to way,"
+"\nI doubted if I should ever come back."
+"\nI shall be telling this with a sigh"
+"\nSomewhere ages and ages hence:"
+"\nTwo roads diverged in a wood, and I-"
+"\nI took the one less traveled by,"
+"\nAnd that has made all the difference."
+"\n-> Robert Frost"
+"\n♡ ♡ ♡ 🌵 ♡ ♡ ♡\n"
+        </item>
+        <item>
+"<b>Congratulations!</b>\nYou won the 'I ♡ 🌊' award.\n\n"
+"To The River\n"
+"\nFair river! in thy bright, clear flow"
+"\n   Of crystal, wandering water,"
+"\nThou art an emblem of the glow"
+"\n       Of beauty &#8212; the unhidden heart &#8212;"
+"\n       The playful maziness of art"
+"\nIn old Alberto's daughter;"
+
+"\nBut when within thy wave she looks &#8212;"
+"\n       Which glistens then, and trembles &#8212;"
+"\nWhy, then, the prettiest of brooks"
+"\n       Her worshipper resembles;"
+"\nFor in my heart, as in thy stream,"
+"\n    Her image deeply lies &#8212;"
+"\nThe heart which trembles at the beam"
+"\n    Of her soul-searching eyes.\n"
+"\n-> Edgar Allan Poe\n"
+"\n♡ ♡ ♡ 🌊 ♡ ♡ ♡\n"
         </item>
         <item>
 "<b>Congratulations!</b>\nYou won the 'I ♡ ⛰' award.\n\n"
@@ -147,53 +194,6 @@
 "\n-> Edgar Allan Poe\n"
 "\n♡ ♡ ♡ ⛰ ♡ ♡ ♡\n"
 </item>
-        <item>
-"<b>Congratulations!</b>\nYou won the 'I ♡ 🌊' award.\n\n"
-"To The River\n"
-"\nFair river! in thy bright, clear flow"
-"\n   Of crystal, wandering water,"
-"\nThou art an emblem of the glow"
-"\n       Of beauty &#8212; the unhidden heart &#8212;"
-"\n       The playful maziness of art"
-"\nIn old Alberto's daughter;"
-
-"\nBut when within thy wave she looks &#8212;"
-"\n       Which glistens then, and trembles &#8212;"
-"\nWhy, then, the prettiest of brooks"
-"\n       Her worshipper resembles;"
-"\nFor in my heart, as in thy stream,"
-"\n    Her image deeply lies &#8212;"
-"\nThe heart which trembles at the beam"
-"\n    Of her soul-searching eyes.\n"
-"\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ 🌊 ♡ ♡ ♡\n"
-        </item>
-        <item>
-"<b>Congratulations!</b>\nYou won the 'I ♡ 🌵' award.\n\n"
-"The Road Not Taken\n"
-"\nTwo roads diverged in a yellow wood,"
-"\nAnd sorry I could not travel both"
-"\nAnd be one traveler, long I stood"
-"\nAnd looked down one as far as I could"
-"\nTo where it bent in the undergrowth;"
-"\nThen took the other, as just as fair,"
-"\nAnd having perhaps the better claim,"
-"\nBecause it was grassy and wanted wear;"
-"\nThough as for that the passing there"
-"\nHad worn them really about the same,"
-"\nAnd both that morning equally lay"
-"\nIn leaves no step had trodden black."
-"\nOh, I kept the first for another day!"
-"\nYet knowing how way leads on to way,"
-"\nI doubted if I should ever come back."
-"\nI shall be telling this with a sigh"
-"\nSomewhere ages and ages hence:"
-"\nTwo roads diverged in a wood, and I-"
-"\nI took the one less traveled by,"
-"\nAnd that has made all the difference."
-"\n-> Robert Frost"
-"\n♡ ♡ ♡ 🌵 ♡ ♡ ♡\n"
-        </item>
         <item>
 "<b>Congratulations!</b>\nYou won the 'I ♡ ⭐' award.\n\n"
 "Evening Star\n"
@@ -327,7 +327,7 @@
     <string name="acronym_third">rd</string>
     <string name="acronym_number">th</string>
     <string name="text_rules">
-    "♡ The goal of the game is to catch as much as possible heart.\n-> ❤️👆\n"
+    "♡ The goal of the game is to catch as many hearts as possible.\n-> ❤️👆\n"
     "\n❤️ The three red hearts, in the center, indicate the number of lives remaining, before the end of the game.\n-> ❤️ ❤️ ♡\n"
     "\n💚 The green gauge (in the right) indicates progress to the next level."
 "\nIt also shows the current level in the center."
@@ -337,7 +337,7 @@
 "\n-> Level k: ❤️+👆 = k points\n"
     "\n💛 The yellow gauge (in the left) indicates progress towards the next award."
 "\nIt also shows the current score in the center."
-"\nExceeded a point limit, an award is unlocked."
+"\nReaching defined thresholds, an award is unlocked."
 "\nThis limit follows a random algorithm."
 "\n-> n points = 🏆\n"
     "\n🏆 The 'Awards' section, accessible via the side menu, presents all the unlocked awards."
