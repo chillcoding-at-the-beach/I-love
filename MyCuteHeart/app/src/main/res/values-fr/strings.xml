@@ -279,10 +279,10 @@
     <string name="word_congrats">Félicitation !</string>
     <string name="text_win_award">Vous avez gagné un trophée.</string>
     <string name="word_levelup">Niveau supérieur !</string>
-    <string name="acronym_first">er</string>
-    <string name="acronym_second">ième</string>
-    <string name="acronym_third">ième</string>
-    <string name="acronym_number">ième</string>
+    <string name="acronym_first">er·re</string>
+    <string name="acronym_second">d·de</string>
+    <string name="acronym_third">e</string>
+    <string name="acronym_number">e</string>
     <string name="title_rules">~ Règles du jeu ~</string>
     <string name="text_rules">
         "♡ Le but du jeu est d’attraper le plus de coeur.\n-> ❤️👆\n"
