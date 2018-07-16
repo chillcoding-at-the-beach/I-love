@@ -25,6 +25,11 @@ Follow __@ILoveKotlin__ on these social networks:
 + [Snapshat](https://www.snapchat.com/add/ilovekotlin)
 + [Tumblr](https://www.tumblr.com/blog/ilovekotlin)
 
+## Submission
+
+Vote for 'I Love' on:
++ [UPlabs](https://www.uplabs.com/collections/i-538b8e87-9b83-486f-9fce-a50386a77c97)
+
 # An Android Kotlin App
 
 ## Class Diagram
