@@ -50,9 +50,9 @@ class GameFab : FloatingActionButton {
 
     private val eventActor = actor<View>(UI) {
         channel.consumeEach {
+            val oppositeMode = currentMode.getOppositeMode()
             this@GameFab.drawable.startAsAnimatable()
             delay(maximumAnimationDuration)
-            val oppositeMode = currentMode.getOppositeMode()
             currentMode = oppositeMode
         }
     }
