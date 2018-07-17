@@ -28,7 +28,7 @@
     <string name="text_about">\'I Love\' vous distrait avec ses coeurs,\nDe tailles diverses, de toutes les couleurs.\nEt dansant sur un rythme endiablé.\nUne belle poésie vous est contée.</string>
     <string name="text_best_score">Tu as battu ton propre score !</string>
     <string name="subject_feedback">Retour sur l\'application \'I Love\'.</string>
-    <string name="text_share_app">Fais partie de l\'aventure et teste l\'application \'I Love\' : https://play.google.com/apps/testing/com.chillcoding.ilove</string>
+    <string name="text_share_app">Fais partie de l\'aventure et teste l\'application \'I Love\' :</string>
     <string name="title_chillcoding">By ChillCoding</string>
     <string name="title_pref_sound">Jouer la musique</string>
     <string name="about_app">Une application faite par ChillCoding</string>
@@ -45,6 +45,7 @@
     <string name="server_error_text">Les derniers scores n\'ont pu être obtenu, essayez plus tard.</string>
     <string name="failure">Allez&#8230;</string>
     <string name="you_can_better_text">Tu peux mieux faire !</string>
+    <string name="text_from">depuis l\'application \'I Love\' :</string>
     <string-array name="word_success">
         <item>Cool</item>
         <item>Brillant</item>

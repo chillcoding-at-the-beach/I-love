@@ -32,7 +32,7 @@ class QuoteDialog : DialogFragment() {
                 .setPositiveButton(R.string.action_love, { _, _ -> activity.showAlertOnLove() })
                 .setNegativeButton(android.R.string.cancel, null)
         if (isPremium)
-            builder.setNeutralButton(R.string.action_share, { _, _ -> share("${dialogQuoteView.dialogQuote.text}", "I Love") })
+            builder.setNeutralButton(R.string.action_share, { _, _ -> share("${dialogQuoteView.dialogQuote.text} \n${getString(R.string.text_from)} ${getString(R.string.url_app)}", "I Love") })
         return builder.create()
     }
 }

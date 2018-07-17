@@ -29,7 +29,7 @@ class LevelDialog : DialogFragment() {
         builder.setView(dialogLevelView)
                 .setPositiveButton(R.string.action_continue, null)
         if (isPremium)
-            builder.setNeutralButton(R.string.action_share, { _, _ -> share("${dialogLevelView.levelQuote.text}", "I Love") })
+            builder.setNeutralButton(R.string.action_share, { _, _ -> share("${dialogLevelView.levelQuote.text}  \n${getString(R.string.text_from)} ${getString(R.string.url_app)}", "I Love") })
         return builder.create()
     }
 }

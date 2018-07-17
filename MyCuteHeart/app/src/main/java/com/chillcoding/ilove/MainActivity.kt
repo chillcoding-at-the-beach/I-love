@@ -292,7 +292,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_awards -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal)
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
             R.id.nav_settings -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.SETTINGS.ordinal)
-            R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
+            R.id.nav_share -> share("${getString(R.string.text_share_app)} ${getString(R.string.url_app)}", getString(R.string.app_name))
             R.id.nav_top -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal)
             R.id.nav_help -> showHelpDialog()
         }
