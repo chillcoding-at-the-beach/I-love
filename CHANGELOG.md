@@ -30,3 +30,13 @@ CHANGELOG](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/CHANGELOG.md)).
 
 Enjoy 'I Love' Application ♡
 -> I ♡ in Beta! Give your feedback @ILoveKotlin!
+
+## Version 1.2 `versionCode 6` (2018-18-07)
+
+### Added (1 MR)
+
+* Add an in-app purchase "Unlimited Quotes"
+
+### Fixed (1 MR)
+
+* Correct strings values in FR and EN
