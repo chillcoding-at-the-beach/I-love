@@ -29,7 +29,8 @@
         \'I Love\' is an awesome application natively coded in Kotlin. At the beginning, the goal was to draw a beautiful heart.\nThen, the idea to create a simple game with little hearts came.\nFind the easter eggs by touching everywhere ;)</string>
     <string name="text_best_score">You\'ve bested yourself!</string>
     <string name="subject_feedback">Feedback on the \'I Love\' app.</string>
-    <string name="text_share_app">Be part of the adventure with \'I Love\' app in Beta: https://play.google.com/apps/testing/com.chillcoding.ilove</string>
+    <string name="text_share_app">Be part of the adventure with \'I Love\' app in Beta:</string>
+    <string name="url_app" translatable="false">https://play.google.com/apps/testing/com.chillcoding.ilove</string>
     <string name="title_chillcoding">By ChillCoding</string>
     <string name="title_pref_sound">Play Music</string>
     <string name="about_app">An application made by ChillCoding</string>
@@ -53,6 +54,7 @@
     <string name="server_error_text">Cannot have latest top scores, try later.</string>
     <string name="failure">Come On&#8230;</string>
     <string name="you_can_better_text">You can do better!</string>
+    <string name="text_from">from \'I Love\' app:</string>
     <string-array name="word_success">
         <item>Genius</item>
         <item>Brilliant</item>
@@ -332,8 +334,8 @@
     "\n💚 The green gauge (in the right) indicates progress to the next level."
 "\nIt also shows the current level in the center."
 "\nFor each heart caught, one point is earned at level 1, 2 points at level 2, and so on."
-"\n-> Level  1: ❤️+👆= 1  points"
-"\n-> Level 2: ❤️+👆= 2 points"
+"\n-> Level  1: ❤️+👆 = 1 point"
+"\n-> Level 2: ❤️+👆 = 2 points"
 "\n-> Level k: ❤️+👆 = k points\n"
     "\n💛 The yellow gauge (in the left) indicates progress towards the next award."
 "\nIt also shows the current score in the center."
@@ -349,4 +351,5 @@
     </string>
     <string name="title_rules">~ Rules of the game ~</string>
     <string name="symbol_end" translatable="false">~♡~♡~♡~</string>
+    <string name="text_thank_you_unlimited_quotes">Thank you for upgrading to unlimited quotes!</string>
 </resources>

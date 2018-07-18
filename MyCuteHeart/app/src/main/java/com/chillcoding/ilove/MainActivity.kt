@@ -32,6 +32,9 @@ import java.util.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener, AnkoLogger {
 
     var isPremium: Boolean by DelegatesExt.preference(this, App.PREF_PREMIUM, false)
+    var isUnlimitedQuotes: Boolean by DelegatesExt.preference(this, App.PREF_UNLIMITED_QUOTES, false)
+
+    lateinit var askedSku: String
 
     // The helper object
     private var mHelper: IabHelper? = null
@@ -50,7 +53,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val progressDialog by lazy { indeterminateProgressDialog(R.string.text_waiting_explanation) }
 
     companion object {
-        val SKU_PREMIUM = "premium"
+        const val SKU_PREMIUM = "premium"
+        const val SKU_UNLIMITED_QUOTES = "unlimited_quotes"
         // (arbitrary) request code for the purchase flow
         val RC_REQUEST = 10001
     }
@@ -125,11 +129,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Do we have the premium upgrade?
         val premiumPurchase = inventory.getPurchase(SKU_PREMIUM)
         isPremium = premiumPurchase != null && verifyDeveloperPayload(premiumPurchase)
-        info("Initial inventory query finished; enabling main UI. PREMIUM : $isPremium")
-        if (!isPremium)
+        if (!isPremium && askedSku == SKU_PREMIUM)
             launchPurchase()
         else
             updateUi()
+        // Do we have unlimited quotes
+        val unliQuotesPurchase = inventory.getPurchase(SKU_UNLIMITED_QUOTES)
+        isUnlimitedQuotes = unliQuotesPurchase != null && verifyDeveloperPayload(unliQuotesPurchase)
+        if (!isUnlimitedQuotes && askedSku == SKU_UNLIMITED_QUOTES)
+            launchPurchase(askedSku)
     }
 
     internal var mPurchaseFinishedListener: IabHelper.OnIabPurchaseFinishedListener = IabHelper.OnIabPurchaseFinishedListener { result, purchase ->
@@ -149,12 +157,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         info("Purchase successful.")
 
-        if (purchase.sku == SKU_PREMIUM) {
-            // bought the premium upgrade!
-            info("Purchase is premium upgrade. Congratulating user.")
-            alert(getString(R.string.text_thank_you_premium))
-            isPremium = true
-            updateUi()
+        when (purchase.sku) {
+            SKU_PREMIUM -> {
+                // bought the premium upgrade!
+                info("Purchase is premium upgrade. Congratulating user.")
+                alert(getString(R.string.text_thank_you_premium))
+                isPremium = true
+                updateUi()
+            }
+            SKU_UNLIMITED_QUOTES -> {
+                alert(R.string.text_thank_you_unlimited_quotes)
+                isUnlimitedQuotes = true
+            }
         }
     }
 
@@ -168,7 +182,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun requestAccountPermission() {
+    fun requestAccountPermission() {
         //In aim of getting userPayload we ask for permissions
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.GET_ACCOUNTS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -194,9 +208,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun launchPurchase() {
+    private fun launchPurchase(sku: String = SKU_PREMIUM) {
         try {
-            mHelper!!.launchPurchaseFlow(this, SKU_PREMIUM, RC_REQUEST,
+            mHelper!!.launchPurchaseFlow(this, sku, RC_REQUEST,
                     mPurchaseFinishedListener, userPayload)
         } catch (e: IabHelper.IabAsyncInProgressException) {
             complain("Error launching purchase flow. Another async operation in progress.")
@@ -287,12 +301,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawer_layout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
-            R.id.nav_premium -> requestAccountPermission()
+            R.id.nav_premium -> {
+                askedSku = SKU_PREMIUM
+                requestAccountPermission()
+            }
             R.id.nav_about -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.ABOUT.ordinal)
             R.id.nav_awards -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal)
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
             R.id.nav_settings -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.SETTINGS.ordinal)
-            R.id.nav_share -> share(getString(R.string.text_share_app), getString(R.string.app_name))
+            R.id.nav_share -> share("${getString(R.string.text_share_app)} ${getString(R.string.url_app)}", getString(R.string.app_name))
             R.id.nav_top -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal)
             R.id.nav_help -> showHelpDialog()
         }
