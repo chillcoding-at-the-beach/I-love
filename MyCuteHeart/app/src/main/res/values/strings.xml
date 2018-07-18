@@ -351,4 +351,5 @@
     </string>
     <string name="title_rules">~ Rules of the game ~</string>
     <string name="symbol_end" translatable="false">~♡~♡~♡~</string>
+    <string name="text_thank_you_unlimited_quotes">Thank you for upgrading to unlimited quotes!</string>
 </resources>
