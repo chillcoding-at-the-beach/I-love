@@ -38,7 +38,8 @@ class AwardsFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         val isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
+        val isAwards: Boolean by DelegatesExt.preference(activity, App.PREF_UNLIMITED_AWARDS, false)
         awardsList.layoutManager = LinearLayoutManager(activity)
-        awardsList.adapter = AwardListAdapter(items, isPremium)
+        awardsList.adapter = AwardListAdapter(items, isPremium || isAwards)
     }
 }

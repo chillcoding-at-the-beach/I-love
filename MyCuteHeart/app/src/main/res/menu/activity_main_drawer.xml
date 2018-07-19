@@ -7,7 +7,7 @@
         <item
             android:id="@+id/nav_purchase"
             android:icon="@drawable/ic_menu_purchase"
-            android:title="@string/menu_premium" />
+            android:title="@string/menu_more_features" />
     </group>
     <group android:id="@+id/menu_cool">
         <item

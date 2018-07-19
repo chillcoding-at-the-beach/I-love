@@ -1,15 +1,8 @@
 package com.chillcoding.ilove
 
-import android.accounts.AccountManager
-import android.app.AlertDialog
-import android.content.Intent
-import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -19,45 +12,28 @@ import android.view.View
 import com.chillcoding.fablibrary.GameFab
 import com.chillcoding.ilove.extension.*
 import com.chillcoding.ilove.model.FragmentId
-import com.chillcoding.ilove.util.IabBroadcastReceiver
-import com.chillcoding.ilove.util.IabHelper
-import com.chillcoding.ilove.util.Purchase
-import com.google.android.gms.auth.GoogleAuthUtil
+import com.chillcoding.ilove.view.activity.PurchaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import org.jetbrains.anko.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.email
+import org.jetbrains.anko.share
+import org.jetbrains.anko.startActivity
 import java.util.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IabBroadcastReceiver.IabBroadcastListener, AnkoLogger {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, AnkoLogger {
 
     var isPremium: Boolean by DelegatesExt.preference(this, App.PREF_PREMIUM, false)
     var isUnlimitedQuotes: Boolean by DelegatesExt.preference(this, App.PREF_UNLIMITED_QUOTES, false)
-
-    lateinit var askedSku: String
-
-    // The helper object
-    private var mHelper: IabHelper? = null
-
-    // Provides purchase notification while this app is running
-    private var mBroadcastReceiver: IabBroadcastReceiver? = null
 
     private lateinit var mToggle: ActionBarDrawerToggle
     private val mLoveQuoteArray: Array<String> by lazy { resources.getStringArray(R.array.text_love) }
     private val mRandom = Random()
 
     val isSound: Boolean by DelegatesExt.preference(this, App.PREF_SOUND, true)
-    var userPayload: String  by DelegatesExt.preference(this, App.PREF_PAYLOAD, "newinstall")
     lateinit var mSoundPlayer: MediaPlayer
 
-    val progressDialog by lazy { indeterminateProgressDialog(R.string.text_waiting_explanation) }
-
-    companion object {
-        const val SKU_PREMIUM = "premium"
-        const val SKU_UNLIMITED_QUOTES = "unlimited_quotes"
-        // (arbitrary) request code for the purchase flow
-        val RC_REQUEST = 10001
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,180 +51,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setUpNavigationDrawer()
     }
 
-    private fun setUpInAppPurchase() {
-
-        mHelper = IabHelper(this, getString(R.string.base64_encoded_public_key))
-
-        // /!\ for a production application, you should set this to false).
-        mHelper!!.enableDebugLogging(false)
-
-        mHelper!!.startSetup(IabHelper.OnIabSetupFinishedListener { result ->
-
-            if (!result.isSuccess) {
-                complain("Problem setting up in-app billing: $result")
-                return@OnIabSetupFinishedListener
-            }
-
-            // Have we been disposed of in the meantime? If so, quit.
-            if (mHelper == null) return@OnIabSetupFinishedListener
-
-            // Important: Dynamically register for broadcast messages about updated purchases.
-            // We register the receiver here instead of as a <receiver> in the Manifest
-            // because we always call getPurchases() at startup, so therefore we can ignore
-            // any broadcasts sent while the app isn't running.
-            // Note: registering this listener in an Activity is a bad idea, but is done here
-            // because this is a SAMPLE. Regardless, the receiver must be registered after
-            // IabHelper is setup, but before first call to getPurchases().
-            mBroadcastReceiver = IabBroadcastReceiver(this@MainActivity)
-            val broadcastFilter = IntentFilter(IabBroadcastReceiver.ACTION)
-            registerReceiver(mBroadcastReceiver, broadcastFilter)
-
-            // IAB is fully set up. Now, let's get an inventory of stuff we own.
-            try {
-                mHelper!!.queryInventoryAsync(mGotInventoryListener)
-            } catch (e: IabHelper.IabAsyncInProgressException) {
-                complain("Error querying inventory. Another async operation in progress.")
-            }
-        })
-    }
-
-    internal var mGotInventoryListener: IabHelper.QueryInventoryFinishedListener = IabHelper.QueryInventoryFinishedListener { result, inventory ->
-        info("Query inventory finished.")
-
-        // Have we been disposed of in the meantime? If so, quit.
-        if (mHelper == null) return@QueryInventoryFinishedListener
-
-        // Is it a failure?
-        if (result.isFailure) {
-            complain("Failed to query inventory: " + result)
-            return@QueryInventoryFinishedListener
-        }
-
-        info("Query inventory was successful.")
-
-        // Do we have the premium upgrade?
-        val premiumPurchase = inventory.getPurchase(SKU_PREMIUM)
-        isPremium = premiumPurchase != null && verifyDeveloperPayload(premiumPurchase)
-        if (!isPremium && askedSku == SKU_PREMIUM)
-            launchPurchase()
-        else
-            updateUi()
-        // Do we have unlimited quotes
-        val unliQuotesPurchase = inventory.getPurchase(SKU_UNLIMITED_QUOTES)
-        isUnlimitedQuotes = unliQuotesPurchase != null && verifyDeveloperPayload(unliQuotesPurchase)
-        if (!isUnlimitedQuotes && askedSku == SKU_UNLIMITED_QUOTES)
-            launchPurchase(askedSku)
-    }
-
-    internal var mPurchaseFinishedListener: IabHelper.OnIabPurchaseFinishedListener = IabHelper.OnIabPurchaseFinishedListener { result, purchase ->
-        info("Purchase finished: $result, purchase: $purchase")
-
-        // if we were disposed of in the meantime, quit.
-        if (mHelper == null) return@OnIabPurchaseFinishedListener
-
-        if (result.isFailure) {
-            complain("Error purchasing: " + result)
-            return@OnIabPurchaseFinishedListener
-        }
-        if (!verifyDeveloperPayload(purchase)) {
-            complain("Error purchasing. Authenticity verification failed.")
-            return@OnIabPurchaseFinishedListener
-        }
-
-        info("Purchase successful.")
-
-        when (purchase.sku) {
-            SKU_PREMIUM -> {
-                // bought the premium upgrade!
-                info("Purchase is premium upgrade. Congratulating user.")
-                alert(getString(R.string.text_thank_you_premium))
-                isPremium = true
-                updateUi()
-            }
-            SKU_UNLIMITED_QUOTES -> {
-                alert(R.string.text_thank_you_unlimited_quotes)
-                isUnlimitedQuotes = true
-            }
-        }
-    }
-
-    override fun receivedBroadcast() {
-        // Received a broadcast notification that the inventory of items has changed
-        info("Received broadcast notification. Querying inventory.")
-        try {
-            mHelper!!.queryInventoryAsync(mGotInventoryListener)
-        } catch (e: IabHelper.IabAsyncInProgressException) {
-            complain("Error querying inventory. Another async operation in progress.")
-        }
-    }
-
-    fun requestAccountPermission() {
-        //In aim of getting userPayload we ask for permissions
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.GET_ACCOUNTS)
-                != PackageManager.PERMISSION_GRANTED) {
-            alert(R.string.text_permissions_explanation) {
-                yesButton {
-                    ActivityCompat.requestPermissions(this@MainActivity,
-                            Array<String>(1) { android.Manifest.permission.GET_ACCOUNTS },
-                            App.PERMISSIONS_REQUEST_GET_ACCOUNTS);
-                }
-                noButton { }
-            }.show()
-        } else
-            setUpInAppPurchase()
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            App.PERMISSIONS_REQUEST_GET_ACCOUNTS -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    getPayload()
-            }
-        }
-    }
-
-    private fun launchPurchase(sku: String = SKU_PREMIUM) {
-        try {
-            mHelper!!.launchPurchaseFlow(this, sku, RC_REQUEST,
-                    mPurchaseFinishedListener, userPayload)
-        } catch (e: IabHelper.IabAsyncInProgressException) {
-            complain("Error launching purchase flow. Another async operation in progress.")
-        }
-    }
-
-    private fun getPayload(): String {
-        if (userPayload == "newinstall") {
-            val accountName = getAccountName()
-            progressDialog.show()
-            doAsync {
-                val accountID = GoogleAuthUtil.getAccountId(applicationContext, accountName)
-                userPayload = "${getString(R.string.payload)}_$accountID"
-                uiThread { myCallBack() }
-            }
-        }
-        return userPayload
-    }
-
-    private fun myCallBack() {
-        progressDialog.dismiss()
-        setUpInAppPurchase()
-    }
-
-    private fun getAccountName(): String {
-        var accountName = "user"
-        val manager = getSystemService(ACCOUNT_SERVICE) as AccountManager
-        val list = manager.accounts
-        for (account in list) {
-            if (account.type.equals("com.google", true)) {
-                accountName = account.name
-                return accountName
-            }
-        }
-        return accountName
-    }
-
     private fun setUpNavigationDrawer() {
+        if (isPremium)
+            navView.menu.findItem(R.id.nav_purchase).isVisible = false
         mToggle = object : ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             override fun onDrawerClosed(view: View?) {}
@@ -301,10 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawer_layout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
-            R.id.nav_premium -> {
-                askedSku = SKU_PREMIUM
-                requestAccountPermission()
-            }
+            R.id.nav_purchase -> startActivity<PurchaseActivity>()
             R.id.nav_about -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.ABOUT.ordinal)
             R.id.nav_awards -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal)
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
@@ -314,27 +116,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_help -> showHelpDialog()
         }
         return true
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        info("onActivityResult($requestCode,$resultCode,$data")
-        if (mHelper == null) return
-        // Pass on the activity result to the helper for handling
-        if (!mHelper!!.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data)
-        } else {
-            info("onActivityResult handled by IABUtil.")
-        }
-    }
-
-    public override fun onDestroy() {
-        super.onDestroy()
-        if (mBroadcastReceiver != null)
-            unregisterReceiver(mBroadcastReceiver)
-        if (mHelper != null) {
-            mHelper!!.disposeWhenFinished()
-            mHelper = null
-        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -359,30 +140,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.removeDrawerListener(mToggle)
         if (gameView.isPlaying)
             pauseGame(true)
-    }
-
-    private fun complain(msg: String) {
-        error("${getString(R.string.app_name)} Error : $msg")
-    }
-
-    private fun alert(s: String) {
-        val bld = AlertDialog.Builder(this)
-        bld.setMessage(s)
-        bld.setNeutralButton("OK", null)
-        error("Showing alert dialog: " + s)
-        bld.create().show()
-    }
-
-    internal fun verifyDeveloperPayload(p: Purchase): Boolean {
-        val payload = p.developerPayload
-        return payload == userPayload
-    }
-
-    private fun updateUi() {
-        if (isPremium) {
-            navView.menu.findItem(R.id.nav_premium).isVisible = false
-            navView.menu.findItem(R.id.nav_more_features).isVisible = false
-        }
     }
 
     override fun onRestart() {
