@@ -5,14 +5,9 @@
 
     <group>
         <item
-            android:id="@+id/nav_premium"
-            android:icon="@drawable/ic_menu_purchase_up"
-            android:title="@string/menu_premium" />
-        <item
-            android:id="@+id/nav_more_features"
+            android:id="@+id/nav_purchase"
             android:icon="@drawable/ic_menu_purchase"
-            android:title="@string/menu_more_features"
-            android:visible="false" />
+            android:title="@string/menu_premium" />
     </group>
     <group android:id="@+id/menu_cool">
         <item
