@@ -8,13 +8,13 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="5"
+        android:columnCount="4"
+        android:rowCount="3"
         android:useDefaultMargins="true">
 
         <android.support.v7.widget.CardView
             android:layout_column="0"
-            android:layout_columnSpan="2"
+            android:layout_columnSpan="4"
             android:layout_gravity="fill_horizontal"
             android:layout_row="0"
             app:cardCornerRadius="@dimen/general_corner_radius">
@@ -57,9 +57,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginBottom="@dimen/margin_8"
-                    android:layout_marginTop="@dimen/margin_16"
-                    android:layout_marginRight="@dimen/margin_8"
                     android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginRight="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_16"
                     android:background="@color/colorPrimaryLight"
                     app:layout_constraintTop_toBottomOf="@id/aboutChillcodingSubtitle" />
 
@@ -110,7 +110,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_column="0"
-            android:layout_gravity="fill_horizontal"
+            android:layout_gravity="fill"
             android:layout_row="1"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
@@ -136,74 +136,9 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_column="0"
-            android:layout_gravity="fill_horizontal"
-            android:layout_row="2"
-            app:cardCornerRadius="@dimen/general_corner_radius">
-
-            <LinearLayout
-                style="@style/MyCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/middle_size"
-                    android:layout_height="@dimen/middle_size"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/kotlin" />
-
-                <TextView
-                    style="@style/MyCardText.Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/title_kotlin" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
             android:layout_column="1"
             android:layout_gravity="fill"
             android:layout_row="1"
-            android:layout_rowSpan="2"
-            app:cardCornerRadius="@dimen/general_corner_radius">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_24"
-                android:layout_marginTop="@dimen/margin_8"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/aboutAndroidImg"
-                    android:layout_width="@dimen/middle_size"
-                    android:layout_height="@dimen/middle_size"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/android" />
-
-                <TextView
-                    android:id="@+id/aboutAndroidTitle"
-                    style="@style/MyCardText.Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/title_android" />
-
-                <TextView
-                    style="@style/MyCardText.Body"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/text_about" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_column="0"
-            android:layout_gravity="fill_horizontal"
-            android:layout_row="3"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
             <LinearLayout
@@ -229,9 +164,36 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_column="1"
+            android:layout_column="2"
             android:layout_gravity="fill"
-            android:layout_row="3"
+            android:layout_row="1"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <LinearLayout
+                style="@style/MyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/kotlin" />
+
+                <TextView
+                    style="@style/MyCardText.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/title_kotlin" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_column="3"
+            android:layout_gravity="fill"
+            android:layout_row="1"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
             <LinearLayout
@@ -259,13 +221,56 @@
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
-            android:layout_row="4"
+            android:layout_row="2"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/margin_8">
+
+                <ImageView
+                    android:id="@+id/facebookLikeIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_16"
+                    android:tint="@color/colorPrimaryDark"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:srcCompat="@drawable/ic_thumb_up" />
+
+                <Button
+                    android:id="@+id/socialButton"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:text="@string/action_more"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+
+                <View
+                    android:id="@+id/socialLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginRight="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:background="@color/colorPrimaryLight"
+                    app:layout_constraintBottom_toTopOf="@id/socialButton" />
+
+                <TextView
+                    android:id="@+id/socialNetworksTitle"
+                    style="@style/MyCardText.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/margin_16"
+                    android:paddingRight="@dimen/margin_16"
+                    android:text="@string/title_social_networks"
+                    app:layout_constraintBottom_toTopOf="@id/socialLine" />
 
                 <ImageView
                     android:id="@+id/instagramImg"
@@ -299,52 +304,46 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/facebookImg"
                     app:srcCompat="@drawable/ic_twitter" />
-
-                <TextView
-                    android:id="@+id/socialNetworksTitle"
-                    style="@style/MyCardText.Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/margin_16"
-                    android:paddingRight="@dimen/margin_16"
-                    android:text="@string/title_social_networks"
-                    app:layout_constraintTop_toBottomOf="@id/facebookImg" />
-
-                <View
-                    android:id="@+id/socialLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginBottom="@dimen/margin_8"
-                    android:layout_marginTop="@dimen/margin_16"
-                    android:layout_marginRight="@dimen/margin_8"
-                    android:layout_marginLeft="@dimen/margin_8"
-                    android:background="@color/colorPrimaryLight"
-                    app:layout_constraintTop_toBottomOf="@id/socialNetworksTitle" />
-
-                <ImageView
-                    android:id="@+id/facebookLikeIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_16"
-                    android:tint="@color/colorPrimaryDark"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/socialLine"
-                    app:srcCompat="@drawable/ic_thumb_up" />
-
-                <Button
-                    android:id="@+id/socialButton"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:text="@string/action_more"
-                    android:textColor="@color/colorAccent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/socialLine" />
-
             </android.support.constraint.ConstraintLayout>
 
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:layout_column="2"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill"
+            android:layout_row="2"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_24"
+                android:layout_marginTop="@dimen/margin_8"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/aboutAndroidImg"
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/android" />
+
+                <TextView
+                    android:id="@+id/aboutAndroidTitle"
+                    style="@style/MyCardText.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/title_android" />
+
+                <TextView
+                    style="@style/MyCardText.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/text_about" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
     </GridLayout>
 </ScrollView>
