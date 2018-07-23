@@ -23,7 +23,6 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
 
     var userPayload: String  by DelegatesExt.preference(this, App.PREF_PAYLOAD, "newinstall")
 
-
     lateinit var askedSku: String
 
     // The helper object
@@ -97,7 +96,7 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
         mHelper!!.startSetup(IabHelper.OnIabSetupFinishedListener { result ->
 
             if (!result.isSuccess) {
-                complain("Problem setting up in-app billing: $result")
+                //"Problem setting up in-app billing: $result")
                 return@OnIabSetupFinishedListener
             }
 
@@ -119,7 +118,7 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
             try {
                 mHelper!!.queryInventoryAsync(mGotInventoryListener)
             } catch (e: IabHelper.IabAsyncInProgressException) {
-                complain("Error querying inventory. Another async operation in progress.")
+                //"Error querying inventory. Another async operation in progress.")
             }
         })
     }
@@ -132,17 +131,14 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
 
         // Is it a failure?
         if (result.isFailure) {
-            complain("Failed to query inventory: " + result)
+            //"Failed to query inventory: " + result)
             return@QueryInventoryFinishedListener
         }
-
-        //info("Query inventory was successful.")
 
         // Do we have the premium upgrade?
         val premiumPurchase = inventory.getPurchase(SKU_PREMIUM)
         isPremium = premiumPurchase != null && verifyDeveloperPayload(premiumPurchase)
 
-        //  updateUi()
         // Do we have unlimited quotes
         val unliQuotesPurchase = inventory.getPurchase(SKU_UNLIMITED_QUOTES)
         isUnlimitedQuotes = unliQuotesPurchase != null && verifyDeveloperPayload(unliQuotesPurchase)
@@ -152,25 +148,20 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
 
         if (!isPremium && askedSku == SKU_PREMIUM || !isUnlimitedQuotes && askedSku == SKU_UNLIMITED_QUOTES || !isUnlimitedAwards && askedSku == SKU_UNLIMITED_AWARDS)
             launchPurchase(askedSku)
-
     }
 
     internal var mPurchaseFinishedListener: IabHelper.OnIabPurchaseFinishedListener = IabHelper.OnIabPurchaseFinishedListener { result, purchase ->
-        //   info("Purchase finished: $result, purchase: $purchase")
-
         // if we were disposed of in the meantime, quit.
         if (mHelper == null) return@OnIabPurchaseFinishedListener
 
         if (result.isFailure) {
-            complain("Error purchasing: " + result)
+            //"Error purchasing: " + result)
             return@OnIabPurchaseFinishedListener
         }
         if (!verifyDeveloperPayload(purchase)) {
-            complain("Error purchasing. Authenticity verification failed.")
+            //"Error purchasing. Authenticity verification failed.")
             return@OnIabPurchaseFinishedListener
         }
-
-        // info("Purchase successful.")
 
         when (purchase.sku) {
             SKU_PREMIUM -> {
@@ -192,11 +183,10 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
 
     override fun receivedBroadcast() {
         // Received a broadcast notification that the inventory of items has changed
-        //  info("Received broadcast notification. Querying inventory.")
         try {
             mHelper!!.queryInventoryAsync(mGotInventoryListener)
         } catch (e: IabHelper.IabAsyncInProgressException) {
-            complain("Error querying inventory. Another async operation in progress.")
+            //"Error querying inventory. Another async operation in progress.")
         }
     }
 
@@ -232,7 +222,7 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
             mHelper!!.launchPurchaseFlow(this, sku, RC_REQUEST,
                     mPurchaseFinishedListener, userPayload)
         } catch (e: IabHelper.IabAsyncInProgressException) {
-            complain("Error launching purchase flow. Another async operation in progress.")
+            //"Error launching purchase flow. Another async operation in progress."
         }
     }
 
@@ -268,13 +258,10 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        //info("onActivityResult($requestCode,$resultCode,$data")
         if (mHelper == null) return
         // Pass on the activity result to the helper for handling
         if (!mHelper!!.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data)
-        } else {
-            // info("onActivityResult handled by IABUtil.")
         }
     }
 
@@ -287,11 +274,6 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
             mHelper = null
         }
     }
-
-    private fun complain(msg: String) {
-        //TO DO ID IT IS A PB "${getString(R.string.app_name)} Error : $msg"
-    }
-
 
     internal fun verifyDeveloperPayload(p: Purchase): Boolean {
         val payload = p.developerPayload
