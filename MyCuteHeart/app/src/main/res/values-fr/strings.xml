@@ -307,16 +307,16 @@
 "\nSuivez @ILoveKotlin sur les réseaux sociaux pour être informé sur ces dernières."
 "\nPlus d’informations dans la partie ‘À propos’."
     </string>
-    <string name="text_purchase">Ce jeu est le fruit d\'une développeuse et de beaucoup de passion. ♡\nVotre support est bienvenue :).</string>
+    <string name="text_purchase">Ce jeu est le fruit d\'une développeuse et de beaucoup de passion. ♡\nVotre support est bienvenu :).</string>
     <string name="title_purchase_premium">⭐ Premium ⭐</string>
     <string name="title_purchase_quotes">❣️Citations illimitées❣️</string>
     <string name="text_purchase_premium">"⭐ Accès illimités à toutes les fonctionnalités 💛"
         "\n+ Accès à toutes les citations ❣️"
         "\n+ Partage des citations avec les copains·ines ❣️"
         "\n+ Accès aux trophées débloqués 🏆"
-        "\n+ Accès à tous les futrs modes (bientôt) 💘"</string>
+        "\n+ Accès à tous les futurs modes (bientôt) 💘"</string>
     <string name="action_buy">Buy</string>
     <string name="subtitle_purchase_premium">Prix : 0.99 €</string>
-    <string name="subtitle_purchase_features">Prix: 0.50 €</string>
+    <string name="subtitle_purchase_features">Prix : 0.50 €</string>
     <string name="title_purchase_awards">🏆 Trophées illimités 🏆</string>
 </resources>
