@@ -58,7 +58,7 @@
     <string-array name="text_love">
         <item>Loin des yeux,\nprès du coeur.</item><!-- 0 -->
         <item>Avoir le coeur\n qui bat\nla chamade.</item><!-- 1 -->
-        <item>L\'esprit et le coeur\nse contredise sans cesse.\n-> P-C-V. Boiste</item><!-- 2 -->
+        <item>L\'esprit et le coeur\nse contredisent sans cesse.\n-> P-C-V. Boiste</item><!-- 2 -->
         <item>Faire le joli coeur.</item><!-- 3 -->
         <item>Au coeur de l\'action.</item><!-- 4 -->
         <item>Le coeur\nest la source\nde l\'innocence\net du bonheur.\n-> marquise de Lambert</item>
@@ -316,7 +316,7 @@
         "\n+ Accès aux trophées débloqués 🏆"
         "\n+ Accès à tous les futrs modes (bientôt) 💘"</string>
     <string name="action_buy">Buy</string>
-    <string name="subtitle_purchase_premium">Prix : €0.99</string>
-    <string name="subtitle_purchase_features">Prix: €0.50</string>
+    <string name="subtitle_purchase_premium">Prix : 0.99 €</string>
+    <string name="subtitle_purchase_features">Prix: 0.50 €</string>
     <string name="title_purchase_awards">🏆 Trophées illimités 🏆</string>
 </resources>
