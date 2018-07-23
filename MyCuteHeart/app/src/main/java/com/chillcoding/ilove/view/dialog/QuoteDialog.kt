@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import com.chillcoding.ilove.MainActivity
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.extension.showAlertOnLove
+import com.chillcoding.ilove.view.activity.PurchaseActivity
 import kotlinx.android.synthetic.main.dialog_quote.view.*
 import org.jetbrains.anko.share
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 class QuoteDialog : DialogFragment() {
@@ -31,10 +33,7 @@ class QuoteDialog : DialogFragment() {
         if (activity.isPremium || activity.isUnlimitedQuotes)
             builder.setNeutralButton(R.string.action_share, { _, _ -> share("${dialogQuoteView.dialogQuote.text} \n${getString(R.string.text_from)} ${getString(R.string.url_app)}", "I Love") })
         else
-            builder.setNeutralButton(R.string.action_more, { _, _ ->
-                activity.askedSku = MainActivity.SKU_UNLIMITED_QUOTES
-                activity.requestAccountPermission()
-            })
+            builder.setNeutralButton(R.string.action_more, { _, _ -> startActivity<PurchaseActivity>() })
         return builder.create()
     }
 }

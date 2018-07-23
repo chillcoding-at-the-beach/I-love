@@ -20,6 +20,7 @@ class App : Application() {
         const val PREF_SOUND = "PREF_SOUND"
         const val PREF_PREMIUM = "PREF_PREMIUM"
         const val PREF_UNLIMITED_QUOTES = "PREF_UNLIMITED_QUOTES"
+        const val PREF_UNLIMITED_AWARDS = "PREF_UNLIMITED_AWARDS"
         const val SCORE_PER_AWARD = 150
         const val AWARD_LIST_SIZE = 7
         const val AWARD_MODE = "AWARD_MODE"

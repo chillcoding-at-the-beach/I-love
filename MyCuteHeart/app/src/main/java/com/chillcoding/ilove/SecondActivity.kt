@@ -9,7 +9,7 @@ import com.chillcoding.ilove.view.fragment.AwardsFragment
 import com.chillcoding.ilove.view.fragment.SettingsFragment
 import com.chillcoding.ilove.view.fragment.TopScoresFragment
 
-import kotlinx.android.synthetic.main.app_bar_second.*
+import kotlinx.android.synthetic.main.activity_second.*
 
 /**
  * Created by macha on 02/08/2017.
@@ -23,7 +23,7 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out)
-        setContentView(R.layout.app_bar_second)
+        setContentView(R.layout.activity_second)
         setSupportActionBar(secondToolbar)
 
         supportActionBar!!.setDisplayShowHomeEnabled(true)
@@ -52,7 +52,7 @@ class SecondActivity : AppCompatActivity() {
 
     fun setFragment(frag: Fragment) {
         fragmentManager.beginTransaction()
-                .replace(R.id.my_content, frag)
+                .replace(R.id.secondContent, frag)
                 .commit()
     }
 
