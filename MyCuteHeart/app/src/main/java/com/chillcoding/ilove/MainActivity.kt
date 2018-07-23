@@ -120,12 +120,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(App.BUNDLE_GAME_DATA, gameView.gameData)
+        outState.putParcelable(App.STATE_GAME_DATA, gameView.gameData)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        gameView.gameData = savedInstanceState.getParcelable(App.BUNDLE_GAME_DATA)
+        gameView.gameData = savedInstanceState.getParcelable(App.STATE_GAME_DATA)
         updateGameInfo()
     }
 

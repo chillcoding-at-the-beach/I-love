@@ -33,7 +33,7 @@ class EndGameDialog : DialogFragment() {
         val builder = AlertDialog.Builder(activity)
         val successString = resources.getStringArray(R.array.word_success)
         val endGameView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_end_game, null)
-        val data = arguments.getParcelable<GameData>(App.BUNDLE_GAME_DATA)
+        val data = arguments.getParcelable<GameData>(App.STATE_GAME_DATA)
         endGameView.dialogTitleTextView.text = "${successString[Random().nextInt(successString.size)].toUpperCase()}!"
         endGameView.dialogScoreTextView.text = "${data.score}"
         endGameView.dialogLevelTextView.text = "${resources.getString(R.string.word_level)} ${data.level}"
