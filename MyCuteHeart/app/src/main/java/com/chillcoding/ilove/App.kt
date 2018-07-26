@@ -1,6 +1,8 @@
 package com.chillcoding.ilove
 
 import android.app.Application
+import android.support.text.emoji.EmojiCompat
+import android.support.text.emoji.bundled.BundledEmojiCompatConfig
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatDelegate
 
@@ -53,5 +55,8 @@ class App : Application() {
         super.onCreate()
         instance = this
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        val config: EmojiCompat.Config
+        config = BundledEmojiCompatConfig(applicationContext)
+        EmojiCompat.init(config)
     }
 }
