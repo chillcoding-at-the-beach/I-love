@@ -38,10 +38,6 @@ class SecondActivity : AppCompatActivity() {
                 setFragment(SettingsFragment())
                 supportActionBar!!.title = getString(R.string.menu_settings)
             }
-            FragmentId.AWARDS.ordinal -> {
-                setFragment(AwardsFragment())
-                supportActionBar!!.title = getString(R.string.menu_awards)
-            }
             FragmentId.TOP.ordinal -> {
                 setFragment(TopScoresFragment())
                 supportActionBar!!.title = getString(R.string.menu_top)

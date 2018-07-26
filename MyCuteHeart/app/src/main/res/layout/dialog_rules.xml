@@ -16,17 +16,17 @@
             android:text="@string/title_rules" />
 
         <TextView
+            android:id="@+id/dialogRule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_16"
-            android:text="@string/text_rules"
             android:textSize="@dimen/text_size_20" />
 
         <TextView
+            android:id="@+id/dialogEndSymbol"
             style="@style/MyText.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/symbol_end" />
+            android:layout_gravity="center" />
     </LinearLayout>
 </ScrollView>

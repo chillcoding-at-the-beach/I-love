@@ -1,7 +1,12 @@
 <resources>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="MainLifeImage">
+        <item name="android:background">@drawable/ic_life_shadow</item>
     </style>
 </resources>

@@ -38,6 +38,9 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support:design:$support_version"
     implementation "com.android.support:cardview-v7:$support_version"
+    implementation "com.android.support:support-emoji:$support_version"
+    implementation "com.android.support:support-emoji-bundled:$support_version"
+    implementation "com.android.support:support-emoji-appcompat:$support_version"
     implementation "org.jetbrains.anko:anko-common:$anko_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation "com.google.android.gms:play-services-auth:$services_version"
@@ -45,6 +48,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation 'pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3'
+    implementation 'com.eightbitlab:rxbus:1.0.2'
 }
 
 

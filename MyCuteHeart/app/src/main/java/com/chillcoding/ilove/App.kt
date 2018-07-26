@@ -1,7 +1,10 @@
 package com.chillcoding.ilove
 
 import android.app.Application
+import android.support.text.emoji.EmojiCompat
+import android.support.text.emoji.bundled.BundledEmojiCompatConfig
 import android.support.v4.content.res.ResourcesCompat
+import android.support.v7.app.AppCompatDelegate
 
 /**
  * Created by macha on 21/07/2017.
@@ -12,8 +15,9 @@ class App : Application() {
         lateinit var instance: App
             private set
         const val PERMISSIONS_REQUEST_GET_ACCOUNTS: Int = 13
-        const val BUNDLE_GAME_DATA = "BUNDLE_GAME_DATA"
+        const val STATE_GAME_DATA = "STATE_GAME_DATA"
         const val BUNDLE_GAME_LEVEL = "BUNDLE_GAME_LEVEL"
+        const val STATE_AWARD_POSITION = "BUNDLE_AWARD_POSITION"
         const val PREF_BEST_SCORE = "PREF_BEST_SCORE"
         const val PREF_AWARD_LEVEL = "PREF_AWARD_LEVEL"
         const val PREF_PAYLOAD = "PREF_PAYLOAD"
@@ -42,10 +46,17 @@ class App : Application() {
         }
         val shadowColor: Int by lazy { ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null) }
         val sAwardImg = intArrayOf(R.drawable.ic_menu_awards, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award)
+        val awardsTitle = arrayOf("\u2661", "I \u2661", "I \u2661 \ud83d\udc1c", "I \u2661 \ud83e\udd8a", "I \u2661 \ud83e\udd8b", "I \u2661 \ud83d\udc22 \u2b50", "I \u2661 \ud83c\udf35", "I \u2661 \ud83e\udd80")
+        const val TROPHY_EMOJI = "\ud83c\udfc6"
+        const val STAR_EMOJI = "\u2b50"
     }
 
     override fun onCreate() {
         super.onCreate()
         instance = this
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        val config: EmojiCompat.Config
+        config = BundledEmojiCompatConfig(applicationContext)
+        EmojiCompat.init(config)
     }
 }

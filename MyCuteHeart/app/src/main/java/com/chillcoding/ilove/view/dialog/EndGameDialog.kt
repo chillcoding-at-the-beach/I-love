@@ -16,6 +16,7 @@ import com.chillcoding.ilove.extension.setUpNewGame
 import com.chillcoding.ilove.model.FragmentId
 import com.chillcoding.ilove.model.GameData
 import com.chillcoding.ilove.view.GameView
+import com.chillcoding.ilove.view.activity.AwardsActivity
 import kotlinx.android.synthetic.main.dialog_end_game.view.*
 import org.jetbrains.anko.share
 import org.jetbrains.anko.startActivity
@@ -27,13 +28,11 @@ import java.util.*
 class EndGameDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        // Use the Builder class for convenient dialog construction
         var bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
-
         val builder = AlertDialog.Builder(activity)
         val successString = resources.getStringArray(R.array.word_success)
         val endGameView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_end_game, null)
-        val data = arguments.getParcelable<GameData>(App.BUNDLE_GAME_DATA)
+        val data = arguments.getParcelable<GameData>(App.STATE_GAME_DATA)
         endGameView.dialogTitleTextView.text = "${successString[Random().nextInt(successString.size)].toUpperCase()}!"
         endGameView.dialogScoreTextView.text = "${data.score}"
         endGameView.dialogLevelTextView.text = "${resources.getString(R.string.word_level)} ${data.level}"
@@ -54,8 +53,7 @@ class EndGameDialog : DialogFragment() {
                 endGameView.endStarImageView.setColorFilter(App.sColors[7])
                 if (data.awardUnlocked) {
                     endGameView.dialogAwardTextView.visibility = View.VISIBLE
-                    builder.setNegativeButton(R.string.action_see_awards, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal) })
-
+                    builder.setNegativeButton(R.string.action_see_awards, { _, _ -> startActivity<AwardsActivity>() })
                 } else
                     builder.setNegativeButton(R.string.action_see_top, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal) })
             }
@@ -65,7 +63,10 @@ class EndGameDialog : DialogFragment() {
         activity.setUpNewGame()
         builder.setView(endGameView)
                 .setPositiveButton(R.string.action_play, { _, _ -> activity.playGame(true) })
-                .setNeutralButton(R.string.action_share, { _, _ -> share("${getString(R.string.text_share_score)} ${score} <3 ${getString(R.string.word_with)} ${getString(R.string.app_name)}!", "I Love") })
+                .setNeutralButton(R.string.action_share, { _, _ ->
+                    share("${getString(R.string.text_share_score)} ${score} <3 \n" +
+                            "${getString(R.string.text_from)} ${getString(R.string.url_app)}", "I Love")
+                })
         return builder.create()
     }
 }

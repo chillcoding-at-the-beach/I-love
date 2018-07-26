@@ -33,7 +33,7 @@
     <string name="title_chillcoding">By ChillCoding</string>
     <string name="title_pref_sound">Jouer la musique</string>
     <string name="about_app">Une application faite par ChillCoding</string>
-    <string name="word_award">Trophée</string>
+    <string name="word_award">Trophée :</string>
     <string name="word_best_score">Meilleur Score</string>
     <string name="text_record_breaker">Nouveau record !</string>
     <string name="text_share_score">J\'ai attrapé</string>
@@ -80,31 +80,20 @@
         <item>Je ne m\'intéresse qu\'aux qualités des gens.\nJ\'ai moi-même des défauts\nalors comment me permettre de juger ceux des autres.\n-> Gandhi</item>
         <item>Ne compare pas\nta vie\navec celles des autres.\nIl n\'y a pas\nde comparaison\nentre le soleil\net la lune.\nIls brillent quand\nc\'est leur moment.</item>
     </string-array>
-    <string-array name="word_mode">
-        <item>♡</item>
-        <item>I ♡️</item>
-        <item>I ♡ 🐜</item>
-        <item>I ♡ 🦊</item>
-        <item>I ♡ 🦋</item>
-        <item>I ♡ 🐢</item>
-        <item>I ♡ 🐺️</item>
-        <item>I ♡ 🏝️ 🦀</item>
-    </string-array>
+    <string name="text_congrats_award">"<b>Félicitations !</b>\nVous avez gagné le trophée"</string>
     <string-array name="text_award">
         <item>
-            "\nI ♡ vous distrait avec ses coeurs,\nDe tailles diverses, de toutes les couleurs.\n"
+            "\n'I LOVE' vous distrait avec ses coeurs,\nDe tailles diverses, de toutes les couleurs.\n"
             "\nEt dansant sur un rythme endiablé.\nUne belle poésie vous est contée.\n"
         </item>
-        <item>"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡' .\n"
-            "\n'I ♡'️ est l\'emblème universel\nimprimé sur les souvenirs\nà l'effigie de divers lieux :\nI ♡ SF\nI ♡️ LA\nI ♡️ BCN\nI ♡ Cannes\n"
+        <item>
+            "\n'I &lt;3'️ est l\'emblème universel\nimprimé sur les souvenirs\nà l'effigie de divers lieux :\nI &lt;3 SF\nI &lt;3 LA\nI &lt;️3 BCN\nI &lt;3 Cannes\n"
             "\n5:45, notez l'heure précise,\nEt osez sentir cette fleur indécise.\n"
             "\nL'histoire commence à Cannes, au bord de la mer,\nLa lueur du jour apparaît sur la terre.\n"
             "\nL'aube s'efface devant cet instant magique,\nOù l'eau se teinte de couleurs magnifiques.\n"
             "\nLe soleil se lève dans un enchantement,\nUne vie de rêve comblée d'émerveillement.\n\n"
-            "\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
            </item>
         <item>
-"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🐜' .\n\n"
 "La Cigale et la Fourmi\n"
 "\nLa Cigale, ayant chanté"
 "\nTout l'été,"
@@ -129,10 +118,8 @@
 "\n— Vous chantiez ? J’en suis fort aise."
 "\nEh bien ! Dansez maintenant. »\n"
 "\n-> Jean de La Fontaine\n"
-"\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
         </item>
         <item>
-"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🦊' .\n\n"
 "Le Corbeau et le Renard\n"
 "\nMaître Corbeau, sur un arbre perché,"
 "\nTenait en son bec un fromage."
@@ -153,10 +140,8 @@
 "\nLe Corbeau, honteux et confus,"
 "\nJura, mais un peu tard, qu’on ne l’y prendrait plus.\n"
 "\n-> Jean de La Fontaine\n"
-"\n♡ ♡ ♡ 🦊 ♡ ♡ ♡\n"
         </item>
         <item>
-"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🦋' .\n\n"
 "Le Grillon\n"
 "\nUn pauvre petit grillon"
 "\nCaché dans l’herbe fleurie"
@@ -188,10 +173,8 @@
 "\nCombien je vais aimer ma retraite profonde !"
 "\nPour vivre heureux, vivons caché.\n"
 "\n-> Jean-Pierre Claris de Florian\n"
-"\n♡ ♡ ♡ 🦋 ♡ ♡ ♡\n"
         </item>
         <item>
-"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🐢' .\n\n"
 "Le Lièvre et la Tortue\n"
 "\nRien ne sert de courir ; il faut partir à point."
 "\nLe Lièvre et la Tortue en sont un témoignage."
@@ -229,10 +212,8 @@
 "\nMoi, l'emporter ! et que serait-ce"
 "\nSi vous portiez une maison ?\n"
 "\n-> Jean de La Fontaine\n"
-"\n♡ ♡ ♡ 🐢 ♡ ♡ ♡\n"
         </item>
         <item>
-"<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🐺️' .\n\n"
 "Le Loup et l'Agneau\n"
 "\nLa raison du plus fort est toujours la meilleure :"
 "\nNous l'allons montrer tout à l'heure."
@@ -265,16 +246,14 @@
 "\nLe Loup l'emporte, et puis le mange,"
 "\nSans autre forme de procès.\n"
 "\n-> Jean de La Fontaine\n"
-"\n♡ ♡ ♡ 🐺️ ♡ ♡ ♡\n"
         </item>
         <item>
-            "<b>Félicitations !</b>\nVous avez gagné le trophée 'I ♡ 🏝️ 🦀'.\n\n"
             "\n20: 56 à une heure banale,\nLa fleur mystérieuse s'empare d'un teint pâle.\n"
             "\nUn couché de soleil facile à saisir,\nLa nuit s'incruste dans un cocktail de plaisir.\n"
             "\nLa beauté d'un spectacle inattendu,\nLes dauphins nagent dans un calme absolu.\n"
             "\nAu crépuscule, sautant dans les vagues,\nDolphine se dérobe de la madrague.\n"
             "\nLe soleil se lève dans un enchantement,\nUne vie de rêve comblée d'émerveillement.\n\n"
-            "\n♡ ♡ ♡ 🐟 ♡ 🐬️ ♡ ♡ ♡\n"</item>
+            </item>
     </string-array>
     <string name="text_award_unlocked">Nouveau trophée débloqué.</string>
     <string name="title_social_networks">Réseaux sociaux</string>
@@ -286,37 +265,31 @@
     <string name="acronym_third">e</string>
     <string name="acronym_number">e</string>
     <string name="title_rules">~ Règles du jeu ~</string>
-    <string name="text_rules">
-        "♡ Le but du jeu est d’attraper le plus de coeur.\n-> ❤️👆\n"
-        "\n❤️ Les trois coeurs rouge, au centre, indiquent le nombre de vies restantes, avant la fin du jeu.\n-> ❤️ ❤️ ♡\n"
-        "\n💚 La jauge verte (à droite) indique l’avancement vers le prochain niveau."
+    <string name="text_rules_aim">"Le but du jeu est d’attraper le plus de coeur.\n"</string>
+    <string name="text_rules_lifes">"Les trois coeurs rouge, au centre, indiquent le nombre de vies restantes, avant la fin du jeu.\n"</string>
+    <string name="text_rules_green_gauge">"La jauge verte (à droite) indique l’avancement vers le prochain niveau."
 "\nElle présente également le niveau actuel au centre."
-"\nPour chaque coeur attrapé, un point est gagné au niveau 1, 2 points au niveau 2, etc."
-"\n-> Niveau 1  : ❤️+👆= 1  point"
-"\n-> Niveau 2 : ❤️+👆= 2 points"
-"\n-> Niveau k : ❤️+👆 = k points\n"
-"\n💛 La jauge jaune (à gauche) indique l’avancement vers le prochain trophée."
+"\nPour chaque coeur attrapé, un point est gagné au niveau 1, 2 points au niveau 2, etc.\n"</string>
+    <string name="text_rules_yellow_gauge">"La jauge jaune (à gauche) indique l’avancement vers le prochain trophée."
 "\nElle présente également le score actuel au centre."
 "\nAprès avoir dépassé une certaine limite de points, un trophée est débloqué."
-"\nCette limite respecte un algorithme secret."
-"\n-> n points = 🏆\n"
-        "\n🏆 La partie ‘Trophées’, accessible via le menu latéral, présente tous les trophées débloqués."
-"\nIl est indiqué le meilleur score dans le dernier trophée débloqué.\n"
-        "\n⭐ La partie ‘Top Scores’ affiche les 10 meilleurs scores des joueurs de l’application ’I Love’.\n"
-        "\n💝 Il y a quelques fonctionnalités cachées dans l’application, cliquez partout et observez ce qu’il se passe."
+"\nCette limite respecte un algorithme secret.\n"</string>
+    <string name="text_rules_trophy">"La partie ‘Trophées’, accessible via le menu latéral, présente tous les trophées débloqués."
+"\nIl est indiqué le meilleur score dans le dernier trophée débloqué.\n"</string>
+    <string name="text_rules_top">"La partie ‘Top Scores’ affiche les 10 meilleurs scores des joueurs de l’application ’I Love’.\n"</string>
+    <string name="text_rules_bonus">"Il y a quelques fonctionnalités cachées dans l’application, cliquez partout et observez ce qu’il se passe."
 "\nSuivez @ILoveKotlin sur les réseaux sociaux pour être informé sur ces dernières."
-"\nPlus d’informations dans la partie ‘À propos’."
-    </string>
-    <string name="text_purchase">Ce jeu est le fruit d\'une développeuse et de beaucoup de passion. ♡\nVotre support est bienvenu :).</string>
-    <string name="title_purchase_premium">⭐ Premium ⭐</string>
-    <string name="title_purchase_quotes">❣️Citations illimitées❣️</string>
-    <string name="text_purchase_premium">"⭐ Accès illimités à toutes les fonctionnalités 💛"
-        "\n+ Accès à toutes les citations ❣️"
-        "\n+ Partage des citations avec les copains·ines ❣️"
-        "\n+ Accès aux trophées débloqués 🏆"
-        "\n+ Accès à tous les futurs modes (bientôt) 💘"</string>
+"\nPlus d’informations dans la partie ‘À propos’."</string>
+    <string name="text_purchase">Ce jeu est le fruit d\'une développeuse et de beaucoup de passion. &lt;3 \nVotre support est bienvenu :).</string>
+    <string name="title_purchase_premium">Premium</string>
+    <string name="title_purchase_quotes">️Citations illimitées️</string>
+    <string name="text_purchase_premium">"Accès illimités à toutes les fonctionnalités"
+        "\n+ Accès à toutes les citations️"
+        "\n+ Partage des citations avec les copains·ines️"
+        "\n+ Accès aux trophées débloqués"
+        "\n+ Accès à tous les futurs modes (bientôt)"</string>
     <string name="action_buy">Buy</string>
     <string name="subtitle_purchase_premium">Prix : 0.99 €</string>
     <string name="subtitle_purchase_features">Prix : 0.50 €</string>
-    <string name="title_purchase_awards">🏆 Trophées illimités 🏆</string>
+    <string name="title_purchase_awards">Trophées illimités</string>
 </resources>
