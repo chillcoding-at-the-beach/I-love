@@ -1,5 +1,6 @@
 package com.chillcoding.ilove.view.adapter
 
+import android.support.text.emoji.EmojiCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -30,12 +31,14 @@ class AwardListAdapter(val items: Array<Award>, val isAwards: Boolean) : Recycle
     override fun getItemCount(): Int = items.size
 
     class ViewHolder(val view: View, val isPremium: Boolean) : RecyclerView.ViewHolder(view) {
+
         fun bindMyAwards(award: Award) {
             with(award) {
                 if (level > -1) {
                     itemView.awardEmpty.visibility = View.INVISIBLE
                     itemView.award.visibility = View.VISIBLE
-                    itemView.awardName.text = "${view.context.getString(R.string.word_award)}: $name"
+                    val awardsText = EmojiCompat.get().process("${view.context.getString(R.string.word_award)} ${App.awardsTitle[level]}")
+                    itemView.awardName.text = awardsText
                     if (score != 0)
                         itemView.awardInfo.text = "${view.context.getString(R.string.word_best_score)}: $score"
                     else

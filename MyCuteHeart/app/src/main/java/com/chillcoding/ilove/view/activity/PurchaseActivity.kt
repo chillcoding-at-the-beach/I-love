@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.text.emoji.EmojiCompat
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -20,6 +21,8 @@ import kotlinx.android.synthetic.main.activity_purchase.*
 import org.jetbrains.anko.*
 
 class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastListener {
+
+    private val EXCLAMATION_EMOJI = "\u2763"
 
     var userPayload: String  by DelegatesExt.preference(this, App.PREF_PAYLOAD, "newinstall")
 
@@ -72,6 +75,8 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
             }
         }
 
+        setUpEmoji()
+
         purchasePremiumTitle.setOnClickListener { startPurchaseFlow(SKU_PREMIUM) }
         purchasePremiumButton.setOnClickListener { startPurchaseFlow(SKU_PREMIUM) }
 
@@ -80,6 +85,14 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
         purchaseAwards.setOnClickListener { startPurchaseFlow(SKU_UNLIMITED_AWARDS) }
     }
 
+    private fun setUpEmoji() {
+        val premiumTitleText = EmojiCompat.get().process("${App.STAR_EMOJI} ${getString(R.string.title_purchase_premium)} ${App.STAR_EMOJI}")
+        purchasePremiumTitle.text = premiumTitleText
+        val quotesTitleText = EmojiCompat.get().process("${EXCLAMATION_EMOJI} ${getString(R.string.title_purchase_quotes)} ${EXCLAMATION_EMOJI}")
+        purchaseQuotesTitle.text = quotesTitleText
+        val awardsTitleText = EmojiCompat.get().process("${App.TROPHY_EMOJI} ${getString(R.string.title_purchase_awards)} ${App.TROPHY_EMOJI}")
+        purchaseAwardsTitle.text = awardsTitleText
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

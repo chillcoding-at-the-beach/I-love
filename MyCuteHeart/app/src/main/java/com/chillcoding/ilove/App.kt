@@ -44,6 +44,9 @@ class App : Application() {
         }
         val shadowColor: Int by lazy { ResourcesCompat.getColor(instance.resources, R.color.colorPrimaryLight, null) }
         val sAwardImg = intArrayOf(R.drawable.ic_menu_awards, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award, R.drawable.ic_award)
+        val awardsTitle = arrayOf("\u2661", "I \u2661", "I \u2661 \ud83d\udc1c", "I \u2661 \ud83e\udd8a", "I \u2661 \ud83e\udd8b", "I \u2661 \ud83d\udc22 \u2b50", "I \u2661 \ud83c\udf35", "I \u2661 \ud83e\udd80")
+        const val TROPHY_EMOJI = "\ud83c\udfc6"
+        const val STAR_EMOJI = "\u2b50"
     }
 
     override fun onCreate() {

@@ -2,6 +2,7 @@ package com.chillcoding.ilove.view.fragment
 
 import android.support.v4.app.Fragment
 import android.os.Bundle
+import android.support.text.emoji.EmojiCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -27,10 +28,13 @@ class AwardsFragment : Fragment() {
         val awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, -1)
 
         for (k in 0..(awardLevel - 1)) {
-            items[k] = Award(App.sAwardImg[k], resources.getStringArray(R.array.word_mode)[k], 0, k)
+            val awardTitle = EmojiCompat.get().process("${App.awardsTitle[k]}")
+            items[k] = Award(App.sAwardImg[k], awardTitle, 0, k)
         }
-        if (awardLevel > -1)
-            items[awardLevel] = Award(App.sAwardImg[awardLevel], resources.getStringArray(R.array.word_mode)[awardLevel], bestScore, awardLevel)
+        if (awardLevel > -1) {
+            val awardTitle = EmojiCompat.get().process("${App.awardsTitle[awardLevel]}")
+            items[awardLevel] = Award(App.sAwardImg[awardLevel], awardTitle, bestScore, awardLevel)
+        }
         if (awardLevel > 1)
             items[1].score = bestScore
         return view!!

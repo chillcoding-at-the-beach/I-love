@@ -19,13 +19,14 @@
     <string name="menu_send">Send Feedback</string>
 
     <string name="word_level">Level</string>
+    <string name="word_point">point</string>
+    <string name="word_points">points</string>
     <string name="word_error">Error:</string>
     <string name="text_thank_you_premium">Thank you for upgrading to premium!</string>
     <string name="text_thank_you_unlimited_quotes">Thank you for upgrading to unlimited quotes!</string>
     <string name="text_thank_you_unlimited_awards">Thank you for upgrading to unlimited awards!</string>
     <string name="text_wait">Please wait</string>
     <string name="text_launch_in_app">Launching In app</string>
-    <string name="word_points">points</string>
     <string name="text_about">
         \'I Love\' is an awesome application natively coded in Kotlin. At the beginning, the goal was to draw a beautiful heart.\nThen, the idea to create a simple game with little hearts came.\nFind the easter eggs by touching everywhere ;)</string>
     <string name="text_best_score">You\'ve bested yourself!</string>
@@ -89,24 +90,15 @@
         <item>TO IMPROVE\nIS TO CHANGE\nTO BE PERFECT\nIS TO CHANGE OFTEN.\n-> Winston Churchill</item>
         <item>THE ONLY WAY\nTO DO\nGREAT WORK\nIS TO\nLOVE\nWHAT YOU DO.\n-> Steve Jobs</item>
     </string-array>
-    <string-array name="word_mode">
-        <item>♡</item>
-        <item>I ♡️</item>
-        <item>I ♡ 🌵️️</item>
-        <item>I ♡ 🌊</item>
-        <item>I ♡ ⛰</item>
-        <item>I ♡ ⭐</item>
-        <item>I ♡ 🏝</item>
-        <item>I ♡ 🦀</item>
-    </string-array>
+    <string name="text_congrats_award">"<b>Congratulations!</b>\nYou won the awards"</string>
     <string-array name="text_award">
         <item>
-             "\nI ♡ application starts with an incredible heart."
+             "\n'I LOVE' application starts with an incredible heart."
             "\nOnly its size, its speed and its color evolved."
             "\nDiscover an amazing story by catch ♡.\n"
         </item>
-        <item>"<b>Congratulations!</b>\nYou won the 'I ♡' award.\n"
-            "\n'I ♡'️ is the global symbol for souvenirs of every places:\nI ♡ SF\nI ♡️ LA\nI ♡️ BCN\nI ♡ Cannes\n"
+        <item>
+            "\n'I &lt;3'️ is the global symbol for souvenirs of every places:\nI &lt;3 SF\nI &lt;3 LA\nI &lt;3️BCN\nI &lt;3 Cannes\n"
              "\nBy the way, the story starts in Cannes, in french riviera."
             "\n5:45 AM darkness had not long surrendered to the light."
             "\nWhile the sun rises, the thin clouds are cast over the sky,"
@@ -115,10 +107,8 @@
             "\nAny words can describe a sunrise."
             "\nNevertheless everyone can see it.\n"
             "\nLast but not least, under the sun we are all the same.\n"
-         "\n♡ ♡ ♡ ♡ ♡ ♡ ♡\n"
         </item>
         <item>
-"<b>Congratulations!</b>\nYou won the 'I ♡ 🌵' award.\n\n"
 "The Road Not Taken\n"
 "\nTwo roads diverged in a yellow wood,"
 "\nAnd sorry I could not travel both"
@@ -141,10 +131,8 @@
 "\nI took the one less traveled by,"
 "\nAnd that has made all the difference."
 "\n-> Robert Frost"
-"\n♡ ♡ ♡ 🌵 ♡ ♡ ♡\n"
         </item>
         <item>
-"<b>Congratulations!</b>\nYou won the 'I ♡ 🌊' award.\n\n"
 "To The River\n"
 "\nFair river! in thy bright, clear flow"
 "\n   Of crystal, wandering water,"
@@ -162,10 +150,8 @@
 "\nThe heart which trembles at the beam"
 "\n    Of her soul-searching eyes.\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ 🌊 ♡ ♡ ♡\n"
         </item>
         <item>
-"<b>Congratulations!</b>\nYou won the 'I ♡ ⛰' award.\n\n"
 "Eldorado\n"
 "\nGaily bedight,"
 "\nA gallant knight,"
@@ -195,10 +181,8 @@
 "\nThe shade replied, -"
 "\n«If you seek for Eldorado!»\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ ⛰ ♡ ♡ ♡\n"
 </item>
         <item>
-"<b>Congratulations!</b>\nYou won the 'I ♡ ⭐' award.\n\n"
 "Evening Star\n"
 "\n'Twas noontide of summer,"
 "\nAnd mid-time of night;"
@@ -224,10 +208,8 @@
 "\nThy distant fire,"
 "\nThan that colder, lowly light.\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ ⭐ ♡ ♡ ♡\n"
         </item>
         <item>
-"<b>Congratulations!</b>\nYou won the 'I ♡ 🏝' award.\n\n"
 "A Dream Within A Dream\n"
 "\nTake this kiss upon the brow!"
 "\nAnd, in parting from you now,"
@@ -255,10 +237,8 @@
 "\nIs all that we see or seem"
 "\nBut a dream within a dream?\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ 🏝 ♡ ♡ ♡\n"
         </item>
         <item>
-"<b>Congratulations!</b>\nYou won the 'I ♡ 🦀' award.\n\n"
 "The City in the Sea\n"
 "\nLo! Death has reared himself a throne"
 "\nIn a strange city lying alone"
@@ -316,7 +296,6 @@
 "\nHell, rising from a thousand thrones,"
 "\nShall do it reverence.\n"
 "\n-> Edgar Allan Poe\n"
-"\n♡ ♡ ♡ 🦀 ♡ ♡ ♡\n"
         </item>
     </string-array>
     <string name="text_award_unlocked">New award unlocked.</string>
@@ -329,39 +308,33 @@
     <string name="acronym_second">nd</string>
     <string name="acronym_third">rd</string>
     <string name="acronym_number">th</string>
-    <string name="text_rules">
-    "♡ The goal of the game is to catch as many hearts as possible.\n-> ❤️👆\n"
-    "\n❤️ The three red hearts, in the center, indicate the number of lives remaining, before the end of the game.\n-> ❤️ ❤️ ♡\n"
-    "\n💚 The green gauge (in the right) indicates progress to the next level."
+    <string name="title_rules">~ Rules of the game ~</string>
+    <string name="text_rules_aim">"The goal of the game is to catch as many hearts as possible.\n"</string>
+    <string name="text_rules_lifes">"The three red hearts, in the center, indicate the number of lives remaining, before the end of the game.\n"</string>
+    <string name="text_rules_green_gauge">"The green gauge (in the right) indicates progress to the next level."
 "\nIt also shows the current level in the center."
-"\nFor each heart caught, one point is earned at level 1, 2 points at level 2, and so on."
-"\n-> Level  1: ❤️+👆 = 1 point"
-"\n-> Level 2: ❤️+👆 = 2 points"
-"\n-> Level k: ❤️+👆 = k points\n"
-    "\n💛 The yellow gauge (in the left) indicates progress towards the next award."
+"\nFor each heart caught, one point is earned at level 1, 2 points at level 2, and so on.\n"</string>
+    <string name="text_rules_yellow_gauge">The yellow gauge (in the left) indicates progress towards the next award."
 "\nIt also shows the current score in the center."
 "\nReaching defined thresholds, an award is unlocked."
-"\nThis limit follows a secret algorithm."
-"\n-> n points = 🏆\n"
-    "\n🏆 The 'Awards' section, accessible via the side menu, presents all the unlocked awards."
-"\nThe best score is indicated in the last unlocked award.\n"
-    "\n⭐ The 'Top Scores' section displays the top 10 scores of the 'I Love' players.\n"
-        "\n💝 There are some easter eggs hidden in the app, touch everywhere and see what happens."
+"\nThis limit follows a secret algorithm.\n"</string>
+    <string name="text_rules_trophy">"The 'Awards' section, accessible via the side menu, presents all the unlocked awards."
+"\nThe best score is indicated in the last unlocked award.\n"</string>
+    <string name="text_rules_top">"The 'Top Scores' section displays the top 10 scores of the 'I Love' players.\n"</string>
+    <string name="text_rules_bonus">"There are some easter eggs hidden in the app, touch everywhere and see what happens."
 "\nFollow @ILoveKotlin on Social networks to keep in touch about them."
-        "\nFind more in `About` section."
-    </string>
-    <string name="title_rules">~ Rules of the game ~</string>
-    <string name="symbol_end" translatable="false">~♡~♡~♡~</string>
-    <string name="text_purchase">This game is the result of two developers and a lot of passion. ♡\nYour support is very important for us.</string>
-    <string name="title_purchase_premium">⭐ Premium ⭐</string>
-    <string name="title_purchase_quotes">❣️Unlimited Quotes❣️</string>
-    <string name="text_purchase_premium">"⭐ Unlimited access to all the features 💛"
-        "\n+ Access to all the quotes ❣️"
-        "\n+ Share quotes with friends ❣️"
-        "\n+ Access to all the unlocked awards 🏆"
-        "\n+ Access to all the future modes (soon) 💘"</string>
+        "\nFind more in `About` section."</string>
+    <string name="text_purchase">This game is the result of two developers and a lot of passion. &lt;3\nYour support is very important for us.</string>
+    <string name="title_purchase_premium">Premium</string>
+    <string name="title_purchase_quotes">Unlimited Quotes️</string>
+    <string name="text_purchase_premium">"Unlimited access to all the features"
+        "\n+ Access to all the quotes️"
+        "\n+ Share quotes with friends️"
+        "\n+ Access to all the unlocked awards"
+        "\n+ Access to all the future modes (soon)"</string>
     <string name="action_buy">Buy</string>
     <string name="subtitle_purchase_premium">Price: €0.99</string>
     <string name="subtitle_purchase_features">Price: €0.50</string>
-    <string name="title_purchase_awards">🏆 Unlimited Awards 🏆</string>
+    <string name="title_purchase_awards">Unlimited Awards</string>
+
 </resources>
