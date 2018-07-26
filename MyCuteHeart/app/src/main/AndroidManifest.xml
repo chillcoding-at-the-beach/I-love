@@ -25,6 +25,7 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".view.activity.AwardDetailActivity" />
         <activity android:name=".view.activity.PurchaseActivity" />
+        <activity android:name=".view.activity.AwardsActivity" />
     </application>
 
 </manifest>

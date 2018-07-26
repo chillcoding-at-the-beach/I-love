@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.chillcoding.ilove.App
 import com.chillcoding.ilove.R
+import com.chillcoding.ilove.event.AwardsEvent
 import com.chillcoding.ilove.extension.inflate
 import com.chillcoding.ilove.model.Award
-import com.chillcoding.ilove.view.activity.AwardDetailActivity
 import com.chillcoding.ilove.view.activity.PurchaseActivity
+import com.eightbitlab.rxbus.Bus
 import kotlinx.android.synthetic.main.item_award.view.*
 import org.jetbrains.anko.startActivity
 
@@ -43,7 +44,7 @@ class AwardListAdapter(val items: Array<Award>, val isAwards: Boolean) : Recycle
                 }
 
                 if (level > -1) {
-                    itemView.setOnClickListener { itemView.context.startActivity<AwardDetailActivity>(App.AWARD_MODE to level) }
+                    itemView.setOnClickListener { Bus.send(AwardsEvent(level)) }
                     itemView.awardPlayIcon.setColorFilter(App.sColors[1])
                 }
                 if (level > 0)

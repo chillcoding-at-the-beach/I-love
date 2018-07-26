@@ -6,8 +6,7 @@ import android.app.DialogFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.chillcoding.ilove.R
-import com.chillcoding.ilove.SecondActivity
-import com.chillcoding.ilove.model.FragmentId
+import com.chillcoding.ilove.view.activity.AwardsActivity
 import org.jetbrains.anko.startActivity
 
 class AwardDialog : DialogFragment() {
@@ -18,7 +17,7 @@ class AwardDialog : DialogFragment() {
 
         builder.setView(dialogAwardView)
                 .setPositiveButton(R.string.action_continue, null)
-        builder.setNegativeButton(R.string.action_see_awards, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal) })
+        builder.setNegativeButton(R.string.action_see_awards, { _, _ -> startActivity<AwardsActivity>() })
         return builder.create()
     }
 }

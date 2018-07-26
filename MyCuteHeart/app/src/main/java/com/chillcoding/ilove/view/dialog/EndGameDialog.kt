@@ -16,6 +16,7 @@ import com.chillcoding.ilove.extension.setUpNewGame
 import com.chillcoding.ilove.model.FragmentId
 import com.chillcoding.ilove.model.GameData
 import com.chillcoding.ilove.view.GameView
+import com.chillcoding.ilove.view.activity.AwardsActivity
 import kotlinx.android.synthetic.main.dialog_end_game.view.*
 import org.jetbrains.anko.share
 import org.jetbrains.anko.startActivity
@@ -27,9 +28,7 @@ import java.util.*
 class EndGameDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        // Use the Builder class for convenient dialog construction
         var bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
-
         val builder = AlertDialog.Builder(activity)
         val successString = resources.getStringArray(R.array.word_success)
         val endGameView = (LayoutInflater.from(activity)).inflate(R.layout.dialog_end_game, null)
@@ -54,8 +53,7 @@ class EndGameDialog : DialogFragment() {
                 endGameView.endStarImageView.setColorFilter(App.sColors[7])
                 if (data.awardUnlocked) {
                     endGameView.dialogAwardTextView.visibility = View.VISIBLE
-                    builder.setNegativeButton(R.string.action_see_awards, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal) })
-
+                    builder.setNegativeButton(R.string.action_see_awards, { _, _ -> startActivity<AwardsActivity>() })
                 } else
                     builder.setNegativeButton(R.string.action_see_top, { _, _ -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.TOP.ordinal) })
             }

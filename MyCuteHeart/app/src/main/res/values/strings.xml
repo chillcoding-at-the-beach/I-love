@@ -42,7 +42,7 @@
     <string name="title_android_studio" translatable="false">Android Studio</string>
     <string name="slogan_chillcoding" translatable="false">#Work is better at the beach.</string>
 
-    <string name="word_award">Award</string>
+    <string name="word_award">Award:</string>
     <string name="word_best_score">Best Score</string>
     <string name="text_record_breaker">Record Breaker!</string>
     <string name="text_share_score">I caught</string>

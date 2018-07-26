@@ -33,7 +33,7 @@
     <string name="title_chillcoding">By ChillCoding</string>
     <string name="title_pref_sound">Jouer la musique</string>
     <string name="about_app">Une application faite par ChillCoding</string>
-    <string name="word_award">Trophée</string>
+    <string name="word_award">Trophée :</string>
     <string name="word_best_score">Meilleur Score</string>
     <string name="text_record_breaker">Nouveau record !</string>
     <string name="text_share_score">J\'ai attrapé</string>

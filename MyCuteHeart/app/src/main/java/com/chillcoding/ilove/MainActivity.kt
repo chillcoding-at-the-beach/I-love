@@ -12,6 +12,7 @@ import android.view.View
 import com.chillcoding.fablibrary.GameFab
 import com.chillcoding.ilove.extension.*
 import com.chillcoding.ilove.model.FragmentId
+import com.chillcoding.ilove.view.activity.AwardsActivity
 import com.chillcoding.ilove.view.activity.PurchaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -108,7 +109,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_purchase -> startActivity<PurchaseActivity>()
             R.id.nav_about -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.ABOUT.ordinal)
-            R.id.nav_awards -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.AWARDS.ordinal)
+            R.id.nav_awards -> startActivity<AwardsActivity>()
             R.id.nav_send -> email("hello@chillcoding.com", getString(R.string.subject_feedback), "")
             R.id.nav_settings -> startActivity<SecondActivity>(SecondActivity.FRAGMENT_ID to FragmentId.SETTINGS.ordinal)
             R.id.nav_share -> share("${getString(R.string.text_share_app)} ${getString(R.string.url_app)}", getString(R.string.app_name))

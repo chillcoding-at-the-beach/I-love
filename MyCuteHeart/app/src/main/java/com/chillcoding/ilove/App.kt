@@ -14,6 +14,7 @@ class App : Application() {
         const val PERMISSIONS_REQUEST_GET_ACCOUNTS: Int = 13
         const val STATE_GAME_DATA = "STATE_GAME_DATA"
         const val BUNDLE_GAME_LEVEL = "BUNDLE_GAME_LEVEL"
+        const val STATE_AWARD_POSITION = "BUNDLE_AWARD_POSITION"
         const val PREF_BEST_SCORE = "PREF_BEST_SCORE"
         const val PREF_AWARD_LEVEL = "PREF_AWARD_LEVEL"
         const val PREF_PAYLOAD = "PREF_PAYLOAD"
