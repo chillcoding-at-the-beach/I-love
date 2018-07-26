@@ -35,31 +35,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="000"
-
+        app:layout_constraintBottom_toBottomOf="@id/mainGaugeAward"
         app:layout_constraintEnd_toEndOf="@id/mainGaugeAward"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@id/mainGaugeAward"
-        app:layout_constraintBottom_toBottomOf="@id/mainGaugeAward"
         app:layout_constraintTop_toTopOf="@id/mainGaugeAward"
         app:layout_constraintVertical_bias="0.5" />
 
     <ImageView
         android:id="@id/mainFirstLife"
+        style="@style/MainLifeImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_life_shadow"
+        app:layout_constraintBottom_toBottomOf="@id/mainGaugeAward"
         app:layout_constraintEnd_toStartOf="@+id/mainSecondLife"
         app:layout_constraintStart_toEndOf="@id/mainGaugeAward"
-        app:layout_constraintBottom_toBottomOf="@id/mainGaugeAward"
         app:layout_constraintTop_toTopOf="@id/mainGaugeAward"
         app:layout_constraintVertical_bias="0.5"
         app:srcCompat="@drawable/ic_life" />
 
     <ImageView
         android:id="@id/mainSecondLife"
+        style="@style/MainLifeImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_life_shadow"
         app:layout_constraintEnd_toStartOf="@+id/mainThirdLife"
         app:layout_constraintStart_toEndOf="@id/mainFirstLife"
         app:layout_constraintTop_toTopOf="@id/mainFirstLife"
@@ -67,12 +66,12 @@
 
     <ImageView
         android:id="@id/mainThirdLife"
+        style="@style/MainLifeImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_life_shadow"
         app:layout_constraintEnd_toStartOf="@+id/mainGaugeLevel"
-        app:layout_constraintTop_toTopOf="@id/mainFirstLife"
         app:layout_constraintStart_toEndOf="@id/mainSecondLife"
+        app:layout_constraintTop_toTopOf="@id/mainFirstLife"
         app:srcCompat="@drawable/ic_life" />
 
     <pl.pawelkleczkowski.customgauge.CustomGauge

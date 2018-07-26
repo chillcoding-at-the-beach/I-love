@@ -2,6 +2,7 @@ package com.chillcoding.ilove
 
 import android.app.Application
 import android.support.v4.content.res.ResourcesCompat
+import android.support.v7.app.AppCompatDelegate
 
 /**
  * Created by macha on 21/07/2017.
@@ -48,5 +49,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
 }

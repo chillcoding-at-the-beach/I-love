@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.support.annotation.DrawableRes
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.content.ContextCompat
+import android.support.v7.content.res.AppCompatResources
 import android.util.AttributeSet
 import android.view.View
 import kotlinx.coroutines.experimental.android.UI
@@ -75,7 +76,7 @@ class GameFab : FloatingActionButton {
     private fun Drawable.startAsAnimatable() = (this as Animatable).start()
 
     private fun setImageDrawable(mode: Mode) {
-        val animatedVector = ContextCompat.getDrawable(context, mode.drawableRes)
+        val animatedVector = AppCompatResources.getDrawable(context, mode.drawableRes)
         this.setImageDrawable(animatedVector)
     }
 
