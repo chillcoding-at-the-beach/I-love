@@ -5,12 +5,12 @@ With regard to the I Love Software:
 
 This software (the "Software") may only be used in production, if you (and any
 entity that you represent) have agreed to, and are in compliance with, the
-I Love Terms of Service, available at
+Software Terms of Service, available at
 https://www.chillcoding.com/app/ilove/privacy-policy.html, or other agreement
 governing the use of the Software, as agreed by you and ChillCoding, and
-otherwise have a valid I Love installation from the Google Play Store.
+otherwise have a valid installation of the Software from the Google Play Store.
 Subject to the foregoing sentence, you are free to modify this Software and
-submit patches to the Software on the I Love project on GitLab, available at
+submit patches to the Software on its GitLab.com project, available at
 https://gitlab.com/chillcoding-at-the-beach/I-love.
 You agree that ChillCoding and/or its licensors (as applicable) retain all
 right, title and interest in and to all such modifications and/or patches, and
@@ -31,6 +31,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-For all third party components incorporated into the I Love Software, those
+For all third party components incorporated into the Software, those
 components are licensed under the original license provided by the owner of the
 applicable component.
