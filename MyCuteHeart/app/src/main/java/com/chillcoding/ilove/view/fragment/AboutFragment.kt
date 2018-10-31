@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.chillcoding.ilove.R
 import kotlinx.android.synthetic.main.fragment_about.*
 import org.jetbrains.anko.browse
+import org.jetbrains.anko.share
 import org.jetbrains.anko.toast
 
 /**
@@ -94,6 +95,10 @@ class AboutFragment : Fragment() {
         instagramImg.setOnClickListener { browse("https://www.instagram.com/ilovekotlin/") }
 
         twitterImg.setOnClickListener { browse("https://twitter.com/ILovekotlin/") }
+
+        aboutShare.setOnClickListener { share("${getString(R.string.text_share_app)} ${getString(R.string.url_app)}", getString(R.string.app_name)) }
+
+        aboutUpdate.setOnClickListener { browse("${getString(R.string.url_app)}") }
     }
 }
 
