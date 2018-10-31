@@ -337,5 +337,6 @@
     <string name="subtitle_purchase_premium">Price: €0.99</string>
     <string name="subtitle_purchase_features">Price: €0.50</string>
     <string name="title_purchase_awards">Unlimited Awards</string>
+    <string name="title_update">Update this app</string>
 
 </resources>

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="2"
-        android:rowCount="5"
+        android:rowCount="6"
         android:useDefaultMargins="true">
 
         <android.support.v7.widget.CardView
@@ -110,8 +110,64 @@
 
         <android.support.v7.widget.CardView
             android:layout_column="0"
-            android:layout_gravity="fill_horizontal"
+            android:layout_gravity="fill"
+            android:layout_columnWeight="1"
             android:layout_row="1"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <LinearLayout
+                style="@style/MyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_menu_share" />
+
+                <TextView
+                    style="@style/MyCardText.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/action_share" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_column="1"
+            android:layout_gravity="fill"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            app:cardCornerRadius="@dimen/general_corner_radius">
+
+            <LinearLayout
+                style="@style/MyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/middle_size"
+                    android:layout_height="@dimen/middle_size"
+                    android:layout_gravity="center_horizontal"
+                    app:srcCompat="@drawable/ic_update" />
+
+                <TextView
+                    style="@style/MyCardText.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/title_update" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="2"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
             <LinearLayout
@@ -138,7 +194,7 @@
         <android.support.v7.widget.CardView
             android:layout_column="0"
             android:layout_gravity="fill_horizontal"
-            android:layout_row="2"
+            android:layout_row="3"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
             <LinearLayout
@@ -165,7 +221,7 @@
         <android.support.v7.widget.CardView
             android:layout_column="1"
             android:layout_gravity="fill"
-            android:layout_row="1"
+            android:layout_row="2"
             android:layout_rowSpan="2"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
@@ -203,7 +259,7 @@
         <android.support.v7.widget.CardView
             android:layout_column="0"
             android:layout_gravity="fill_horizontal"
-            android:layout_row="3"
+            android:layout_row="4"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
             <LinearLayout
@@ -231,7 +287,7 @@
         <android.support.v7.widget.CardView
             android:layout_column="1"
             android:layout_gravity="fill"
-            android:layout_row="3"
+            android:layout_row="4"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
             <LinearLayout
@@ -259,7 +315,7 @@
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
-            android:layout_row="4"
+            android:layout_row="5"
             app:cardCornerRadius="@dimen/general_corner_radius">
 
             <android.support.constraint.ConstraintLayout
