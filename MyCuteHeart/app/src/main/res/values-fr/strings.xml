@@ -293,4 +293,5 @@
     <string name="subtitle_purchase_premium">Prix : 0.99 €</string>
     <string name="subtitle_purchase_features">Prix : 0.50 €</string>
     <string name="title_purchase_awards">Trophées illimités</string>
+    <string name="title_update">Mettre à jour</string>
 </resources>
