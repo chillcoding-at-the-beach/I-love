@@ -1,9 +1,9 @@
 package com.chillcoding.ilove.view.activity
 
 import android.os.Bundle
-import android.support.text.emoji.EmojiCompat
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.emoji.text.EmojiCompat
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.chillcoding.ilove.App
 import com.chillcoding.ilove.R

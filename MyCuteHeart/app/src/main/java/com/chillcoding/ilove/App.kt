@@ -1,10 +1,10 @@
 package com.chillcoding.ilove
 
 import android.app.Application
-import android.support.text.emoji.EmojiCompat
-import android.support.text.emoji.bundled.BundledEmojiCompatConfig
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.app.AppCompatDelegate
+import androidx.emoji.text.EmojiCompat
+import androidx.emoji.bundled.BundledEmojiCompatConfig
+import androidx.core.content.res.ResourcesCompat
+import androidx.appcompat.app.AppCompatDelegate
 
 /**
  * Created by macha on 21/07/2017.

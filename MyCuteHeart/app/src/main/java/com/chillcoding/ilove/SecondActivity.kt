@@ -1,8 +1,8 @@
 package com.chillcoding.ilove
 
-import android.app.Fragment
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.chillcoding.ilove.model.FragmentId
 import com.chillcoding.ilove.view.fragment.AboutFragment
 import com.chillcoding.ilove.view.fragment.AwardsFragment

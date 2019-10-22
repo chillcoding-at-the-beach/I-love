@@ -1,7 +1,7 @@
 package com.chillcoding.ilove.view.adapter
 
-import android.support.text.emoji.EmojiCompat
-import android.support.v7.widget.RecyclerView
+import androidx.emoji.text.EmojiCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.chillcoding.ilove.App

@@ -1,9 +1,9 @@
 package com.chillcoding.ilove.extension
 
 import android.annotation.SuppressLint
-import android.app.Fragment
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.fragment.app.Fragment
 import kotlin.reflect.KProperty
 
 

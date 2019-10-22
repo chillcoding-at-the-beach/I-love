@@ -1,11 +1,11 @@
 package com.chillcoding.ilove.view.fragment
 
-import android.app.Fragment
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.chillcoding.ilove.R
 import com.chillcoding.ilove.extension.hasConnectivity
 import com.chillcoding.ilove.model.Score
@@ -14,9 +14,8 @@ import com.chillcoding.ilove.network.GameService
 import com.chillcoding.ilove.view.adapter.ScoreListAdapter
 import kotlinx.android.synthetic.main.fragment_top_scores.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.yesButton
+import org.jetbrains.anko.support.v4.longToast
+import org.jetbrains.anko.support.v4.alert
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

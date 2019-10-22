@@ -2,24 +2,23 @@ package com.chillcoding.ilove
 
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.chillcoding.fablibrary.GameFab
 import com.chillcoding.ilove.extension.*
 import com.chillcoding.ilove.model.FragmentId
 import com.chillcoding.ilove.view.activity.AwardsActivity
 import com.chillcoding.ilove.view.activity.PurchaseActivity
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.email
-import org.jetbrains.anko.share
 import org.jetbrains.anko.startActivity
 import java.util.*
 
