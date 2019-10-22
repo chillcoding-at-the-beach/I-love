@@ -13,7 +13,7 @@ class AwardDetailsFragment : Fragment() {
 
     var mCurrentPosition = -1
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         if (savedInstanceState != null) {
             mCurrentPosition = savedInstanceState.getInt(App.STATE_AWARD_POSITION)
         }
@@ -26,7 +26,8 @@ class AwardDetailsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         if (arguments != null) {
-            updateAwardView(arguments.getInt(App.STATE_AWARD_POSITION))
+            val arguments = arguments
+            arguments?.getInt(App.STATE_AWARD_POSITION)?.let { updateAwardView(it) }
         } else if (mCurrentPosition != -1) {
             updateAwardView(mCurrentPosition)
         }
@@ -37,7 +38,7 @@ class AwardDetailsFragment : Fragment() {
         mCurrentPosition = position
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState!!.putInt(App.STATE_AWARD_POSITION, mCurrentPosition)
     }

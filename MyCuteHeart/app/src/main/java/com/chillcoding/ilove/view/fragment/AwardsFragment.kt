@@ -22,10 +22,10 @@ class AwardsFragment : Fragment() {
 
     private var items = Array<Award>(AWARD_LIST_SIZE + 1, { Award() })
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater?.inflate(R.layout.fragment_awards, container, false)
-        val bestScore: Int by DelegatesExt.preference(activity, App.PREF_BEST_SCORE, 0)
-        val awardLevel: Int by DelegatesExt.preference(activity, App.PREF_AWARD_LEVEL, -1)
+        val bestScore: Int by DelegatesExt.preference(activity!!.applicationContext, App.PREF_BEST_SCORE, 0)
+        val awardLevel: Int by DelegatesExt.preference(activity!!.applicationContext, App.PREF_AWARD_LEVEL, -1)
 
         for (k in 0..(awardLevel - 1)) {
             val awardTitle = EmojiCompat.get().process("${App.awardsTitle[k]}")
@@ -40,9 +40,9 @@ class AwardsFragment : Fragment() {
         return view!!
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        val isPremium: Boolean by DelegatesExt.preference(activity, App.PREF_PREMIUM, false)
-        val isAwards: Boolean by DelegatesExt.preference(activity, App.PREF_UNLIMITED_AWARDS, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val isPremium: Boolean by DelegatesExt.preference(activity!!.applicationContext, App.PREF_PREMIUM, false)
+        val isAwards: Boolean by DelegatesExt.preference(activity!!.applicationContext, App.PREF_UNLIMITED_AWARDS, false)
         awardsList.layoutManager = LinearLayoutManager(activity)
         awardsList.adapter = AwardListAdapter(items, isPremium || isAwards)
     }

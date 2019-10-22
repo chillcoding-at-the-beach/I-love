@@ -36,11 +36,11 @@ class TopScoresFragment : Fragment(), AnkoLogger {
 
     private var adapter = ScoreListAdapter(allTopScores)
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_top_scores, container, false)
 
 
-        if (activity.hasConnectivity()) {
+        if (activity!!.hasConnectivity()) {
             val retrofit = Retrofit.Builder()
                     .baseUrl(url)
                     .addConverterFactory(MoshiConverterFactory.create())
@@ -65,7 +65,7 @@ class TopScoresFragment : Fragment(), AnkoLogger {
             })
         } else
             alert(R.string.text_no_internet_in_top_scores) {
-                yesButton { }
+                positiveButton (android.R.string.yes){ }
             }.show()
         return view!!
     }
@@ -75,7 +75,7 @@ class TopScoresFragment : Fragment(), AnkoLogger {
         adapter.notifyDataSetChanged()
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         topScoreRecycler.layoutManager = LinearLayoutManager(activity)
         topScoreRecycler.adapter = adapter
     }

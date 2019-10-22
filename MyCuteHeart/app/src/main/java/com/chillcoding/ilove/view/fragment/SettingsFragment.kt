@@ -17,12 +17,12 @@ class SettingsFragment : Fragment() {
 
     var isSound: Boolean by DelegatesExt.preference(this as Fragment, App.PREF_SOUND, true)
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_settings, container, false)
         return view!!
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         settingsSoundSwitch.isChecked = isSound
     }

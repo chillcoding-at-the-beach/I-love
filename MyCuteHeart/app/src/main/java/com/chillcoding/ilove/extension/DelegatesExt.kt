@@ -28,7 +28,7 @@ class Preference<T>(private var context: Context?, private val name: String,
         if (myFragment == null)
             context!!.getSharedPreferences("default", Context.MODE_PRIVATE)
         else
-            myFragment!!.activity.getSharedPreferences("default", Context.MODE_PRIVATE)
+            myFragment!!.activity!!.getSharedPreferences("default", Context.MODE_PRIVATE)
     }
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T = findPreference(name, default)

@@ -1,21 +1,26 @@
 package com.chillcoding.ilove.view.fragment
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.chillcoding.ilove.App
 import com.chillcoding.ilove.R
+import com.chillcoding.ilove.extension.DelegatesExt
 import kotlinx.android.synthetic.main.fragment_about.*
-import org.jetbrains.anko.browse
-import org.jetbrains.anko.share
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.support.v4.browse
+import org.jetbrains.anko.support.v4.share
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by macha on 02/08/2017.
  */
 class AboutFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+    var isPremium: Boolean by DelegatesExt.preference(this, App.PREF_PREMIUM, false)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view = inflater?.inflate(R.layout.fragment_about, container, false)
         return view!!
     }
@@ -32,7 +37,7 @@ class AboutFragment : Fragment() {
 
     private var thumbUp: Boolean = true
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         aboutChillcodingButton.setOnClickListener { browse("https://www.chillcoding.com/") }
         aboutAndroidImg.setOnClickListener {
             when (nb) {
@@ -77,6 +82,10 @@ class AboutFragment : Fragment() {
                 else
                     setImageResource(R.drawable.ic_star_border)
                 star = !star
+                if (!like && !beach) {
+                    isPremium = !isPremium
+                    toast("cool")
+                }
             }
         }
         with(facebookLikeIcon) {

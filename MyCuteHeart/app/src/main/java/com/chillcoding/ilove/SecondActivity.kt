@@ -47,7 +47,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     fun setFragment(frag: Fragment) {
-        fragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction()
                 .replace(R.id.secondContent, frag)
                 .commit()
     }

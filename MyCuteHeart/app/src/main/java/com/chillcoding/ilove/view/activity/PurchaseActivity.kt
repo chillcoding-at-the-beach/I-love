@@ -270,7 +270,7 @@ class PurchaseActivity : AppCompatActivity(), IabBroadcastReceiver.IabBroadcastL
         return accountName
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (mHelper == null) return
         // Pass on the activity result to the helper for handling
         if (!mHelper!!.handleActivityResult(requestCode, resultCode, data)) {

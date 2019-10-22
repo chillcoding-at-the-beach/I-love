@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navView.menu.findItem(R.id.nav_purchase).isVisible = false
         mToggle = object : ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-            override fun onDrawerClosed(view: View?) {}
-            override fun onDrawerOpened(drawerView: View?) {
+            override fun onDrawerClosed(view: View) {}
+            override fun onDrawerOpened(drawerView: View) {
                 if (gameView.isPlaying)
                     pauseGame(true)
             }

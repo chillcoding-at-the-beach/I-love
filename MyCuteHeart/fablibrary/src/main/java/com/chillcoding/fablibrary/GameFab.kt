@@ -48,9 +48,8 @@ class GameFab : FloatingActionButton {
 
     private fun getMode(styleableInt: Int): Mode = listOf(Mode.PLAYPAUSE, Mode.PAUSEPLAY).first { it.styleableInt == styleableInt }
 
-
-    private val eventActor = actor<View>(UI) {
-        channel.consumeEach {
+    val eventActor = GlobalScope.actor<View>(Dispatchers.Main) {
+        for (event in channel) {
             val oppositeMode = currentMode.getOppositeMode()
             this@GameFab.drawable.startAsAnimatable()
             delay(maximumAnimationDuration)
@@ -73,6 +72,7 @@ class GameFab : FloatingActionButton {
         this.listener = listener
     }
 
+    @RequiresApi(Build.VERSION_CODES.DONUT)
     private fun Drawable.startAsAnimatable() = (this as Animatable).start()
 
     private fun setImageDrawable(mode: Mode) {

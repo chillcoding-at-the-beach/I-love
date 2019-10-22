@@ -32,11 +32,21 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support:design:$support_version"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.19.3'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile).all {
+        kotlinOptions.freeCompilerArgs += ["-Xuse-experimental=kotlin.Experimental"]
+        kotlinOptions.freeCompilerArgs += "-progressive"
+        kotlinOptions.freeCompilerArgs += "-XXLanguage:+InlineClasses"
+        // Binary compatibility support
+        kotlinOptions.freeCompilerArgs += ["-Xdump-declarations-to=${buildDir}/visibilities.json"]
+    }
 
 }
+
 repositories {
     mavenCentral()
 }
